@@ -1,0 +1,12 @@
+VarTest => wmtsa::wavVarTest
+https://cran.r-project.org/web/packages/wmtsa/wmtsa.pdf
+
+Johansen => urca::ca.jo
+https://cran.r-project.org/web/packages/urca/urca.pdf
+
+Engle Granger=> aTSA::coint.test. aTSA::ecm, egcm::egcm
+https://www.rdocumentation.org/packages/aTSA/versions/3.1.2
+https://cran.r-project.org/web/packages/egcm/egcm.pdf
+
+Banerjee => ?
+Boswijk => ?
