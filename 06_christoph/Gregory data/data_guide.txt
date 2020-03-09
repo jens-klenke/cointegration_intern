@@ -1,0 +1,1847 @@
+Gregory, Haug and Lomuto, 2004
+Data Guide
+  
+********************************************************
+
+Name of Data File:      amano_wirjanto96.dat
+ 
+Citation:    		Amano, R.A., and Wirjanto, T.S. (1996), "Money Stock
+		       	Targeting and Money Supply: A Closer Examination of
+			the Data," Journal of Applied Econometrics, 11,
+			93-104.
+ 
+Geographic Area:        Canada
+ 
+Time Span:              1971:1 to 1992:4
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Not stated in original article
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+OECD GDP (represents aggregate foreign demand)                    gdpl
+US export prices                                                  pexpl
+End-of-period M1                                                  M1l
+End-of-period M2                                                  M2l
+End-of-period base money                                          basel
+Industrialized countries export prices                            impl
+End-of-period US 3-month t-bill rate                  tbill       
+ 
+********************************************************
+
+Name of Data File:      anderson_vahid_1_97.dat
+ 
+Citation:               Anderson, H.M., and Vahid, F. (1997), "On the 
+                        Correspondence Between Individual and Aggregate Food 
+                        Consumption Functions: Evidence from the USA and the
+                        Netherlands," Journal of Applied Econometrics, 12, 
+			477-507.          
+ 
+Geographic Area:        US
+ 
+Time Span:              1913 to 1941
+                  
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+-----------------------------------------------------------------------------
+Year                                                  Date
+Per capita food consumption                                       tobpcfcl
+Per capita disposable income                                      tobpcyl
+Food price index                                                  tobfpl
+Non-food price index                                              tobnfpl
+Per capita disposable income squared                              tobpcysq
+Per household food consumption                                    tobphfcl
+Per household disposable income                                   tobphyl
+Average number of persons per household                           popnohl
+Per household disposable income squared                           tobphysq
+ 
+********************************************************
+
+Name of Data File:      anderson_vahid_2_97.dat
+ 
+Citation:               Anderson, H.M., and Vahid, F. (1997), "On the 
+                        Correspondence Between Individual and Aggregate Food 
+                        Consumption Functions: Evidence from the USA and the
+                        Netherlands," Journal of Applied Econometrics, 12, 
+			477-507.          
+ 
+Geographic Area:        US
+ 
+Time Span:              1948 to 1989
+                  
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+-----------------------------------------------------------------------------
+Year                                                  Date
+Real expenditure on food per household                            cl 
+Nominal income per household                                      yl
+Food price index                                                  fpl
+Non-food price index                                              nfpl
+Average number of persons per household                           popnohl
+ 
+********************************************************
+
+Name of Data File:      anderson_vahid_3_97.dat
+ 
+Citation:               Anderson, H.M., and Vahid, F. (1997), "On the 
+                        Correspondence Between Individual and Aggregate Food 
+                        Consumption Functions: Evidence from the USA and the
+                        Netherlands," Journal of Applied Econometrics, 12, 
+			477-507.          
+ 
+Geographic Area:        Netherlands
+ 
+Time Span:              1948 to 1988
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Per thousand capita real expenditure on food consumption          rfcl
+Per thousand capita nominal income                                yl 
+Food price index                                                  fpl 
+Non-food price index                                              nfpl
+ 
+********************************************************
+
+Name of Data File:      bearse_bozdogan_schlottmann_1_97.dat
+ 
+Citation:    		Bearse, P.M., Bozdogan, H., and Schlottmann, A.M. 
+			(1997), "Empirical Econometric Modeling of Food 
+			Consumption Using a New Informational Complexity 
+			Approach," Journal of Applied Econometrics, 12, 
+			563-592.
+ 
+Geographic Area:        US
+ 
+Time Span:              1913 to 1947
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Per capita food consumption (quantity)                            cl    
+Food price index                                                  fpl
+Non-food price index                                              npl   
+Nominal per capita disposable income (lagged once)                y1lag
+ 
+********************************************************
+
+Name of Data File:      bearse_bozdogan_schlottmann_2_97.dat
+ 
+Citation:               Bearse, P.M., Bozdogan, H., and Schlottmann, A.M.
+			(1997), "Empirical Econometric Modeling of Food 
+			Consumption Using a New Informational Complexity 
+			Approach," Journal of Applied Econometrics, 12, 
+			563-592.
+ 
+Geographic Area:        US
+ 
+Time Span:              1913 to 1976
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Per capita food consumption                                       pcfcl
+Per capita disposable income                                      pcyl1
+Food price index                                                  fpl1
+Non-food price index                                              nfpl2
+ 
+********************************************************
+
+Name of Data File:      bearse_bozdogan_schlottmann_3_97.dat
+ 
+Citation:               Bearse, P.M., Bozdogan, H., and Schlottmann, A.M. 
+			(1997), "Empirical Econometric Modeling of Food 
+			Consumption Using a New Informational Complexity 
+			Approach," Journal of Applied Econometrics, 12, 
+			563-592.
+ 
+Geographic Area:        Netherlands
+ 
+Time Span:              1948 to 1988
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Per capita nominal food expenditure lagged twice                  cl2
+Aggregate nominal income per capita                               yl
+Price of food                                                     fpl
+Non-food price index                                              npl
+ 
+********************************************************
+
+Name of Data File:      bernard_durlauf95.dat
+ 
+Citation:               Bernard, A.B., and Durlauf, S.N. (1995), "Convergence 
+			in International Output," Journal of Applied 
+			Econometrics, 10, 97-108.
+ 
+Geographic Area:        Austria, Belgium, Denmark, Finland, France, Germany, 
+	   		Italy, Netherlands, Norway, Sweden, United Kingdom 
+ 
+Time Span:              1900 to 1987
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No          
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+ 
+Real GDP per capita for . . .                                     
+Austria                                                           austl
+Belgium                                                           bell
+Denmark                                                           denl
+Finland                                                           finl
+France                                                            frl
+Germany                                                           gerl
+Italy                                                             italyl
+Netherlands                                                       netherl
+Norway                                                            norl
+Sweden                                                            swedl
+United Kingdom                                                    ukl
+ 
+******************************************************** 
+
+Name of Data File:      beyer98.dat
+ 
+Citation:               Beyer, A. (1998), "Modeling Money Demand in Germany," 
+                        Journal of Applied Econometrics, 13, 57-76.     
+ 
+Geographic Area:        Germany
+ 
+Time Span:              1975:1 to 1994:4
+                  
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Some variables are adjusted
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Real M3, seasonally adjusted                                      msubp
+Real M3, not seasonally adjusted                                  msubpnsa
+Real GDP, seasonally adjusted                                     ysal
+Real GDP, not seasonally adjusted                                 ynsal
+Frankfurt three-month funds money market rate         rs
+Yield on public debt securities outstanding           rl                
+Dummy variable for Quarter 1, 1990                    dum1
+Dummy variable for Quarter 1, 1991                    dum2
+Dummy variable for Quarter 2, 1990                    dum3
+Dummy variable for Quarter 4, 1990                    dum4
+Dummy variable for Quarter 1, 1992                    dum5
+Inflation rate, seasonally adjusted                               infsa2
+Inflation rate, not seasonally adjusted                           infnsa2
+ 
+******************************************************** 
+
+Name of Data File:      clements_hendry95.dat
+ 
+Citation:               Clements, M.P., and Hendry, D.F. (1995), "Forecasting 
+			in Cointegrated Systems," Journal of Applied 
+			Econometrics, 10, 127-146.
+ 
+Geographic Area:        United Kingdom
+ 
+Time Span:              1963:1 to 1989:2
+      
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Yes   
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Opportunity cost of holding money, learning adjusted  rn
+Velocity of circulation                                           v
+ 
+******************************************************** 
+
+Name of Data File:      clements_hendry96.dat
+ 
+Citation:               Clements, M.P., and Hendry, D.F. (1996), "Intercept 
+                        Corrections and Structural Change," Journal of Applied
+                        Econometrics, 11, 475-494.
+ 
+Geographic Area:        United Kingdom
+ 
+Time Span:              1965:1 to 1993:1
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Not stated in original article 
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Earnings per man-hour                                             e
+Retail price index                                                r
+Unemployment rate                                                 u
+ 
+********************************************************** 
+
+Name of Data File:      cooley_ogaki96.dat
+ 
+Citation:               Cooley, T.F., and Ogaki, M. (1996), "A Time Series 
+			Analysis of Real Wages, Consumption, and Asset 
+			Returns," Journal of Applied Econometrics, 11, 119-34.
+ 
+Geographic Area:        US
+ 
+Time Span:              1947:1 to 1990:4
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Yes   
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Real per capita consumption food                                  foodpc
+Real per capita consumption non-durables                          ndpc
+Real per capita consumption non-durables plus services            ndspc
+Real wages deflated by food prices                                wagefood
+Real wages deflated by non-durables prices                        wagend
+Real wages deflated by non-durables plus services                 wagends
+ 
+**********************************************************
+
+Name of Data File:      cubadda_1_99.dat
+ 
+Citation:               Cubadda, G. (1999), "Common Cycles in Seasonal 
+                        Non-stationary Time Series," Journal of Applied 
+			Econometrics, 14, 273-291.
+ 
+Geographic Area:        Italy
+ 
+Time Span:              1970:1 to 1996:1
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Yes
+                  
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Seasonally adjusted consumption of non-durables and services      c_sa
+Seasonally adjusted gross domestic product                        y_sa
+ 
+**********************************************************
+
+Name of Data File:      cubadda_2_99.dat
+ 
+Citation:               Cubadda, G. (1999), "Common Cycles in Seasonal 
+                        Non-stationary Time Series," Journal of Applied 
+			Econometrics, 14, 273-291.
+ 
+Geographic Area:        Italy
+ 
+Time Span:              1970 to 1995
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No      
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Consumption of non-durables and services                          c
+Gross domestic product                                            y
+ 
+********************************************************
+
+Name of Data File:      decrombrugghe_palm_urbain_1_97.dat
+ 
+Citation:               De Crombrugghe, D., Palm, F.C., and Urbain, J.P. 
+			(1997), "Statistical Demand Functions for Food in 
+			the USA and the Netherlands," Journal of Applied 
+			Econometrics, 12, 615-645.
+ 
+Geographic Area:        US
+ 
+Time Span:              1913 to 1941
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Per capita food consumption (quantity)                           ctl
+Real per capita disposable income                                yovpl
+Food price index                                                 tobpfl
+Income deflator                                                  pyal
+ 
+********************************************************
+
+Name of Data File:      decrombrugghe_palm_urbain_2_97.dat
+ 
+Citation:               De Crombrugghe, D., Palm, F.C., and Urbain, J.P. 
+			(1997), "Statistical Demand Functions for Food in the 
+			USA and the Netherlands," Journal of Applied 
+			Econometrics, 12, 615-645.
+ 
+Geographic Area:        US
+ 
+Time Span:              1947 to 1989
+                  
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Real per capita personal food expenditure                         ct2l 
+Real per capita disposable income                                 yovp2l
+Food price index                                                  pf2l
+Income deflator                                                   pyl
+ 
+********************************************************
+
+Name of Data File:      decrombrugghe_palm_urbain_3_97.dat
+ 
+Citation:               De Crombrugghe, D., Palm, F.C., and Urbain, J.P. 
+			(1997), "Statistical Demand Functions for Food in the 
+			USA and the Netherlands," Journal of Applied 
+			Econometrics, 12, 615-645.
+ 
+Geographic Area:        Netherlands
+ 
+Time Span:              1948 to 1988
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Real per capita personal food expenditure                         cl
+Real per capita disposable income                                 yovp
+Food price index (first difference)                               pfovpy
+Income deflator (first difference)                                pfld
+ 
+********************************************************
+
+Name of Data File:      delacroix_urbain_1_98.dat
+ 
+Citation:               De La Croix, D., and Urbain, J.P. (1998), 
+			"Intertemporal Substitution in Import Demand and 
+			Habit Formation," Journal of Applied Econometrics, 
+			13, 589-612.
+      
+Geographic Area:        US
+ 
+Time Span:              1970:1 to 1994:1
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Yes
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Imported non-durable consumption goods (volume)                   cml
+Domestically produced non-durable consumption goods (volume)      cdl
+Ratio of domestic to import prices                                pl
+ 
+********************************************************
+
+Name of Data File:      delacroix_urbain_2_98.dat
+ 
+Citation:               De La Croix, D., and Urbain, J.P. (1998), 
+			"Intertemporal Substitution in Import Demand and 
+			Habit Formation," Journal of Applied Econometrics, 
+			13, 589-612.
+      
+Geographic Area:        France
+ 
+Time Span:              1967:1 to 1994:3
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Yes
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Imported non-durable consumption goods (volume)                   cml
+Domestically produced non-durable consumption goods (volume)      cdl
+Ratio of domestic to import prices                                pl
+ 
+********************************************************
+
+Name of Data File:      engsted_haldrup_1_94.dat
+ 
+Citation:               Engsted, T., and Haldrup, N. (1994), "The Linear 
+			Quadratic Adjustment Cost Model and the Demand for 
+			Labour," Journal of Applied Econometrics, 9, S145-S159.
+ 
+Geographic Area:        Denmark
+ 
+Time Span:              1974:1 to 1990:4  
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    No          
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Number of employed manual laborers                                ll
+Real product wages                                                wl
+Real sales                                                        yl
+Real raw material prices                                          pl
+ 
+ 
+Note: This data from this file are for SIC 31, Manufacture of food,
+beverages and tobacco.
+ 
+********************************************************
+
+Name of Data File:      engsted_haldrup_2_94.dat
+ 
+Citation:               Engsted, T., and Haldrup, N. (1994), "The Linear 
+			Quadratic Adjustment Cost Model and the Demand for 
+			Labour," Journal of Applied Econometrics, 9, S145-S159.
+ 
+Geographic Area:        Denmark
+ 
+Time Span:              1974:1 to 1990:4  
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    No          
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Number of employed manual laborers                                ll
+Real product wages                                                wl
+Real sales                                                        yl
+Real raw material prices                                          pl
+ 
+Note:  This data from this file are for SIC 35: Manufacture of chemicals, etc.
+ 
+********************************************************
+
+Name of Data File:      engsted_haldrup_3_94.dat
+ 
+Citation:               Engsted, T., and Haldrup, N. (1994), "The Linear 
+			Quadratic Adjustment Cost Model and the Demand for 
+			Labour," Journal of Applied Econometrics, 9, S145-S159.
+ 
+Geographic Area:        Denmark
+ 
+Time Span:              1974:1 to 1990:4  
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    No          
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Number of employed manual laborers                                ll
+Real product wages                                                wl
+Real sales                                                        yl
+Real raw material prices                                          pl
+Dummy variable for Quarter 1, 1985                    Dum
+ 
+Note:  This data from this file are for SIC 39: Other industries.
+ 
+********************************************************
+
+Name of Data File:      garratt_hall96.dat
+ 
+Citation:               Garratt, A., and Hall, S.G. (1996), "Measuring 
+			Underlying Economic Activity," Journal of Applied 
+			Econometrics, 11, 135-151.
+ 
+Geographic Area:        United Kingdom
+ 
+Time Span:              1959:1 to 1991:3
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Yes   
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+GDP average income at factor cost                                 lgdp 
+Output of production industries                                   lip 
+Below capacity utilization                                        lres
+            
+********************************************************
+
+Name of Data File:      gil-alana_robinson_1_2001.dat
+ 
+Citation:               Gil-Alana, L.A., and Robinson, P.M. (2001), "Testing 
+			of Seasonal Fractional Integration in UK and Japanese 
+                        Consumption and Income,"  Journal of Applied 
+			Econometrics, 16, 95-114.
+ 
+Geographic Area:        United Kingdom 
+ 
+Time Span:              1955 to 1984
+                  
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Total real consumption                                            c
+Real disposable income                                            y
+ 
+********************************************************
+
+Name of Data File:      gil-alana_robinson_2_2001.dat
+ 
+Citation:               Gil-Alana, L.A., and Robinson, P.M. (2001), "Testing 
+			of Seasonal Fractional Integration in UK and Japanese 
+                        Consumption and Income,"  Journal of Applied 
+			Econometrics, 16, 95-114.
+ 
+Geographic Area:        Japan
+ 
+Time Span:              1961 to 1987
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Total real consumption                                            c
+Real disposable income                                            y
+ 
+********************************************************
+
+Name of Data File:      hai_mark_wu97.dat
+ 
+Citation:               Hai, W., Mark, C.N., and Wu, Y. (1997), "Understanding
+			Spot and Forward Exchange Rate Regressions," Journal 
+			of Applied Econometrics, 12, 715-734.
+ 
+Geographic Area:        United Kingdom, France, Japan
+ 
+Time Span:              1976:1 to 1992:8
+ 
+Frequency:              Monthly
+ 
+Seasonally Adjusted:    No
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and month                                        Date
+ 
+Spot rate 1 month after 1 month forward rate for . . .
+United Kingdom                                                    spotuk11
+France                                                            spotfr11
+Japan                                                             spotyen11
+ 
+Spot rate 3 months after 3 month forward rate for . . .
+United Kingdom                                                    spotuk3l
+France                                                            spotfr3l
+Japan                                                             spotyen3l
+ 
+1 month forward rate for . . .
+United Kingdom                                                    for1ukl
+France                                                            for1frl
+Japan                                                             for1yenl
+ 
+3 month forward rate for . . .
+United Kingdom                                                    for3ukl
+France                                                            for3frl
+Japan                                                             for3yenl
+ 
+*********************************************************
+
+Name of Data File:      hall_psaradakis_sola97.dat
+ 
+Citation:               Hall, S.G., Psaradakis, Z., and Sola, M. (1997), 
+                        "Cointegration and Changes in Regime: The Japanese 
+                        Consumption Function," Journal of Applied 
+			Econometrics, 12, 151-168.
+ 
+Geographic Area:        Japan
+ 
+Time Span:              1961:1 to 1987:4
+ 
+Frequency:              Quarterly   
+ 
+Seasonally Adjusted:    Yes
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Quarterly real total private consumption                          cl    
+Quarterly real disposable income                                  yl
+Yearly real total private consumption                             cll
+Yearly real disposable income                                     yll
+ 
+***********************************************************
+
+Name of Data File:      hobijn_franses00.dat
+ 
+Citation:               Hobijn, B. and Franses, P.H. (2000), "Asymptotically
+			Perfect and Relative Convergence of Productivity," 
+			Journal of Applied Econometrics, 15, 59-81.
+ 
+Geographic Area:        Countries listed in Penn World Tables
+ 
+Time Span:              1960-1989
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Angola                                                            ago
+Argentina                                                         arg
+Australia                                                         aus
+Austria                                                           aut
+Burundi                                                           bdi
+Belgium                                                           bel
+Benin                                                             ben
+Bangladesh                                                        bgd
+Bolivia                                                           bol
+Brazil                                                            bra
+Barbados                                                          brb
+Myanmar                                                           bur
+Botswana                                                          bwa
+Central African Rep.                                              caf
+Canada                                                            can
+Switzerland                                                       che
+Chile                                                             chl
+Ivory Coast                                                       civ
+Cameroon                                                          cmr
+Congo                                                             cog
+Colombia                                                          col
+Cape Verde Is.                                                    cpv
+Costa Rica                                                        cri
+Czechoslovakia                                                    csk
+Cyprus                                                            cyp
+West Germany                                                      deu
+Denmark                                                           dnk
+Dominican Rep.                                                    dom
+Algeria                                                           dza
+Ecuador                                                           ecu
+Egypt                                                             egy
+Spain                                                             esp
+Finland                                                           fin
+Fiji                                                              fji
+France                                                            fra 
+Gabon                                                             gab
+United Kingdom                                                    gbr
+Ghana                                                             gha
+Guinea                                                            gin
+Gambia                                                            gmb
+Guinea-Bissau                                                     gnb
+Greece                                                            grc
+Guatemala                                                         gtm
+Guyana                                                            guy
+Hong Kong                                                         hkg
+Honduras                                                          hnd
+Haiti                                                             hti
+Burkina Faso                                                      hvo
+Indonesia                                                         idn
+India                                                             ind
+Ireland                                                           irl
+Iran                                                              irn
+Iceland                                                           isl
+Israel                                                            isr
+Italy                                                             ita
+Jamaica                                                           jam
+Jordan                                                            jor
+Japan                                                             jpn
+Kenya                                                             ken
+Korea                                                             kor
+Sri Lanka                                                         lka
+Lesotho                                                           lso
+Luxembourg                                                        lux
+Morocco                                                           mar
+Madagascar                                                        mdg
+Mexico                                                            mex
+Mali                                                              mli
+Malta                                                             mlt
+Mozambique                                                        moz
+Mauritania                                                        mrt
+Mauritius                                                         mus
+Malawi                                                            mwi
+Malaysia                                                          mys
+Namibia                                                           nam
+Niger                                                             ner
+Nigeria                                                           nga
+Netherlands                                                       nld
+Norway                                                            nor
+New Zealand                                                       nzl
+Pakistan                                                          pak
+Panama                                                            pan
+Peru                                                              per
+Phillipines                                                       phl
+Papua N. Guinea                                                   png
+Puerto Rico                                                       pri
+Portugal                                                          prt
+Paraguay                                                          pry
+Rwanda                                                            rwa
+Senegal                                                           sen
+Singapore                                                         sgp
+El Salvador                                                       slv
+Somalia                                                           som
+Suriname                                                          sur
+Sweden                                                            swe
+Swaziland                                                         swz
+Seychelles                                                        syc
+Syria                                                             syr
+Tcad                                                              tcd
+Togo                                                              tgo
+Thailand                                                          tha
+Trinidad/Tobago                                                   tto
+Tunisia                                                           tun
+Turkey                                                            tur
+Uganda                                                            uga
+Uruguay                                                           ury
+US                                                                usa
+Venezuela                                                         ven
+Former Yugoslavia                                                 yug
+South Africa                                                      zaf
+Zaire                                                             zar
+Zambia                                                            zmb
+Zimbabwe                                                          zwe
+ 
+********************************************************
+
+Name of Data File:      hodgson99.dat
+ 
+Citation:               Hodgson, D.J. (1999), "Adaptive Estimation of 
+			Cointegrated Models: Simulation Evidence and an 
+			Application to the Forward Exchange Market," Journal 
+			of Applied Econometrics, 14, 627-650.
+ 
+Geographic Area:        Canada
+ 
+Time Span:              November 19, 1990 to June 30, 1993
+ 
+Frequency:              Daily
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year, month and day                                   Date
+90-day Canada-U.S. noon forward exchange rate                     forwl
+Spot rate on day forward contract delivered                       spotl
+ 
+**********************************************************
+
+Name of Data File:      hoffman_rasche_1_96.dat
+ 
+Citation:               Hoffman, D.L., and Rasche, R.H. (1996), "Assessing
+			Forecast Performance in a Cointegrated System," 
+			Journal of Applied Econometrics, 11, 495-517.
+ 
+Geographic Area:        US
+ 
+Time Span:              1954:1 to 1994:4
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Yes
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Real M1 stock                                                     m1reall
+Inflation rate (first difference of logarithm of price levels)	  inf
+Commercial paper rate                                 fycpq
+Treasury bill rate                                    fygn3q
+Real GDP in billions of 1987 dollars                              gdpql
+ 
+**********************************************************
+
+Name of Data File:      hoffman_rasche_2_96.dat
+ 
+Citation:               Hoffman, D.L., and Rasche, R.H. (1996), "Assessing
+			Forecast Performance in a Cointegrated System," 
+			Journal of Applied Econometrics, 11, 495-517.
+ 
+Geographic Area:        US
+ 
+Time Span:              1954:1 to 1993:4
+                  
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    No     
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Inflation rate (first difference of logarithm of price levels)	  inf 
+Commercial paper rate                                 fycpq
+Treasury bill rate                                    fygn3q
+Real M1 stock not seasonally adj.                                 m1nsal  
+Nominal GDP in billions of dollars, not seasonally adj.           gdpnl
+ 
+**********************************************************
+
+Name of Data File:      hoffman_rasche_3_96.dat
+ 
+Citation:               Hoffman, D.L., and Rasche, R.H. (1996), "Assessing
+			Forecast Performance in a Cointegrated System," 
+			Journal of Applied Econometrics, 11, 495-517.
+ 
+Geographic Area:        US
+ 
+Time Span:              1970:2 to 1994:2
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Yes
+                  
+Variables (in order from left to right in data file)        Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                            Date
+Real M1 stock                                                           m1reall
+Inflation rate (first difference of logarithm of price levels)		inf
+Real GDP in billions of 1987 dollars                                    gdpql
+Commericial paper rate adjusted for own rate of interest    comadj
+Treasury bill rate adjusted for own rate of interest        tbadj       
+ 
+**********************************************************
+
+Name of Data File:      kilian99.dat
+ 
+Citation:               Kilian, L. (1999), "Exchange Rates and Monetary 
+			Fundamentals: What Do We Learn from Long-Horizon 
+			Regressions?," Journal of Applied Econometrics, 14, 
+			491-510.
+ 
+Geographic Area:        Canada, Germany, Japan, Switzerland
+ 
+Time Span:              1973:1 to 1997:1
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Not stated in original article  
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Spot exchange rate, Canadian dollars                              scd
+Spot exchange rate, German mark                                   sgm
+Spot exchange rate, Japanese yen                                  sjy
+Spot exchange rate, Swiss franc                                   ssf
+Fundamental value, Candian dollars                                fcd
+Fundamental value, German mark                                    fgm
+Fundamental value, Japanese yen                                   fjy
+Funadmental value, Swiss franc                                    fsf 
+ 
+**********************************************************
+
+Name of Data File:      kim_lee01.dat
+ 
+Citation:               Kim, H.Y., and Lee, J. (2001), "Quasi-Fixed Inputs 
+			and Long-Run Equilibrium in Production: A 
+			Cointegration Analysis," Journal of Applied 
+			Econometrics, 16, 41-57.
+ 
+Geographic Area:        US
+ 
+Time Span:              1952 to 1981
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Labor                                                             lnl
+Optimal equilibrium level of labor                                lnls
+Capital                                                           lnk
+Optimal equilibrium level of capital                              lnks
+Market rental price of labor                                      lnpl
+Shadow price of labor                                             lnpls
+Market rental price of capital                                    lnpk
+Shadow price of capital                                           lnpks
+ 
+********************************************************
+
+Name of Data File:      lanne_1_00.dat
+ 
+Citation:               Lanne, M. (2000), "Near Unit Roots, Cointegration, 
+			and the Term Structure of Interest Rates," Journal 
+			of Applied Econometrics, 15, 513-529.
+ 
+Geographic Area:        US
+ 
+Time Span:              1952:1 to 1979:9
+ 
+Frequency:              Monthly
+ 
+Seasonally Adjusted:    No
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and month                                        Date
+ 
+US zero coupon yield with maturity of. . .
+One month                                             r1
+Two months                                            r2 
+Three months                                          r3 
+Six months                                            r6 
+Twelve months                                         r12 
+Twenty-four months                                    r24 
+Thirty-six months                                     r36 
+Sixty months                                          r60 
+One hundred and twenty months                         r120
+ 
+Note: The yields are expressed as percentages per year using
+continuous-compounding. 
+  
+********************************************************
+
+Name of Data File:      lanne_2_00.dat
+ 
+Citation:               Lanne, M. (2000), "Near Unit Roots, Cointegration, 
+			and the Term Structure of Interest Rates," Journal 
+			of Applied Econometrics, 15, 513-529.
+ 
+Geographic Area:        US
+ 
+Time Span:              1979:10 to 1991:2 
+ 
+Frequency:              Monthly
+ 
+Seasonally Adjusted:    No
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and month                                        Date
+ 
+US zero coupon yield with maturity of. . .
+One month                                             r1
+Two months                                            r2 
+Three months                                          r3 
+Six months                                            r6 
+Twelve months                                         r12 
+Twenty-four months                                    r24 
+Thirty-six months                                     r36 
+Sixty months                                          r60 
+One hundred and twenty months                         r120
+ 
+Note: The yields are expressed as percentages per year using
+continuous-compounding. 
+ 
+********************************************************
+
+Name of Data File:      lin_tsay_1_96.dat
+ 
+Citation:               Lin, J., and Tsay, R.S. (1996), "Cointegration
+			Constraint and Forecast Empirical Examination," 
+			Journal of Applied Econometrics, 11, 519-538. 
+ 
+Geographic Area:        Canada, France, Germany, Japan, and United Kingdom
+ 
+Time Span:              1957:1 to 1993:5
+                  
+Frequency:              Monthly
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and month                                        Date
+ 
+Monthly exchange rates for . . .                  
+Canada                                                canex
+France                                                frex
+Germany                                               gerex
+Japan                                                 yenex
+United Kingdom                                        ukex
+ 
+Note: The first four series are in terms of US dollars.  The last series is in US cents.
+ 
+********************************************************
+
+Name of Data File:      lin_tsay_2_96.dat
+ 
+Citation:               Lin, J., and Tsay, R.S. (1996), "Cointegration 
+			Constraint and Forecast Empirical Examination," 
+			Journal of Applied Econometrics, 11, 519-538. 
+ 
+Geographic Area:        Taiwan
+ 
+Time Span:              1961:3 to 1989:6
+                  
+Frequency:              Monthly
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and month                                        Date
+ 
+Taiwan time deposit interest rates for . . . 
+1 month                                               r1
+3 months                                              r3
+6 months                                              r6
+ 
+********************************************************
+
+Name of Data File:      lin_tsay_3_96.dat
+ 
+Citation:               Lin, J., and Tsay, R.S. (1996), "Cointegration
+			Constraint and Forecast Empirical Examination," 
+			Journal of Applied Econometrics, 11, 519-538. 
+ 
+Geographic Area:        US
+ 
+Time Span:              1959:1 to 1993:2
+                  
+Frequency:              Monthly
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and month                                        Date
+ 
+US interest rates on Treasury Bills and Treasury Notes for . . . 
+3 months                                                          tb1
+6 months                                                          tb3
+1 year                                                            tn1
+3 year                                                            tn3
+ 
+********************************************************
+
+Name of Data File:      lin_tsay_4_96.dat
+ 
+Citation:               Lin, J., and Tsay, R.S. (1996), "Cointegration
+			Constraint and Forecast Empirical Examination," 
+			Journal of Applied Econometrics, 11, 519-538. 
+ 
+Geographic Area:        Canada, France, Japan, United Kingdom, and the US
+ 
+Time Span:              1967:1 to 1993:2
+                  
+Frequency:              Monthly
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and month                                        Date
+ 
+Government bond yields for . . . 
+Canada (3-5 years)                                    bondca
+France (short term)                                   bondfr
+Japan  (short term)                                   bondyen
+United Kingdom (short term)                           bonduk
+US (3 years)                                          bondus
+ 
+********************************************************
+
+Name of Data File:      lin_tsay_5_96.dat
+ 
+Citation:               Lin, J., and Tsay, R.S. (1996), "Cointegration
+			Constraint and Forecast Empirical Examination," 
+			Journal of Applied Econometrics, 11, 519-538. 
+ 
+Geographic Area:        Canada, France, Germany, Japan, and the United Kingdom
+ 
+Time Span:              1974:1 to 1993:3
+ 
+Frequency:              Monthly
+ 
+Seasonally Adjusted:    Yes   
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and month                                        Date
+ 
+Month total exports from US to . . . 
+Canada                                                expca
+France                                                expfr
+Germany                                               expger
+Japan                                                 expyen
+United Kingdom                                        expuk
+ 
+********************************************************
+
+Name of Data File:      lin_tsay_6_96.dat
+ 
+Citation:               Lin, J., and Tsay, R.S. (1996), "Cointegration
+			Constraint and Forecast Empirical Examination," 
+			Journal of Applied Econometrics, 11, 519-538. 
+ 
+Geographic Area:        Canada, France, Germany, Japan, and the United Kingdom
+ 
+Time Span:              1974:1 to 1993:3
+                  
+Frequency:              Monthly
+ 
+Seasonally Adjusted:    Yes   
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and month                                        Date
+ 
+Monthly total imports to US from . . .
+Canada                                                impca
+France                                                impfr
+Germany                                               impger
+Japan                                                 impyen
+United Kingdom                                        impuk
+ 
+********************************************************
+
+Name of Data File:      lin_tsay_7_96.dat
+ 
+Citation:               Lin, J., and Tsay, R.S. (1996), "Cointegration
+			Constraint and Forecast Empirical Examination," 
+			Journal of Applied Econometrics, 11, 519-538. 
+ 
+Geographic Area:        Canada, Germany, Japan, United Kingdom, and the US
+ 
+Time Span:              1957:1 to 1993:12       
+ 
+Frequency:              Monthly
+ 
+Seasonally Adjusted:    No
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and month                                        Date
+ 
+Monthly industrial production index for . . .
+Canada                                                prodca
+Germany                                               prodger
+Japan                                                 prodyen
+US                                                    produs
+United Kingdom                                        produk
+ 
+**********************************************************
+
+Name of Data File:      lin95.dat
+ 
+Citation:               Lin, W. (1995), "Japan's Financial Deregulation and 
+			Linkage of the Gensaki and Euroyen Deposit Markets," 
+			Journal of Applied Econometrics, 10, 447-467.
+ 
+Geographic Area:        Japan
+ 
+Time Span:              Jan 7, 1981 to August 7, 1985
+ 
+Frequency:              Weekly
+ 
+Seasonally Adjusted:    No          
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and week                                         Date
+Euroyen 1 month deposit rate                          ey1
+Euroyen 3 month deposit rate                          ey3
+Gensaki 1 month rate                                  gen1
+Gensaki 3 month rate                                  gen3
+ 
+*Shows the date for Thursday of the week corresponding to the rates
+ 
+********************************************************
+
+Name of Data File:      lutkepohl_terasvirta_wolters_1_99.dat
+ 
+Citation:               Lutkepohl, H., Terasvirta, T., and Wolters, J. (1999),
+                        "Investigating Stability and Linearity of a German M1 
+                        Money Demand Function," Journal of Applied 
+			Econometrics, 14, 511-525.
+ 
+Geographic Area:        Germany
+ 
+Time Span:              1960:1 to 1990:2
+                  
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    No          
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Real per capita M1                                                m 
+Real per capita GNP                                               y 
+Long term interest rate                               r 
+First difference of GNP price index                               pd
+ 
+********************************************************
+
+Name of Data File:      lutkepohl_terasvirta_wolters_2_99.dat
+ 
+Citation:               Lutkepohl, H., Terasvirta, T., and Wolters, J. (1999),
+                        "Investigating Stability and Linearity of a German M1 
+                        Money Demand Function," Journal of Applied
+			Econometrics, 14, 511-525.
+ 
+Geographic Area:        Germany
+ 
+Time Span:              1960:1 to 1995:4
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    No          
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Real per capita M1                                                m 
+Real per capita GNP                                               y 
+Real per capita GNP after 1990:3                                  ystar 
+Long term interest rate                               r
+First difference of GNP price index                               pd
+Seasonal dummy for season 1  after 1990:3             s1d 
+Seasonal dummy for season 2  after 1990:3             s2d 
+Seasonal dummy for season 3  after 1990:3             s3d
+ 
+********************************************************
+
+Name of Data File:      martens_kofman_vorst_1_98.dat
+ 
+Citation:               Martens, M., Kofman, P., and Vorst, T.C.F. (1998), "A 
+                        Threshold Error-Correction Model for Intraday Futures 
+                        And Index Returns," Journal of Applied Econometrics,
+			13, 245-263.
+ 
+Geographic Area:        US
+ 
+Time Span:              May 1993 
+                  
+Frequency:              Every 15 seconds
+ 
+Seasonally Adjusted:    No
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Matching index futures contract                                   fl
+S&P 500 index                                                     sl          
+ 
+********************************************************
+
+Name of Data File:      martens_kofman_vorst_2_98.dat
+ 
+Citation:               Martens, M., Kofman, P., and Vorst, T.C.F. (1998), "A 
+                        Threshold Error-Correction Model for Intraday Futures 
+                        And Index Returns," Journal of Applied Econometrics,
+			13, 245-263.
+ 
+Geographic Area:        US
+ 
+Time Span:              May 1993 
+                  
+Frequency:              Every 15 seconds
+ 
+Seasonally Adjusted:    No
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Matching index futures contract                                   fl
+Theoretical futures prices                                        al
+ 
+********************************************************
+
+Name of Data File:      martens_kofman_vorst_3_98.dat
+ 
+Citation:               Martens, M., Kofman, P., and Vorst, T.C.F. (1998), "A 
+                        Threshold Error-Correction Model for Intraday Futures 
+                        And Index Returns," Journal of Applied Econometrics,
+			13, 245-263.
+ 
+Geographic Area:        US
+ 
+Time Span:              November 1993 
+ 
+Frequency:              Every 15 seconds
+ 
+Seasonally Adjusted:    No
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Matching index futures contract                                   fl
+S&P 500 index                                                     sl
+      
+********************************************************
+
+Name of Data File:      martens_kofman_vorst_4_98.dat
+ 
+Citation:               Martens, M., Kofman, P., and Vorst, T.C.F. (1998), "A 
+                        Threshold Error-Correction Model for Intraday Futures 
+                        And Index Returns," Journal of Applied Econometrics, 
+			13, 245-263.
+ 
+Geographic Area:        US
+ 
+Time Span:              November 1993 
+ 
+Frequency:              Every 15 seconds
+ 
+Seasonally Adjusted:    No
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Matching index futures contract                                   fl
+Theoretical futures prices                                        al
+ 
+********************************************************
+
+Name of Data File:      martin_1_00.dat
+ 
+Citation:               Martin, G.M. (2000), "US Deficit Sustainability: A New 
+                        Approach Based on Multiple Endogenous Breaks," Journal
+			of Applied Econometrics, 15, 83-105.
+ 
+Geographic Area:        US
+ 
+Time Span:              1947:2 to 1974:4 
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Not stated in original article
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Real government tax revenue                           revenue
+Real government expenditure,                          expend
+inclusive of interest paid on debt                    
+ 
+********************************************************
+
+Name of Data File:      martin_2_00.dat
+ 
+Citation:               Martin, G.M. (2000), "US Deficit Sustainability: A New 
+                        Approach Based on Multiple Endogenous Breaks," Journal
+			of Applied Econometrics, 15, 83-105.
+ 
+Geographic Area:        US
+ 
+Time Span:              1975:1 to 1984:4 
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Not stated in original article
+  
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Real government tax revenue                           revenue
+Real government expenditure,                          expend
+inclusive of interest paid on debt                    
+ 
+********************************************************
+
+Name of Data File:      ng95.dat
+ 
+Citation:               Ng, S. (1995), "Testing for Homogeneity in Demand
+			Systems When the Regressors are Nonstationary," 
+			Journal of Applied Econometrics, 10, 147-163.
+ 
+Geographic Area:        US
+ 
+Time Span:              1954:1 to 1990:4
+      
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Yes   
+ 
+Variables (in order from left to right in data file)        Levels      Logs
+-----------------------------------------------------------------------------
+Year and quarter                                            Date
+Relative price of food                                                  pfl
+Relative price of clothing                                              pcl
+Relative price of other services                                        psol
+Relative price of other non-durables                                    pndol
+Price of housing (numeraire)                                            phousel
+Total real expenditure on non-durables                                  expendl
+Share of food in expenditure on non-durables and services   wfood
+Share of clothing in expenditure on non-durables 
+and services                                   	 	    wcloth
+Share of other services in expenditure on non-durables 
+and services                                	            wso
+Share of other non-durables in expenditure on non-durables 
+plus services                                 		    wndo
+Share of housing in expenditure on non-durables 
+plus services                               		    whouse
+ 
+********************************************************
+
+Name of Data File:      perez98.dat
+ 
+Citation:               Perez, S.J. (1998), "Causal Ordering and `the Bank 
+			Lending Channel'," Journal of Applied Econometrics, 
+			13, 613-626.
+ 
+Geographic Area:        US
+ 
+Time Span:              1952:1 to 1991:1
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Yes
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+GNP                                                   gnp
+Real commercial-industrial loans                      loans
+3-month T-bill rate                                   r
+ 
+********************************************************
+
+Name of Data File:      phillips_mcfarland_mcmahon96.dat
+ 
+Citation:               Phillips, P.C.B., McFarland, J.W., and McMahon, P.C. 
+                        (1996), "Robust Tests of Forward Exchange Market 
+			Efficiency with Empirical Evidence from the 1920s," 
+			Journal of Applied Econometrics, 11, 1-22.
+ 
+Geographic Area:        Belgium, France, Italy, US
+ 
+Time Span:              May 1, 1922 to May 30, 1925
+ 
+Frequency:              Daily
+ 
+Seasonally Adjusted:    No          
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Belgium 1 Month Future Exchange Rate                              belful
+Belgium Spot Exchange Rate, 26 Days After Future Rate             belspl
+France 1 Month Future Exchange Rate                               frful
+France Spot Exchange Rate, 26 Days After Future Rate              frspl
+Italy 1 Month Future Exchange Rate                                itful
+Italy Spot Exchange Rate, 26 Days After Future Rate               itspl
+US 1 Month Future Exchange Rate                                   usful
+US Spot Exchange Rate, 26 Days After Future Rate                  usspl
+ 
+Notes: 
+
+(1)    The exchange rates are in terms of the pound sterling
+
+(2) The readme file to the original data set states, "This data set was
+collected by hand transcription from back issues of the Manchester Guardian
+by Patrick McMahon.  Its source should be acknowledged in any published or
+unpublished work that makes use of it."
+ 
+********************************************************
+
+Name of Data File:      raj_1_95.dat
+ 
+Citation:               Raj, B. (1995), "Institutional Hypothesis of the 
+			Long-Run Income Velocity of Money and Parameter 
+			Stability of the Equilibrium Relationship," Journal 
+			of Applied Econometrics, 10, 233-253.
+ 
+Geographic Area:        Canada
+ 
+Time Span:              1900 to 1986
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+M2 income velocity                                                v
+Real permanent per capita income                                  y
+Long term bond yield rate                             int 
+Currency-money ratio                                              cm
+Ratio of non-bank financial assets 
+to total financial assets                                         fa
+ 
+********************************************************
+
+Name of Data File:      raj_2_95.dat
+ 
+Citation:               Raj, B. (1995), "Institutional Hypothesis of the
+			Long-Run Income Velocity of Money and Parameter 
+			Stability of the Equilibrium Relationship," Journal 
+			of Applied Econometrics, 10, 233-253.
+ 
+Geographic Area:        Norway
+ 
+Time Span:              1880 to 1938
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+M2 income velocity                                                v
+Real permanent per capita income                                  y
+Long term bond yield rate                             int 
+Currency-money ratio                                              cm
+Ratio of non-bank financial assets 
+to total financial assets                                         fa
+ 
+********************************************************
+
+Name of Data File:      raj_3_95.dat
+ 
+Citation:               Raj, B. (1995), "Institutional Hypothesis of the
+			Long-Run Income Velocity of Money and Parameter 
+			Stability of the Equilibrium Relationship," Journal 
+			of Applied Econometrics, 10, 233-253.
+ 
+Geographic Area:        Norway
+ 
+Time Span:              1946 to 1986
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+M2 income velocity                                                v
+Real permanent per capita income                                  y
+Long term bond yield rate                             int 
+Currency-money ratio                                              cm
+Ratio of non-bank financial assets 
+to total financial assets                                         fa
+ 
+********************************************************
+
+Name of Data File:      raj_4_95.dat
+ 
+Citation:               Raj, B. (1995), "Institutional Hypothesis of the
+			Long-Run Income Velocity of Money and Parameter 
+			Stability of the Equilibrium Relationship," Journal 
+			of Applied Econometrics, 10, 233-253.
+ 
+Geographic Area:        Sweden
+ 
+Time Span:              1880 to 1986
+                  
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+M2 income velocity                                                v
+Real permanent per capita income                                  y
+Long term bond yield rate                             int 
+Currency-money ratio                                              cm
+Ratio of non-bank financial assets 
+to total financial assets                                         fa
+ 
+********************************************************
+
+Name of Data File:      raj_5_95.dat
+ 
+Citation:               Raj, B. (1995), "Institutional Hypothesis of the
+			Long-Run Income Velocity of Money and Parameter 
+			Stability of the Equilibrium Relationship," Journal 
+			of Applied Econometrics, 10, 233-253.
+ 
+Geographic Area:        United Kingdom
+ 
+Time Span:              1876 to 1985
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No    
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+M2 income velocity                                                v
+Real permanent per capita income                                  y
+Short term interest rate                              int 
+Currency-money ratio                                              cm
+Ratio of non-bank financial assets 
+to total financial assets                                         fa
+ 
+**********************************************************
+
+Name of Data File:      song_liu_romilly_1_97.dat
+ 
+Citation:               Song, H., Liu, X., and Romilly, P. (1997), "A 
+			Comparative Study of Modelling the Demand for Food 
+			in the United States and the Netherlands," Journal 
+			of Applied Econometrics, 12, 593-613.
+ 
+Geographic Area:        US
+ 
+Time Span:              1913 to 1976
+            
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Per capita food consumption                                       pcfcl
+Food price index                                                  fpl
+Non-food price index                                              nfpl
+Per capita disposable income                                      pcyl
+Average number of people per household                            ntilda
+ 
+************************************************************
+
+Name of Data File:      song_liu_romilly_2_97.dat
+ 
+Citation:               Song, H., Liu, X., and Romilly, P. (1997), "A 
+			Comparative Study of Modelling the Demand for Food 
+			in the United States and the Netherlands," Journal 
+			of Applied Econometrics, 12, 593-613.
+ 
+Geographic Area:        US
+ 
+Time Span:              1929 to 1989
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Real aggregate expenditure on food                                tsstar
+Real aggregate income                                             tystar
+Real aggregate expenditure on food per capita                     sstar
+Food price index                                                  fpl
+Real aggregate income per capita                                  ystar
+Non-food price index                                              nfpl
+Average number of people per household                            ntilda
+ 
+**********************************************************
+
+Name of Data File:      song_liu_romilly_3_97.dat
+ 
+Citation:               Song, H., Liu, X., and Romilly, P. (1997), "A
+			Comparative Study of Modelling the Demand for Food 
+			in the United States and the Netherlands," Journal 
+			of Applied Econometrics, 12, 593-613.
+ 
+Geographic Area:        Netherlands
+ 
+Time Span:              1960 to 1988
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Real total food expenditure                                       tsstar
+Real total income                                                 tystar
+Food prices (differenced)                                         p11ld
+Non-food price index                                              nfpl
+Average number of people per household                            ntilda
+ 
+**********************************************************
+
+Name of Data File:      timmerman95.dat
+ 
+Citation:               Timmermann, A. (1995), "Cointegration Tests of Present
+			Value Models with a Time-Varying Discount Factor," 
+			Journal of Applied Econometrics, 10, 17-31.
+ 
+Geographic Area:        US
+ 
+Time Span:              1871 to 1986      
+ 
+Frequency:              Annual
+ 
+Seasonally Adjusted:    No          
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year                                                  Date
+Real dividends per share                              dividend  
+Real price per share                                  price   
+Real dividends per share                                          dividendl  
+Real price per share                                              pricel   
+ 
+********************************************************
+
+Name of Data File:      weber_1_95.dat
+ 
+Citation:               Weber, C.E. (1995), "Cyclical Output, Cyclical 
+                        Unemployment, and Okun's Coefficient: A New Approach," 
+                        Journal of Applied Econometrics, 10, 433-445.
+ 
+Geographic Area:        US
+ 
+Time Span:              1948:1 to 1973:3
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Not stated in original article 
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Civilian unemployment rate                            unemp
+Real gross national product                                       gnpl
+ 
+********************************************************
+
+Name of Data File:      weber_2_95.dat
+ 
+Citation:               Weber, C.E. (1995), "Cyclical Output, Cyclical 
+                        Unemployment, and Okun's Coefficient: A New Approach," 
+                        Journal of Applied Econometrics, 10, 433-445.
+ 
+Geographic Area:        US
+ 
+Time Span:              1973:4 to 1988:4
+ 
+Frequency:              Quarterly
+ 
+Seasonally Adjusted:    Not stated in original article 
+ 
+Variables (in order from left to right in data file)  Levels      Logs
+------------------------------------------------------------------------------
+Year and quarter                                      Date
+Civilian unemployment rate                            unemp
+Real gross national product                                       gnpl

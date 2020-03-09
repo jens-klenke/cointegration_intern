@@ -1,0 +1,29 @@
+The programs boot1 and boot2 written in FORTRAN 77
+are programs for Monte Carlo simulations of bootstrapping
+procedures for evaluating statistics for testing and 
+estimating the rank in cointegrated VAR-models.
+
+The proram boot1 computes the the empirical levels
+for the bootstrap versions  of trace and lamda_max tests, 
+boot2 computes the empirical probabilities for estimating
+the rank as 0,1,...,r by the sequential bootstrap
+procedure.
+
+In both boot1 and boot2 the parameters of the DGP must be
+specified. Also the kind of residuals/ 
+estimates of the short run parameters (OLS or restricted),
+and error distribuition (Gaussian, mixture of Gaussians)
+must be specified.
+
+Both boot and boot1 call the following enclosed routines:
+dgpsim, errsim, dgpini, rempmat, rrest2, rrlsq1, 
+berrsim, outcnt.
+ 
+In addition the following routines from
+Press, W.H., S.A. Teukolski, W.T. Vetterling and 
+B.P. Flannery (1992): Numerical recipes in Fortran (2nd edn.),
+Cambridge University Press are needed:
+ludcmp, lubksb, choldc, gasdev, ran2, dchldc, eigsrt,
+jacobi, svbksb svdcmp, pythag, balanc, elmhes, hpq
+
+

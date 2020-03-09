@@ -1,0 +1,16 @@
+TO INSTALL:
+Copy bayerhanck.ado and NullDistr.dta in the PERSONAL Folder set in:
+   sysdir set PERSONAL FOLDERNAME
+
+FUNCTION CALL
+
+bayerhanck LHSvar, rhs(RHSvarlist) [trend(none | constant | trend) lags(num) crit(1 | 5 | 10)]
+
+for the test.
+
+The test provides P-Values for underlying tests and the
+test statistics for the combined Fisher type test.
+For further documentation of trend options see help file for dfuller.ado
+Defaults are: trend=constant, lags=1, crit=5
+
+Current version is preliminary, please report bugs to christian.bayer@unbocconi.it
