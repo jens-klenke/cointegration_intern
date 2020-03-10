@@ -1,0 +1,20 @@
+syntax  
+
+https://www.stata.com/help.cgi?syntax
+
+--------------------------------------
+Code trendtypes
+
+https://stackoverflow.com/questions/17315869/are-touse-and-varlist-reserved-names-for-locals/17316851
+
+touse -> 0 or 1 -> 'to use' ->  dependencies to id and in
+
+https://www.stata.com/statalist/archive/2009-08/msg00636.html
+
+noc -> no constant 
+--------------------------------------
+Johansen Test 
+
+https://www.stata.com/manuals13/tsvecrank.pdf
+
+e(max) -> vector of maximum-eigenvalue statistics
