@@ -1,3 +1,10 @@
+files of stat bayerhanck
+
+https://econpapers.repec.org/software/bocbocode/s457061.htm
+
+----------------------------------------------------------------
+
+
 syntax  
 
 https://www.stata.com/help.cgi?syntax
