@@ -1,6 +1,6 @@
 files of stat bayerhanck
 
-https://econpapers.repec.org/software/bocbocode/s457061.htm
+https://econpapers.repec.org/software/bocbocode/s457061.html
 
 ----------------------------------------------------------------
 
@@ -14,11 +14,12 @@ Code trendtypes
 
 https://stackoverflow.com/questions/17315869/are-touse-and-varlist-reserved-names-for-locals/17316851
 
-touse -> 0 or 1 -> 'to use' ->  dependencies to id and in
+touse -> 0 or 1 -> 'to use' ->  dependencies to if and in
 
 https://www.stata.com/statalist/archive/2009-08/msg00636.html
 
 noc -> no constant 
+
 --------------------------------------
 Johansen Test 
 
