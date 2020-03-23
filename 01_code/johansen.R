@@ -9,7 +9,7 @@ jlags <- lags + 1
 
 #### just right hand variables 
 
-jo_test <- ca.jo( df, type="eigen", K = jlags, ecdet= trendtype)
+jo_test <- ca.jo(df, type="eigen", K = jlags, ecdet = trendtype)
 
 stat[1,2] <- jo_test@lambda[1]
 jo_nvar <- jo_test@P
