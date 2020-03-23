@@ -20,3 +20,5 @@ for (j in 1:ncol(df)) {
     X_names <- cbind(X_names, x_names)
     colnames(X) <- X_names
     }
+
+X
