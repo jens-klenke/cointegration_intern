@@ -1,16 +1,8 @@
-### local Parameters
+### Local Parameters
+lags <- c(1, 2, 5)
 
+Xlag <- cbind(q, r)
+Y_dif <- diff(q)
+W <- diff(r)
 
-Xlag <-cbind(q,r)
-
-Y_dif <- diff(r)
-W <- diff(Xlag)
-
-
-
-if (lags > 0) {
-    W <- lag(W, 1:lags)
-    
-}
-
-
+### Lagged values
