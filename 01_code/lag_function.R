@@ -14,7 +14,7 @@ X_names <- NULL
 for (j in 1:ncol(df)) {
     for (i in seq_along(lags)) {
     x[,i] <- Hmisc::Lag(df[,j], lags[i])
-    x_names[i] <- paste0(names(df)[j],"_L_", lags[i] )
+    x_names[i] <- paste0(names(df)[j],"_L.", lags[i] )
     }
     X <- cbind(X,x)
     X_names <- cbind(X_names, x_names)
