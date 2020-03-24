@@ -11,3 +11,5 @@ error <- E_G_lm$residuals
 adf <- urca::ur.df(error, type = "none", lags = lags)
 
 stat[1, 1] <- adf@teststat[1]
+
+
