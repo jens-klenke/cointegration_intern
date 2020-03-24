@@ -1,13 +1,9 @@
-library(urca)
-simulation_2 <- read.csv("simulation_2.csv")
-
 # global parameters 
-lags <- 2
+lags <- 5
 
 # Engle Granger Test
-E_G_lm <- lm(p ~ q, data = simulation_2)
+E_G_lm <- lm(p ~ q, data = df)
 error <- E_G_lm$residuals
 adf <- ur.df(error, type = "none", lags = lags)
 
-library(aTSA)
-coint.test
+stat[1, 1] <- adf@teststat[1]

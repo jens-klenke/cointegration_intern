@@ -11,7 +11,8 @@ jlags <- lags + 1
 
 jo_test <- urca::ca.jo(df, type = "eigen", K = jlags, ecdet = trendtype)
 
-stat[1,2] <- jo_test@lambda[1]
+stat[1, 2] <- jo_test@lambda[1]
 jo_nvar <- jo_test@P
 
 urca::summary(jo_test)
+
