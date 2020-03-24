@@ -3,12 +3,14 @@ files of stat bayerhanck
 https://econpapers.repec.org/software/bocbocode/s457061.html
 
 ----------------------------------------------------------------
-
-
 syntax  
 
 https://www.stata.com/help.cgi?syntax
+--------------------------------------
 
+_N alle Observations
+
+https://stats.idre.ucla.edu/stata/seminars/notes/counting-from-_n-to-_n/
 --------------------------------------
 Code trendtypes
 
