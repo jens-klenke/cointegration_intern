@@ -1,14 +1,14 @@
 ### Local Parameters
 lags <- c(1, 2, 5)
 
-df <- data.frame(
-    x = c(11:20),
-    y = c(21:30))
+# df <- data.frame(
+#    x = c(11:20),
+#    y = c(21:30))
 
 # Xlag <- cbind(q, r)
-Xlag <- df
-Y_dif <- diff(q) # Problem: 0 Variablen, muss wohl numeric werden (lapply?)
-W <- diff(r) # Problem: 0 Variablen, muss wohl numeric werden (lapply?)
+Xlag <- cbind(depVar, indepVar)
+Y_dif <- diff(depVar) # Problem: 0 Variablen, muss wohl numeric werden (lapply?)
+W <- diff(indepVar) # Problem: 0 Variablen, muss wohl numeric werden (lapply?)
 
 ### Lagged values
 Xlag_diff <- as.data.frame(diff(as.matrix(Xlag)))
