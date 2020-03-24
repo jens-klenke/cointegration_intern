@@ -28,3 +28,8 @@ Johansen Test
 https://www.stata.com/manuals13/tsvecrank.pdf
 
 e(max) -> vector of maximum-eigenvalue statistics
+
+--------------------------------------
+count 
+
+https://www.stata.com/manuals13/dcount.pdf
