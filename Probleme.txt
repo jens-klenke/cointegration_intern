@@ -2,3 +2,5 @@
 - "ending" bei den Regressionen hinzufügen
 - to use 
 - e(b) standardisiert oder nicht? 
+- Position Koeffizienten LinReg Stata vs. R
+- Dummy für Intercept bei trend == none
