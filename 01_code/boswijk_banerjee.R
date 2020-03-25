@@ -22,9 +22,9 @@ if (lags >= 1) {
 }
 
 ### Loop
-res <- matrix(NA, nrow = nrow(Xlag) - lags - 1, ncol = 2)
+res <- matrix(NA, nrow = nrow(Xlag) - lags - 1, ncol = ncol(Xlag))
 
-for (i in 1:2) {
+for (i in 1:ncol(Xlag)) {
     loop_lm <- lm(Hmisc::Lag(Xlag[, i], shift = 1)[-1] ~ W)
     res[, i] <- as.numeric(loop_lm$residuals)
 }
@@ -37,5 +37,5 @@ lm_res <- lm(BB_res ~ res[, 1] - res) # Interpretation des Minus?
 betas <- coef(lm_res)
 var <- vcov(lm_res)
 
-stat[1, 3] <- betas[1, 1]/sqrt(var[1, 1]) # Welche Position des betas bei Stata?
-stat[1, 4] <- betas * solve(var) * betas
+stat[3] <- betas[1, 1]/sqrt(var[1, 1]) # Welche Position des betas bei Stata?
+stat[4] <- betas * solve(var) * betas
