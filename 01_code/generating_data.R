@@ -17,9 +17,7 @@ r <- 0.2*z + rnorm(10000)
 
 df <- data.frame(p,q,r)
 
-
 #write.csv(df, file = '00_data/simulation.csv')
-
 
 ### just 2 integrated
 set.seed(123456)
@@ -31,7 +29,7 @@ p <- q <- r <- rep(0, 10000)
 
 p <- 0.3*z + rnorm(10000)
 q <- 0.6*z + rnorm(10000)
-r <-   rnorm(10000 , 10 ,100)
+r <-   rnorm(10000, 10, 100)
 
 df_2 <- data.frame(p,q,r)
 
