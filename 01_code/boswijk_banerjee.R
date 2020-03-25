@@ -1,10 +1,6 @@
 ### Local Parameters
-lags <- 2
-# df <- data.frame(
-#    x = c(11:20),
-#    y = c(21:30))
+lags <- 3
 
-# Xlag <- cbind(q, r)
 Xlag <- cbind(depVar, indepVar)
 Y_dif <- diff(depVar) # muss als numeric vorliegen
 W <- diff(indepVar) # muss als numeric vorliegen
@@ -25,4 +21,16 @@ if (lags >= 1) {
     W <- cbind(W, X)
 }
 
-W
+### Loop
+res <- matrix(NA, nrow = nrow(Xlag) - lags - 1, ncol = ncol(Xlag))
+
+for (i in 1:2) {
+    loop_lm <- lm(Hmisc::Lag(Xlag[, i], shift = 1)[-1] ~ W)
+    res[, i] <- as.numeric(loop_lm$residuals)
+}
+
+
+
+
+
+
