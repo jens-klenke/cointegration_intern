@@ -7,8 +7,8 @@ lags <- 4
 
 # Xlag <- cbind(q, r)
 Xlag <- cbind(depVar, indepVar)
-Y_dif <- diff(depVar)
-W <- diff(indepVar)
+Y_dif <- diff(depVar) # muss als numeric vorliegen
+W <- diff(indepVar) # muss als numeric vorliegen
 
 ### Lagged values
 Xlag_diff <- as.data.frame(diff(as.matrix(Xlag)))
