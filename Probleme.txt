@@ -1,3 +1,8 @@
 - Eigenvalues (Lambda) in R verschieden von Stata
 - "ending" bei den Regressionen hinzufügen
+- CDF
+- Requirments
+- Teststatistik wählen
+- Paper Deckblatt
+
 
