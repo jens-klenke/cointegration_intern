@@ -1,4 +1,4 @@
 - Eigenvalues (Lambda) in R verschieden von Stata
 - "ending" bei den Regressionen hinzufügen
 - to use 
-
+- e(b) standardisiert oder nicht? 
