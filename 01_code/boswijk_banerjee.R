@@ -29,8 +29,11 @@ for (i in 1:2) {
     res[, i] <- as.numeric(loop_lm$residuals)
 }
 
+### Boswijk/Banerjee Test
+BB_lm <- lm(Y_dif ~ W)
+BB_res <- BB_lm$residuals
 
-
+lm_res <- lm()
 
 
 
