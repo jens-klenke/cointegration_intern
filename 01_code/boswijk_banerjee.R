@@ -1,6 +1,5 @@
 ### Local Parameters
-lags <- 4
-
+lags <- 2
 # df <- data.frame(
 #    x = c(11:20),
 #    y = c(21:30))
