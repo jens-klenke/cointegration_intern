@@ -1,5 +1,6 @@
 bayerhanck <- function(formula, data, trend, lags, test, crit) {
   mf <- model.frame(formula)
+  y <- model.response(mf)
 
   # Engle Granger Test
 
@@ -17,4 +18,4 @@ z <- cbind(1:4, 20:23)
 form <- y ~ x + z
 mf <- model.frame(form)
 y_mf <- model.response(mf)
-
+?model.response
