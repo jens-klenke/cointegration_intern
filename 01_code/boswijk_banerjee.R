@@ -37,5 +37,5 @@ lm_res <- lm(BB_res ~ res[, 1] - res) # Interpretation des Minus?
 betas <- coef(lm_res)
 var <- vcov(lm_res)
 
-stat[3] <- betas[2]/sqrt(var[1, 1]) # Welche Position des betas bei Stata?
+stat[3] <- betas[2]/sqrt(var[2, 2]) # Welche Position des betas bei Stata?
 stat[4] <- betas * solve(var) * betas
