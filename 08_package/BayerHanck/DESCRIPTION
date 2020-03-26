@@ -2,12 +2,12 @@ Package: BayerHanck
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
-           role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person(given = "Janine",
+           family = "Langerbein",
+           role = "cre",
+           email = "janine.langerbein@icloud.com"
+           )
+Description: BayerHanck produces a joint test-statistic for the null of no-cointegration based on Engle-Granger, Johansen maximum eigenvalue, Boswijk and Banerjee tests.
 License: What license it uses
 Encoding: UTF-8
 LazyData: true
