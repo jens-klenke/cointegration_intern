@@ -1,4 +1,4 @@
-banerjee <- function(formula, data, lags){
+banerjee <- function(formula, data, lags = 1){
 
   mf <- match.call()
   m <- match(c("formula", "data"), names(mf), 0L)

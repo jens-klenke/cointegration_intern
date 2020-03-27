@@ -1,4 +1,4 @@
-boswijk <- function(formula, data, lags){
+boswijk <- function(formula, data, lags = 1){
 
   mf <- match.call()
   m <- match(c("formula", "data"), names(mf), 0L)
@@ -50,5 +50,5 @@ boswijk <- function(formula, data, lags){
 }
 
 
-boswijk(data = df, formula = linvestment ~ lincome + lconsumption, lags = 1)
+boswijk(data = df, formula = linvestment ~ lincome + lconsumption)
 
