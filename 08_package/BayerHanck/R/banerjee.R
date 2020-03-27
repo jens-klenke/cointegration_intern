@@ -1,4 +1,4 @@
-banerjee <- function(formula, data, lags = 1){
+banerjee <- function(formula, data, lags = 1, trend = "const"){
 
   mf <- match.call()
   m <- match(c("formula", "data"), names(mf), 0L)
