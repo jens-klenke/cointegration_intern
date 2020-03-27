@@ -1,4 +1,5 @@
 load(here::here('00_data/null_dist.rda'))
+library(tidyverse)
 
 trendtype <- 2
 nvar <- 3
@@ -14,12 +15,11 @@ border <- 10000*0.975
 null_dist[border, case]
 
 #### tsDyn try
-install.packages('tsDyn')
 ####
 
 
 df <- read_csv(here::here('00_data/lutkepohl.csv'))
-df <- df%>%
+df <- df %>%
     dplyr::select(linvestment,
                   lincome, 
                   lconsumption)
@@ -27,7 +27,7 @@ df <- df%>%
 
 #### lags 1 less then the rest
 df_vec <- tsDyn::VECM(df, lag = 1, r = 2, 
-                      include = "none",  estim = 'ML')  # lag -1 zu vecrank 
+                      include = "const",  estim = 'ML')  # lag -1 zu vecrank 
 
 
 summary(tsDyn::rank.test(df_vec, type = 'eigen'))
