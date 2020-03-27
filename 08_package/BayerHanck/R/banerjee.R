@@ -1,5 +1,8 @@
 banerjee <- function(formula, data, lags = 1, trend = "const"){
 
+  #-----------------------------------------------------------------------------------------
+  # Check Syntax
+  #-----------------------------------------------------------------------------------------
   mf <- match.call()
   m <- match(c("formula", "data"), names(mf), 0L)
   mf <- mf[c(1L, m)]
@@ -10,6 +13,9 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
   y <- model.response(mf, "numeric")
   x <- model.matrix(mt, mf)[, -1]
 
+  #-----------------------------------------------------------------------------------------
+  # Lag Function
+  #-----------------------------------------------------------------------------------------
   Xlag <- cbind(y, x)
   Y_dif <- diff(y) # muss als numeric vorliegen
   W <- diff(x)
@@ -28,7 +34,9 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
     W <- cbind(W, lag_vec)
   }
 
-  ### Loop
+  #-----------------------------------------------------------------------------------------
+  # Boswijk Test
+  #-----------------------------------------------------------------------------------------
   res_mat <- matrix(NA, nrow = nrow(Xlag) - lags - 1, ncol = ncol(Xlag))
 
   for (i in 1:ncol(Xlag)) {
@@ -36,17 +44,11 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
     res_mat[, i] <- as.numeric(loop_lm$residuals)
   }
 
-  ### Boswijk Test
   BB_lm <- lm(Y_dif ~ W)
   BB_res <- BB_lm$residuals
-
   lm_res <- lm(BB_res ~ res_mat)
   betas <- coef(lm_res)
   var_mat <- vcov(lm_res)
-
-  # Banerjee Test
   test.stat <- as.numeric(betas[2]/sqrt(var_mat[2, 2]))
   print(test.stat)
 }
-
-banerjee(data = df, formula = linvestment ~ lincome + lconsumption, lags = 1)

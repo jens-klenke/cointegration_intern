@@ -1,4 +1,4 @@
-bayerhanck <- function(formula, data, trend, lags, test, crit, ...) {
+bayerhanck <- function(formula, data, trend = "const", lags = 1, test = "all", crit) {
 
   #-----------------------------------------------------------------------------------------
   # Check Syntax
@@ -23,17 +23,20 @@ bayerhanck <- function(formula, data, trend, lags, test, crit, ...) {
   #-----------------------------------------------------------------------------------------
   # Call Tests
   #-----------------------------------------------------------------------------------------
-  test.stat <- as.numeric()
-
+  test.stat <- numeric()
+  if (test == "all")
+    test.stat[1:4] <- c(englegranger(formula = formula, data = data, lags = lags, trend = trend),
+                        #johansen(formula = formula, data = data, lags = lags, trend = trend),
+                        banerjee(formula = formula, data = data, lags = lags, trend = trend),
+                        boswijk(formula = formula, data = data, lags = lags, trend = trend))
   if (test == "banerjee")
-    test.stat <- banerjee(formula = formula, data = data, lags = lags, trend = trend)
+    test.stat[1] <- banerjee(formula = formula, data = data, lags = lags, trend = trend)
   if (test == "boswijk")
-    test.stat <- boswijk(formula = formula, data = data, lags = lags, trend = trend)
+    test.stat[1] <- boswijk(formula = formula, data = data, lags = lags, trend = trend)
   if (test == "englegranger")
-    test.stat <- englegranger(formula = formula, data = data, lags = lags, trend = trend)
-  if (test == "johansen")
-    test.stat <- johansen(x = model.frame(formula = formula, data = data),
-                          lags = lags, trend = trend)
+    test.stat[1] <- englegranger(formula = formula, data = data, lags = lags, trend = trend)
+  #if (test == "johansen")
+  #  test.stat[1] <- johansen(formula = formula, data = data, lags = lags, trend = trend)
 
   #-----------------------------------------------------------------------------------------
   # Obtain P-Values
@@ -48,6 +51,5 @@ bayerhanck <- function(formula, data, trend, lags, test, crit, ...) {
   #-----------------------------------------------------------------------------------------
 }
 
-bayerhanck(data = df, formula = linvestment ~ lincome + lconsumption,
-           lags = 1, test = "johansen")
+bayerhanck(linvestment ~ lincome + lconsumption, data = df, test = "all")
 
