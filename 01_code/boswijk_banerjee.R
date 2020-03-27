@@ -1,5 +1,5 @@
 ### Local Parameters
-lags <- 2
+lags <- 1
 
 Xlag <- cbind(depVar, indepVar)
 Y_dif <- diff(depVar) # muss als numeric vorliegen
@@ -33,9 +33,15 @@ for (i in 1:ncol(Xlag)) {
 BB_lm <- lm(Y_dif ~ W)
 BB_res <- BB_lm$residuals
 
-lm_res <- lm(BB_res ~ res[, 1] - res) # Interpretation des Minus?
+lm_res <- lm(BB_res ~ res)
 betas <- coef(lm_res)
 var <- vcov(lm_res)
 
-stat[3] <- betas[2]/sqrt(var[2, 2]) # Welche Position des betas bei Stata?
-stat[4] <- betas * solve(var) * betas
+# Banerjee
+stat[3] <- as.numeric(betas[2]/sqrt(var[2, 2]))
+
+# Boswijk
+stat[4] <- as.numeric(betas %*% solve(var) %*% betas)
+
+
+
