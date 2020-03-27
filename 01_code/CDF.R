@@ -10,9 +10,10 @@ b_h_stat_2 <- 40
 
 
 df_gg <- null_dist%>%
-    dplyr::select(as.name(paste0('var', i)))
+    dplyr::select(as.name(paste0('var', i)))%>%
+    dplyr::mutate(y = rep(1/10000, 10000))
 
-colnames(df_gg) <- 'x'
+colnames(df_gg) <- c('x', 'y')
 
 
 ggplot(data = df_gg, aes( x = x ))+
@@ -38,3 +39,5 @@ ggplot(data = df_gg) +
     theme_minimal()+
     theme(plot.margin=unit(c(1,1,1,1),"cm"),
           plot.title = element_text(hjust = 0.5))
+#########
+
