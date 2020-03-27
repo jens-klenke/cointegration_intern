@@ -2,9 +2,9 @@
 
 trendtype <- 2
 nvar <- 3
-N <- 10000000        # nrow(df) ### Numbers of observations
+N <- 10000        # nrow(df) ### Numbers of observations
 
-stat <- c(-2, 2, 3, 4)
+stat <- c(-2, 21.8242, 3, 4)
 
 ### Obtain p-values
 
