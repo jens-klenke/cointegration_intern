@@ -1,4 +1,4 @@
-bayerhanck <- function(formula, data, trend, lags, test, crit) {
+bayerhanck <- function(formula, data, trend, lags, test, crit, ...) {
 
   mf <- model.frame(formula, data = data, na.action = na.omit)
   y <- model.response(mf, "numeric")

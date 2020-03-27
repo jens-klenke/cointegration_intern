@@ -1,5 +1,7 @@
 ### Local Parameters
 lags <- 1
+depVar <- df$linvestment
+indepVar <- cbind(df$lincome, df$lconsumption)
 
 Xlag <- cbind(depVar, indepVar)
 Y_dif <- diff(depVar) # muss als numeric vorliegen
@@ -38,10 +40,10 @@ betas <- coef(lm_res)
 var <- vcov(lm_res)
 
 # Banerjee
-stat[3] <- as.numeric(betas[2]/sqrt(var[2, 2]))
+as.numeric(betas[2]/sqrt(var[2, 2]))
 
 # Boswijk
-stat[4] <- as.numeric(betas %*% solve(var) %*% betas)
+as.numeric(betas %*% solve(var) %*% betas)
 
 
 

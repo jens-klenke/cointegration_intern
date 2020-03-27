@@ -1,4 +1,4 @@
-englegranger <- function(formula, data, lags){
+englegranger <- function(formula, data, lags = 1, trend = "const"){
 
   eg_lm <- lm(formula, data = data)
   eg_res <- eg_lm$residuals
