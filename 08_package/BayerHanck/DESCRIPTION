@@ -8,6 +8,6 @@ Authors@R:
            email = "janine.langerbein@icloud.com"
            )
 Description: BayerHanck produces a joint test-statistic for the null of no-cointegration based on Engle-Granger, Johansen maximum eigenvalue, Boswijk and Banerjee tests.
-License: What license it uses
+License: 
 Encoding: UTF-8
 LazyData: true

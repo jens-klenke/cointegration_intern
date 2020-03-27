@@ -17,6 +17,7 @@ null_dist[border, case]
 #### tsDyn try
 ####
 
+df <- read_csv('00_data/lutkepohl.csv')
 
 df <- read_csv(here::here('00_data/lutkepohl.csv'))
 df <- df %>%
