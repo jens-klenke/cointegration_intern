@@ -19,6 +19,16 @@ bayerhanck <- function(formula, data, trend = "const", lags = 1, test = "all", c
   #-----------------------------------------------------------------------------------------
   # Code trendtypes
   #-----------------------------------------------------------------------------------------
+  if (identical(trend, "none")){
+    ending = -1
+    trendtype = 1
+  } else if (identical(trend, "const")){
+    ending = ""
+    trendtype = 2
+  } else if (identical(trend, "trend")){
+    ending = "FORMULAR"
+    trendtype = 3
+  }
 
   #-----------------------------------------------------------------------------------------
   # Call Tests
@@ -47,7 +57,7 @@ bayerhanck <- function(formula, data, trend = "const", lags = 1, test = "all", c
   crit_val <- rmatio::read.mat(here::here("/critical_values.mat"))
 
   pval <- test.stat
-  #basecase <- 44 * (trendtype - 1) + 4 * (nvar - 2)
+  basecase <- 44 * (trendtype - 1) + 4 * (nvar - 2)
 
   #for (i in 1:4) {
   #  case = basecase + i
@@ -71,8 +81,9 @@ bayerhanck <- function(formula, data, trend = "const", lags = 1, test = "all", c
   #-----------------------------------------------------------------------------------------
   list(test.stat = test.stat,
        p.val = pval)
+  print(basecase)
 
 }
 
-bayerhanck(linvestment ~ lincome + lconsumption, data = df, test = c("englegranger",
-                                                                           "banerjee"))
+bayerhanck(linvestment ~ lincome + lconsumption, data = df, trend = "trend",
+           test = c("englegranger", "banerjee"))
