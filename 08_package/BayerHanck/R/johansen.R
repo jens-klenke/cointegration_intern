@@ -17,10 +17,14 @@ johansen <- function(formula, data, type = "eigen", lags = 1, trend = "const"){
   #-----------------------------------------------------------------------------------------
   # Johansen Test
   #-----------------------------------------------------------------------------------------
-  jo_vec <- tsDyn::VECM(x, lag = lags, r = 2,
+  jo_vec <- tsDyn::VECM(x, lag = lags,
                         include = trend, # Bezeichnung Trend anpassen
                         estim = "ML")
-  test.stat <- summary(tsDyn::rank.test(jo_vec, type = "eigen"))$eigen[1]
-  print(test.stat)
-}
+  jo_vec_sum <- summary(tsDyn::rank.test(jo_vec, type = type))
+  test.stat <- as.numeric(jo_vec_sum$eigen[1])
+  names(test.stat) <- "johansen"
 
+  list(test.stat = test.stat,
+       trace = cbind(jo_vec_sum$r, jo_vec_sum$trace, jo_vec_sum$trace_pval_T),
+       eigen = cbind(jo_vec_sum$r, jo_vec_sum$eigen, jo_vec_sum$eigen_pval))
+}

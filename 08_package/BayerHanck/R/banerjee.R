@@ -50,5 +50,9 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
   betas <- coef(lm_res)
   var_mat <- vcov(lm_res)
   test.stat <- as.numeric(betas[2]/sqrt(var_mat[2, 2]))
-  print(test.stat)
+  names(test.stat) <- "banerjee"
+
+  list(test.stat = test.stat,
+       betas = betas,
+       cov = var_mat)
 }

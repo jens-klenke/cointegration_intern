@@ -50,6 +50,10 @@ boswijk <- function(formula, data, lags = 1, trend = "const"){
   betas <- coef(lm_res)
   var_mat <- vcov(lm_res)
   test.stat <- as.numeric(betas %*% solve(var_mat) %*% betas)
-  print(test.stat)
+  names(test.stat) <- "boswijk"
+
+  list(test.stat = test.stat,
+       betas = betas,
+       cov = var_mat)
 }
 
