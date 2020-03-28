@@ -111,15 +111,15 @@ bayerhanck <- function(formula, data, trend = "const", lags = 1, test = "all", c
 
 
 
-  #### comput statistics ####
+  #### compute statistics ####
   if (identical(test, "all"))
   b_h_stat_1 <- -2*sum(log(pval.stat[1:2]))
   b_h_stat_2 <- -2*sum(log(pval.stat[1:4]))
 
-  # degree of freedom
+  # degrees of freedom
   nvar <- nvar - 1
 
-  ### obtain ciritical Vlaue
+  ### obtain critical Value
   cv_1 <- crit_val_1[nvar, trendtype]
   cv_2 <- crit_val_2[nvar, trendtype]
 
