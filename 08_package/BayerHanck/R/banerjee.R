@@ -35,18 +35,36 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
   }
 
   #-----------------------------------------------------------------------------------------
-  # Boswijk Test
+  # Banerjee Test
   #-----------------------------------------------------------------------------------------
   res_mat <- matrix(NA, nrow = nrow(Xlag) - lags - 1, ncol = ncol(Xlag))
 
-  for (i in 1:ncol(Xlag)) {
-    loop_lm <- lm(Hmisc::Lag(Xlag[, i], shift = 1)[-1] ~ W)
-    res_mat[, i] <- as.numeric(loop_lm$residuals)
-  }
+  if (identical(trend, "none")) {
+    for (i in 1:ncol(Xlag)) {
+      loop_lm <- lm(Hmisc::Lag(Xlag[, i], shift = 1)[-1] ~ W - 1)
+      res_mat[, i] <- as.numeric(loop_lm$residuals)
+    }
+  } else if (identical(trend, "const")) {
+    for (i in 1:ncol(Xlag)) {
+      loop_lm <- lm(Hmisc::Lag(Xlag[, i], shift = 1)[-1] ~ W)
+      res_mat[, i] <- as.numeric(loop_lm$residuals)
+    }
+  } #else if (identical(trend, "trend")) {}
 
-  BB_lm <- lm(Y_dif ~ W)
+  if (identical(trend, "none")) {
+    BB_lm <- lm(Y_dif ~ W - 1)
+  } else if (identical(trend, "const")) {
+    BB_lm <- lm(Y_dif ~ W)
+  } #else if (identical(trend, "trend")) {}
+
   BB_res <- BB_lm$residuals
-  lm_res <- lm(BB_res ~ res_mat)
+
+  if (identical(trend, "none")) {
+    lm_res <- lm(BB_res ~ res_mat -1)
+  } else if (identical(trend, "const")) {
+    lm_res <- lm(BB_res ~ res_mat)
+  } #else if (identical(trend, "trend)) {}
+
   betas <- coef(lm_res)
   var_mat <- vcov(lm_res)
   test.stat <- as.numeric(betas[2]/sqrt(var_mat[2, 2]))
@@ -56,3 +74,5 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
        betas = betas,
        cov = var_mat)
 }
+
+

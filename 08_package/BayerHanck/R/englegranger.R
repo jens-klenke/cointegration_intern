@@ -3,15 +3,11 @@ englegranger <- function(formula, data, lags = 1, trend = "const"){
   #-----------------------------------------------------------------------------------------
   # Trend Specification
   #-----------------------------------------------------------------------------------------
-  if (identical(trend, "none")){
+  if (identical(trend, "none")) {
     eg_lm <- lm(update(formula, ~. -1), data = data)
-  } else if (identical(trend, "const")){
+  } else if (identical(trend, "const")) {
     eg_lm <- lm(formula, data = data)
-
-  #} else if (identical(trend, "trend")){
-  #  ending = "FORMULAR"
-  #  trendtype = 3
-  }
+  } #else if (identical(trend, "trend")) {}
 
   #-----------------------------------------------------------------------------------------
   # Engle Granger Test
