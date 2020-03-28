@@ -1,5 +1,7 @@
 bayerhanck <- function(formula, data, trend = "const", lags = 1, test = "all", crit) {
 
+  ## test eg.jo   all   both
+
   #-----------------------------------------------------------------------------------------
   # Check Syntax
   #-----------------------------------------------------------------------------------------
@@ -106,6 +108,8 @@ bayerhanck <- function(formula, data, trend = "const", lags = 1, test = "all", c
     crit_val_1 <- crit_val_1_0.10
     crit_val_2 <- crit_val_2_0.10
   }
+
+
 
   #### comput statistics ####
   if (identical(test, "all"))
