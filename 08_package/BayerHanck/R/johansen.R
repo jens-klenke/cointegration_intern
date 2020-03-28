@@ -1,3 +1,16 @@
+#' Title
+#'
+#' @param formula An object of class "formula" to describe the model
+#' @param data An optional data frame containing the variables in the model
+#' @param type Test to be conducted, either "eigen" or "trace"
+#' @param lags Number of lags to be included
+#' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
+#' "const" for a constant and "trend" for a constant plus trend
+#'
+#' @return
+#' @export
+#'
+#' @examples
 johansen <- function(formula, data, type = "eigen", lags = 1, trend = "const"){
 
   #-----------------------------------------------------------------------------------------
