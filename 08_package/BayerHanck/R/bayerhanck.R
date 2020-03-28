@@ -60,14 +60,13 @@ bayerhanck <- function(formula, data, trend = "const", lags = 1, test = "all", c
                         johansen(formula = formula, data = data, lags = lags, trend = trend)[[1]],
                         banerjee(formula = formula, data = data, lags = lags, trend = trend)[[1]],
                         boswijk(formula = formula, data = data, lags = lags, trend = trend))[[1]]
-  pval.stat <- test.stat
+  pval.stat <- test.stat[complete.cases(test.stat)]
   test.stat <- test.stat[complete.cases(test.stat)]
 
   #-----------------------------------------------------------------------------------------
   # Obtain P-Values
   #-----------------------------------------------------------------------------------------
   load(here::here("/null_dist.rda"))
-  crit_val <- rmatio::read.mat(here::here("/critical_values.mat"))
 
   basecase <- 44 * (trendtype - 1) + 4 * (nvar - 2)
 
@@ -87,6 +86,42 @@ bayerhanck <- function(formula, data, trend = "const", lags = 1, test = "all", c
   #-----------------------------------------------------------------------------------------
   # Calculate Bayer-Hanck Fisher Statistics
   #-----------------------------------------------------------------------------------------
+
+  #### Load critical values ####
+  load(here::here('/crit_values.rda'))
+
+  #### Select matrices of critical value ####
+
+  if (identical(crit, 0.01)){
+    crit_val_1 <- crit_val_1_0.01
+    crit_val_2 <- crit_val_2_0.01
+  }
+
+  if (identical(crit, 0.05)){
+    crit_val_1 <- crit_val_1_0.05
+    crit_val_2 <- crit_val_2_0.05
+  }
+
+  if (identical(crit, 0.10)){
+    crit_val_1 <- crit_val_1_0.10
+    crit_val_2 <- crit_val_2_0.10
+  }
+
+  #### comput statistics ####
+  if (identical(test, "all"))
+  b_h_stat_1 <- -2*sum(log(pval.stat[1:2]))
+  b_h_stat_2 <- -2*sum(log(pval.stat[1:4]))
+
+  # degree of freedom
+  nvar <- nvar - 1
+
+  ### obtain ciritical Vlaue
+  cv_1 <- crit_val_1[nvar, trendtype]
+  cv_2 <- crit_val_2[nvar, trendtype]
+
+
+
+
 
   #-----------------------------------------------------------------------------------------
   # Display Results

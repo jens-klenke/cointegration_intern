@@ -23,4 +23,5 @@ pacman::p_load(dplyr,
                gridExtra,
                cowplot,
                imputeTS,
-               modelr)
+               modelr,
+               tsDyn)
