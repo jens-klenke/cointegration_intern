@@ -1,4 +1,4 @@
-banerjee <- function(formula, data, lags = 1, trend = "const"){
+boswijk <- function(formula, data, lags = 1, trend = "const"){
 
   #-----------------------------------------------------------------------------------------
   # Check Syntax
@@ -35,7 +35,7 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
   }
 
   #-----------------------------------------------------------------------------------------
-  # Banerjee Test
+  # Boswijk Test
   #-----------------------------------------------------------------------------------------
   res_mat <- matrix(NA, nrow = nrow(Xlag) - lags - 1, ncol = ncol(Xlag))
 
@@ -67,14 +67,10 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
 
   betas <- coef(lm_res)
   var_mat <- vcov(lm_res)
-  test.stat <- as.numeric(betas[2]/sqrt(var_mat[2, 2]))
-  names(test.stat) <- "banerjee"
+  test.stat <- as.numeric(betas %*% solve(var_mat) %*% betas)
+  names(test.stat) <- "boswijk"
 
-  list(test.stat = test.stat)
-
-  cat("hi")
+  list(test.stat = test.stat,
+       betas = betas,
+       cov = var_mat)
 }
-
-
-
-

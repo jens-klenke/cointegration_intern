@@ -28,3 +28,4 @@ johansen <- function(formula, data, type = "eigen", lags = 1, trend = "const"){
        trace = jo_vec_sum[, 1:4],
        eigen = jo_vec_sum[, c(1, 5:6)])
 }
+

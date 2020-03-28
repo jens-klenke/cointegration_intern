@@ -133,4 +133,7 @@ bayerhanck <- function(formula, data, trend = "const", lags = 1, test = "all", c
   print(pval.stat)
 }
 
+bayerhanck(linvestment ~ lincome + lconsumption, data = df, trend = "const",
+           test = c("englegranger", "johansen"))
+
 

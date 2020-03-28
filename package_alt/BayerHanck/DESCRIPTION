@@ -1,0 +1,14 @@
+Package: BayerHanck
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Janine",
+           family = "Langerbein",
+           role = "cre",
+           email = "janine.langerbein@icloud.com"
+           )
+Description: BayerHanck produces a joint test-statistic for the null of no-cointegration based on Engle-Granger, Johansen maximum eigenvalue, Boswijk and Banerjee tests.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.0.1
