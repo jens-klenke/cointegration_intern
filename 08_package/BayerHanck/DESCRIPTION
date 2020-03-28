@@ -7,7 +7,7 @@ Authors@R:
            role = c("cre"),
            email = "janine.langerbein@icloud.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: bayerhanck produces a joint test-statistic for the null of no-cointegration based on Engle-Granger, Johansen maximum eigenvalue, Boswijk and Banerjee tests.
+Description: bayerhanck produces a joint test-statistic for the null of no-cointegration based on Engle-Granger, Johansen maximum eigenvalue, Boswijk and Banerjee tests. Also see Bayer, Christian and Christoph Hanck: "Combining Non-Cointegration tests", METEOR RM 09/012, University of Maastricht.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
