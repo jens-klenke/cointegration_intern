@@ -9,7 +9,7 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
   mf[[1L]] <- quote(stats::model.frame)
   mf <- eval(mf, parent.frame())
   mt <- attr(mf, "terms")
-  offset <- model.offset(mf)
+  mf <- na.omit(mf)
   y <- model.response(mf, "numeric")
   x <- model.matrix(mt, mf)[, -1]
 
@@ -75,4 +75,5 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
        cov = var_mat)
 }
 
+englegranger(lconsumption ~ lincome, data = lutkepohl)
 

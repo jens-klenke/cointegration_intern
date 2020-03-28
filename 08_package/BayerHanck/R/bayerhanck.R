@@ -9,7 +9,7 @@ bayerhanck <- function(formula, data, trend = "const", lags = 1, test = "all", c
   mf[[1L]] <- quote(stats::model.frame)
   mf <- eval(mf, parent.frame())
   mt <- attr(mf, "terms")
-  offset <- model.offset(mf)
+  mf <- na.omit(mf)
   y <- model.response(mf, "numeric")
   x <- model.matrix(mt, mf)[, -1]
   nvar <- ncol(cbind(y, x))

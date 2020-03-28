@@ -4,9 +4,9 @@ englegranger <- function(formula, data, lags = 1, trend = "const"){
   # Trend Specification
   #-----------------------------------------------------------------------------------------
   if (identical(trend, "none")) {
-    eg_lm <- lm(update(formula, ~. -1), data = data)
+    eg_lm <- lm(update(formula, ~. -1), data = data, na.action = na.omit)
   } else if (identical(trend, "const")) {
-    eg_lm <- lm(formula, data = data)
+    eg_lm <- lm(formula, data = data, na.action = na.omit)
   } #else if (identical(trend, "trend")) {}
 
   #-----------------------------------------------------------------------------------------
