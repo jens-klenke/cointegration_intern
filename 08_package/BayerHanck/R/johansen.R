@@ -25,6 +25,10 @@ johansen <- function(formula, data, type = "eigen", lags = 1, trend = "const"){
   names(test.stat) <- "johansen"
 
   list(test.stat = test.stat,
-       trace = cbind(jo_vec_sum$r, jo_vec_sum$trace, jo_vec_sum$trace_pval_T),
-       eigen = cbind(jo_vec_sum$r, jo_vec_sum$eigen, jo_vec_sum$eigen_pval))
+       trace = jo_vec_sum[, 1:4],
+       eigen = jo_vec_sum[, c(1, 5:6)])
 }
+
+
+johansen(linvestment ~ lincome + lconsumption, data = df, trend = "trend")
+

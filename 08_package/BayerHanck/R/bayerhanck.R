@@ -3,6 +3,17 @@ bayerhanck <- function(formula, data, trend = "const", lags = 1, test = "all", c
   #-----------------------------------------------------------------------------------------
   # Check Syntax
   #-----------------------------------------------------------------------------------------
+  mf <- match.call()
+  m <- match(c("formula", "data"), names(mf), 0L)
+  mf <- mf[c(1L, m)]
+  mf[[1L]] <- quote(stats::model.frame)
+  mf <- eval(mf, parent.frame())
+  mt <- attr(mf, "terms")
+  offset <- model.offset(mf)
+  y <- model.response(mf, "numeric")
+  x <- model.matrix(mt, mf)[, -1]
+  nvar <- ncol(cbind(y, x))
+
   #if (nrow(x) == 0L)
   #  stop("0 (non-NA) cases")
   #if (NROW(y) != nrow(x))
@@ -49,28 +60,29 @@ bayerhanck <- function(formula, data, trend = "const", lags = 1, test = "all", c
                         johansen(formula = formula, data = data, lags = lags, trend = trend)[[1]],
                         banerjee(formula = formula, data = data, lags = lags, trend = trend)[[1]],
                         boswijk(formula = formula, data = data, lags = lags, trend = trend))[[1]]
+  pval.stat <- test.stat
   test.stat <- test.stat[complete.cases(test.stat)]
+
   #-----------------------------------------------------------------------------------------
   # Obtain P-Values
   #-----------------------------------------------------------------------------------------
   load(here::here("/null_dist.rda"))
   crit_val <- rmatio::read.mat(here::here("/critical_values.mat"))
 
-  pval <- test.stat
   basecase <- 44 * (trendtype - 1) + 4 * (nvar - 2)
 
-  #for (i in 1:4) {
-  #  case = basecase + i
-  #  if (i %in% c(1, 3)) {
-  #    n <- sum(stat[i] > null_dist[, case])
-  #    pval[i] <-  (n/N) + .000000000001
-  #  } else {
-  #    if (i %in% c(2, 4)) {
-  #      n <- sum(stat[i] < null_dist[, case])
-  #      pval[i] <-  (n/N) + .000000000001
-  #    }
-  #  }
-  #}
+  for (i in 1:4) {
+    case = basecase + i
+    if (i %in% c(1, 3)) {
+      n <- sum(stat[i] > null_dist[, case])
+      pval.stat[i] <-  (n/N) + .000000000001
+    } else {
+      if (i %in% c(2, 4)) {
+        n <- sum(stat[i] < null_dist[, case])
+        pval.stat[i] <-  (n/N) + .000000000001
+      }
+    }
+  }
 
   #-----------------------------------------------------------------------------------------
   # Calculate Bayer-Hanck Fisher Statistics
@@ -81,9 +93,10 @@ bayerhanck <- function(formula, data, trend = "const", lags = 1, test = "all", c
   #-----------------------------------------------------------------------------------------
   list(test.stat = test.stat,
        p.val = pval)
-  print(basecase)
-
+  print(pval.stat)
 }
 
-bayerhanck(linvestment ~ lincome + lconsumption, data = df, trend = "trend",
-           test = c("englegranger", "banerjee"))
+bayerhanck(linvestment ~ lincome + lconsumption, data = df, trend = "const",
+           test = c("englegranger", "johansen"))
+
+
