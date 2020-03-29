@@ -2,29 +2,28 @@
 % Please edit documentation in R/bayerhanck.R
 \name{bayerhanck}
 \alias{bayerhanck}
-\title{Produce a joint test-statistic for the null of non-cointegration, aggregating
-different cointegration tests}
+\title{Joint Test-Statistic for the Null of Non-Cointegration}
 \usage{
 bayerhanck(formula, data, lags = 1, trend = "const", test = "all", crit)
 }
 \arguments{
-\item{formula}{An object of class "formula" to describe the model}
+\item{formula}{An object of class "formula" to describe the model.}
 
-\item{data}{An optional data frame containing the variables in the model}
+\item{data}{An optional data frame containing the variables in the model.}
 
-\item{lags}{Number of lags to be included}
+\item{lags}{Number of lags to be included.}
 
 \item{trend}{Type of deterministic component to be inlcuded, "none" for no deterministics,
-"const" for a constant and "trend" for a constant plus trend}
+"const" for a constant and "trend" for a constant plus trend.}
 
-\item{test}{Selection of tests to choose from}
+\item{test}{Selection of tests to choose from.}
 
-\item{crit}{Level for the critical value of the test to be reported}
+\item{crit}{Level for the critical value of the test to be reported.}
 }
 \value{
 
 }
 \description{
 Produce a joint test-statistic for the null of non-cointegration, aggregating
-different cointegration tests
+various cointegration tests.
 }

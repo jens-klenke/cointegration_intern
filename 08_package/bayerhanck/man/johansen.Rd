@@ -2,25 +2,25 @@
 % Please edit documentation in R/johansen.R
 \name{johansen}
 \alias{johansen}
-\title{Title}
+\title{Johansen Test}
 \usage{
 johansen(formula, data, type = "eigen", lags = 1, trend = "const")
 }
 \arguments{
-\item{formula}{An object of class "formula" to describe the model}
+\item{formula}{An object of class "formula" to describe the model.}
 
-\item{data}{An optional data frame containing the variables in the model}
+\item{data}{An optional data frame containing the variables in the model.}
 
-\item{type}{Test to be conducted, either "eigen" or "trace"}
+\item{type}{Test to be conducted, either "eigen" or "trace".}
 
-\item{lags}{Number of lags to be included}
+\item{lags}{Number of lags to be included.}
 
 \item{trend}{Type of deterministic component to be inlcuded, "none" for no deterministics,
-"const" for a constant and "trend" for a constant plus trend}
+"const" for a constant and "trend" for a constant plus trend.}
 }
 \value{
 
 }
 \description{
-Title
+Execute Johansen Test.
 }

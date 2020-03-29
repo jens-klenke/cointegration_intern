@@ -1,13 +1,15 @@
-#' Produce a joint test-statistic for the null of non-cointegration, aggregating
-#' different cointegration tests
+#' Joint Test-Statistic for the Null of Non-Cointegration
 #'
-#' @param formula An object of class "formula" to describe the model
-#' @param data An optional data frame containing the variables in the model
-#' @param lags Number of lags to be included
+#' Produce a joint test-statistic for the null of non-cointegration, aggregating
+#' various cointegration tests.
+#'
+#' @param formula An object of class "formula" to describe the model.
+#' @param data An optional data frame containing the variables in the model.
+#' @param lags Number of lags to be included.
 #' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
-#' "const" for a constant and "trend" for a constant plus trend
-#' @param test Selection of tests to choose from
-#' @param crit Level for the critical value of the test to be reported
+#' "const" for a constant and "trend" for a constant plus trend.
+#' @param test Selection of tests to choose from.
+#' @param crit Level for the critical value of the test to be reported.
 #'
 #' @return
 #' @export
