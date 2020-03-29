@@ -87,7 +87,8 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
               lags = lags,
               trend = trend,
               betas = betas,
-              var.cov = var_mat)
+              var.cov = var_mat,
+              test = "Banerjee")
   class(out) <- c("co.test", "list")
   out
 }

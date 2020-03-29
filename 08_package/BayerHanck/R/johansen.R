@@ -43,7 +43,8 @@ johansen <- function(formula, data, type = "eigen", lags = 1, trend = "const"){
               trend = trend,
               type = type,
               trace = jo_vec_sum[, 1:4],
-              eigen = jo_vec_sum[, c(1, 5:6)])
+              eigen = jo_vec_sum[, c(1, 5:6)],
+              test = "Johansen")
   class(out) <- c("co.test", "list")
   out
 }

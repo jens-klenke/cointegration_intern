@@ -32,7 +32,8 @@ englegranger <- function(formula, data, lags = 1, trend = "const"){
 
   out <- list(test.stat = test.stat,
               lags = lags,
-              trend = trend)
+              trend = trend,
+              test = "Engle-Granger")
   class(out) <- c("co.test", "list")
   out
 }
