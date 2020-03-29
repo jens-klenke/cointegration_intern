@@ -77,7 +77,7 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
     lm_res <- lm(BB_res ~ res_mat)
   } #else if (identical(trend, "trend)) {}
 
-  betas <- coef(lm_res)
+  betas <- stats::coef(lm_res)
   var_mat <- vcov(lm_res)
   test.stat <- as.numeric(betas[2]/sqrt(var_mat[2, 2]))
   names(test.stat) <- "banerjee"

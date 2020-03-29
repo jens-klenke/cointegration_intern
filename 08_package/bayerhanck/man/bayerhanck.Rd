@@ -2,7 +2,7 @@
 % Please edit documentation in R/bayerhanck.R
 \name{bayerhanck}
 \alias{bayerhanck}
-\title{Produce a joint test-statistic for the null of no-cointegration, aggregating
+\title{Produce a joint test-statistic for the null of non-cointegration, aggregating
 different cointegration tests}
 \usage{
 bayerhanck(formula, data, lags = 1, trend = "const", test = "all", crit)
@@ -25,6 +25,6 @@ bayerhanck(formula, data, lags = 1, trend = "const", test = "all", crit)
 
 }
 \description{
-Produce a joint test-statistic for the null of no-cointegration, aggregating
+Produce a joint test-statistic for the null of non-cointegration, aggregating
 different cointegration tests
 }

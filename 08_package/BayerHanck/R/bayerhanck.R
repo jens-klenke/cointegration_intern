@@ -1,4 +1,4 @@
-#' Produce a joint test-statistic for the null of no-cointegration, aggregating
+#' Produce a joint test-statistic for the null of non-cointegration, aggregating
 #' different cointegration tests
 #'
 #' @param formula An object of class "formula" to describe the model

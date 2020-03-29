@@ -77,7 +77,7 @@ boswijk <- function(formula, data, lags = 1, trend = "const"){
     lm_res <- lm(BB_res ~ res_mat)
   } #else if (identical(trend, "trend)) {}
 
-  betas <- coef(lm_res)
+  betas <- stats::coef(lm_res)
   var_mat <- vcov(lm_res)
   test.stat <- as.numeric(betas %*% solve(var_mat) %*% betas)
   names(test.stat) <- "boswijk"
