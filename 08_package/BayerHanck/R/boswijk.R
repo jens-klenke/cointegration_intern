@@ -1,6 +1,6 @@
 #' Boswijk Test
 #'
-#' Execute Boswijk Test.
+#' Executes Boswijk Test.
 #'
 #' @param formula An object of class "formula" to describe the model.
 #' @param data An optional data frame containing the variables in the model.
@@ -8,7 +8,7 @@
 #' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
 #' "const" for a constant and "trend" for a constant plus trend.
 #'
-#' @return
+#' @return \code{boswijk} returns an object of class "co.test".
 #' @export
 #'
 #' @examples
@@ -51,17 +51,17 @@ boswijk <- function(formula, data, lags = 1, trend = "const"){
   #-----------------------------------------------------------------------------------------
   # Boswijk Test
   #-----------------------------------------------------------------------------------------
-  res_mat <- matrix(NA, nrow = nrow(Xlag) - lags - 1, ncol = ncol(Xlag))
+  res <- matrix(NA, nrow = nrow(Xlag) - lags - 1, ncol = ncol(Xlag))
 
   if (identical(trend, "none")) {
     for (i in 1:ncol(Xlag)) {
       loop_lm <- lm(Hmisc::Lag(Xlag[, i], shift = 1)[-1] ~ W - 1)
-      res_mat[, i] <- as.numeric(loop_lm$residuals)
+      res[, i] <- as.numeric(loop_lm$residuals)
     }
   } else if (identical(trend, "const")) {
     for (i in 1:ncol(Xlag)) {
       loop_lm <- lm(Hmisc::Lag(Xlag[, i], shift = 1)[-1] ~ W)
-      res_mat[, i] <- as.numeric(loop_lm$residuals)
+      res[, i] <- as.numeric(loop_lm$residuals)
     }
   } #else if (identical(trend, "trend")) {}
 
@@ -74,17 +74,20 @@ boswijk <- function(formula, data, lags = 1, trend = "const"){
   BB_res <- BB_lm$residuals
 
   if (identical(trend, "none")) {
-    lm_res <- lm(BB_res ~ res_mat -1)
+    lm_res <- lm(BB_res ~ res -1)
   } else if (identical(trend, "const")) {
-    lm_res <- lm(BB_res ~ res_mat)
+    lm_res <- lm(BB_res ~ res)
   } #else if (identical(trend, "trend)) {}
 
   betas <- stats::coef(lm_res)
   var_mat <- vcov(lm_res)
   test.stat <- as.numeric(betas %*% solve(var_mat) %*% betas)
-  names(test.stat) <- "boswijk"
 
-  list(test.stat = test.stat,
-       betas = betas,
-       cov = var_mat)
+  out <- list(test.stat = test.stat,
+              lags = lags,
+              trend = trend,
+              betas = betas,
+              var.cov = var_mat)
+  class(out) <- c("co.test", "list")
+  out
 }

@@ -1,6 +1,6 @@
 #' Engle-Granger Test
 #'
-#' Execute Engle-Granger Test.
+#' Executes Engle-Granger Test.
 #'
 #' @param formula An object of class "formula" to describe the model.
 #' @param data An optional data frame containing the variables in the model.
@@ -8,7 +8,7 @@
 #' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
 #' "const" for a constant and "trend" for a constant plus trend.
 #'
-#' @return
+#' @return \code{englegranger} returns an object of class "co.test".
 #' @export
 #'
 #' @examples
@@ -29,10 +29,12 @@ englegranger <- function(formula, data, lags = 1, trend = "const"){
   eg_res <- eg_lm$residuals
   eg_adf <- urca::ur.df(eg_res, lags = lags)
   test.stat <- as.numeric(eg_adf@teststat)
-  names(test.stat) <- "englegranger"
 
-  list(test.stat = test.stat)
+  out <- list(test.stat = test.stat,
+              lags = lags,
+              trend = trend)
+  class(out) <- c("co.test", "list")
+  out
 }
-
 
 

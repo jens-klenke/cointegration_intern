@@ -17,8 +17,8 @@ banerjee(formula, data, lags = 1, trend = "const")
 "const" for a constant and "trend" for a constant plus trend.}
 }
 \value{
-
+\code{banerjee} returns an object of class "co.test".
 }
 \description{
-Execute Banerjee Test.
+Executes Banerjee Test.
 }

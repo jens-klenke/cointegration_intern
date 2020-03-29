@@ -1,6 +1,6 @@
 #' Johansen Test
 #'
-#' Execute Johansen Test.
+#' Executes Johansen Test.
 #'
 #' @param formula An object of class "formula" to describe the model.
 #' @param data An optional data frame containing the variables in the model.
@@ -9,7 +9,7 @@
 #' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
 #' "const" for a constant and "trend" for a constant plus trend.
 #'
-#' @return
+#' @return \code{johansen} returns an object of class "co.test".
 #' @export
 #'
 #' @examples
@@ -37,9 +37,13 @@ johansen <- function(formula, data, type = "eigen", lags = 1, trend = "const"){
                         estim = "ML")
   jo_vec_sum <- summary(tsDyn::rank.test(jo_vec, type = type))
   test.stat <- as.numeric(jo_vec_sum$eigen[1])
-  names(test.stat) <- "johansen"
 
-  list(test.stat = test.stat,
-       trace = jo_vec_sum[, 1:4],
-       eigen = jo_vec_sum[, c(1, 5:6)])
+  out <- list(test.stat = test.stat,
+              lags = lags,
+              trend = trend,
+              type = type,
+              trace = jo_vec_sum[, 1:4],
+              eigen = jo_vec_sum[, c(1, 5:6)])
+  class(out) <- c("co.test", "list")
+  out
 }

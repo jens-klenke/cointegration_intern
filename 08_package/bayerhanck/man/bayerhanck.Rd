@@ -24,6 +24,9 @@ bayerhanck(formula, data, lags = 1, trend = "const", test = "all", crit)
 
 }
 \description{
-Produce a joint test-statistic for the null of non-cointegration, aggregating
+Produces a joint test-statistic for the null of non-cointegration, aggregating
 various cointegration tests.
+}
+\references{
+Bayer, C. and Hanck, C. (2009), Combining Non-Cointegration tests, METEOR RM 09/012, University of Maastricht.
 }

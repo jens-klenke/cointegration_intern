@@ -17,8 +17,8 @@ englegranger(formula, data, lags = 1, trend = "const")
 "const" for a constant and "trend" for a constant plus trend.}
 }
 \value{
-
+\code{englegranger} returns an object of class "co.test".
 }
 \description{
-Execute Engle-Granger Test.
+Executes Engle-Granger Test.
 }

@@ -16,3 +16,7 @@ Imports:
     urca,
     stats,
     base
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
