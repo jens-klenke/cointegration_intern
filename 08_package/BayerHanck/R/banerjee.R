@@ -90,7 +90,12 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
               var.cov = var_mat,
               test = "Banerjee")
   class(out) <- c("co.test", "list")
-  out
+  cat(c("----------------------------------------------------------",
+        "Banerjee Test",
+        "----------------------------------------------------------",
+        paste(c("Value of test statistic:", round(test.stat, 4)), collapse = " ")),
+        sep = "\n")
+  invisible(out)
 }
 
 

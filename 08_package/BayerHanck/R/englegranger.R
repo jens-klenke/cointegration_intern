@@ -35,7 +35,10 @@ englegranger <- function(formula, data, lags = 1, trend = "const"){
               trend = trend,
               test = "Engle-Granger")
   class(out) <- c("co.test", "list")
-  out
+  cat(c("----------------------------------------------------------",
+        "Engle-Granger Test",
+        "----------------------------------------------------------",
+        paste(c("Value of test statistic:", round(test.stat, 4)), collapse = " ")),
+        sep = "\n")
+  invisible(out)
 }
-
-

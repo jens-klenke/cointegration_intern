@@ -90,5 +90,10 @@ boswijk <- function(formula, data, lags = 1, trend = "const"){
               var.cov = var_mat,
               test = "Boswijk")
   class(out) <- c("co.test", "list")
-  out
+  cat(c("----------------------------------------------------------",
+        "Boswijk Test",
+        "----------------------------------------------------------",
+        paste(c("Value of test statistic:", round(test.stat, 4)), collapse = " ")),
+        sep = "\n")
+  invisible(out)
 }
