@@ -1,19 +1,13 @@
 ### Bayer-Hanck Statistics 
 
-#### Parameter for try
 
-nvar <- 5
-crit <- 0.10
-pval <- c(0.06, 0.30, 0.05, 0.01)
-trendtype <- 2
-##
 
 #### Matrices of critical values ####
 
 # for one percent level 
 
-if (crit == 0.01) {
-crit_val_1 <- matrix(c(16.948, 17.304,	17.289,
+
+crit_val_1_0.01 <- matrix(c(16.948, 17.304,	17.289,
                             16.651, 16.679,	16.720,
                             16.236, 16.259, 16.263,
                             15.871, 15.845, 15.973,
@@ -27,7 +21,7 @@ crit_val_1 <- matrix(c(16.948, 17.304,	17.289,
                           ncol = 3, byrow = TRUE
                           )
 
-crit_val_2 <- matrix(c(32.713, 33.969, 34.334,
+crit_val_2_0.01 <- matrix(c(32.713, 33.969, 34.334,
                             31.793,	32.077,	32.601,
                             30.651,	31.169,	31.742,
                             30.088,	30.774,	30.836,
@@ -40,11 +34,11 @@ crit_val_2 <- matrix(c(32.713, 33.969, 34.334,
                             27.945,	28.055,	28.518),
                           ncol = 3, byrow = TRUE
                           )
-}else if (crit == 0.05) {
+
 
 # for five percent level
 
-crit_val_1 <- matrix(c(11.071, 11.229, 11.269,
+crit_val_1_0.05 <- matrix(c(11.071, 11.229, 11.269,
                             10.838, 10.895, 10.858,
                             10.640, 10.637, 10.711,
                             10.516, 10.576, 10.532,
@@ -58,7 +52,7 @@ crit_val_1 <- matrix(c(11.071, 11.229, 11.269,
                           ncol = 3, byrow = TRUE
                           )
 
-crit_val_2 <- matrix(c(21.352, 21.931, 22.215,
+crit_val_2_0.05 <- matrix(c(21.352, 21.931, 22.215,
                             20.776, 21.106, 21.342,
                             20.237, 20.486, 20.788,
                             19.747, 19.888, 20.170,
@@ -68,11 +62,10 @@ crit_val_2 <- matrix(c(21.352, 21.931, 22.215,
                             19.365, 19.492, 19.582,
                             19.268, 19.365, 19.398,
                             19.151, 19.345, 19.404),
-                          ncol = 3, byrow = TRUE
-)
-}else if (crit == 0.10) {
+                          ncol = 3, byrow = TRUE)
+
 # for ten percent level 
-crit_val_1 <- matrix(c(8.612, 8.678, 8.686,
+crit_val_1_0.10 <- matrix(c(8.612, 8.678, 8.686,
                             8.457, 8.479, 8.451,
                             8.350, 8.363, 8.352,
                             8.290, 8.301, 8.272,
@@ -86,7 +79,7 @@ crit_val_1 <- matrix(c(8.612, 8.678, 8.686,
                           ncol = 3, byrow = TRUE
 )
 
-crit_val_2 <- matrix(c(16.593, 16.964,	17.187,
+crit_val_2_0.10 <- matrix(c(16.593, 16.964,	17.187,
                             16.171,	16.444, 16.507,
                             15.920,	16.097,	16.239,
                             15.776,	15.938,	16.086,
@@ -99,7 +92,16 @@ crit_val_2 <- matrix(c(16.593, 16.964,	17.187,
                             15.406,	15.476,	15.564),
                           ncol = 3, byrow = TRUE
                           )
-}
+
+save(crit_val_1_0.01, crit_val_2_0.01, crit_val_1_0.05, crit_val_2_0.05, crit_val_1_0.10, crit_val_2_0.10,
+     file =here::here('00_data/crit_values.rda'))
+
+
+
+
+
+
+
 
 #### comput statistics ####
 b_h_stat_1 <- -2*sum(log(pval[1:2]))
