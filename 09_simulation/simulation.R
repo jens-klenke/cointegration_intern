@@ -1,7 +1,6 @@
 #### Parameters
-load(here::here('09_simulation/sim_sub_functions.R'))
 
-asy <- function(savecv){
+#asy <- function(savecv){
 # This function calculates/simulates the asymptotic distributions of the
 # various co-integration tests. It returns a
 # scalar equal to 1 when done.
@@ -126,13 +125,13 @@ asy <- function(savecv){
 ## Main part
 
 # savecv=0; # Save Critical values"
-R2 <-  0.05 # seq(0, 0.95, 0.05)
+R2 <- seq(0, 0.95, 0.05)
 #R2=0;
-T <- 10
-c <- 0 #c(-(seq(0,30,1)))
+T <- 1000
+c <- c(-(seq(0,30,1)))
 # c = 0
-kmax <- 1 #11  max of Variables
-rep <- 250 # Number of Repetitions
+kmax <- 1 #  max of Variables
+rep <- 25000 # Number of Repetitions
 cases <- 3 # cases 
 lambda <- (seq(1:T)/T) # (1/T:1/T:1)
 
@@ -196,8 +195,8 @@ for (k in 1:kmax){# Number of Regressor Loop"
                 # Loop over repetitions"
                 for (j in 1:rep){
                     u <- matrix( rnorm(T*(k+1)), nrow = T, ncol = k+1) # Draw random Shocks"
-                    W1 <- apply(u[ , 1:k],2,cumsum)/sqrt(T)# Simulate Wiener Process"
-                    u12 <- sqrt(R2run/(1-R2run))*u[,1:k]%*%rep(1, k)/sqrt(k) + u[ ,k+1] #Matrix multiplication
+                    W1 <- mcumsum(u[, 1:k])/sqrt(T)# Simulate Wiener Process"
+                    u12 <- matrix(sqrt(R2run/(1-R2run))*u[,1:k]*rep(1, k)/sqrt(k) + u[ ,k+1], ncol = k) #Matrix multiplication
                     J12 <- BU(u12,c_run)#Ohrnsetin Uhlenbeck Process"
                     # Corrections according to case"
 
