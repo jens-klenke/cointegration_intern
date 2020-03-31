@@ -130,7 +130,7 @@ R2 <- seq(0, 0.95, 0.05)
 T <- 1000
 c <- c(-(seq(0,30,1)))
 # c = 0
-kmax <- 1 #  max of Variables
+kmax <- 11 #  max of Variables
 rep <- 25000 # Number of Repetitions
 cases <- 3 # cases 
 lambda <- (seq(1:T)/T) # (1/T:1/T:1)
@@ -195,24 +195,23 @@ for (k in 1:kmax){# Number of Regressor Loop"
                 # Loop over repetitions"
                 for (j in 1:rep){
                     u <- matrix( rnorm(T*(k+1)), nrow = T, ncol = k+1) # Draw random Shocks"
-                    W1 <- mcumsum(u[, 1:k])/sqrt(T)# Simulate Wiener Process"
+                    W1 <- apply(matrix(u[, 1:k], ncol = k),2,cumsum)/sqrt(T)
                     u12 <- matrix(sqrt(R2run/(1-R2run))*u[,1:k]*rep(1, k)/sqrt(k) + u[ ,k+1], ncol = k) #Matrix multiplication
-                    J12 <- BU(u12,c_run)#Ohrnsetin Uhlenbeck Process"
+                    J12 <- BU(u12,c_run)#Ohrnstein Uhlenbeck Process"
                     # Corrections according to case"
 
                     if (dets==1){# No Constant, no trend"
                         W1d <- W1
                         J12dc <- J12
                     } else if (dets==2){#Constant, no trend"
-                        W1d <- W1 - matrix(rep( apply(W1,2,mean), T), nrow = T, byrow = TRUE) 
-                        J12dc <- J12 - matrix(rep(1,T)* apply(J12,2,mean), nrow = T, byrow = TRUE) 
+                        W1d <- W1 - matrix(rep(apply(W1, 2, mean), T), nrow = T, byrow = TRUE) 
+                        J12dc <- J12 - matrix(rep(1, T)* apply(J12, 2, mean), nrow = T, byrow = TRUE) 
                     } else if (dets==3){# Constant and Trend"
-                        W1d <- W1 - (4-6*matrix(rep(t(lambda), k), ncol = k))*matrix(rep(apply(W1,2,mean),T), nrow = T, byrow = TRUE)- (12*matrix(rep(t(lambda), k), ncol = k)-6)*matrix(rep(apply(matrix(rep((lambda), k), ncol = k)*W1,2, mean), T), ncol = k, byrow = TRUE) 
+                        W1d <- W1 - (4-6*matrix(rep(t(lambda), k), ncol = k))*matrix(rep(apply(W1, 2, mean), T), nrow = T, byrow = TRUE) - (12*matrix(rep(t(lambda), k), ncol = k)-6)*matrix(rep(apply(matrix(rep((lambda), k), ncol = k)*W1,2, mean), T), ncol = k, byrow = TRUE) 
                         J12dc <- J12 - (4-6*lambda)*rep(mean(J12), T) - (12*lambda-6) * rep(mean(lambda*J12), T) 
                     }
                     Wdc <- cbind(W1d, J12dc)
 
-                    
                     # -----------------------------Common Terms------------"
                     WdcDW2 <- apply(Wdc[1:T-1,]* matrix(rep(u[2:T,k+1], k+1), ncol = k+1), 2, mean)
                     WdcWdci <- solve(1/T^2* t(Wdc)%*%Wdc)
@@ -425,7 +424,6 @@ for (k in 1:kmax){# Number of Regressor Loop"
                 MinLocalAsyPowerBERC[k,dets,cc,rr] <- mean((MinStatBECR < CritvalMinBECR))
                 MinLocalAsyPowerEJ[k,dets,cc,rr] <- mean((MinStatEJ < CritvalMinEJ))
 
-
             }# R2"
         }# c"
 
@@ -453,7 +451,7 @@ for (k in 1:kmax){# Number of Regressor Loop"
 #            CritvalFisherBJ2; CritvalFisherBE2; CritvalFisherEJ2; CritvalFisherBJE2; CritvalFisherBECRJ2; CritvalFisherBECRJE2; CritvalInvNormBJE2; CritvalMinBECR2; CritvalMinEJ2]
 #        CV(:,k,dets,3) <- [CritvalBoswijk3; CritValErrCorr3; CritvalJohansen3; CritvalEngleGranger3; CritvalFisherBECR3; ...
 #            CritvalFisherBJ3; CritvalFisherBE3; CritvalFisherEJ3; CritvalFisherBJE3; CritvalFisherBECRJ3; CritvalFisherBECRJE3; CritvalInvNormBJE3; CritvalMinBECR3; CritvalMinEJ3]
-        NullDistr[,,k,dets] <- abind(NullDistrEngleGranger, NullDistrJohansen, NullDistrErrCorr, NullDistrBoswijk)
+        NullDistr[ , ,k , dets] <- abind(NullDistrEngleGranger, NullDistrJohansen, NullDistrErrCorr, NullDistrBoswijk)
 
     }# dets */"
 }# k */"
@@ -461,7 +459,7 @@ for (k in 1:kmax){# Number of Regressor Loop"
 #if (savecv==1){
 #   save critical_values CV
 #    save NullDistributions NullDistr"
-}
+#}
 
 
 

@@ -1,6 +1,6 @@
 % Ohrnstein Uhlenbeck Process
 function B = Bc(u,d);
-T=rows(u);
+T=size(u,1);
 rho=(1+d/T);
 v=zeros(size(u));
 v(:,1)=u(:,1);

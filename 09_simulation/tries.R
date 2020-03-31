@@ -1,29 +1,22 @@
-u <- matrix(c(0.5377,   -1.3499,
-              1.8339,    3.0349,
-              -2.2588,   0.7254,
-              0.8622,   -0.0631,
-              0.3188,    0.7147,
-              -1.3077,   -0.2050,
-              -0.4336,   -0.1241,
-              0.3426,    1.4897,
-              3.5784,    1.4090,
-              2.7694,    1.4172),
+T <- 10
+k <- 1
+
+u <- matrix(c(    0.5201,   -0.2938,
+                  -0.0200,   -0.8479,
+                  -0.0348,   -1.1201,
+                  -0.7982,    2.5260,
+                  1.0187,    1.6555,
+                  -0.1332,    0.3075,
+                  -0.7145,   -1.2571,
+                  1.3514,   -0.8655,
+                  -0.2248,   -0.1765,
+                  -0.5890,    0.7914),
     ncol = k+1, byrow = TRUE)
 
-u_1 <- u
-u <- u_1
-
-W1_1 <- cumsum(u[, 1:k])/sqrt(T)
-    
-
-W1 = cumsum(u(:,1:k))/sqrt(T);    
-
-
+#Zeile 198
+W1 <- apply(matrix(u[, 1:k], ncol = k),2,cumsum)/sqrt(T)
 
 #Zeile 206
-
-rep(apply(W1,2,mean), T)
-
 W1d <- W1 - matrix(rep( apply(W1,2,mean), T), nrow = T, byrow = TRUE)
 
 #zeile 209
@@ -31,7 +24,6 @@ W1 - (4-6*matrix(rep(t(lambda), k), ncol = k))*matrix(rep(apply(W1,2,mean),T), n
 
 #Zeile 210
 J12dc <- J12 - (4-6*lambda)*rep(mean(J12), T) - (12*lambda-6) * rep(mean(lambda*J12), T)
-
 
 #Zeile 218
 WdcDW2 <- apply(Wdc[1:T-1,]* matrix(rep(u[2:T,k+1], k+1), ncol = k+1), 2, mean)
