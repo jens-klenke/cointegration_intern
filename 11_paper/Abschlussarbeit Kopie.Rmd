@@ -1,0 +1,70 @@
+---
+title: "Title"
+subtitle: "Subtitle"
+type: "Type of Paper"
+author: "Name"
+discipline: "Study Path"
+date: "today"
+studid: "Matriculation Number"
+supervisor: "Prof. Dr. Christoph Hanck"
+secondsupervisor: "Prof. Dr. Andreas Behr"
+ssemester: "1"
+estdegree_emester: "Summer Term 2019"
+deadline: "Deadline"
+output:
+  pdf_document:
+    keep_tex: yes
+    template: template.tex
+    fig_caption: yes
+    citation_package: biblatex
+    number_sections: true
+toc: true
+lot: true
+lof: true
+graphics: true
+biblio-title: References
+fontsize: 11pt
+geometry: lmargin=5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm
+biblio-files: references.bib
+classoption: a4paper
+---
+
+<!-- % Template Version 1.2 -->
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction
+An issue of substantial interest in time series analysis is, whether there exists any meaningful equilibrium relationship between two or more time series variables. Various hypothesis tests have been suggested for testing this so-called cointegration relationship, with the null hypothesis of no cointegration. Their local power, however, relies mostly on a specific nuisance parameter, namely the squared long-run correlations of error terms driving the variables. This may lead to inconclusive results, as one test may reject the null hypothesis, while others accept. The detection of cointegration relationships among time series variables is therefore complicated. Furthermore, the decision for an applicable test poses a challenge for the practitioner. 
+
+An approach for resolving this issue might be a combination of the different tests. Bayer and Hanck suggest a method for providing meta tests, with high power for all forms of the nuisance parameter [@Bayerhanck2009]. Their approach is based on Fisher's Chi-squared test [@Fisher1925]. It can be shown, that this provides an unambiguous test decision. 
+
+So far, there exists a Stata module for computing the above-mentioned non-cointegration test. However, there is no implementation in R yet. Therefore, the objective of this work was the development of the R package **bayerhanck**, to implement the eponymous test. In section 2, the theoretical background of the combined non-cointegration test will be explained further. Next, the structure of the associated R package and its functions will be illustrated. Finally, the performance of this approach will be evaluated.
+
+# Theory of Non-Cointegration Tests
+
+# Implementation of **bayerhanck** in R
+The package consists of four functions for the underlying tests, as well as the function for the combined test. Furthermore, the cumulative distribution function of the null hypothesis can be plotted. The package features will be illustrated by using real data from the lutkepohl dataset.
+
+The underlying tests can be carried out by their eponymous commands, namely `englegranger()`, `johansen()`, `banerjee()` and `boswijk()`. The former two partly rely on already implemented functions from the packages **urca** and **tsDyn**. Due to the absence of associated functions for the latter two, those had to be programmed manually. All functions take several arguments, from which only `formula` and `data` need to be filled out by the practitioner. Further arguments orientate themselves on the default values defined in the Stata implementation. For the argument `lags`, which determines the number of lags to be included in the model, the default value is therefore set to 1. The argument `trend` describes the deterministic components of the model. The practitioner may choose from `none`, for no deterministics, `const`, for a (unrestricted) constant and `trend`, for a (unrestricted) constant plus (unrestricted) trend. The default value is set to `const`. The functions of the underlying tests all return an object of classes `co.test` and `list`. The console also returns the value of the test statistic, as well as the name of the test executed.
+
+
+In accordance with the previously explained structure, the function `englegranger()` takes the form:
+```{r eval = FALSE}
+englegranger(formula, data, lags = 1, trend = "const")
+```
+
+The structure of this function is orientated towards the implementation of the Engle-Granger test in the aforesaid Stata module. Therefore, none of the various existing functions in R is used. Firstly, a linear regression is performed, according to the formula entered in `englegranger()`. Next, an augmented Dickey-Fuller test is applied to the residuals from this regression. For this, the function `ur.df()` from the **urca** package is used. The output value of the test statistic is then used as the test statistic of the Engle-Granger test.
+
+The function for the Johansen test contains the additional argument `type`, which specifies if an maximum eigenvalue or a trace test should be conducted. Therefore, the options are either `trace` or `eigen`, with `eigen` being the default choice. The structure of the function takes the form:
+```{r eval = FALSE}
+johansen(formula, data, type = "eigen", lags = 1, trend = "const")
+```
+
+Firstly, the function estimates a VECM by Johansen (MLE) method with `VECM` from the package **tsDyn**. Then, a test of the cointegrating rank is conducted. For this, the function `rank.test()` from the same package is used. In comparison with similar functions `rank.test()` possesses the advantage of the possibility to select the unrestricted constant or trend. Here, the maximum eigenvalue is used as the output test statistic of `johansen()`.
+
+
+# Conclusion
+
+\newpage
