@@ -28,7 +28,7 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
   x <- model.matrix(mt, mf)[, -1]
 
   #-----------------------------------------------------------------------------------------
-  # Lag Function
+  # Lag Matrix
   #-----------------------------------------------------------------------------------------
   Xlag <- cbind(y, x)
   Y_dif <- diff(y) # muss als numeric vorliegen
