@@ -1,0 +1,367 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{lmodern}
+
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[lmargin=5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm]{geometry}
+
+% Figure Placement:
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+
+%% citation setup
+
+\usepackage{csquotes}
+
+\usepackage[backend=biber, maxbibnames = 99, style = apa]{biblatex}
+\setlength\bibitemsep{1.5\itemsep}
+\bibliography{references.bib}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={Name},
+            pdftitle={Title},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{5}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{Title}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+\subtitle{Subtitle}
+  \author{Name}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{today}
+
+
+%% linespread settings
+
+\usepackage{setspace}
+
+\onehalfspacing
+
+% Language Setup
+
+\usepackage{ifthen}
+\usepackage{iflang}
+\usepackage[super]{nth}
+\usepackage[ngerman, english]{babel}
+
+\begin{document}
+
+\selectlanguage{english}
+
+
+%\maketitle
+
+\newgeometry{left=2cm,right=1cm,bottom=2cm,top=2cm}
+
+\begin{titlepage}
+  \noindent\begin{minipage}{0.6\textwidth}
+	  \IfLanguageName{english}{University of Duisburg-Essen}{Universität Duisburg-Essen}\\
+	  \IfLanguageName{english}{Faculty of Business Administration and Economics}{Fakultät für Wirtschaftswissensschaften}\\
+	  \IfLanguageName{english}{Chair of Econometrics}{Lehrstuhl für Ökonometrie}\\
+  \end{minipage}
+	\begin{minipage}{0.4\textwidth}
+	  \begin{flushright}
+  	  \vspace{-0.5cm}
+      \IfLanguageName{english}{\includegraphics*[width=5cm]{Includes/duelogo_en.png}}{\includegraphics*[width=5cm]{Includes/duelogo_de.png}}
+	  \end{flushright}
+	\end{minipage}
+  \\
+  \vspace{1.5cm}
+  \begin{center}
+  \huge{Title}\\
+  \vspace{.25cm}
+  \Large{Subtitle}\\
+  \vspace{0.5cm}
+  \large{Type of Paper}\\
+  \vspace{1cm}
+  \large{
+  \IfLanguageName{english}{Submitted to the Faculty of \\ Business Administration and Economics \\at the \\University of Duisburg-Essen}{Vorgelegt der \\Fakultät für Wirtschaftswissenschaften der \\ Universität Duisburg-Essen}\\}
+  \vspace{0.75cm}
+  \large{\IfLanguageName{english}{from:}{von:}}\\
+  \vspace{0.5cm}
+  Name\\
+  \end{center}
+  \vspace{4cm}
+
+  \noindent\begin{minipage}[t]{0.5\textwidth}
+  \IfLanguageName{english}{Matriculation Number:}{Matrikelnummer}
+  \end{minipage}
+  \begin{minipage}[t]{0.7\textwidth}
+  \hspace{1cm}Matriculation Number
+  \end{minipage}
+
+  \noindent\begin{minipage}[t]{0.5\textwidth}
+  \IfLanguageName{english}{Study Path:}{Studienfach:}
+  \end{minipage}
+  \begin{minipage}[t]{0.7\textwidth}
+  \hspace{1cm}Study Path
+  \end{minipage}
+
+  \noindent\begin{minipage}[t]{0.5\textwidth}
+  \IfLanguageName{english}{Reviewer:}{Erstgutachter:}
+  \end{minipage}
+  \begin{minipage}[t]{0.7\textwidth}
+  \hspace{1cm}Prof.~Dr.~Christoph Hanck
+  \end{minipage}
+
+  \noindent\begin{minipage}[t]{0.5\textwidth}
+  \IfLanguageName{english}{Secondary Reviewer:}{Zweitgutachter}
+  \end{minipage}
+  \begin{minipage}[t]{0.7\textwidth}
+  \hspace{1cm}Prof.~Dr.~Andreas Behr
+  \end{minipage}
+
+  \noindent\begin{minipage}[t]{0.5\textwidth}
+  Semester:
+  \end{minipage}
+  \begin{minipage}[t]{0.7\textwidth}
+  \hspace{1cm}\IfLanguageName{english}{\nth{1} Semester}{1. Fachsemester}
+  \end{minipage}
+
+  \noindent\begin{minipage}[t]{0.5\textwidth}
+  \IfLanguageName{english}{Graduation (est.):}{Vsl. Studienabschluss:}
+  \end{minipage}
+  \begin{minipage}[t]{0.7\textwidth}
+  \hspace{1cm}Summer Term 2019
+  \end{minipage}
+
+  \noindent\begin{minipage}[t]{0.5\textwidth}
+  \IfLanguageName{english}{Deadline:}{Abgabefrist:}
+  \end{minipage}
+  \begin{minipage}[t]{0.7\textwidth}
+  \hspace{1cm}Deadline
+  \end{minipage}
+
+\end{titlepage}
+
+% Ends the declared geometry for the titlepage
+\restoregeometry
+
+
+\pagenumbering{Roman} 
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+\newpage
+\listoftables
+\newpage
+\listoffigures
+\newpage
+\pagenumbering{arabic} 
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+An issue of substantial interest in time series analysis is, whether
+there exists any meaningful equilibrium relationship between two or more
+time series variables. Various hypothesis tests have been suggested for
+testing this so-called cointegration relationship, with the null
+hypothesis of no cointegration. Their local power, however, relies
+mostly on a specific nuisance parameter, namely the squared long-run
+correlations of error terms driving the variables. This may lead to
+inconclusive results, as one test may reject the null hypothesis, while
+others accept. The detection of cointegration relationships among time
+series variables is therefore complicated. Furthermore, the decision for
+an applicable test poses a challenge for the practitioner.
+
+An approach for resolving this issue might be a combination of the
+different tests. Bayer and Hanck suggest a method for providing meta
+tests, with high power for all forms of the nuisance parameter
+\autocite{Bayerhanck2009}. Their approach is based on Fisher's
+Chi-squared test \autocite{Fisher1925}. It can be shown, that this
+provides an unambiguous test decision.
+
+So far, there exists a Stata module for computing the above-mentioned
+non-cointegration test. However, there is no implementation in R yet.
+Therefore, the objective of this work was the development of the R
+package \textbf{bayerhanck}, to implement the eponymous test. In section
+2, the theoretical background of the combined non-cointegration test
+will be explained further. Next, the structure of the associated R
+package and its functions will be illustrated. Finally, the performance
+of this approach will be evaluated.
+
+\hypertarget{theory-of-non-cointegration-tests}{%
+\section{Theory of Non-Cointegration
+Tests}\label{theory-of-non-cointegration-tests}}
+
+\hypertarget{implementation-of-bayerhanck-in-r}{%
+\section{\texorpdfstring{Implementation of \textbf{bayerhanck} in
+R}{Implementation of bayerhanck in R}}\label{implementation-of-bayerhanck-in-r}}
+
+The package consists of four functions for the underlying tests, as well
+as the function for the combined test. Furthermore, the cumulative
+distribution function of the null hypothesis can be plotted. The package
+features will be illustrated by using real data from the lutkepohl
+dataset.
+
+The underlying tests can be carried out by their eponymous commands,
+namely \texttt{englegranger()}, \texttt{johansen()}, \texttt{banerjee()}
+and \texttt{boswijk()}. The former two partly rely on already
+implemented functions from the package \textbf{urca}. Due to the absence
+of associated functions for the latter two, those had to be programmed
+manually. All functions take several arguments, from which only
+\texttt{formula} and \texttt{data} need to be filled out by the
+practitioner. Further arguments orientate themselves on the default
+values defined in the Stata implementation. For the argument
+\texttt{lags}, which determines the number of lags to be included in the
+model, the default value is therefore set to 1. The argument
+\texttt{trend} describes the deterministic components of the model. The
+practitioner may choose from \texttt{none}, for no deterministics,
+\texttt{const}, for a constant and \texttt{trend}, for a constant plus
+trend. The default value is set to \texttt{const}.
+
+In accordance with the previously explained structure, the function
+\texttt{englegranger()} takes the form
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{englegranger}\NormalTok{(formula, data, }\DataTypeTok{lags =} \DecValTok{1}\NormalTok{, }\DataTypeTok{trend =} \StringTok{"const"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+and returns an object of class \texttt{co.test}. The console also
+returns the value of the test statistic, as well as the name of the test
+executed.
+
+The structure of this function is orientated towards the implementation
+of the Engle-Granger test in the aforesaid Stata module. Therefore, none
+of the various existing functions in R is used. Firstly, a linear
+regression is performed, according to the formula entered in
+\texttt{englegranger()}. Next, an augmented Dickey-Fuller test is
+applied to the residuals from this regression.
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+\newpage
+\renewcommand*{\mkbibnamefamily}[1]{\textbf{#1}}
+\renewcommand*{\mkbibnamegiven}[1]{\textbf{#1}}
+\renewcommand*{\mkbibnameprefix}[1]{\textbf{#1}}
+\renewcommand*{\mkbibnamesuffix}[1]{\textbf{#1}}
+\printbibliography[title=References]
+
+\newpage
+\textbf{Eidesstattliche Versicherung}
+
+\bigskip
+
+Ich versichere an Eides statt durch meine Unterschrift, dass ich die vorstehende Arbeit selbständig und ohne fremde Hilfe angefertigt und alle Stellen, die ich wörtlich oder annähernd wörtlich aus Veröffentlichungen entnommen habe, als solche kenntlich gemacht habe, mich auch keiner anderen als der angegebenen Literatur oder sonstiger Hilfsmittel bedient habe. Die Arbeit hat in dieser oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen.
+
+\vspace{1cm}
+\rule{0pt}{2\baselineskip} %
+\par\noindent\makebox[2.25in]{\indent Essen, den \hrulefill} \hfill\makebox[2.25in]{\hrulefill}%
+\par\noindent\makebox[2.25in][l]{} \hfill\makebox[2.25in][c]{Name}%
+
+
+\end{document}
