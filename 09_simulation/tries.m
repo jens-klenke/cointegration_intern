@@ -1,5 +1,5 @@
 T = 10;
-k = 1;
+k = 3;
 lambda=(1/T:1/T:1)
 
 u=randn(T,k+1); % Draw random Shocks
@@ -25,8 +25,19 @@ W1dJ12dc=mean(W1d(1:T-1,:).*repmat(J12dc(1:T-1,:),1,k));
 J12dc_sq=mean(J12dc(1:T-1).^2);
 J12DW2=mean(J12dc(1:T-1).*u(2:T,k+1));
 
+%Boswijk
+BoswijkStat(j)=c_run.^2 .*J12dc_sq + 2*c_run.*sqrt(T)*J12DW2 + WdcDW2*WdcWdci*WdcDW2'
 
+%Johansen
+Gc=mean(Wdc.*repmat(J12dc,1,size(Wdc,2)))'*([zeros(1,k) c_run])/sqrt(T); % the square root is to make it fit with other extra power, see notes */
+JohansenStat(j)=max(eig(Wdc_dW_pr*WdcWdci*dW_Wdc_pr+Gc'*WdcWdci*dW_Wdc_pr+dW_Wdc_pr'*WdcWdci*Gc+Gc'*WdcWdci*Gc));
 
+%Engel
+
+ EngleGrangerStat(j) = c_run.*sqrt(etadc'*Adc*etadc)./sqrt(etadc'*Dmat*etadc) +...
+                        (etadc'*Wdc_dWtilde*etadc)/(sqrt(etadc'*Dmat*etadc)*sqrt(etadc'*Adc*etadc))
+                   
+                   
 
 
 

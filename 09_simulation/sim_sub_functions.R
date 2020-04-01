@@ -12,7 +12,7 @@ B <- v/sqrt(tt)
 
 ###rankindx
 rankindx <- function(a,b){
-A <- dim(a)
+A <- dim(matrix(a))
 aux <-cbind(a, 1:A[1])
 aux <- aux[order(aux[,b]),]
 aux <- cbind(aux, 1:A[1])
