@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.27)  1 APR 2020 13:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.27)  1 APR 2020 14:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1110,22 +1110,22 @@ File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.323 
+l.327 
        [1]
-Underfull \hbox (badness 4940) in paragraph at lines 324--326
+Underfull \hbox (badness 4940) in paragraph at lines 328--330
 []\T1/lmr/m/n/10.95 (+20) In ac-cor-dance with the pre-vi-ously ex-plained stru
 c-ture, the func-tion
  []
 
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 329.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 333.
 [2] [3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 367.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 391.
 [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 367.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 391.
 (./Abschlussarbeit-Kopie.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 367.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 367.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 391.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 391.
 Package rerunfilecheck Info: File `Abschlussarbeit-Kopie.out' has not changed.
 (rerunfilecheck)             Checksum: E7494E25792B4FF48CF02706F0701880;633.
 
@@ -1140,11 +1140,11 @@ Package logreq Info: Writing requests to 'Abschlussarbeit-Kopie.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 20639 strings out of 492616
- 335331 string characters out of 6129481
- 889269 words of memory out of 5000000
+ 20645 strings out of 492616
+ 335391 string characters out of 6129481
+ 890269 words of memory out of 5000000
  24169 multiletter control sequences out of 15000+600000
- 45251 words of font info for 69 fonts, out of 8000000 for 9000
+ 45500 words of font info for 72 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  58i,6n,65p,810b,5337s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/
@@ -1156,7 +1156,7 @@ ype1/public/lm/lmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public
 b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/lo
 cal/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></usr/local/texliv
 e/2019/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Abschlussarbeit-Kopie.pdf (8 pages, 227066 bytes).
+Output written on Abschlussarbeit-Kopie.pdf (8 pages, 230291 bytes).
 PDF statistics:
  121 PDF objects out of 1000 (max. 8388607)
  98 compressed objects within 1 object stream

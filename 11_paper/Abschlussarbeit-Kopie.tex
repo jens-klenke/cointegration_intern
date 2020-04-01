@@ -308,21 +308,25 @@ dataset.
 The underlying tests can be carried out by their eponymous commands,
 namely \texttt{englegranger()}, \texttt{johansen()}, \texttt{banerjee()}
 and \texttt{boswijk()}. The former two partly rely on already
-implemented functions from the package \textbf{urca}. Due to the absence
-of associated functions for the latter two, those had to be programmed
-manually. All functions take several arguments, from which only
-\texttt{formula} and \texttt{data} need to be filled out by the
-practitioner. Further arguments orientate themselves on the default
-values defined in the Stata implementation. For the argument
-\texttt{lags}, which determines the number of lags to be included in the
-model, the default value is therefore set to 1. The argument
-\texttt{trend} describes the deterministic components of the model. The
-practitioner may choose from \texttt{none}, for no deterministics,
-\texttt{const}, for a constant and \texttt{trend}, for a constant plus
-trend. The default value is set to \texttt{const}.
+implemented functions from the packages \textbf{urca} and
+\textbf{tsDyn}. Due to the absence of associated functions for the
+latter two, those had to be programmed manually. All functions take
+several arguments, from which only \texttt{formula} and \texttt{data}
+need to be filled out by the practitioner. Further arguments orientate
+themselves on the default values defined in the Stata implementation.
+For the argument \texttt{lags}, which determines the number of lags to
+be included in the model, the default value is therefore set to 1. The
+argument \texttt{trend} describes the deterministic components of the
+model. The practitioner may choose from \texttt{none}, for no
+deterministics, \texttt{const}, for a (unrestricted) constant and
+\texttt{trend}, for a (unrestricted) constant plus (unrestricted) trend.
+The default value is set to \texttt{const}. The functions of the
+underlying tests all return an object of classes \texttt{co.test} and
+\texttt{list}. The console also returns the value of the test statistic,
+as well as the name of the test executed.
 
 In accordance with the previously explained structure, the function
-\texttt{englegranger()} takes the form
+\texttt{englegranger()} takes the form:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -330,16 +334,36 @@ In accordance with the previously explained structure, the function
 \end{Highlighting}
 \end{Shaded}
 
-and returns an object of class \texttt{co.test}. The console also
-returns the value of the test statistic, as well as the name of the test
-executed.
-
 The structure of this function is orientated towards the implementation
 of the Engle-Granger test in the aforesaid Stata module. Therefore, none
 of the various existing functions in R is used. Firstly, a linear
 regression is performed, according to the formula entered in
 \texttt{englegranger()}. Next, an augmented Dickey-Fuller test is
-applied to the residuals from this regression.
+applied to the residuals from this regression. For this, the function
+\texttt{ur.df()} from the \textbf{urca} package is used. The output
+value of the test statistic is then used as the test statistic of the
+Engle-Granger test.
+
+The function for the Johansen test contains the additional argument
+\texttt{type}, which specifies if an maximum eigenvalue or a trace test
+should be conducted. Therefore, the options are either \texttt{trace} or
+\texttt{eigen}, with \texttt{eigen} being the default choice. The
+structure of the function takes the form:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{johansen}\NormalTok{(formula, data, }\DataTypeTok{type =} \StringTok{"eigen"}\NormalTok{, }\DataTypeTok{lags =} \DecValTok{1}\NormalTok{, }\DataTypeTok{trend =} \StringTok{"const"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Firstly, the function estimates a VECM by Johansen (MLE) method with
+\texttt{VECM} from the package \textbf{tsDyn}. Then, a test of the
+cointegrating rank is conducted. For this, the function
+\texttt{rank.test()} from the same package is used. In comparison with
+similar functions \texttt{rank.test()} possesses the advantage of the
+possibility to select the unrestricted constant or trend. Here, the
+maximum eigenvalue is used as the output test statistic of
+\texttt{johansen()}.
 
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
