@@ -327,16 +327,23 @@ for (k in 1:kmax){# Number of Regressor Loop"
 
 ## -------------------------------- Fisher Type Tests --------------------------------"
                 # Define Statistics" # ErrCorrPValue
+                # 2 tests
                 FisherStatEJ <- -2*(log(EngleGrangerPValue)+log(JohansenPValue))
                 FisherStatBJ <- -2*(log(BoswijkPValue)+log(JohansenPValue))
                 FisherStatBE <- -2*(log(BoswijkPValue)+log(EngleGrangerPValue))
-                FisherStatBJE <- -2*(log(EngleGrangerPValue)+log(JohansenPValue)+log(BoswijkPValue))
                 FisherStatBECR <- -2*(log(ErrCorrPValue)+log(BoswijkPValue))
+                
+                # 3 tests
+                FisherStatBJE <- -2*(log(EngleGrangerPValue)+log(JohansenPValue)+log(BoswijkPValue))
                 FisherStatBECRJ <- -2*(log(ErrCorrPValue)+log(BoswijkPValue)+log(JohansenPValue))
+                FisherStatBECRE <- -2*(log(ErrCorrPValue)+log(BoswijkPValue)+log(EngleGrangerPValue)) # new JENS
+                
+                #4 tests
                 FisherStatBECRJE <- -2*(log(ErrCorrPValue)+log(BoswijkPValue)+log(EngleGrangerPValue)+log(JohansenPValue))
                 FisherStatEJw=-4*((1/(1+exp(5*(R2run-.25))))*log(EngleGrangerPValue)+(1-1/(1+exp(5*(R2run-.25))))*log(JohansenPValue))
                 
                 if (cc == 1 && rr == 1){# Write Critical Values"
+                    # 2 tests 
                     NullDistrFisherEJ <- sort(FisherStatEJ)
                     CritvalFisherEJ <- NullDistrFisherEJ[rep*.95]
                     CritvalFisherEJ1 <- NullDistrFisherEJ[rep*.99]
@@ -354,7 +361,8 @@ for (k in 1:kmax){# Number of Regressor Loop"
                     CritvalFisherBE1 <- NullDistrFisherBE[rep*.99]
                     CritvalFisherBE2 <- NullDistrFisherBE[rep*.95]
                     CritvalFisherBE3 <- NullDistrFisherBE[rep*.90]
-
+                    
+                    #3 Tests
                     NullDistrFisherBJE <- sort(FisherStatBJE)
                     CritvalFisherBJE <- NullDistrFisherBJE[rep*.95]
                     CritvalFisherBJE1 <- NullDistrFisherBJE[rep*.99]
@@ -381,6 +389,16 @@ for (k in 1:kmax){# Number of Regressor Loop"
 
                     NullDistrFisherEJw <- sort(FisherStatEJw)
                     CritvalFisherEJw <- NullDistrFisherEJw[rep*.95]
+                    
+                    ### Jens changes 
+                    
+                    #3 Tests
+                    NullDistrFisherBECRE <- sort(FisherStatBECRE)
+                    CritvalFisherBECRE  <- NullDistrFisherBECRE[rep*.95]
+                    CritvalFisherBECRE1 <- NullDistrFisherBECRE[rep*.99]
+                    CritvalFisherBECRE2 <- NullDistrFisherBECRE[rep*.95]
+                    CritvalFisherBECRE3 <- NullDistrFisherBECRE[rep*.90]
+                    
                }
 
                 # Evaluate Local Power"
