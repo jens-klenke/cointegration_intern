@@ -336,10 +336,12 @@ for (k in 1:kmax){# Number of Regressor Loop"
                 # 3 tests
                 FisherStatBJE <- -2*(log(EngleGrangerPValue)+log(JohansenPValue)+log(BoswijkPValue))
                 FisherStatBECRJ <- -2*(log(ErrCorrPValue)+log(BoswijkPValue)+log(JohansenPValue))
-                FisherStatBECRE <- -2*(log(ErrCorrPValue)+log(BoswijkPValue)+log(EngleGrangerPValue)) # new JENS
-                
+                FisherStatBECRE <- -2*(log(ErrCorrPValue)+log(BoswijkPValue)+log(EngleGrangerPValue)) # new Jens
+                FisherStatECREJ <- -2*(log(ErrCorrPValue)+log(JohansenPValue)+log(EngleGrangerPValue)) # new Jens
                 #4 tests
                 FisherStatBECRJE <- -2*(log(ErrCorrPValue)+log(BoswijkPValue)+log(EngleGrangerPValue)+log(JohansenPValue))
+                
+                
                 FisherStatEJw=-4*((1/(1+exp(5*(R2run-.25))))*log(EngleGrangerPValue)+(1-1/(1+exp(5*(R2run-.25))))*log(JohansenPValue))
                 
                 if (cc == 1 && rr == 1){# Write Critical Values"
@@ -398,6 +400,13 @@ for (k in 1:kmax){# Number of Regressor Loop"
                     CritvalFisherBECRE1 <- NullDistrFisherBECRE[rep*.99]
                     CritvalFisherBECRE2 <- NullDistrFisherBECRE[rep*.95]
                     CritvalFisherBECRE3 <- NullDistrFisherBECRE[rep*.90]
+                    
+                    NullDistrFisherECREJ <- sort(FisherStatECREJ) 
+                    CritvalFisherECREJ  <- NullDistrFisherECREJ[rep*.95]
+                    CritvalFisherECREJ1 <- NullDistrFisherECREJ[rep*.99]
+                    CritvalFisherECREJ2 <- NullDistrFisherECREJ[rep*.95]
+                    CritvalFisherECREJ3 <- NullDistrFisherECREJ[rep*.90]
+                    
                     
                }
 
@@ -482,6 +491,6 @@ for (k in 1:kmax){# Number of Regressor Loop"
 #}
 
 
-
+##### Am Ende muss du alles in einer RDATA datei laden 
 
 
