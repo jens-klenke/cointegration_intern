@@ -295,15 +295,22 @@ of this approach will be evaluated.
 \section{Theory of Non-Cointegration
 Tests}\label{theory-of-non-cointegration-tests}}
 
-\hypertarget{implementation-of-bayerhanck-in-r}{%
-\section{\texorpdfstring{Implementation of \textbf{bayerhanck} in
-R}{Implementation of bayerhanck in R}}\label{implementation-of-bayerhanck-in-r}}
+\textcolor{red}{Jens}
+
+\hypertarget{implementation-of-the-package-bayerhanck-in-r}{%
+\section{\texorpdfstring{Implementation of the Package
+\textbf{bayerhanck} in
+R}{Implementation of the Package bayerhanck in R}}\label{implementation-of-the-package-bayerhanck-in-r}}
 
 The package consists of four functions for the underlying tests, as well
 as the function for the combined test. Furthermore, the cumulative
 distribution function of the null hypothesis can be plotted. The package
 features will be illustrated by using real data from the lutkepohl
 dataset.
+
+\hypertarget{implementation-of-the-underlying-tests}{%
+\subsection{Implementation of the underlying
+Tests}\label{implementation-of-the-underlying-tests}}
 
 The underlying tests can be carried out by their eponymous commands,
 namely \texttt{englegranger()}, \texttt{johansen()}, \texttt{banerjee()}
@@ -364,6 +371,38 @@ similar functions \texttt{rank.test()} possesses the advantage of the
 possibility to select the unrestricted constant or trend. Here, the
 maximum eigenvalue is used as the output test statistic of
 \texttt{johansen()}.
+
+The construction of the functions for the Banerjee and Boswijk test was
+almost identical. Therefore, both functions will be illustrated in a
+single step. The arguments of both functions are identical to those from
+\texttt{englegranger()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{banerjee}\NormalTok{(formula, data, }\DataTypeTok{lags =} \DecValTok{1}\NormalTok{, }\DataTypeTok{trend =} \StringTok{"const"}\NormalTok{)}
+\KeywordTok{boswijk}\NormalTok{(formula, data, }\DataTypeTok{lags =} \DecValTok{1}\NormalTok{, }\DataTypeTok{trend =} \StringTok{"const"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+For the construction of those functions, first differences had to be
+taken of the dependent, as well as the independent variables.
+Furthermore, a matrix of the lagged values of all variables in first
+differences was constructed.
+
+\textcolor{red}{Weitere Beschreibung Banerjee/Boswijk (Jens)}
+
+From this linear Regression the coefficients, as well as the
+covariance-matrix is extracted. Now, the test statistic of both tests
+can be calculated. For the test statistic of the Banerjee test, the
+coefficient of \textcolor{red}{Position} has to be divided by the
+associated entry in the covariance-matrix. For the test statistic of the
+Boswijk test, all coefficients will firstly be matrix multiplied with
+the inverse covariance-matrix. Next, this product will then again be
+matrix multiplied with the coefficients.
+
+\hypertarget{implementation-of-the-function-bayerhanck}{%
+\subsection{\texorpdfstring{Implementation of the function
+\texttt{bayerhanck()}}{Implementation of the function bayerhanck()}}\label{implementation-of-the-function-bayerhanck}}
 
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
