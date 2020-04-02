@@ -67,20 +67,21 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   names(test.stat) <- c("englegranger", "johansen", "banerjee", "boswijk")
 
   if ("englegranger" %in% test)
-    test.stat[1] <- englegranger(formula = formula, data = data, lags = lags, trend = trend)[[1]]
+    test.stat[1] <- englegranger(formula = formula, data = data, lags = lags, trend = trend[[1]])
   if ("johansen" %in% test)
-    test.stat[2] <- johansen(formula = formula, data = data, lags = lags, trend = trend)[[1]]
+    test.stat[2] <- johansen(formula = formula, data = data, lags = lags, trend = trend[[1]])
   if ("banerjee" %in% test)
-    test.stat[3] <- banerjee(formula = formula, data = data, lags = lags, trend = trend)[[1]]
+    test.stat[3] <- banerjee(formula = formula, data = data, lags = lags, trend = trend[[1]])
   if ("boswijk" %in% test)
-    test.stat[4] <- boswijk(formula = formula, data = data, lags = lags, trend = trend)[[1]]
+    test.stat[4] <- boswijk(formula = formula, data = data, lags = lags, trend = trend[[1]])
   if (identical(test, "all"))
     test.stat[1:4] <- c(englegranger(formula = formula, data = data, lags = lags, trend = trend)[[1]],
                         johansen(formula = formula, data = data, lags = lags, trend = trend)[[1]],
                         banerjee(formula = formula, data = data, lags = lags, trend = trend)[[1]],
-                        boswijk(formula = formula, data = data, lags = lags, trend = trend))[[1]]
+                        boswijk(formula = formula, data = data, lags = lags, trend = trend)[[1]])
   pval.stat <- test.stat[complete.cases(test.stat)]
   test.stat <- test.stat[complete.cases(test.stat)]
+  print(test.stat)
 
   #-----------------------------------------------------------------------------------------
   # Obtain P-Values
@@ -129,7 +130,6 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   }
 
 
-
   #### compute statistics ####
   if (identical(test, "all"))
   b_h_stat_1 <- -2*sum(log(pval.stat[1:2]))
@@ -142,10 +142,6 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   cv_1 <- crit_val_1[nvar, trendtype]
   cv_2 <- crit_val_2[nvar, trendtype]
 
-
-
-
-
   #-----------------------------------------------------------------------------------------
   # Display Results
   #-----------------------------------------------------------------------------------------
@@ -153,7 +149,6 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
        pval.stat = pval.stat)
   print(pval.stat)
 }
-
 
 
 
