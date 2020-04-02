@@ -35,3 +35,12 @@ df_2 <- data.frame(p,q,r)
 
 
 write.csv(df, file = '00_data/simulation_2.csv')
+
+
+
+
+Lutkephol <- read_csv(here::here('00_data/lutkepohl.csv'))
+
+save(Lutkephol, file = '00_data/lutkepohl.rda')
+
+    
