@@ -66,21 +66,29 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   test.stat <- rep(NA, 4)
   names(test.stat) <- c("englegranger", "johansen", "banerjee", "boswijk")
 
-  sink("file")
+  invisible(capture.output(
   if ("englegranger" %in% test)
     test.stat[1] <- englegranger(formula = formula, data = data, lags = lags, trend = trend)$test.stat
+  ))
+  invisible(capture.output(
   if ("johansen" %in% test)
     test.stat[2] <- johansen(formula = formula, data = data, lags = lags, trend = trend)$test.stat
+  ))
+  invisible(capture.output(
   if ("banerjee" %in% test)
     test.stat[3] <- banerjee(formula = formula, data = data, lags = lags, trend = trend)$test.stat
+  ))
+  invisible(capture.output(
   if ("boswijk" %in% test)
     test.stat[4] <- boswijk(formula = formula, data = data, lags = lags, trend = trend)$test.stat
+  ))
+  invisible(capture.output(
   if (identical(test, "all"))
     test.stat[1:4] <- c(englegranger(formula = formula, data = data, lags = lags, trend = trend)$test.stat,
                         johansen(formula = formula, data = data, lags = lags, trend = trend)$test.stat,
                         banerjee(formula = formula, data = data, lags = lags, trend = trend)$test.stat,
                         boswijk(formula = formula, data = data, lags = lags, trend = trend)$test.stat)
-  sink()
+  ))
 
   test.stat <- test.stat
   pval.stat <- test.stat
