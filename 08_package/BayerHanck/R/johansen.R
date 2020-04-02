@@ -12,6 +12,8 @@
 #' @return \code{johansen} returns an object of class "co.test".
 #' @export
 #'
+#' @references Johansen, S. (1988), Statistical analysis of cointegration vectors, Journal of Economic Dynamics and Control 12(2-3), 231-254.
+#'
 #' @examples
 johansen <- function(formula, data, type = "eigen", lags = 1, trend = "const"){
 

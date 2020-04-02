@@ -11,6 +11,8 @@
 #' @return \code{englegranger} returns an object of class "co.test".
 #' @export
 #'
+#' @references Engle, R. and Granger, C. (1987), Co-integration and Error Correction: Representation, Estimation, and Testing, Econometrica 55(2), 251-76.
+#'
 #' @examples
 englegranger <- function(formula, data, lags = 1, trend = "const"){
 
