@@ -87,6 +87,8 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   #-----------------------------------------------------------------------------------------
   load(here::here("/null_dist.rda"))
 
+  N <- nrow(null_dist)
+
   basecase <- 44 * (trendtype - 1) + 4 * (nvar - 2)
 
   for (i in 1:4) {
@@ -151,4 +153,14 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
        p.val = pval)
   print(pval.stat)
 }
+
+# Beispiel
+library(devtools)
+load_all()
+lu <- read.csv("lutkepohl.csv")
+
+bayerhanck(data = lu, linvestment ~ lincome + lconsumption)
+
+
+
 
