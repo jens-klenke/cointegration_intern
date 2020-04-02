@@ -66,22 +66,24 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   test.stat <- rep(NA, 4)
   names(test.stat) <- c("englegranger", "johansen", "banerjee", "boswijk")
 
+  sink("file")
   if ("englegranger" %in% test)
-    test.stat[1] <- englegranger(formula = formula, data = data, lags = lags, trend = trend[[1]])
+    test.stat[1] <- englegranger(formula = formula, data = data, lags = lags, trend = trend)$test.stat
   if ("johansen" %in% test)
-    test.stat[2] <- johansen(formula = formula, data = data, lags = lags, trend = trend[[1]])
+    test.stat[2] <- johansen(formula = formula, data = data, lags = lags, trend = trend)$test.stat
   if ("banerjee" %in% test)
-    test.stat[3] <- banerjee(formula = formula, data = data, lags = lags, trend = trend[[1]])
+    test.stat[3] <- banerjee(formula = formula, data = data, lags = lags, trend = trend)$test.stat
   if ("boswijk" %in% test)
-    test.stat[4] <- boswijk(formula = formula, data = data, lags = lags, trend = trend[[1]])
+    test.stat[4] <- boswijk(formula = formula, data = data, lags = lags, trend = trend)$test.stat
   if (identical(test, "all"))
-    test.stat[1:4] <- c(englegranger(formula = formula, data = data, lags = lags, trend = trend)[[1]],
-                        johansen(formula = formula, data = data, lags = lags, trend = trend)[[1]],
-                        banerjee(formula = formula, data = data, lags = lags, trend = trend)[[1]],
-                        boswijk(formula = formula, data = data, lags = lags, trend = trend)[[1]])
-  pval.stat <- test.stat[complete.cases(test.stat)]
-  test.stat <- test.stat[complete.cases(test.stat)]
-  print(test.stat)
+    test.stat[1:4] <- c(englegranger(formula = formula, data = data, lags = lags, trend = trend)$test.stat,
+                        johansen(formula = formula, data = data, lags = lags, trend = trend)$test.stat,
+                        banerjee(formula = formula, data = data, lags = lags, trend = trend)$test.stat,
+                        boswijk(formula = formula, data = data, lags = lags, trend = trend)$test.stat)
+  sink()
+
+  test.stat <- test.stat
+  pval.stat <- test.stat
 
   #-----------------------------------------------------------------------------------------
   # Obtain P-Values
@@ -135,6 +137,21 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   b_h_stat_1 <- -2*sum(log(pval.stat[1:2]))
   b_h_stat_2 <- -2*sum(log(pval.stat[1:4]))
 
+  #if (identical(test, c("englegranger", "banerjee")) | identical(test, c("banerjee", "englegranger")))
+  #  bh.test <-
+  #if (identical(test, c("englegranger", "boswijk")) | identical(test, c("boswijk", "englegranger")))
+  #  bh.test <-
+  if (identical(test, c("johansen", "englegranger")) | identical(test, c("englegranger", "johansen")))
+    bh.test <- b_h_stat_1
+  #if (identical(test, c("johansen", "banerjee")) | identical(test, c("banerjee", "johansen")))
+  #  bh.test <-
+  #if (identical(test, c("johansen", "boswijk")) | identical(test, c("boswijk", "johansen")))
+  #  bh.test <-
+  #if (identical(test, c("boswijk", "banerjee")) | identical(test, c("banerjee", "boswijk")))
+  #  bh.test <-
+  if (identical(test, "all"))
+    bh.test <- b_h_stat_2
+
   # degrees of freedom
   nvar <- nvar - 1
 
@@ -145,10 +162,15 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   #-----------------------------------------------------------------------------------------
   # Display Results
   #-----------------------------------------------------------------------------------------
-  list(test.stat = test.stat,
-       pval.stat = pval.stat)
-  print(pval.stat)
+  out <- list(bh.test = bh.test,
+              test.stat = test.stat,
+              pval.stat = pval.stat)
+  class(out) <- c("bh.test", "list")
+  cat(c("----------------------------------------------------------",
+        "Bayer-Hanck Test for Non-Cointegration",
+        "----------------------------------------------------------",
+        paste(c("Value of the Fisher Type Test statistic:", round(bh.test, 4)), collapse = " ")),
+      sep = "\n")
+  invisible(out)
 }
-
-
 
