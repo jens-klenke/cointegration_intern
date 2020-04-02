@@ -33,6 +33,8 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   x <- model.matrix(mt, mf)[, -1]
   nvar <- ncol(cbind(y, x))
 
+  print(nvar)
+
   #if (nrow(x) == 0L)
   #  stop("0 (non-NA) cases")
   #if (NROW(y) != nrow(x))
@@ -81,6 +83,9 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
                         boswijk(formula = formula, data = data, lags = lags, trend = trend))[[1]]
   pval.stat <- test.stat[complete.cases(test.stat)]
   test.stat <- test.stat[complete.cases(test.stat)]
+  print('after underlyingtest \n ------------- \n')
+  print(pval.stat)
+  print(test.stat)
 
   #-----------------------------------------------------------------------------------------
   # Obtain P-Values
@@ -94,15 +99,19 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   for (i in 1:4) {
     case = basecase + i
     if (i %in% c(1, 3)) {
-      n <- sum(pval.stat[i] > null_dist[, case])
+      n <- sum(test.stat[i] > null_dist[, case])
       pval.stat[i] <-  (n/N) + .000000000001
     } else {
       if (i %in% c(2, 4)) {
-        n <- sum(pval.stat[i] < null_dist[, case])
+        n <- sum(test.stat[i] < null_dist[, case])
         pval.stat[i] <-  (n/N) + .000000000001
       }
     }
   }
+
+  print('after pvalue \n ------------- \n')
+  print(pval.stat)
+  print(nvar)
 
   #-----------------------------------------------------------------------------------------
   # Calculate Bayer-Hanck Fisher Statistics
@@ -135,12 +144,18 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   b_h_stat_1 <- -2*sum(log(pval.stat[1:2]))
   b_h_stat_2 <- -2*sum(log(pval.stat[1:4]))
 
+
   # degrees of freedom
   nvar <- nvar - 1
 
   ### obtain critical Value
   cv_1 <- crit_val_1[nvar, trendtype]
   cv_2 <- crit_val_2[nvar, trendtype]
+
+  print('after critical \n ------------- \n')
+  print(pval.stat)
+  print(nvar)
+
 
 
 
@@ -154,6 +169,6 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   print(pval.stat)
 }
 
-
+bayerhanck(linvestment ~ lincome + lconsumption, data = Lutkephol)
 
 
