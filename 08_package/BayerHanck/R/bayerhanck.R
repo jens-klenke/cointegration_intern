@@ -85,7 +85,7 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   #-----------------------------------------------------------------------------------------
   # Obtain P-Values
   #-----------------------------------------------------------------------------------------
-  load(here::here("/null_dist.rda"))
+  load('null_dist.rda')
 
   N <- nrow(null_dist)
 
@@ -109,7 +109,7 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   #-----------------------------------------------------------------------------------------
 
   #### Load critical values ####
-  load(here::here('/crit_values.rda'))
+  load('crit_values.rda')
 
   #### Select matrices of critical value ####
 
