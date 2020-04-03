@@ -13,7 +13,7 @@
 #'
 #' @references Engle, R. and Granger, C. (1987), Co-integration and Error Correction: Representation, Estimation, and Testing, Econometrica 55(2), 251-76.
 #'
-#' @examples
+#' @examples englegranger(linvestment ~ lincome + lconsumption, data = Lutkepohl)
 englegranger <- function(formula, data, lags = 1, trend = "const"){
 
   #-----------------------------------------------------------------------------------------

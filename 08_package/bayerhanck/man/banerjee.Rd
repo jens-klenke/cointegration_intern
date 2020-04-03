@@ -22,3 +22,9 @@ banerjee(formula, data, lags = 1, trend = "const")
 \description{
 Executes Banerjee Test.
 }
+\examples{
+banerjee(linvestment ~ lincome + lconsumption, data = Lutkepohl)
+}
+\references{
+Banerjee, A., Dolado, J. J. and Mestre, R. (1998), Error-correction Mechanism Tests for Cointegration in a Single-equation Framework, Journal of Times Series Analysis 19(3), 267-283.
+}

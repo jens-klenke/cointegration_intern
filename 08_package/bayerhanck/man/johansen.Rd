@@ -24,3 +24,9 @@ johansen(formula, data, type = "eigen", lags = 1, trend = "const")
 \description{
 Executes Johansen Test.
 }
+\examples{
+johansen(linvestment ~ lincome + lconsumption, data = Lutkepohl)
+}
+\references{
+Johansen, S. (1988), Statistical analysis of cointegration vectors, Journal of Economic Dynamics and Control 12(2-3), 231-254.
+}

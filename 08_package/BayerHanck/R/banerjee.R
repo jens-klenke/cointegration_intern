@@ -13,7 +13,7 @@
 #'
 #' @references Banerjee, A., Dolado, J. J. and Mestre, R. (1998), Error-correction Mechanism Tests for Cointegration in a Single-equation Framework, Journal of Times Series Analysis 19(3), 267-283.
 #'
-#' @examples
+#' @examples banerjee(linvestment ~ lincome + lconsumption, data = Lutkepohl)
 banerjee <- function(formula, data, lags = 1, trend = "const"){
 
   #-----------------------------------------------------------------------------------------

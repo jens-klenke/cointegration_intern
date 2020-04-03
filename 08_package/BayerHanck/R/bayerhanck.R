@@ -16,7 +16,7 @@
 #'
 #' @references Bayer, C. and Hanck, C. (2009), Combining Non-Cointegration tests, METEOR RM 09/012, University of Maastricht.
 #'
-#' @examples
+#' @examples bayerhanck(linvestment ~ lincome + lconsumption, data = Lutkepohl)
 bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", crit = 0.05) {
 
   #-----------------------------------------------------------------------------------------

@@ -13,7 +13,7 @@
 #'
 #' @references Boswijk, H. P. (1994), Testing for an unstable root in conditional and structural error correction models, Journal of Econometrics 63(1), 37-60.
 #'
-#' @examples
+#' @examples boswijk(linvestment ~ lincome + lconsumption, data = Lutkepohl)
 boswijk <- function(formula, data, lags = 1, trend = "const"){
 
   #-----------------------------------------------------------------------------------------

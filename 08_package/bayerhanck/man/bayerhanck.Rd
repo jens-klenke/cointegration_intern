@@ -4,7 +4,7 @@
 \alias{bayerhanck}
 \title{Joint Test-Statistic for the Null of Non-Cointegration}
 \usage{
-bayerhanck(formula, data, lags = 1, trend = "const", test = "all", crit)
+bayerhanck(formula, data, lags = 1, trend = "const", test = "all", crit = 0.05)
 }
 \arguments{
 \item{formula}{An object of class "formula" to describe the model.}
@@ -16,7 +16,7 @@ bayerhanck(formula, data, lags = 1, trend = "const", test = "all", crit)
 \item{trend}{Type of deterministic component to be inlcuded, "none" for no deterministics,
 "const" for a constant and "trend" for a constant plus trend.}
 
-\item{test}{Selection of tests to choose from.}
+\item{test}{Selection of tests to choose from. Choices are either "eg-j", for Engle-Granger and Johansen, or "all", for Engle-Granger, Johansen, Banerjee and Boswijk.}
 
 \item{crit}{Level for the critical value of the test to be reported.}
 }
@@ -26,6 +26,9 @@ bayerhanck(formula, data, lags = 1, trend = "const", test = "all", crit)
 \description{
 Produces a joint test-statistic for the null of non-cointegration, aggregating
 various cointegration tests.
+}
+\examples{
+bayerhanck(linvestment ~ lincome + lconsumption, data = Lutkepohl)
 }
 \references{
 Bayer, C. and Hanck, C. (2009), Combining Non-Cointegration tests, METEOR RM 09/012, University of Maastricht.
