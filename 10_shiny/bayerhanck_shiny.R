@@ -35,6 +35,8 @@ body <- dashboardBody(
     .box-title {color: #FFFFFF !important;
     }
     .control-label {color: #FFFFFF !important;
+    }
+    .shiny-table {color: #FFFFFF !important;
     }'                     
   ))),
   tabItems(
@@ -101,15 +103,16 @@ server <- function(input, output, session) {
       if (is.null(inFile))
           return(NULL)
       df <- readr::read_csv(inFile$datapath)
-      bh <- bayerhanck(formula = get(input$DepVar) ~ get(input$IndVar),
+      bh <- bayerhanck(get(input$DepVar) ~ get(input$IndVar),
                        data = df#, 
                        #lags = input$Lags,
                        #trend = input$Trend,
                        #test = input$Test
                        )
-      sum_bh <- summary.bh.test(bh)[1]
-      sum_bh <- tibble(sum_bh)
-      sum_bh
+      out <- rbind(bh$test.stat,
+                   bh$pval.stat)
+      rownames(out) <- c("Test Statistics", "p-Values")
+      out
   })
   observeEvent(input$csv_file, {
       inFile <- input$csv_file
