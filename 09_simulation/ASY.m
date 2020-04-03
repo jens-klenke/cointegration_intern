@@ -125,12 +125,12 @@ format short
 % savecv=0; % Save Critical values
 R2=(0:.05:.95)';
 %R2=0;
-T=1000;
+T=100;
 c=-(0:1:30)';
 %c=-[0, 1, 3, 5, (6:2:30)]';
 %c=0
-kmax=11; %Number of Variables
-rep=25000; %Number of Repetitions
+kmax=5; %Number of Variables
+rep=250; %Number of Repetitions
 cases=3; % Number of cases 1=(i): No Constant, No Trend, 2=(i)&(ii): also Constant, 3=(i)&(ii)&(iii): Also Trend 
 
 lambda=(1/T:1/T:1);

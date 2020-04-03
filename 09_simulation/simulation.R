@@ -1,5 +1,6 @@
 #### Parameters
-#load(here::here('09_simulation/functions.R'))
+
+#load(here::here('09_simulation/sim_sub_functions.R'))
 #asy <- function(savecv){
 # This function calculates/simulates the asymptotic distributions of the
 # various co-integration tests. It returns a
@@ -122,17 +123,134 @@ CritValCorrBoswijkMultBERC <- matrix( c( 1.077, 1.042, 1.032,
                                          1.047,	1.045, 1.041),
                                       ncol = 3, byrow = TRUE)
 
+
+# Initalisierung 
+# Engel
+Null_Distr_E_J <-  array(NA, dim = c(kmax, cases, rep) )
+cv_E_J <- matrix(NA, nrow = kmax, ncol = cases)
+cv_E_J_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_E_J_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_E_J_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+Null_Distr_E_B <-  array(NA, dim = c(kmax, cases, rep) )
+cv_E_B <- matrix(NA, nrow = kmax, ncol = cases)
+cv_E_B_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_E_B_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_E_B_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+Null_Distr_E_ECR <-  array(NA, dim = c(kmax, cases, rep) )
+cv_E_ECR <- matrix(NA, nrow = kmax, ncol = cases)
+cv_E_ECR_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_E_ECR_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_E_ECR_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+# Johansen
+Null_Distr_J_E  <-  array(NA, dim = c(kmax, cases, rep) )
+cv_J_E  <- matrix(NA, nrow = kmax, ncol = cases)
+cv_J_E_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_J_E_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_J_E_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+Null_Distr_J_B  <-  array(NA, dim = c(kmax, cases, rep) )
+cv_J_B  <- matrix(NA, nrow = kmax, ncol = cases)
+cv_J_B_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_J_B_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_J_B_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+Null_Distr_J_ECR  <-  array(NA, dim = c(kmax, cases, rep) )
+cv_J_ECR  <- matrix(NA, nrow = kmax, ncol = cases)
+cv_J_ECR_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_J_ECR_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_J_ECR_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+# Boswijk
+Null_Distr_B_E  <-  array(NA, dim = c(kmax, cases, rep) )
+cv_B_E  <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_E_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_E_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_E_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+Null_Distr_B_J <-  array(NA, dim = c(kmax, cases, rep) )
+cv_B_J  <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_J_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_J_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_J_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+
+Null_Distr_B_ECR <-  array(NA, dim = c(kmax, cases, rep) )
+cv_B_ECR  <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_ECR_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_ECR_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_ECR_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+# Banerjee
+Null_Distr_ECR_E <-  array(NA, dim = c(kmax, cases, rep) )
+cv_ECR_E  <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_E_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_E_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_E_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+Null_Distr_ECR_J <-  array(NA, dim = c(kmax, cases, rep) )
+cv_ECR_J  <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_J_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_J_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_J_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+Null_Distr_ECR_B <-  array(NA, dim = c(kmax, cases, rep) )
+cv_ECR_B  <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_B_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_B_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_B_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+# 3 Tests
+Null_Distr_B_J_E <-  array(NA, dim = c(kmax, cases, rep) )
+cv_ECR_B_J_E  <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_B_J_E_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_B_J_E_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_B_J_E_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+Null_Distr_B_ECR_J <-  array(NA, dim = c(kmax, cases, rep) )
+cv_B_ECR_J  <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_ECR_J_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_ECR_J_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_ECR_J_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+Null_Distr_B_ECR_E <-  array(NA, dim = c(kmax, cases, rep) )
+cv_B_ECR_E  <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_ECR_E_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_ECR_E_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_ECR_E_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+Null_Distr_ECR_E_J <-  array(NA, dim = c(kmax, cases, rep) )
+cv_ECR_E_J  <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_E_J_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_E_J_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_ECR_E_J_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+#4 Test
+
+Null_Distr_B_ECR_J_E <-  array(NA, dim = c(kmax, cases, rep) )
+cv_B_ECR_J_E  <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_ECR_J_E_1 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_ECR_J_E_2 <- matrix(NA, nrow = kmax, ncol = cases)
+cv_B_ECR_J_E_3 <- matrix(NA, nrow = kmax, ncol = cases)
+
+
+
+
+
+
 #### Main part ####
 #load sim_sub_function by hand!!
  
 # savecv=0; # Save Critical values"
 R2 <- seq(0, 0.95, 0.05)
-# R2=0
-T <- 100
+
+T <- 1000
 #c <- c(-(seq(0,30,1)))
 c = 0
-kmax <- 3 #  max of Variables
-rep <- 25 # Number of Repetitions 25000
+kmax <- 11 #  max of Variables
+rep <- 25000 # Number of Repetitions 25000
 cases <- 3 # cases 
 lambda <- (seq(1:T)/T) # (1/T:1/T:1)
 
@@ -192,7 +310,7 @@ for (k in 1:kmax){# Number of Regressor Loop"
                 # Set R2 and c corresponding to loop"
                 R2run <- R2[rr]
                 c_run <- c[cc]
-
+                
                 # Loop over repetitions"
                 for (j in 1:rep){
                     u <- matrix( rnorm(T*(k+1)), nrow = T, ncol = k+1) # Draw random Shocks"
@@ -315,7 +433,7 @@ for (k in 1:kmax){# Number of Regressor Loop"
                         CritValErrCorr3 <- NullDistrErrCorr[rep*0.10]
                     }
                 }
-                ErrCorrLocalAsyPower[k,dets,cc,rr] = mean((Re(ErrCorrStat) <= Re(CritvalErrCorr)))
+             #   ErrCorrLocalAsyPower[k,dets,cc,rr] = mean((Re(ErrCorrStat) <= Re(CritvalErrCorr)))
 
                 # -------------------------------- Union of Rejections -------------------------------- */"
                 UnionRejectionStatEJAsymmMult <- (EngleGrangerStat*(EngleGrangerStat < CritvalEngleGranger*CritValCorrEngleGrangerMultEJ[k,dets]) < CritvalEngleGranger*CritValCorrEngleGrangerMultEJ[k,dets]) + (JohansenStat*(EngleGrangerStat > CritvalEngleGranger*CritValCorrEngleGrangerMultEJ[k,dets]) > CritvalJohansen*CritValCorrJohansenMultEJ[k,dets])
@@ -327,98 +445,167 @@ for (k in 1:kmax){# Number of Regressor Loop"
 
 ## -------------------------------- Fisher Type Tests --------------------------------"
                 # Define Statistics" # ErrCorrPValue
-                # 2 tests
-                FisherStatEJ <- -2*(log(EngleGrangerPValue)+log(JohansenPValue))
-                FisherStatBJ <- -2*(log(BoswijkPValue)+log(JohansenPValue))
-                FisherStatBE <- -2*(log(BoswijkPValue)+log(EngleGrangerPValue))
-                FisherStatBECR <- -2*(log(ErrCorrPValue)+log(BoswijkPValue))
+                # 2 tests 
+                    # Engel
+                FisherStat_E_J <- -2*(log(EngleGrangerPValue) + log(JohansenPValue))
+                FisherStat_E_B <- -2*(log(EngleGrangerPValue) + log(BoswijkPValue))
+                FisherStat_E_ECR <- -2*(log(EngleGrangerPValue) + log(ErrCorrPValue))
+                    # JOhansen
+                FisherStat_J_E <- -2*(log(JohansenPValue) + log(EngleGrangerPValue))
+                FisherStat_J_B <- -2*(log(JohansenPValue) + log(BoswijkPValue))
+                FisherStat_J_ECR <- -2*(log(JohansenPValue) + log(ErrCorrPValue))
+                    # Boswijk
+                FisherStat_B_E <- -2*(log(BoswijkPValue) + log(EngleGrangerPValue))
+                FisherStat_B_J <- -2*(log(BoswijkPValue) + log(JohansenPValue))
+                FisherStat_B_ECR <- -2*(log(BoswijkPValue) + log(ErrCorrPValue))
+                    # Benerjee
+                FisherStat_ECR_E <- -2*(log(ErrCorrPValue) + log(EngleGrangerPValue))
+                FisherStat_ECR_J <- -2*(log(ErrCorrPValue) + log(JohansenPValue))
+                FisherStat_ECR_B <- -2*(log(ErrCorrPValue) +log(BoswijkPValue))
                 
                 # 3 tests
-                FisherStatBJE <- -2*(log(EngleGrangerPValue)+log(JohansenPValue)+log(BoswijkPValue))
-                FisherStatBECRJ <- -2*(log(ErrCorrPValue)+log(BoswijkPValue)+log(JohansenPValue))
-                FisherStatBECRE <- -2*(log(ErrCorrPValue)+log(BoswijkPValue)+log(EngleGrangerPValue)) # new Jens
-                FisherStatECREJ <- -2*(log(ErrCorrPValue)+log(JohansenPValue)+log(EngleGrangerPValue)) # new Jens
+                FisherStat_B_J_E <- -2*(log(EngleGrangerPValue)+log(JohansenPValue)+log(BoswijkPValue))
+                FisherStat_B_ECR_J <- -2*(log(ErrCorrPValue)+log(BoswijkPValue)+log(JohansenPValue))
+                FisherStat_B_ECR_E <- -2*(log(ErrCorrPValue)+log(BoswijkPValue)+log(EngleGrangerPValue)) # new Jens
+                FisherStat_ECR_E_J <- -2*(log(ErrCorrPValue)+log(JohansenPValue)+log(EngleGrangerPValue)) # new Jens
+                
                 #4 tests
-                FisherStatBECRJE <- -2*(log(ErrCorrPValue)+log(BoswijkPValue)+log(EngleGrangerPValue)+log(JohansenPValue))
+                FisherStat_B_ECR_J_E <- -2*(log(ErrCorrPValue)+log(BoswijkPValue)+log(EngleGrangerPValue)+log(JohansenPValue))
                 
                 
                 FisherStatEJw=-4*((1/(1+exp(5*(R2run-.25))))*log(EngleGrangerPValue)+(1-1/(1+exp(5*(R2run-.25))))*log(JohansenPValue))
                 
                 if (cc == 1 && rr == 1){# Write Critical Values"
                     # 2 tests 
-                    NullDistrFisherEJ <- sort(FisherStatEJ)
-                    CritvalFisherEJ <- NullDistrFisherEJ[rep*.95]
-                    CritvalFisherEJ1 <- NullDistrFisherEJ[rep*.99]
-                    CritvalFisherEJ2 <- NullDistrFisherEJ[rep*.95]
-                    CritvalFisherEJ3 <- NullDistrFisherEJ[rep*.90]
-
-                    NullDistrFisherBJ <- sort(FisherStatBJ)
-                    CritvalFisherBJ <- NullDistrFisherBJ[rep*.95]
-                    CritvalFisherBJ1 <- NullDistrFisherBJ[rep*.99]
-                    CritvalFisherBJ2 <- NullDistrFisherBJ[rep*.95]
-                    CritvalFisherBJ3 <- NullDistrFisherBJ[rep*.90]
-
-                    NullDistrFisherBE <- sort(FisherStatBE)
-                    CritvalFisherBE <- NullDistrFisherBE[rep*.95]
-                    CritvalFisherBE1 <- NullDistrFisherBE[rep*.99]
-                    CritvalFisherBE2 <- NullDistrFisherBE[rep*.95]
-                    CritvalFisherBE3 <- NullDistrFisherBE[rep*.90]
                     
-                    #3 Tests
-                    NullDistrFisherBJE <- sort(FisherStatBJE)
-                    CritvalFisherBJE <- NullDistrFisherBJE[rep*.95]
-                    CritvalFisherBJE1 <- NullDistrFisherBJE[rep*.99]
-                    CritvalFisherBJE2 <- NullDistrFisherBJE[rep*.95]
-                    CritvalFisherBJE3 <- NullDistrFisherBJE[rep*.90]
-
-                    NullDistrFisherBECR <- sort(FisherStatBECR)
-                    CritvalFisherBECR <- NullDistrFisherBECR[rep*.95]
-                    CritvalFisherBECR1 <- NullDistrFisherBECR[rep*.99]
-                    CritvalFisherBECR2 <- NullDistrFisherBECR[rep*.95]
-                    CritvalFisherBECR3 <- NullDistrFisherBECR[rep*.90]
-
-                    NullDistrFisherBECRJE <- sort(FisherStatBECRJE)
-                    CritvalFisherBECRJE <- NullDistrFisherBECRJE[rep*.95]
-                    CritvalFisherBECRJE1 <- NullDistrFisherBECRJE[rep*.99]
-                    CritvalFisherBECRJE2 <- NullDistrFisherBECRJE[rep*.95]
-                    CritvalFisherBECRJE3 <- NullDistrFisherBECRJE[rep*.90]
-
-                    NullDistrFisherBECRJ <- sort(FisherStatBECRJ)
-                    CritvalFisherBECRJ <- NullDistrFisherBECRJ[rep*.95]
-                    CritvalFisherBECRJ1 <- NullDistrFisherBECRJ[rep*.99]
-                    CritvalFisherBECRJ2 <- NullDistrFisherBECRJ[rep*.95]
-                    CritvalFisherBECRJ3 <- NullDistrFisherBECRJ[rep*.90]
-
-                    NullDistrFisherEJw <- sort(FisherStatEJw)
-                    CritvalFisherEJw <- NullDistrFisherEJw[rep*.95]
+                    # Engel 
+                    NullDistrFisher_E_J <- sort(FisherStat_E_J)
+                    CritvalFisher_E_J <- NullDistrFisher_E_J[rep*.95]
+                    CritvalFisher_E_J_1 <- NullDistrFisher_E_J[rep*.99]
+                    CritvalFisher_E_J_2 <- NullDistrFisher_E_J[rep*.95]
+                    CritvalFisher_E_J_3 <- NullDistrFisher_E_J[rep*.90]
                     
-                    ### Jens changes 
+                    NullDistrFisher_E_B <- sort(FisherStat_E_B)
+                    CritvalFisher_E_B <- NullDistrFisher_E_B[rep*.95]
+                    CritvalFisher_E_B_1 <- NullDistrFisher_E_B[rep*.99]
+                    CritvalFisher_E_B_2 <- NullDistrFisher_E_B[rep*.95]
+                    CritvalFisher_E_B_3 <- NullDistrFisher_E_B[rep*.90]
                     
-                    #3 Tests
-                    NullDistrFisherBECRE <- sort(FisherStatBECRE)
-                    CritvalFisherBECRE  <- NullDistrFisherBECRE[rep*.95]
-                    CritvalFisherBECRE1 <- NullDistrFisherBECRE[rep*.99]
-                    CritvalFisherBECRE2 <- NullDistrFisherBECRE[rep*.95]
-                    CritvalFisherBECRE3 <- NullDistrFisherBECRE[rep*.90]
+                     
+                    NullDistrFisher_E_ECR <- sort(FisherStat_E_ECR)
+                    CritvalFisher_E_ECR <- NullDistrFisher_E_ECR[rep*.95]
+                    CritvalFisher_E_ECR_1 <- NullDistrFisher_E_ECR[rep*.99]
+                    CritvalFisher_E_ECR_2 <- NullDistrFisher_E_ECR[rep*.95]
+                    CritvalFisher_E_ECR_3 <- NullDistrFisher_E_ECR[rep*.90]
                     
-                    NullDistrFisherECREJ <- sort(FisherStatECREJ) 
-                    CritvalFisherECREJ  <- NullDistrFisherECREJ[rep*.95]
-                    CritvalFisherECREJ1 <- NullDistrFisherECREJ[rep*.99]
-                    CritvalFisherECREJ2 <- NullDistrFisherECREJ[rep*.95]
-                    CritvalFisherECREJ3 <- NullDistrFisherECREJ[rep*.90]
+                    # Johansen
+                    
+                    NullDistrFisher_J_E <- sort(FisherStat_J_E)
+                    CritvalFisher_J_E <- NullDistrFisher_J_E[rep*.95]
+                    CritvalFisher_J_E_1 <- NullDistrFisher_J_E[rep*.99]
+                    CritvalFisher_J_E_2 <- NullDistrFisher_J_E[rep*.95]
+                    CritvalFisher_J_E_3 <- NullDistrFisher_J_E[rep*.90]
+                    
+                    NullDistrFisher_J_B <- sort(FisherStat_J_B)
+                    CritvalFisher_J_B <- NullDistrFisher_J_E[rep*.95]
+                    CritvalFisher_J_B_1 <- NullDistrFisher_J_B[rep*.99]
+                    CritvalFisher_J_B_2 <- NullDistrFisher_J_B[rep*.95]
+                    CritvalFisher_J_B_3 <- NullDistrFisher_J_B[rep*.90]
+                    
+                    NullDistrFisher_J_ECR <- sort(FisherStat_J_ECR) 
+                    CritvalFisher_J_ECR <- NullDistrFisher_J_ECR[rep*.95]
+                    CritvalFisher_J_ECR_1 <- NullDistrFisher_J_ECR[rep*.99]
+                    CritvalFisher_J_ECR_2 <- NullDistrFisher_J_ECR[rep*.95]
+                    CritvalFisher_J_ECR_3 <- NullDistrFisher_J_ECR[rep*.90]
+                    
+                    # Boswijk
+
+                    NullDistrFisher_B_E <- sort(FisherStat_B_E)
+                    CritvalFisher_B_E <- NullDistrFisher_B_E[rep*.95]
+                    CritvalFisher_B_E_1 <- NullDistrFisher_B_E[rep*.99]
+                    CritvalFisher_B_E_2 <- NullDistrFisher_B_E[rep*.95]
+                    CritvalFisher_B_E_3 <- NullDistrFisher_B_E[rep*.90]
+                    
+                    NullDistrFisher_B_J <- sort(FisherStat_B_J)
+                    CritvalFisher_B_J <- NullDistrFisher_B_J[rep*.95]
+                    CritvalFisher_B_J_1 <- NullDistrFisher_B_J[rep*.99]
+                    CritvalFisher_B_J_2 <- NullDistrFisher_B_J[rep*.95]
+                    CritvalFisher_B_J_3 <- NullDistrFisher_B_J[rep*.90]
+
+                    NullDistrFisher_B_ECR <- sort(FisherStat_B_ECR)
+                    CritvalFisher_B_ECR <- NullDistrFisher_B_J[rep*.95]
+                    CritvalFisher_B_ECR_1 <- NullDistrFisher_B_J[rep*.99]
+                    CritvalFisher_B_ECR_2 <- NullDistrFisher_B_J[rep*.95]
+                    CritvalFisher_B_ECR_3 <- NullDistrFisher_B_J[rep*.90]
+                    
+                    # Banerjee
+                    
+                    NullDistrFisher_ECR_E <- sort(FisherStat_ECR_E)
+                    CritvalFisher_ECR_E <- NullDistrFisher_ECR_E[rep*.95]
+                    CritvalFisher_ECR_E_1 <- NullDistrFisher_ECR_E[rep*.99]
+                    CritvalFisher_ECR_E_2 <- NullDistrFisher_ECR_E[rep*.95]
+                    CritvalFisher_ECR_E_3 <- NullDistrFisher_ECR_E[rep*.90]
+                    
+                    NullDistrFisher_ECR_J <- sort(FisherStat_ECR_J)
+                    CritvalFisher_ECR_J <- NullDistrFisher_ECR_J[rep*.95]
+                    CritvalFisher_ECR_J_1 <- NullDistrFisher_ECR_J[rep*.99]
+                    CritvalFisher_ECR_J_2 <- NullDistrFisher_ECR_J[rep*.95]
+                    CritvalFisher_ECR_J_3 <- NullDistrFisher_ECR_J[rep*.90]
+                    
+                    NullDistrFisher_ECR_B <- sort(FisherStat_ECR_B)
+                    CritvalFisher_ECR_B <- NullDistrFisher_ECR_B[rep*.95]
+                    CritvalFisher_ECR_B_1 <- NullDistrFisher_ECR_B[rep*.99]
+                    CritvalFisher_ECR_B_2 <- NullDistrFisher_ECR_B[rep*.95]
+                    CritvalFisher_ECR_B_3 <- NullDistrFisher_ECR_B[rep*.90]
+                    
+                    
+                    
+                    # 3 Tests
+                    NullDistrFisher_B_J_E <- sort(FisherStat_B_J_E)
+                    CritvalFisher_B_J_E <- NullDistrFisher_B_J_E[rep*.95]
+                    CritvalFisher_B_J_E_1 <- NullDistrFisher_B_J_E[rep*.99]
+                    CritvalFisher_B_J_E_2 <- NullDistrFisher_B_J_E[rep*.95]
+                    CritvalFisher_B_J_E_3 <- NullDistrFisher_B_J_E[rep*.90]
+
+                    NullDistrFisher_B_ECR_J <- sort(FisherStat_B_ECR_J)
+                    CritvalFisher_B_ECR_J <- NullDistrFisher_B_ECR_J[rep*.95]
+                    CritvalFisher_B_ECR_J_1 <- NullDistrFisher_B_ECR_J[rep*.99]
+                    CritvalFisher_B_ECR_J_2 <- NullDistrFisher_B_ECR_J[rep*.95]
+                    CritvalFisher_B_ECR_J_3 <- NullDistrFisher_B_ECR_J[rep*.90]
+                    
+                    NullDistrFisher_B_ECR_E <- sort(FisherStat_B_ECR_E)
+                    CritvalFisher_B_ECR_E <- NullDistrFisher_B_ECR_E[rep*.95]
+                    CritvalFisher_B_ECR_E_1 <- NullDistrFisher_B_ECR_E[rep*.99]
+                    CritvalFisher_B_ECR_E_2 <- NullDistrFisher_B_ECR_E[rep*.95]
+                    CritvalFisher_B_ECR_E_3 <- NullDistrFisher_B_ECR_E[rep*.90]
+                    
+                    NullDistrFisher_ECR_E_J <- sort(FisherStat_ECR_E_J)
+                    CritvalFisher_ECR_E_J <- NullDistrFisher_ECR_E_J[rep*.95]
+                    CritvalFisher_ECR_E_J_1 <- NullDistrFisher_ECR_E_J[rep*.99]
+                    CritvalFisher_ECR_E_J_2 <- NullDistrFisher_ECR_E_J[rep*.95]
+                    CritvalFisher_ECR_E_J_3 <- NullDistrFisher_ECR_E_J[rep*.90]
+                    
+
+                    #4 tests
+                    NullDistrFisher_B_ECR_J_E <- sort(FisherStat_B_ECR_J_E)
+                    CritvalFisher_B_ECR_J_E <- NullDistrFisher_B_ECR_J_E[rep*.95]
+                    CritvalFisher_B_ECR_J_E_1 <- NullDistrFisher_B_ECR_J_E[rep*.99]
+                    CritvalFisher_B_ECR_J_E_2 <- NullDistrFisher_B_ECR_J_E[rep*.95]
+                    CritvalFisher_B_ECR_J_E_3 <- NullDistrFisher_B_ECR_J_E[rep*.90]
+                    
                     
                     
                }
 
                 # Evaluate Local Power"
-                FisherLocalAsyPowerEJ[k,dets,cc,rr] <- mean((FisherStatEJ > CritvalFisherEJ))
-                FisherLocalAsyPowerBJ[k,dets,cc,rr] <- mean((FisherStatBJ > CritvalFisherBJ))
-                FisherLocalAsyPowerBE[k,dets,cc,rr] <- mean((FisherStatBE > CritvalFisherBE))
-                FisherLocalAsyPowerBJE[k,dets,cc,rr] <- mean((FisherStatBJE > CritvalFisherBJE))
-                FisherLocalAsyPowerBECR[k,dets,cc,rr] <- mean((FisherStatBECR > CritvalFisherBECR))
-                FisherLocalAsyPowerBECRJE[k,dets,cc,rr] <- mean((FisherStatBECRJE > CritvalFisherBECRJE))
-                FisherLocalAsyPowerBECRJ[k,dets,cc,rr] <- mean((FisherStatBECRJ > CritvalFisherBECRJ))
-                FisherLocalAsyPowerEJw[k,dets,cc,rr] <- mean((FisherStatEJw > CritvalFisherEJw))
+           #     FisherLocalAsyPowerEJ[k,dets,cc,rr] <- mean((FisherStatEJ > CritvalFisherEJ))
+            #    FisherLocalAsyPowerBJ[k,dets,cc,rr] <- mean((FisherStatBJ > CritvalFisherBJ))
+             #   FisherLocalAsyPowerBE[k,dets,cc,rr] <- mean((FisherStatBE > CritvalFisherBE))
+              #  FisherLocalAsyPowerBJE[k,dets,cc,rr] <- mean((FisherStatBJE > CritvalFisherBJE))
+               # FisherLocalAsyPowerBECR[k,dets,cc,rr] <- mean((FisherStatBECR > CritvalFisherBECR))
+                #FisherLocalAsyPowerBECRJE[k,dets,cc,rr] <- mean((FisherStatBECRJE > CritvalFisherBECRJE))
+        #        FisherLocalAsyPowerBECRJ[k,dets,cc,rr] <- mean((FisherStatBECRJ > CritvalFisherBECRJ))
+         #       FisherLocalAsyPowerEJw[k,dets,cc,rr] <- mean((FisherStatEJw > CritvalFisherEJw))
 
                 ## -------------------------------- Inverse Normal -------------------------------- */"
 #                InvNormStatBJE <- 1/sqrt(3)*(norminv(EngleGrangerPValue)+norminv(JohansenPValue)+norminv(BoswijkPValue))"
@@ -450,38 +637,136 @@ for (k in 1:kmax){# Number of Regressor Loop"
                 }
 
                 # Local Power"
-                MinLocalAsyPowerBERC[k,dets,cc,rr] <- mean((MinStatBECR < CritvalMinBECR))
-                MinLocalAsyPowerEJ[k,dets,cc,rr] <- mean((MinStatEJ < CritvalMinEJ))
+         #       MinLocalAsyPowerBERC[k,dets,cc,rr] <- mean((MinStatBECR < CritvalMinBECR))
+          #      MinLocalAsyPowerEJ[k,dets,cc,rr] <- mean((MinStatEJ < CritvalMinEJ))
 
             }# R2"
         }# c"
+        
+        print('------------------')
+        print(paste('Simultet: R2 = ', R2run, 'which is the', rr ,'of' , length(R2)))
+        print('------------------')
+        print('')
+        print(paste('Simultet: Case = ', dets, 'which is the', dets ,'of' , max(cases)))
+        print('')
+        print('------------------')
+        print('')
 
-        # -------------------------------- results -------------------------------- */"
-#        disp (['k && case ' num2str(k) num2str(dets)])
-#        disp (['c.v. Boswijk ' num2str(CritvalBoswijk)])
-#        disp (['c.v. Johansen ' num2str(CritvalJohansen)])
-#        disp (['c.v. EngleGranger ' num2str(CritvalEngleGranger)])
-#        disp (['c.v. ErrCorr ' num2str(CritValErrCorr1)])
-#        disp ' '"
-#        disp (['c.v. FisherEJ ' num2str(CritvalFisherEJ)])
-#        disp (['c.v. FisherBJ ' num2str(CritvalFisherBJ)])
-#        disp (['c.v. FisherBE ' num2str(CritvalFisherBE)])
-#        disp (['c.v. FisherBJE ' num2str(CritvalFisherBJE)])
-#        disp (['c.v. FisherBECR ' num2str(CritvalFisherBECR)])
-#        disp (['c.v. FisherEJ wght ' num2str(CritvalFisherEJw)])
-#        disp (['c.v. InvNormBJE ' num2str(CritvalInvNormBJE)])
-#        disp ' '
-#        disp (['the chi(2*2) 95% quantile is' num2str(chi2inv(.95,4))])
-#        disp (['the chi(2*3) 95% quantile is' num2str(chi2inv(.95,6))])
-#        disp ' '
-#        CV[,k,dets,1] <- CritvalBoswijk1; CritValErrCorr1; CritvalJohansen1; CritvalEngleGranger1; CritvalFisherBECR1
-#            CritvalFisherBJ1; CritvalFisherBE1; CritvalFisherEJ1; CritvalFisherBJE1; CritvalFisherBECRJ1; CritvalFisherBECRJE1; CritvalInvNormBJE1; CritvalMinBECR1; CritvalMinEJ1]
-#        CV(:,k,dets,2) <- [CritvalBoswijk2; CritValErrCorr2; CritvalJohansen2; CritvalEngleGranger2; CritvalFisherBECR2; ...
-#            CritvalFisherBJ2; CritvalFisherBE2; CritvalFisherEJ2; CritvalFisherBJE2; CritvalFisherBECRJ2; CritvalFisherBECRJE2; CritvalInvNormBJE2; CritvalMinBECR2; CritvalMinEJ2]
-#        CV(:,k,dets,3) <- [CritvalBoswijk3; CritValErrCorr3; CritvalJohansen3; CritvalEngleGranger3; CritvalFisherBECR3; ...
-#            CritvalFisherBJ3; CritvalFisherBE3; CritvalFisherEJ3; CritvalFisherBJE3; CritvalFisherBECRJ3; CritvalFisherBECRJE3; CritvalInvNormBJE3; CritvalMinBECR3; CritvalMinEJ3]
-#        NullDistr[ , ,k , dets] <- cbind(NullDistrEngleGranger, NullDistrJohansen, NullDistrErrCorr, NullDistrBoswijk)
+###### storing 
+        
+        #Füllen
+        # Engel
+        Null_Distr_E_J[k,dets, ] <- NullDistrFisher_E_J
+        cv_E_J[k,dets] <- CritvalFisher_E_J
+        cv_E_J_1[k,dets] <- CritvalFisher_E_J_1
+        cv_E_J_2[k,dets] <- CritvalFisher_E_J_2
+        cv_E_J_3[k,dets] <- CritvalFisher_E_J_3
+        
+        Null_Distr_E_B[k,dets,] <- NullDistrFisher_E_B
+        cv_E_B[k,dets] <- CritvalFisher_E_B
+        cv_E_B_1[k,dets] <- CritvalFisher_E_B_1
+        cv_E_B_2[k,dets] <- CritvalFisher_E_B_2
+        cv_E_B_3[k,dets] <- CritvalFisher_E_B_3
+        
+        Null_Distr_E_ECR[k,dets,] <- NullDistrFisher_E_ECR 
+        cv_E_ECR[k,dets] <- CritvalFisher_E_ECR
+        cv_E_ECR_1[k,dets] <- CritvalFisher_E_ECR_1
+        cv_E_ECR_2[k,dets] <- CritvalFisher_E_ECR_2 
+        cv_E_ECR_3[k,dets] <- CritvalFisher_E_ECR_3
+        
+        # Johansen
+        Null_Distr_J_E[k,dets,] <- NullDistrFisher_J_E
+        cv_J_E[k,dets]  <- CritvalFisher_J_E
+        cv_J_E_1[k,dets] <- CritvalFisher_J_E_1
+        cv_J_E_2[k,dets] <- CritvalFisher_J_E_2
+        cv_J_E_3[k,dets] <- CritvalFisher_J_E_3
+        
+        Null_Distr_J_B[k,dets,]  <- NullDistrFisher_J_B
+        cv_J_B[k,dets]  <- CritvalFisher_J_B
+        cv_J_B_1[k,dets] <- CritvalFisher_J_B_1
+        cv_J_B_2[k,dets] <- CritvalFisher_J_B_2
+        cv_J_B_3[k,dets] <- CritvalFisher_J_B_3
+        
+        Null_Distr_J_ECR[k,dets,]  <-  NullDistrFisher_J_ECR
+        cv_J_ECR[k,dets]  <- CritvalFisher_J_ECR
+        cv_J_ECR_1[k,dets] <- CritvalFisher_J_ECR_1
+        cv_J_ECR_2[k,dets] <- CritvalFisher_J_ECR_2
+        cv_J_ECR_3[k,dets] <- CritvalFisher_J_ECR_3
+        
+        # Boswijk
+        Null_Distr_B_E[k,dets,]  <- NullDistrFisher_B_E 
+        cv_B_E[k,dets]  <- CritvalFisher_B_E
+        cv_B_E_1[k,dets] <- CritvalFisher_B_E_1
+        cv_B_E_2[k,dets] <- CritvalFisher_B_E_2
+        cv_B_E_3[k,dets] <- CritvalFisher_B_E_3
+        
+        Null_Distr_B_J[k,dets,] <- NullDistrFisher_B_J
+        cv_B_J[k,dets]  <- CritvalFisher_B_J
+        cv_B_J_1[k,dets] <- CritvalFisher_B_J_1
+        cv_B_J_2[k,dets] <- CritvalFisher_B_J_2
+        cv_B_J_3[k,dets] <- CritvalFisher_B_J_3
+        
+        Null_Distr_B_ECR[k,dets,] <- NullDistrFisher_B_ECR
+        cv_B_ECR[k,dets]  <- CritvalFisher_B_ECR
+        cv_B_ECR_1[k,dets] <- CritvalFisher_B_ECR_1
+        cv_B_ECR_2[k,dets] <- CritvalFisher_B_ECR_2
+        cv_B_ECR_3[k,dets] <- CritvalFisher_B_ECR_3
+        
+        #Banerjee
+        Null_Distr_ECR_E[k,dets,] <- NullDistrFisher_ECR_E
+        cv_ECR_E[k,dets]  <- CritvalFisher_ECR_E
+        cv_ECR_E_1[k,dets] <- CritvalFisher_ECR_E_1
+        cv_ECR_E_2[k,dets] <- CritvalFisher_ECR_E_2
+        cv_ECR_E_3[k,dets] <- CritvalFisher_ECR_E_3
+        
+        Null_Distr_ECR_J[k,dets,] <- NullDistrFisher_ECR_J
+        cv_ECR_J[k,dets]  <- CritvalFisher_ECR_J
+        cv_ECR_J_1[k,dets] <- CritvalFisher_ECR_J_1
+        cv_ECR_J_2[k,dets] <- CritvalFisher_ECR_J_2
+        cv_ECR_J_3[k,dets] <- CritvalFisher_ECR_J_3
+        
+        Null_Distr_ECR_B[k,dets,] <- NullDistrFisher_ECR_B
+        cv_ECR_B[k,dets]  <- CritvalFisher_ECR_B
+        cv_ECR_B_1[k,dets] <- CritvalFisher_ECR_B_1
+        cv_ECR_B_2[k,dets] <- CritvalFisher_ECR_B_2
+        cv_ECR_B_3[k,dets] <- CritvalFisher_ECR_B_3
+        
+        ### 3. Tests 
+        
+        Null_Distr_B_J_E[k,dets,] <- NullDistrFisher_B_J_E
+        cv_ECR_B_J_E[k,dets]  <- CritvalFisher_B_J_E
+        cv_ECR_B_J_E_1[k,dets] <- CritvalFisher_B_J_E_1
+        cv_ECR_B_J_E_2[k,dets] <- CritvalFisher_B_J_E_2
+        cv_ECR_B_J_E_3[k,dets] <- CritvalFisher_B_J_E_3
+        
+        
+        Null_Distr_B_ECR_J[k,dets,] <- NullDistrFisher_B_ECR_J 
+        cv_B_ECR_J[k,dets]  <- CritvalFisher_B_ECR_J
+        cv_B_ECR_J_1[k,dets] <- CritvalFisher_B_ECR_J_1
+        cv_B_ECR_J_2[k,dets] <- CritvalFisher_B_ECR_J_2
+        cv_B_ECR_J_3[k,dets] <- CritvalFisher_B_ECR_J_3
+        
+        Null_Distr_B_ECR_E[k,dets,]  <- NullDistrFisher_B_ECR_E 
+        cv_B_ECR_E[k,dets]   <- CritvalFisher_B_ECR_E
+        cv_B_ECR_E_1[k,dets] <- CritvalFisher_B_ECR_E_1
+        cv_B_ECR_E_2[k,dets] <- CritvalFisher_B_ECR_E_2
+        cv_B_ECR_E_3[k,dets] <- CritvalFisher_B_ECR_E_3
+        
+        Null_Distr_ECR_E_J[k,dets,] <-  NullDistrFisher_ECR_E_J
+        cv_ECR_E_J[k,dets]  <- CritvalFisher_ECR_E_J
+        cv_ECR_E_J_1[k,dets] <- CritvalFisher_ECR_E_J_1
+        cv_ECR_E_J_2[k,dets] <- CritvalFisher_ECR_E_J_2
+        cv_ECR_E_J_3[k,dets] <- CritvalFisher_ECR_E_J_3
+        
+        #4 Test
+        
+        Null_Distr_B_ECR_J_E[k,dets,]  <- NullDistrFisher_B_ECR_J_E
+        cv_B_ECR_J_E[k,dets]   <- CritvalFisher_B_ECR_J_E
+        cv_B_ECR_J_E_1[k,dets] <- CritvalFisher_B_ECR_J_E_1
+        cv_B_ECR_J_E_2[k,dets] <- CritvalFisher_B_ECR_J_E_2
+        cv_B_ECR_J_E_3[k,dets] <- CritvalFisher_B_ECR_J_E_3
 
+        
     }# dets */"
 }# k */"
 #save workspace

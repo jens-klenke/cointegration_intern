@@ -20,5 +20,3 @@ aux <- aux[order(aux[,A[2]+1]),]
 rankindx <- aux[ ,ncol(aux)]
 return(rankindx)
 }
-
-
