@@ -8,7 +8,7 @@
 #' @param lags Number of lags to be included.
 #' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
 #' "const" for a constant and "trend" for a constant plus trend.
-#' @param test Selection of tests to choose from.
+#' @param test Selection of tests to choose from. Choices are either "eg-j", for Engle-Granger and Johansen, or "all", for Engle-Granger, Johansen, Banerjee and Boswijk.
 #' @param crit Level for the critical value of the test to be reported.
 #'
 #' @return
@@ -67,20 +67,9 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   names(test.stat) <- c("englegranger", "johansen", "banerjee", "boswijk")
 
   invisible(capture.output(
-  if ("englegranger" %in% test)
-    test.stat[1] <- englegranger(formula = formula, data = data, lags = lags, trend = trend)$test.stat
-  ))
-  invisible(capture.output(
-  if ("johansen" %in% test)
-    test.stat[2] <- johansen(formula = formula, data = data, lags = lags, trend = trend)$test.stat
-  ))
-  invisible(capture.output(
-  if ("banerjee" %in% test)
-    test.stat[3] <- banerjee(formula = formula, data = data, lags = lags, trend = trend)$test.stat
-  ))
-  invisible(capture.output(
-  if ("boswijk" %in% test)
-    test.stat[4] <- boswijk(formula = formula, data = data, lags = lags, trend = trend)$test.stat
+  if (identical(test, "eg-j"))
+    test.stat[1:2] <- c(englegranger(formula = formula, data = data, lags = lags, trend = trend)$test.stat,
+                        johansen(formula = formula, data = data, lags = lags, trend = trend)$test.stat)
   ))
   invisible(capture.output(
   if (identical(test, "all"))
@@ -139,26 +128,11 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
     crit_val_2 <- crit_val_2_0.10
   }
 
-
   #### compute statistics ####
+  if (identical(test, "eg-j"))
+    bh.test <- -2*sum(log(pval.stat[1:2]))
   if (identical(test, "all"))
-  b_h_stat_1 <- -2*sum(log(pval.stat[1:2]))
-  b_h_stat_2 <- -2*sum(log(pval.stat[1:4]))
-
-  #if (identical(test, c("englegranger", "banerjee")) | identical(test, c("banerjee", "englegranger")))
-  #  bh.test <-
-  #if (identical(test, c("englegranger", "boswijk")) | identical(test, c("boswijk", "englegranger")))
-  #  bh.test <-
-  if (identical(test, c("johansen", "englegranger")) | identical(test, c("englegranger", "johansen")))
-    bh.test <- b_h_stat_1
-  #if (identical(test, c("johansen", "banerjee")) | identical(test, c("banerjee", "johansen")))
-  #  bh.test <-
-  #if (identical(test, c("johansen", "boswijk")) | identical(test, c("boswijk", "johansen")))
-  #  bh.test <-
-  #if (identical(test, c("boswijk", "banerjee")) | identical(test, c("banerjee", "boswijk")))
-  #  bh.test <-
-  if (identical(test, "all"))
-    bh.test <- b_h_stat_2
+    bh.test <- -2*sum(log(pval.stat[1:4]))
 
   # degrees of freedom
   nvar <- nvar - 1
@@ -171,8 +145,8 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   # Display Results
   #-----------------------------------------------------------------------------------------
   out <- list(bh.test = bh.test,
-              test.stat = test.stat,
-              pval.stat = pval.stat)
+              test.stat = test.stat[complete.cases(test.stat)],
+              pval.stat = pval.stat[complete.cases(test.stat)])
   class(out) <- c("bh.test", "list")
   cat(c("----------------------------------------------------------",
         "Bayer-Hanck Test for Non-Cointegration",
