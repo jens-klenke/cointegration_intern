@@ -31,13 +31,15 @@ englegranger <- function(formula, data, lags = 1, trend = "const"){
   #-----------------------------------------------------------------------------------------
   # Trend Specification
   #-----------------------------------------------------------------------------------------
-  if (identical(trend, "none")) {
+  if (identical(trend, "none")){
     eg_lm <- lm(update(formula, ~. -1), data = data, na.action = na.omit)
   } else if (identical(trend, "const")) {
     eg_lm <- lm(formula, data = data, na.action = na.omit)
-  } else if (identical(trend, "trend")) {
+  } else if (identical(trend, "trend")){
     tr <- seq_along(y)
-    eg_lm <- lm(update(formula, ~.+tr), data = data, na.action = na.omit)
+    data$tr <- tr
+    eg_lm <- lm(update(formula, ~. + tr), data = data, na.action = na.omit)
+    data <- data[, -which(colnames(data) == "tr")]
   }
 
   #-----------------------------------------------------------------------------------------
@@ -60,4 +62,3 @@ englegranger <- function(formula, data, lags = 1, trend = "const"){
         sep = "\n")
   invisible(out)
 }
-

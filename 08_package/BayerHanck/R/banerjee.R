@@ -66,11 +66,13 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
       res[, i] <- as.numeric(loop_lm$residuals)
     }
   } else if (identical(trend, "trend")) {
-    tr <- seq_along(y)
+    tr <- seq_along(y)[-1]
+    W <- cbind(W, tr)
     for (i in 1:ncol(Xlag)) {
-      loop_lm <- lm(Hmisc::Lag(Xlag[, i], shift = 1)[-1] ~ W + tr)
+      loop_lm <- lm(Hmisc::Lag(Xlag[, i], shift = 1)[-1] ~ W)
       res[, i] <- as.numeric(loop_lm$residuals)
     }
+    W <- W[, -which(colnames(W) == "tr")]
   }
 
   if (identical(trend, "none")) {
@@ -78,8 +80,10 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
   } else if (identical(trend, "const")) {
     BB_lm <- lm(Y_dif ~ W)
   } else if (identical(trend, "trend")) {
-    tr <- seq_along(y)
-    BB_lm <- lm(Y_dif ~ W + tr)
+    tr <- seq_along(y)[-1]
+    W <- cbind(W, tr)
+    BB_lm <- lm(Y_dif ~ W)
+    W <- W[, -which(colnames(W) == "tr")]
   }
 
   BB_res <- BB_lm$residuals
@@ -89,7 +93,10 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
   } else if (identical(trend, "const")) {
     lm_res <- lm(BB_res ~ res)
   } else if (identical(trend, "trend")) {
-    lm_res <- lm(BB_res ~ res + tr)
+    tr <- seq_along(y)[-c(1, 2)]
+    res <- cbind(res, tr)
+    lm_res <- lm(BB_res ~ res)
+    res <- res[, -which(colnames(res) == "tr")]
   }
 
   betas <- stats::coef(lm_res)
@@ -111,7 +118,6 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
         sep = "\n")
   invisible(out)
 }
-
 
 
 

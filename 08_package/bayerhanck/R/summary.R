@@ -32,7 +32,7 @@ summary.bh.test <- function(object) {
       " ",
       "Underlying Tests:"),
     sep = "\n")
-  test.mat <- as.data.frame(rbind(object$test.stat,
+  test.mat <- as_tibble(rbind(object$test.stat,
                                   object$pval.stat))
   rownames(test.mat) <- c("Test Statistics", "p-Values")
   print(test.mat)

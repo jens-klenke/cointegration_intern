@@ -14,10 +14,10 @@ sidebar <- dashboardSidebar(
                 min = 0, max = 20, 
                 value = 1),
     radioButtons("Trend", "Deterministic components to be included:",
-                                       choices = as.list(c("None", "Constant", "Trend")), 
-                                       selected = "Constant"),
+                                       choices = as.list(c("none", "const", "trend")), 
+                                       selected = "const"),
     radioButtons("Test", "Tests to aggregate:",
-                 choices = as.list(c("Engle-Granger-Johansen", "all")),
+                 choices = as.list(c("eg-j", "all")),
                  selected = "all"))
 )
 
@@ -104,14 +104,18 @@ server <- function(input, output, session) {
           return(NULL)
       df <- readr::read_csv(inFile$datapath)
       bh <- bayerhanck(get(input$DepVar) ~ get(input$IndVar),
-                       data = df#, 
-                       #lags = input$Lags,
-                       #trend = input$Trend,
-                       #test = input$Test
+                       data = df, 
+                       lags = input$Lags,
+                       trend = input$Trend,
+                       test = input$Test
                        )
-      out <- rbind(bh$test.stat,
-                   bh$pval.stat)
-      rownames(out) <- c("Test Statistics", "p-Values")
+      out <- as_tibble(cbind(c("Test Statistics", "p-Values"), 
+                             rbind(round(bh$test.stat, 4), 
+                                   round(bh$pval.stat), 4)))
+      if (identical(input$Test, "all"))
+          names(out) <- c(" ", "Engle-Granger", "Johansen", "Banerjee", "Boswijk")
+      if (identical(input$Test, "eg-j"))
+          names(out) <- c(" ", "Engle-Granger", "Johansen")
       out
   })
   observeEvent(input$csv_file, {
