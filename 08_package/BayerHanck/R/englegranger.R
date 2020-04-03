@@ -17,13 +17,28 @@
 englegranger <- function(formula, data, lags = 1, trend = "const"){
 
   #-----------------------------------------------------------------------------------------
+  # Check Syntax
+  #-----------------------------------------------------------------------------------------
+  mf <- match.call()
+  m <- match(c("formula", "data"), names(mf), 0L)
+  mf <- mf[c(1L, m)]
+  mf[[1L]] <- quote(stats::model.frame)
+  mf <- eval(mf, parent.frame())
+  mt <- attr(mf, "terms")
+  mf <- na.omit(mf)
+  y <- model.response(mf, "numeric")
+
+  #-----------------------------------------------------------------------------------------
   # Trend Specification
   #-----------------------------------------------------------------------------------------
   if (identical(trend, "none")) {
     eg_lm <- lm(update(formula, ~. -1), data = data, na.action = na.omit)
   } else if (identical(trend, "const")) {
     eg_lm <- lm(formula, data = data, na.action = na.omit)
-  } #else if (identical(trend, "trend")) {}
+  } else if (identical(trend, "trend")) {
+    tr <- seq_along(y)
+    eg_lm <- lm(update(formula, ~.+tr), data = data, na.action = na.omit)
+  }
 
   #-----------------------------------------------------------------------------------------
   # Engle Granger Test
@@ -45,3 +60,4 @@ englegranger <- function(formula, data, lags = 1, trend = "const"){
         sep = "\n")
   invisible(out)
 }
+

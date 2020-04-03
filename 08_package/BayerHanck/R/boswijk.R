@@ -65,13 +65,22 @@ boswijk <- function(formula, data, lags = 1, trend = "const"){
       loop_lm <- lm(Hmisc::Lag(Xlag[, i], shift = 1)[-1] ~ W)
       res[, i] <- as.numeric(loop_lm$residuals)
     }
-  } #else if (identical(trend, "trend")) {}
+  } else if (identical(trend, "trend")) {
+    tr <- seq_along(y)
+    for (i in 1:ncol(Xlag)) {
+      loop_lm <- lm(Hmisc::Lag(Xlag[, i], shift = 1)[-1] ~ W + tr)
+      res[, i] <- as.numeric(loop_lm$residuals)
+    }
+  }
 
   if (identical(trend, "none")) {
     BB_lm <- lm(Y_dif ~ W - 1)
   } else if (identical(trend, "const")) {
     BB_lm <- lm(Y_dif ~ W)
-  } #else if (identical(trend, "trend")) {}
+  } else if (identical(trend, "trend")) {
+    tr <- seq_along(y)
+    BB_lm <- lm(Y_dif ~ W + tr)
+  }
 
   BB_res <- BB_lm$residuals
 
@@ -79,7 +88,9 @@ boswijk <- function(formula, data, lags = 1, trend = "const"){
     lm_res <- lm(BB_res ~ res -1)
   } else if (identical(trend, "const")) {
     lm_res <- lm(BB_res ~ res)
-  } #else if (identical(trend, "trend)) {}
+  } else if (identical(trend, "trend")) {
+    lm_res <- lm(BB_res ~ res + tr)
+  }
 
   betas <- stats::coef(lm_res)
   var_mat <- vcov(lm_res)
