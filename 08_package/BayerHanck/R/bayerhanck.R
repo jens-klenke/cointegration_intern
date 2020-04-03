@@ -65,7 +65,7 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all",
   # Call Tests
   #-----------------------------------------------------------------------------------------
   test.stat <- rep(NA, 4)
-  names(test.stat) <- c("englegranger", "johansen", "banerjee", "boswijk")
+  names(test.stat) <- c("Engle-Granger", "Johansen", "Banerjee", "Boswijk")
 
   invisible(capture.output(
   if (identical(test, "eg-j"))
@@ -150,12 +150,17 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all",
   out <- list(bh.test = bh.test,
               test.stat = test.stat[complete.cases(test.stat)],
               pval.stat = pval.stat[complete.cases(test.stat)],
-              crit.val = crit.val)
+              crit.val = crit.val,
+              formula = formula,
+              lags = lags,
+              trend = trend,
+              crit = crit)
   class(out) <- c("bh.test", "list")
   cat(c("----------------------------------------------------------",
         "Bayer-Hanck Test for Non-Cointegration",
         "----------------------------------------------------------",
-        paste(c("Value of the Fisher Type Test statistic:", round(bh.test, 4)), collapse = " ")),
+        paste(c("Value of the Fisher Type Test statistic:", round(bh.test, 4)),
+              collapse = " ")),
       sep = "\n")
   invisible(out)
 }

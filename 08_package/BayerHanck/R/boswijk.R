@@ -90,7 +90,8 @@ boswijk <- function(formula, data, lags = 1, trend = "const"){
               trend = trend,
               betas = betas,
               var.cov = var_mat,
-              test = "Boswijk")
+              test = "Boswijk",
+              formula = formula)
   class(out) <- c("co.test", "list")
   cat(c("----------------------------------------------------------",
         "Boswijk Test",

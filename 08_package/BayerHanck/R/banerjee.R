@@ -90,7 +90,8 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
               trend = trend,
               betas = betas,
               var.cov = var_mat,
-              test = "Banerjee")
+              test = "Banerjee",
+              formula = formula)
   class(out) <- c("co.test", "list")
   cat(c("----------------------------------------------------------",
         "Banerjee Test",
