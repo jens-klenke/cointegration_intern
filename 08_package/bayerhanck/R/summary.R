@@ -13,6 +13,9 @@ summary.co.test <- function(object) {
         paste(c("Value of test statistic:", round(object$test.stat, 4)),
               collapse = " ")),
       sep = "\n")
+  out <- list(bh.test = object$bh.test)
+  class(out) <- c("summary.co.test")
+  invisible(out)
 }
 
 
@@ -46,6 +49,9 @@ summary.bh.test <- function(object) {
   cat(c(paste(
     paste(c(crit, "%"), collapse = ""),
     "critical value for Test statistic:", object$crit.val)))
+  out <- list(bh.test = object$bh.test)
+  class(out) <- c("summary.bh.test")
+  invisible(out)
 }
 
 

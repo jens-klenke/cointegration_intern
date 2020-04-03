@@ -16,12 +16,9 @@ sidebar <- dashboardSidebar(
     radioButtons("Trend", "Deterministic components to be included:",
                                        choices = as.list(c("None", "Constant", "Trend")), 
                                        selected = "Constant"),
-    checkboxGroupInput("Test", "Tests to aggregate:",
-                       choices = as.list(c("Engle-Granger", "Johansen",
-                                           "Banerjee", "Boswijk")),
-                       selected = c("Engle-Granger", "Johansen", "Banerjee", 
-                                    "Boswijk")),
-    width = 300)
+    radioButtons("Test", "Tests to aggregate:",
+                 choices = as.list(c("Engle-Granger-Johansen", "all")),
+                 selected = "all"))
 )
 
 #-----------------------------------------------------------------------------------------
@@ -55,11 +52,18 @@ body <- dashboardBody(
                   width = 8, height = "300px",
                   title = "CDF of the Null Distribution")),
             fluidRow(
-              box(title = "Summary", width = 8, height = "300px"))),
+              box(tableOutput("summary"), title = "Summary", width = 8, height = "300px"))),
     tabItem(tabName = "Data",
             fluidRow(
               box(title = "File input", status = "warning", width = 12,
-                  fileInput(inputId = "csv_file", label = "Please add a csv file", accept = ".csv")))
+                  fileInput(inputId = "csv_file", label = "Please add a csv file", accept = ".csv")),
+              box(title = "Input", status = "warning", 
+                  selectInput(inputId = "DepVar", label = "Dependent Variables", 
+                              multiple = FALSE, choices = NULL,
+                              selected = NULL),
+                  selectInput(inputId = "IndVar", label = "Independent Variables", 
+                              multiple = FALSE, choices = NULL)),
+            )
     )
   )
 )
@@ -92,8 +96,40 @@ server <- function(input, output, session) {
             axis.line = element_line(size = 0.3, colour = "#546069"),
             axis.title = element_text(colour = "#FFFFFF"))
   })
+  output$summary <- renderTable({
+      inFile <- input$csv_file
+      if (is.null(inFile))
+          return(NULL)
+      df <- readr::read_csv(inFile$datapath)
+      bh <- bayerhanck(formula = get(input$DepVar) ~ get(input$IndVar),
+                       data = df#, 
+                       #lags = input$Lags,
+                       #trend = input$Trend,
+                       #test = input$Test
+                       )
+      sum_bh <- summary.bh.test(bh)[1]
+      sum_bh <- tibble(sum_bh)
+      sum_bh
+  })
+  observeEvent(input$csv_file, {
+      inFile <- input$csv_file
+      if (is.null(inFile))
+          return(NULL)
+      df <- readr::read_csv(inFile$datapath)
+      updateSelectInput(session, "IndVar",
+                        choices = as.list(names(select_if(df, is.numeric))))
+  })
+  observeEvent(input$csv_file, {
+      inFile <- input$csv_file
+      if (is.null(inFile))
+          return(NULL)
+      df <- readr::read_csv(inFile$datapath)
+      updateSelectInput(session, "DepVar",
+                        choices = as.list(names(select_if(df, is.numeric))))
+  })
 }
 
 
-
 shinyApp(ui, server)
+
+
