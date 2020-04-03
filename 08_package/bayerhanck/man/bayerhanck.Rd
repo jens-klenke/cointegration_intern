@@ -21,7 +21,7 @@ bayerhanck(formula, data, lags = 1, trend = "const", test = "all", crit = 0.05)
 \item{crit}{Level for the critical value of the test to be reported.}
 }
 \value{
-
+\code{bayerhanck} returns an object of class \code{"bh.test"}.
 }
 \description{
 Produces a joint test-statistic for the null of non-cointegration, aggregating

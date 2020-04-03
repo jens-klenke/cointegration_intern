@@ -9,7 +9,7 @@
 #' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
 #' "const" for a constant and "trend" for a constant plus trend.
 #'
-#' @return \code{johansen} returns an object of class "co.test".
+#' @return \code{johansen} returns an object of class \code{"co.test"}.
 #' @export
 #'
 #' @references Johansen, S. (1988), Statistical analysis of cointegration vectors, Journal of Economic Dynamics and Control 12(2-3), 231-254.

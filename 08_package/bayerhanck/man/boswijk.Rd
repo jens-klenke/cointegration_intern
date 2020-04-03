@@ -17,7 +17,7 @@ boswijk(formula, data, lags = 1, trend = "const")
 "const" for a constant and "trend" for a constant plus trend.}
 }
 \value{
-\code{boswijk} returns an object of class "co.test".
+\code{boswijk} returns an object of class \code{"co.test"}.
 }
 \description{
 Executes Boswijk Test.

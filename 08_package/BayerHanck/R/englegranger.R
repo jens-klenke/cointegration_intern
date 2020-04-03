@@ -8,7 +8,7 @@
 #' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
 #' "const" for a constant and "trend" for a constant plus trend.
 #'
-#' @return \code{englegranger} returns an object of class "co.test".
+#' @return \code{englegranger} returns an object of class \code{"co.test"}.
 #' @export
 #'
 #' @references Engle, R. and Granger, C. (1987), Co-integration and Error Correction: Representation, Estimation, and Testing, Econometrica 55(2), 251-76.

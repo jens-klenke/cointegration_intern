@@ -8,7 +8,7 @@
 #' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
 #' "const" for a constant and "trend" for a constant plus trend.
 #'
-#' @return \code{banerjee} returns an object of class "co.test".
+#' @return \code{banerjee} returns an object of class \code{"co.test"}.
 #' @export
 #'
 #' @references Banerjee, A., Dolado, J. J. and Mestre, R. (1998), Error-correction Mechanism Tests for Cointegration in a Single-equation Framework, Journal of Times Series Analysis 19(3), 267-283.

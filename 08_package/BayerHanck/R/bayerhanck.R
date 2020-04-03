@@ -11,13 +11,14 @@
 #' @param test Selection of tests to choose from. Choices are either "eg-j", for Engle-Granger and Johansen, or "all", for Engle-Granger, Johansen, Banerjee and Boswijk.
 #' @param crit Level for the critical value of the test to be reported.
 #'
-#' @return
+#' @return \code{bayerhanck} returns an object of class \code{"bh.test"}.
 #' @export
 #'
 #' @references Bayer, C. and Hanck, C. (2009), Combining Non-Cointegration tests, METEOR RM 09/012, University of Maastricht.
 #'
 #' @examples bayerhanck(linvestment ~ lincome + lconsumption, data = Lutkepohl)
-bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", crit = 0.05) {
+bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all",
+                       crit = 0.05) {
 
   #-----------------------------------------------------------------------------------------
   # Check Syntax
