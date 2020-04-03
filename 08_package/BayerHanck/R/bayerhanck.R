@@ -138,15 +138,18 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   nvar <- nvar - 1
 
   ### obtain critical Value
-  cv_1 <- crit_val_1[nvar, trendtype]
-  cv_2 <- crit_val_2[nvar, trendtype]
+  if (identical(test, "eg-j"))
+    crit.val <- crit_val_1[nvar, trendtype]
+  if (identical(test, "all"))
+    crit.val <- crit_val_2[nvar, trendtype]
 
   #-----------------------------------------------------------------------------------------
   # Display Results
   #-----------------------------------------------------------------------------------------
   out <- list(bh.test = bh.test,
               test.stat = test.stat[complete.cases(test.stat)],
-              pval.stat = pval.stat[complete.cases(test.stat)])
+              pval.stat = pval.stat[complete.cases(test.stat)],
+              crit.val = crit.val)
   class(out) <- c("bh.test", "list")
   cat(c("----------------------------------------------------------",
         "Bayer-Hanck Test for Non-Cointegration",
