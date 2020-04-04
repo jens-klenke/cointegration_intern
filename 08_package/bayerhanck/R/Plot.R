@@ -1,7 +1,9 @@
 plot.bh.test <- function(obj) {
+
   load("null_dist.rda")
   i <- 50
   b_h_stat_2 <- 40
+
   df_gg <- null_dist%>%
     dplyr::select(as.name(paste0('var', i)))%>%
     dplyr::mutate(y = rep(1/10000, 10000))
