@@ -136,13 +136,13 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all",
     bh.test <- -2*sum(log(pval.stat[1:4]))
 
   # degrees of freedom
-  nvar <- nvar - 1
+  n_var <- nvar - 1
 
   ### obtain critical Value
   if (identical(test, "eg-j"))
-    crit.val <- crit_val_1[nvar, trendtype]
+    crit.val <- crit_val_1[n_var, trendtype]
   if (identical(test, "all"))
-    crit.val <- crit_val_2[nvar, trendtype]
+    crit.val <- crit_val_2[n_var, trendtype]
 
   #-----------------------------------------------------------------------------------------
   # Display Results
@@ -154,7 +154,9 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all",
               formula = formula,
               lags = lags,
               trend = trend,
-              crit = crit)
+              crit = crit,
+              nvar = nvar,
+              test.type = test)
   class(out) <- c("bh.test", "list")
   cat(c("----------------------------------------------------------",
         "Bayer-Hanck Test for Non-Cointegration",
@@ -165,3 +167,5 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all",
   invisible(out)
 }
 
+
+A <- bayerhanck(linvestment ~ lincome + lconsumption, data = Lutkephol )
