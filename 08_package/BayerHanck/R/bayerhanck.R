@@ -154,7 +154,9 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all",
               formula = formula,
               lags = lags,
               trend = trend,
-              crit = crit)
+              crit = crit,
+              nvar = nvar,
+              test.type = test)
   class(out) <- c("bh.test", "list")
   cat(c("----------------------------------------------------------",
         "Bayer-Hanck Test for Non-Cointegration",

@@ -1,5 +1,12 @@
 plot.bh.test <- function(obj) {
 
+
+  obj$nvar
+  obj$trend
+
+  basecase <- 44 * (trendtype - 1) + 4 * (nvar - 2)
+  obj$crit
+
   load("null_dist.rda")
   i <- 50
   b_h_stat_2 <- 40
@@ -34,6 +41,6 @@ plot.bh.test <- function(obj) {
           plot.title = element_text(hjust = 0.5))
 }
 
-bh <- bayerhanck(consumption ~ investment, data = Lutkephol)
+obj <- bayerhanck(consumption ~ investment, data = Lutkephol)
 plot(bh)
 
