@@ -163,7 +163,10 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
         "Bayer-Hanck Test for Non-Cointegration",
         "----------------------------------------------------------",
         paste(c("Value of the Fisher Type Test statistic:", round(bh.test, 4)),
-              collapse = " ")),
+              collapse = " "),
+        "----------------------------------------------------------",
+      paste(c("Critical" ,round(crit*100,0) ,"% Value of the Fisher Type Test:", round(crit.val, 4)),
+            collapse = " ")),
       sep = "\n")
   invisible(out)
 }
