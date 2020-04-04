@@ -39,7 +39,8 @@ body <- dashboardBody(
     }
     .control-label {color: #FFFFFF !important;
     }
-    .shiny-table {color: #FFFFFF !important;
+    .shiny-text-output {background-color: #1B2B37 !important; 
+    border: 1px solid #1B2B37 !important; color: #FFFFFF !important;
     }'                     
   ))),
   tabItems(
@@ -57,9 +58,8 @@ body <- dashboardBody(
                   width = 8, height = "300px",
                   title = "CDF of the Null Distribution")),
             fluidRow(
-              box(tableOutput("underlying_tests"),
-                  tableOutput("bh_test"),
-                  title = "Summary", width = 8, height = "300px"))),
+              box(verbatimTextOutput("bh_test"),
+                  width = 8, height = "300px"))),
     tabItem(tabName = "Data",
             fluidRow(
               box(title = "File input", status = "warning", width = 12,
@@ -103,46 +103,20 @@ server <- function(input, output, session) {
             axis.line = element_line(size = 0.3, colour = "#546069"),
             axis.title = element_text(colour = "#FFFFFF"))
   })
-  output$underlying_tests <- renderTable({
+  output$bh_test <- renderPrint({
       inFile <- input$csv_file
       if (is.null(inFile))
           return(NULL)
       df <- readr::read_csv(inFile$datapath)
+      invisible(capture.output(
       bh <- bayerhanck(get(input$DepVar) ~ get(input$IndVar),
                        data = df, 
                        lags = input$Lags,
                        trend = input$Trend,
-                       test = input$Test#,
-                      # crit = input$Critical
-                       )
-      underlying <- cbind(
-          c("Test Statistics", "p-Values"), 
-          rbind(round(bh$test.stat, 4), 
-                round(bh$pval.stat, 4)))
-     # if (identical(input$Test, "all"))
-     #     names(out) <- c(" ", "Engle-Granger", "Johansen", "Banerjee", "Boswijk")
-     # if (identical(input$Test, "eg-j"))
-     #     names(out) <- c(" ", "Engle-Granger", "Johansen")
-  })
-  output$bh_test <- renderTable({
-      inFile <- input$csv_file
-      if (is.null(inFile))
-          return(NULL)
-      df <- readr::read_csv(inFile$datapath)
-      bh <- bayerhanck(get(input$DepVar) ~ get(input$IndVar),
-                       data = df, 
-                       lags = input$Lags,
-                       trend = input$Trend,
-                       test = input$Test#,
-                       #crit = input$Critical
-      )
-      bh.stat <- paste(c("Value of the Fisher Type Test statistic:",
-                         round(bh$bh.test, 4)),
-                       collapse = " ")
-         # rbind("Value of the Fisher Type Test statistic:",
-         #       "Critical value for the Test statistic:"),
-         # rbind(round(bh$bh.test, 4),
-         #       bh$crit.val))
+                         test = input$Test#,
+                         #crit = input$Critical
+                       )))
+      summary(bh)
   })
   observeEvent(input$csv_file, {
       inFile <- input$csv_file
