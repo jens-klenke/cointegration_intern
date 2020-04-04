@@ -1,42 +1,23 @@
 plot.bh.test <- function(object) {
 
-  # Obtain Parameters from the Bayerhanck object
-
-  K <- object$K
-  if (identical(object$trend, "none"))
-    trendtype <- 1
-  if (identical(object$trend, "const"))
-    trendtype <- 2
-  if (identical(object$trend, "trend"))
-    trendtype <- 3
-
-  bh.stat <- object$bh.test
-  stat.type <- object$test.typ
-  crit <- object$crit
-
-
-  basecase <- 44 * (trendtype - 1) + 4 * (object$nvar - 2)
-
   load("null_dist.rda")
-  i <- basecase
+  i <- object$basecase
 
-  df_gg <- null_dist%>%
-    dplyr::select(paste0('var', i))%>%
-   dplyr::mutate(y = rep(1/nrow(null_dist), nrow(null_dist)))
+  df_gg <- null_dist %>%
+    dplyr::select(paste0('var', i)) %>%
+    dplyr::mutate(y = rep(1/nrow(null_dist), nrow(null_dist)))
   colnames(df_gg) <- c('x', 'y')
 
-
-
-  ggplot2::ggplot(data = df_gg, ggplot2::aes(x = x))+
-    ggplot2::stat_ecdf(geom = "step")+
+  ggplot2::ggplot(data = df_gg, ggplot2::aes(x = x)) +
+    ggplot2::stat_ecdf(geom = "step") +
     ggplot2::geom_vline(xintercept = bh.stat, linetype = "dashed",
-               color = "red", size = 1)+
-    ggplot2::annotate("text", x = (bh.stat*1.05), y = 0.5, label = paste('B-H-S \n', round( bh.stat,2)) ,
-             colour = 'red')+
-    ggplot2::labs( x = "\n \n Bayer-Hanck-Statistic", y = "F(Bayer-Hanck-Statistic) \n",
-          title = 'Empirical Cumulative Distribution Function')+
-    ggplot2::theme_minimal()+
-    ggplot2::theme(plot.margin = ggplot2::unit(c(1,1,1,1),"cm"),
+               color = "red", size = 1) +
+    ggplot2::annotate("text", x = (bh.stat*1.05), y = 0.5, label = paste('B-H-S \n', round( bh.stat, 2)),
+             colour = 'red') +
+    ggplot2::labs(x = "\n \n Bayer-Hanck-Statistic", y = "F(Bayer-Hanck-Statistic) \n",
+          title = 'Empirical Cumulative Distribution Function') +
+    ggplot2::theme_minimal() +
+    ggplot2::theme(plot.margin = ggplot2::unit(c(1, 1, 1, 1),"cm"),
           plot.title = ggplot2::element_text(hjust = 0.5))
 
 #  ggplot(data = df_gg) +
