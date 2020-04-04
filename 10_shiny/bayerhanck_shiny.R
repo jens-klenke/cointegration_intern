@@ -134,13 +134,15 @@ server <- function(input, output, session) {
                        lags = input$Lags,
                        trend = input$Trend,
                        test = input$Test#,
-                       # crit = input$Critical
+                       #crit = input$Critical
       )
-      bh.stat <- cbind(
-          rbind("Value of the Fisher Type Test statistic:",
-                "Critical value for the Test statistic:"),
-          rbind(round(bh$bh.test, 4),
-                bh$crit.val))
+      bh.stat <- paste(c("Value of the Fisher Type Test statistic:",
+                         round(bh$bh.test, 4)),
+                       collapse = " ")
+         # rbind("Value of the Fisher Type Test statistic:",
+         #       "Critical value for the Test statistic:"),
+         # rbind(round(bh$bh.test, 4),
+         #       bh$crit.val))
   })
   observeEvent(input$csv_file, {
       inFile <- input$csv_file
