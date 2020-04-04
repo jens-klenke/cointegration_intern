@@ -25,17 +25,17 @@ plot.bh.test <- function(object) {
     dplyr::mutate(y = rep(1/nrow(null_dist), nrow(null_dist)))
   colnames(df_gg) <- c('x', 'y')
 
-  ggplot(data = df_gg, aes(x = x))+
-    stat_ecdf(geom = "step")+
-    geom_vline(xintercept = bh.stat, linetype = "dashed",
+  ggplot2::ggplot(data = df_gg, ggplot2::aes(x = x))+
+    ggplot2::stat_ecdf(geom = "step")+
+    ggplot2::geom_vline(xintercept = bh.stat, linetype = "dashed",
                color = "red", size = 1)+
-    annotate("text", x = (bh.stat*1.05), y = 0.5, label = paste('B-H-S \n', round( bh.stat,2)) ,
+    ggplot2::annotate("text", x = (bh.stat*1.05), y = 0.5, label = paste('B-H-S \n', round( bh.stat,2)) ,
              colour = 'red')+
-    labs( x = "\n \n Bayer-Hanck-Statistic", y = "F(Bayer-Hanck-Statistic) \n",
+    ggplot2::labs( x = "\n \n Bayer-Hanck-Statistic", y = "F(Bayer-Hanck-Statistic) \n",
           title = 'Empirical Cumulative Distribution Function')+
-    theme_minimal()+
-    theme(plot.margin = unit(c(1,1,1,1),"cm"),
-          plot.title = element_text(hjust = 0.5))
+    ggplot2::theme_minimal()+
+    ggplot2::theme(plot.margin = ggplot2::unit(c(1,1,1,1),"cm"),
+          plot.title = ggplot2::element_text(hjust = 0.5))
 
 #  ggplot(data = df_gg) +
 #    geom_density(aes(x = x))+
