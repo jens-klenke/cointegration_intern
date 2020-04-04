@@ -14,11 +14,14 @@ sidebar <- dashboardSidebar(
                 min = 0, max = 20, 
                 value = 1),
     radioButtons("Trend", "Deterministic components to be included:",
-                                       choices = as.list(c("none", "const", "trend")), 
-                                       selected = "const"),
+                 choices = as.list(c("none", "const", "trend")), 
+                 selected = "const"),
     radioButtons("Test", "Tests to aggregate:",
                  choices = as.list(c("eg-j", "all")),
-                 selected = "all"))
+                 selected = "all"),
+    radioButtons("Critical", "Level for the critical value:",
+                 choices = as.list(c(0.01, 0.05, 0.1)),
+                 selected = 0.05))
 )
 
 #-----------------------------------------------------------------------------------------
@@ -54,7 +57,9 @@ body <- dashboardBody(
                   width = 8, height = "300px",
                   title = "CDF of the Null Distribution")),
             fluidRow(
-              box(tableOutput("summary"), title = "Summary", width = 8, height = "300px"))),
+              box(tableOutput("underlying_tests"),
+                  tableOutput("bh_test"),
+                  title = "Summary", width = 8, height = "300px"))),
     tabItem(tabName = "Data",
             fluidRow(
               box(title = "File input", status = "warning", width = 12,
@@ -98,7 +103,7 @@ server <- function(input, output, session) {
             axis.line = element_line(size = 0.3, colour = "#546069"),
             axis.title = element_text(colour = "#FFFFFF"))
   })
-  output$summary <- renderTable({
+  output$underlying_tests <- renderTable({
       inFile <- input$csv_file
       if (is.null(inFile))
           return(NULL)
@@ -107,16 +112,35 @@ server <- function(input, output, session) {
                        data = df, 
                        lags = input$Lags,
                        trend = input$Trend,
-                       test = input$Test
+                       test = input$Test#,
+                      # crit = input$Critical
                        )
-      out <- as_tibble(cbind(c("Test Statistics", "p-Values"), 
-                             rbind(round(bh$test.stat, 4), 
-                                   round(bh$pval.stat), 4)))
-      if (identical(input$Test, "all"))
-          names(out) <- c(" ", "Engle-Granger", "Johansen", "Banerjee", "Boswijk")
-      if (identical(input$Test, "eg-j"))
-          names(out) <- c(" ", "Engle-Granger", "Johansen")
-      out
+      underlying <- cbind(
+          c("Test Statistics", "p-Values"), 
+          rbind(round(bh$test.stat, 4), 
+                round(bh$pval.stat, 4)))
+     # if (identical(input$Test, "all"))
+     #     names(out) <- c(" ", "Engle-Granger", "Johansen", "Banerjee", "Boswijk")
+     # if (identical(input$Test, "eg-j"))
+     #     names(out) <- c(" ", "Engle-Granger", "Johansen")
+  })
+  output$bh_test <- renderTable({
+      inFile <- input$csv_file
+      if (is.null(inFile))
+          return(NULL)
+      df <- readr::read_csv(inFile$datapath)
+      bh <- bayerhanck(get(input$DepVar) ~ get(input$IndVar),
+                       data = df, 
+                       lags = input$Lags,
+                       trend = input$Trend,
+                       test = input$Test#,
+                       # crit = input$Critical
+      )
+      bh.stat <- cbind(
+          rbind("Value of the Fisher Type Test statistic:",
+                "Critical value for the Test statistic:"),
+          rbind(round(bh$bh.test, 4),
+                bh$crit.val))
   })
   observeEvent(input$csv_file, {
       inFile <- input$csv_file

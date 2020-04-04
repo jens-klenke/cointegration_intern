@@ -48,7 +48,7 @@ summary.bh.test <- function(object) {
   }
   cat(c(paste(
     paste(c(crit, "%"), collapse = ""),
-    "critical value for Test statistic:", object$crit.val)))
+    "Critical value for the Test statistic:", object$crit.val)))
   out <- list(bh.test = object$bh.test)
   class(out) <- c("summary.bh.test")
   invisible(out)
