@@ -106,7 +106,7 @@ server <- function(input, output, session) {
   output$bh_test <- renderPrint({
       inFile <- input$csv_file
       if (is.null(inFile))
-          return(NULL)
+          return("Please upload file and select variables.")
       df <- readr::read_csv(inFile$datapath)
       invisible(capture.output(
       bh <- bayerhanck(reformulate(
