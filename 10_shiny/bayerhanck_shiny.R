@@ -90,11 +90,11 @@ server <- function(input, output, session) {
     inFile <- input$csv_file
     if (is.null(inFile))
       return(NULL)
-    data <- readr::read_csv(inFile$datapath)
+    dat <- readr::read_csv(inFile$datapath)
     invisible(capture.output(
         bh <- bayerhanck(reformulate(
             req(input$IndVar), req(input$DepVar)),
-            data = df, 
+            data = dat, 
             lags = input$Lags,
             trend = input$Trend,
             test = input$Test#,
@@ -120,11 +120,11 @@ server <- function(input, output, session) {
       inFile <- input$csv_file
       if (is.null(inFile))
           return("Please upload file and select variables.")
-      df <- readr::read_csv(inFile$datapath)
+      dat <- readr::read_csv(inFile$datapath)
       invisible(capture.output(
       bh <- bayerhanck(reformulate(
           req(input$IndVar), req(input$DepVar)),
-                       data = df, 
+                       data = dat, 
                        lags = input$Lags,
                        trend = input$Trend,
                        test = input$Test#,

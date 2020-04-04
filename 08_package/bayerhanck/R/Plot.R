@@ -4,15 +4,15 @@ plot.bh.test <- function(object) {
   i <- object$basecase
 
   df_gg <- null_dist %>%
-    dplyr::select(paste0('var', i)) %>%
+    dplyr::select(paste0('var', i))%>%
     dplyr::mutate(y = rep(1/nrow(null_dist), nrow(null_dist)))
   colnames(df_gg) <- c('x', 'y')
 
   ggplot2::ggplot(data = df_gg, ggplot2::aes(x = x)) +
     ggplot2::stat_ecdf(geom = "step") +
-    ggplot2::geom_vline(xintercept = bh.stat, linetype = "dashed",
+    ggplot2::geom_vline(xintercept = object$bh.test, linetype = "dashed",
                color = "red", size = 1) +
-    ggplot2::annotate("text", x = (bh.stat*1.05), y = 0.5, label = paste('B-H-S \n', round( bh.stat, 2)),
+    ggplot2::annotate("text", x = (object$bh.test*1.05), y = 0.5, label = paste('B-H-S \n', round(object$bh.test, 2)),
              colour = 'red') +
     ggplot2::labs(x = "\n \n Bayer-Hanck-Statistic", y = "F(Bayer-Hanck-Statistic) \n",
           title = 'Empirical Cumulative Distribution Function') +
