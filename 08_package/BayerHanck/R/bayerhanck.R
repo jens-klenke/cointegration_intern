@@ -164,7 +164,6 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
         "----------------------------------------------------------",
         paste(c("Value of the Fisher Type Test statistic:", round(bh.test, 4)),
               collapse = " "),
-        "----------------------------------------------------------",
       paste(c("Critical" ,round(crit*100,0) ,"% Value of the Fisher Type Test:", round(crit.val, 4)),
             collapse = " ")),
       sep = "\n")
