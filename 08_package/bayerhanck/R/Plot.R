@@ -51,6 +51,3 @@ plot.bh.test <- function(obj) {
 #          plot.title = element_text(hjust = 0.5))
 }
 
-bh <- bayerhanck(consumption ~ investment, data = Lutkephol)
-plot.bh.test(bh)
-
