@@ -1,22 +1,21 @@
-plot.bh.test <- function(obj) {
+plot.bh.test <- function(object) {
 
   # Obtain Parameters from the Bayerhanck object
 
-  K <- obj$K
-  if (identical(obj$trend, "none"))
+  K <- object$K
+  if (identical(object$trend, "none"))
     trendtype <- 1
-  if (identical(obj$trend, "const"))
+  if (identical(object$trend, "const"))
     trendtype <- 2
-  if (identical(obj$trend, "trend"))
+  if (identical(object$trend, "trend"))
     trendtype <- 3
 
-  bh.stat <- obj$bh.test
-  stat.type <- obj$test.typ
-  crit <- obj$crit
+  bh.stat <- object$bh.test
+  stat.type <- object$test.typ
+  crit <- object$crit
 
 
-
-  basecase <- 44 * (trendtype - 1) + 4 * (nvar - 2)
+  basecase <- 44 * (trendtype - 1) + 4 * (object$nvar - 2)
 
   load("null_dist.rda")
   i <- basecase
