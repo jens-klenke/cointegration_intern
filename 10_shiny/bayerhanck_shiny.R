@@ -69,7 +69,7 @@ body <- dashboardBody(
                               multiple = FALSE, choices = NULL,
                               selected = NULL),
                   selectInput(inputId = "IndVar", label = "Independent Variables", 
-                              multiple = FALSE, choices = NULL)),
+                              multiple = TRUE, choices = NULL)),
             )
     )
   )
@@ -109,12 +109,13 @@ server <- function(input, output, session) {
           return(NULL)
       df <- readr::read_csv(inFile$datapath)
       invisible(capture.output(
-      bh <- bayerhanck(get(input$DepVar) ~ get(input$IndVar),
+      bh <- bayerhanck(reformulate(
+          req(input$IndVar), req(input$DepVar)),
                        data = df, 
                        lags = input$Lags,
                        trend = input$Trend,
-                         test = input$Test#,
-                         #crit = input$Critical
+                       test = input$Test#,
+                       #crit = input$Critical
                        )))
       summary(bh)
   })
@@ -138,5 +139,6 @@ server <- function(input, output, session) {
 
 
 shinyApp(ui, server)
+
 
 
