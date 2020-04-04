@@ -5,3 +5,5 @@ export(bayerhanck)
 export(boswijk)
 export(englegranger)
 export(johansen)
+
+importFrom(magrittr,"%>%")

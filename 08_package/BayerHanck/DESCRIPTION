@@ -17,7 +17,8 @@ Imports:
     stats,
     base,
     dplyr,
-    ggplot2
+    ggplot2,
+    magrittr
 Suggests: 
     knitr,
     rmarkdown
