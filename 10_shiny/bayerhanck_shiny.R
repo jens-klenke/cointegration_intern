@@ -100,10 +100,10 @@ server <- function(input, output, session) {
             test = input$Test#,
             #crit = input$Critical
         )))
-    plot(bh)
+    plot(bh, "dark")
     
     
-    #ggplot(data = iris) +
+    
     #  geom_density(aes(x = Sepal.Length), col = "#18825B", linetype = 5, 
     #               fill = "#18825B", alpha = 0.3) +
     #  theme(plot.background = element_rect(fill = "#1B2B37", colour = "#1B2B37"),
