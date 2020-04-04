@@ -15,8 +15,7 @@ Imports:
     tsDyn,
     urca,
     stats,
-    base,
-    dplyr
+    base
 Suggests: 
     knitr,
     rmarkdown

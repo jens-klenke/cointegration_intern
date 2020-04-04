@@ -1,24 +1,25 @@
-plot.bh.test <- function(object) {
+plot.bh.test <- function(obj) {
 
   # Obtain Parameters from the Bayerhanck object
 
-  K <- object$K
-  if (identical(object$trend, "none"))
+  K <- obj$K
+  if (identical(obj$trend, "none"))
     trendtype <- 1
-  if (identical(object$trend, "const"))
+  if (identical(obj$trend, "const"))
     trendtype <- 2
-  if (identical(object$trend, "trend"))
+  if (identical(obj$trend, "trend"))
     trendtype <- 3
 
-  bh.stat <- object$bh.test
-  stat.type <- object$test.typ
-  crit <- object$crit
+  bh.stat <- obj$bh.test
+  stat.type <- obj$test.typ
+  crit <- obj$crit
 
 
-  basecase <- 44 * (trendtype - 1) + 4 * (object$nvar - 2)
+
+  basecase <- 44 * (trendtype - 1) + 4 * (nvar - 2)
 
   load("null_dist.rda")
-  i <- object$basecase
+  i <- basecase
 
   df_gg <- null_dist%>%
     dplyr::select(as.name(paste0('var', i)))%>%
@@ -29,7 +30,7 @@ plot.bh.test <- function(object) {
     stat_ecdf(geom = "step")+
     geom_vline(xintercept = bh.stat, linetype = "dashed",
                color = "red", size = 1)+
-    annotate("text", x = (bh.stat*1.05), y = 0.5, label = paste('B-H-S \n', round( bh.stat,2)),
+    annotate("text", x = (bh.stat*1.05), y = 0.5, label = paste('B-H-S \n', round( bh.stat,2)) ,
              colour = 'red')+
     labs( x = "\n \n Bayer-Hanck-Statistic", y = "F(Bayer-Hanck-Statistic) \n",
           title = 'Empirical Cumulative Distribution Function')+
