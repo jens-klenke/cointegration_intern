@@ -21,9 +21,11 @@ plot.bh.test <- function(object) {
   i <- basecase
 
   df_gg <- null_dist%>%
-    dplyr::select(as.name(paste0('var', i)))%>%
-    dplyr::mutate(y = rep(1/nrow(null_dist), nrow(null_dist)))
+    dplyr::select(paste0('var', i))%>%
+   dplyr::mutate(y = rep(1/nrow(null_dist), nrow(null_dist)))
   colnames(df_gg) <- c('x', 'y')
+
+
 
   ggplot2::ggplot(data = df_gg, ggplot2::aes(x = x))+
     ggplot2::stat_ecdf(geom = "step")+
