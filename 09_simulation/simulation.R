@@ -1,127 +1,42 @@
-#### Parameters
+#### Main part ####
+#sub functions
+# Ohrnstein Uhlenbeck Process"
+BU <- function(uu,d){
+    tt <-dim(uu)[1] 
+    rho <- (1+d/tt)
+    v <- matrix(rep(0, length(uu)), nrow = tt)
+    v[ ,1] <- uu[,1]
+    for (t in 2:tt){
+        v[t,] <- rho*v[t-1, ] + uu[t, ]
+    }
+    B <- v/sqrt(tt)
+}
 
-#load(here::here('09_simulation/sim_sub_functions.R'))
-#asy <- function(savecv){
-# This function calculates/simulates the asymptotic distributions of the
-# various co-integration tests. It returns a
-# scalar equal to 1 when done.
-# If SAVECV is equal to 1, it saves the Array of Critical values CV
-# in critical_values.mat and the distributions under the Null
-# NULLDISTR in NullDistributions.mat
-# In addition it provides asymptotic power results, results saved in
-# workspace.mat
-#--------------------------------------------------------------------------
-# The Array NullDistr is organized as follows (neccessary for asytest.m)
-# NullDistr cols  1: EngleGranger,      CV dim 3: nvars-1
-#                 2: Johansen,          CV dim 4: deterministics (trend+1)
-#                 3: ErrCorr,
-#                 4: Boswijk
-#--------------------------------------------------------------------------
-# Critical values in critval.mat, Array CV are organised as follows:
-#  CV: rows:  1:  Boswijk           CV cols : nvars-1
-#             2:  ErrCorr           CV dim 3: deterministics (trend+1)
-#             3:  Johansen          CV dim 4: LvL 1# 5# 10#
-#             4:  EngleGranger
-#             5:  FisherBECR;
-#             6:  FisherBJ
-#             7:  FisherBE
-#             8:  FisherEJ
-#             9:  FisherBJE
-#             10: FisherBECRJ
-#             11: FisherBECRJE"
-#             12: InvNormBJE
-#             13: MinBECR
-#             14: MinEJ
-#--------------------------------------------------------------------------"
+###rankindx
+rankindx <- function(a,b){
+    A <- dim(matrix(a))
+    aux <-cbind(a, 1:A[1])
+    aux <- aux[order(aux[,b]),]
+    aux <- cbind(aux, 1:A[1])
+    aux <- aux[order(aux[,A[2]+1]),]
+    rankindx <- aux[ ,ncol(aux)]
+    return(rankindx)
+}
 
-#--------------------------------------------------------------------------"
+###### Parameters
+# savecv=0; # Save Critical values"
+R2 <- seq(0, 0.95, 0.05)
 
-#asy(1) # function call
+T <- 100
+#c <- c(-(seq(0,30,1)))
+c = 0
+kmax <- 11 #  max of Variables
+rep <- 25000# Number of Repetitions 25000
+cases <- 3 # cases 
+lambda <- (seq(1:T)/T) # (1/T:1/T:1)
 
 
-## UR-Test Correction factors (Obtained in different GAUSS Code)
-# UR-EJ"
 
- CritValCorrJohansenMultEJ <-  matrix( c(1.1, 1.077, 1.065,
-                                        1.08, 1.076, 1.068,
-                                        1.074, 1.063, 1.064,
-                                        1.066, 1.059, 1.056,
-                                        1.061, 1.055, 1.053,
-                                        1.052, 1.051, 1.052,
-                                        1.049, 1.047, 1.054,
-                                        1.045, 1.045, 1.043,
-                                        1.045, 1.042, 1.043,
-                                        1.043, 1.043, 1.038,
-                                        1.04, 1.039, 1.037),
-                                      ncol = 3, byrow = TRUE)
-
-CritValCorrEngleGrangerMultEJ <-  matrix( c( 1.065, 1.05, 1.043,
-                                             1.058, 1.052, 1.044,
-                                             1.055, 1.049, 1.046,
-                                             1.051,	1.045, 1.042,
-                                             1.048,	1.045, 1.041,
-                                             1.046, 1.044, 1.04,
-                                             1.045, 1.042, 1.035,
-                                             1.042, 1.041, 1.039,
-                                             1.04,	1.038, 1.039,
-                                             1.039,	1.035, 1.037,
-                                             1.038,	1.037, 1.035),
-                                          ncol = 3, byrow = TRUE)
-
-# UR-BJ
-
-CritValCorrJohansenMultBJ <- matrix( c( 1.101, 1.083, 1.07,
-                                        1.084, 1.082, 1.075,
-                                        1.075, 1.067, 1.068,
-                                        1.071, 1.063, 1.061,
-                                        1.063, 1.058, 1.055,
-                                        1.056, 1.052, 1.054,
-                                        1.05, 1.053, 1.049,
-                                        1.047, 1.048, 1.045,
-                                        1.044, 1.042, 1.046,
-                                        1.044, 1.161, 1.039,
-                                        1.043, 1.039, 1.039),
-                                     ncol = 3 , byrow = TRUE)
-
-CritValCorrBoswijkMultBJ <-  matrix( c( 1.128, 1.104, 1.093,
-                                        1.131, 1.11, 1.095,
-                                        1.122, 1.104, 1.096,
-                                        1.107, 1.099, 1.09,
-                                        1.103, 1.094, 1.088,
-                                        1.096, 1.091, 1.085,
-                                        1.092, 1.082, 1.082,
-                                        1.089, 1.08, 1.081,
-                                        1.085, 1.081, 1.078,
-                                        1.079, 1.008, 1.075,
-                                        1.072, 1.076, 1.071),
-                                     ncol = 3, byrow = TRUE)
-
-# UR-BERC
-CritValCorrErrCorrMultBERC <- matrix( c( 1.049, 1.022, 1.018,
-                                         1.046,	1.028, 1.023,
-                                         1.046, 1.033, 1.023,
-                                         1.042, 1.033, 1.028,
-                                         1.04, 1.032, 1.029,
-                                         1.041, 1.034, 1.028,
-                                         1.039, 1.035, 1.029,
-                                         1.036, 1.032, 1.028,
-                                         1.034,	1.032, 1.028,
-                                         1.034, 1.031, 1.03,
-                                         1.035, 1.032, 1.028),
-                                      ncol = 3, byrow = TRUE)
-
-CritValCorrBoswijkMultBERC <- matrix( c( 1.077, 1.042, 1.032,
-                                         1.075, 1.052, 1.038,
-                                         1.07, 1.053, 1.038,
-                                         1.057, 1.053, 1.043,
-                                         1.058, 1.049, 1.043,
-                                         1.06,	1.051, 1.044,
-                                         1.056,	1.055, 1.045,
-                                         1.05,	1.044, 1.044,
-                                         1.049,	1.047, 1.044,
-                                         1.046,	1.041, 1.043,
-                                         1.047,	1.045, 1.041),
-                                      ncol = 3, byrow = TRUE)
 
 
 # Initalisierung 
@@ -240,48 +155,8 @@ cv_B_ECR_J_E_3 <- matrix(NA, nrow = kmax, ncol = cases)
 
 
 
-#### Main part ####
-#load sim_sub_function by hand!!
- 
-# savecv=0; # Save Critical values"
-R2 <- seq(0, 0.95, 0.05)
 
-T <- 1000
-#c <- c(-(seq(0,30,1)))
-c = 0
-kmax <- 11 #  max of Variables
-rep <- 25000 # Number of Repetitions 25000
-cases <- 3 # cases 
-lambda <- (seq(1:T)/T) # (1/T:1/T:1)
 
-# Initialize Power Curves:"
-# (1) Underlying Tests
-BoswijkLocalAsyPower <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-JohansenLocalAsyPower <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-EngleGrangerLocalAsyPower <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-ErrCorrLocalAsyPower <-array(NA, dim = c(kmax, cases, length(c), length(R2)))
-
-#(2) UR-Tests
-UnionRejectionLocalAsyPowerBJAsymmMult <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-UnionRejectionLocalAsyPowerBERCAsymmMult <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-UnionRejectionLocalAsyPowerEJAsymmMult <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-
-#(3) Fisher type Tests
-FisherLocalAsyPowerEJ <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-FisherLocalAsyPowerBJ <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-FisherLocalAsyPowerBE <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-FisherLocalAsyPowerBECR <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-FisherLocalAsyPowerBJE <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-FisherLocalAsyPowerEJw <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-FisherLocalAsyPowerBECRJE <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-FisherLocalAsyPowerBECRJ <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-
-#(4) Inverse Normal type Test
-#InvNormLocalAsyPowerBJE <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-
-#(5) Minimum tests"
-MinLocalAsyPowerBERC <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
-MinLocalAsyPowerEJ <- array(NA, dim = c(kmax, cases, length(c), length(R2)))
 
 for (k in 1:kmax){# Number of Regressor Loop"
     for (dets in 1:cases){# Number of cases Loop"
@@ -342,9 +217,9 @@ for (k in 1:kmax){# Number of Regressor Loop"
                     BoswijkStat[j] <- c_run^2*J12dc_sq + 2*c_run*sqrt(T)*J12DW2 + WdcDW2%*%WdcWdci%*%WdcDW2
                     if (cc == 1 && rr == 1){
                         NullStatBoswijk[j] <- BoswijkStat[j]
-                    } else {
-                        BoswijkPValue[j] <- 1- min(abs(BoswijkStat[j]- NullDistrBoswijk))/rep+10^(-10000)
-                    }
+                    }# else {
+                      #  BoswijkPValue[j] <- 1- min(abs(BoswijkStat[j]- NullDistrBoswijk))/rep+10^(-10000)
+                    #}
 
                     # -------------------------------- Johansen -------------------------------- */"
 
@@ -355,10 +230,7 @@ for (k in 1:kmax){# Number of Regressor Loop"
                     JohansenStat[j] <- max(eigen(Wdc_dW_pr%*%WdcWdci%*%dW_Wdc_pr+t(Gc)%*%WdcWdci%*%dW_Wdc_pr+ t(dW_Wdc_pr)%*%WdcWdci%*%Gc+t(Gc)%*%WdcWdci%*%Gc)$values)
                     if (cc == 1 && rr == 1){
                         NullStatJohansen[j] <- JohansenStat[j]
-                    } else {
-                        JohansenPValue [j] <- 1-min(abs(JohansenStat[j]-NullDistrJohansen))/rep+10.^(-1000)
                     }
-
                     # -------------------------------- Engle-Granger -------------------------------- */"
 
                     etadc <-matrix(c( (-W1dW1di%*%(apply(W1d[1:T-1,] * matrix(rep(J12dc[1:T-1,], k),ncol = k), 2, mean))) , 1), ncol = 1)
@@ -373,8 +245,6 @@ for (k in 1:kmax){# Number of Regressor Loop"
                     
                     if (cc == 1 && rr == 1){
                         NullStatEngleGranger[j] <- EngleGrangerStat[j]
-                    } else {
-                        EngleGrangerPValue[j] <- min(abs(EngleGrangerStat[j]-NullDistrEngleGranger))/rep
                     }
 
                     # -------------------------------- ECR (Banerjee) -------------------------------- */"
@@ -383,10 +253,8 @@ for (k in 1:kmax){# Number of Regressor Loop"
                     nenner <- (sqrt(as.complex( t(J12dc_sq) - W1dJ12dc%*%W1dW1di%*%W1dJ12dc)))
                     ErrCorrStat[j] <- c_run*sqrt(as.complex(t(J12dc_sq)-W1dJ12dc%*%W1dW1di%*%W1dJ12dc)) + zaehler/nenner
                     
-                    if (cc == 1){# here we condition on each R2 because the r2=0 c.v. turned out not to be good for R2 very large >0.75*/"
-                        NullStatErrCorr[j] <- Re(ErrCorrStat[j])# a 0 plus imaginary occurred once... */"
-                    } else {
-                        ErrCorrPValue[j] <- min(abs(Re(ErrCorrStat[j])-NullDistrErrCorr))/rep
+                    if (cc == 1){
+                        NullStatErrCorr[j] <- Re(ErrCorrStat[j])
                     }
 
                 }#rep loop end"
@@ -400,7 +268,6 @@ for (k in 1:kmax){# Number of Regressor Loop"
                 if (cc == 1 && rr == 1){
                     BoswijkPValue <- 1- rankindx(NullStatBoswijk,1)/rep+10.^(-1000)
                 }
-                BoswijkLocalAsyPower[k,dets,cc,rr] <- mean((BoswijkStat > CritvalBoswijk))
 
                 NullDistrJohansen <- sort(NullStatJohansen)
                 CritvalJohansen <- NullDistrJohansen[rep*.95]
@@ -410,7 +277,6 @@ for (k in 1:kmax){# Number of Regressor Loop"
                 if (cc == 1 && rr == 1){
                     JohansenPValue <- 1-rankindx(NullStatJohansen,1)/rep+10.^(-1000)
                 }
-                JohansenLocalAsyPower[k,dets,cc,rr] <- mean((JohansenStat > CritvalJohansen))
 
                 NullDistrEngleGranger <- sort(NullStatEngleGranger)
                 CritvalEngleGranger <- NullDistrEngleGranger[rep*0.05]
@@ -420,7 +286,7 @@ for (k in 1:kmax){# Number of Regressor Loop"
                 if (cc == 1 && rr == 1){
                     EngleGrangerPValue <- rankindx(NullStatEngleGranger,1)/rep+10.^(-1000)
                 }
-                EngleGrangerLocalAsyPower[k,dets,cc,rr] = mean((EngleGrangerStat <= CritvalEngleGranger))
+
 
                 NullDistrErrCorr <- sort(NullStatErrCorr)
                 CritvalErrCorr <- NullDistrErrCorr[rep*0.05]
@@ -433,15 +299,7 @@ for (k in 1:kmax){# Number of Regressor Loop"
                         CritValErrCorr3 <- NullDistrErrCorr[rep*0.10]
                     }
                 }
-             #   ErrCorrLocalAsyPower[k,dets,cc,rr] = mean((Re(ErrCorrStat) <= Re(CritvalErrCorr)))
-
-                # -------------------------------- Union of Rejections -------------------------------- */"
-                UnionRejectionStatEJAsymmMult <- (EngleGrangerStat*(EngleGrangerStat < CritvalEngleGranger*CritValCorrEngleGrangerMultEJ[k,dets]) < CritvalEngleGranger*CritValCorrEngleGrangerMultEJ[k,dets]) + (JohansenStat*(EngleGrangerStat > CritvalEngleGranger*CritValCorrEngleGrangerMultEJ[k,dets]) > CritvalJohansen*CritValCorrJohansenMultEJ[k,dets])
-                UnionRejectionLocalAsyPowerEJAsymmMult[k,dets,cc,rr] <- mean(UnionRejectionStatEJAsymmMult)
-                UnionRejectionStatBJAsymmMult <- (BoswijkStat*(BoswijkStat > CritvalBoswijk*CritValCorrBoswijkMultBJ[k,dets]) > CritvalBoswijk*CritValCorrBoswijkMultBJ[k,dets]) + (JohansenStat*(BoswijkStat < CritvalBoswijk*CritValCorrBoswijkMultBJ[k,dets]) > CritvalJohansen*CritValCorrJohansenMultBJ[k,dets])
-                UnionRejectionLocalAsyPowerBJAsymmMult[k,dets,cc,rr] <- mean(UnionRejectionStatBJAsymmMult)
-                UnionRejectionStatBERCAsymmMult <- (BoswijkStat*(BoswijkStat > CritvalBoswijk*CritValCorrBoswijkMultBERC[k,dets]) > CritvalBoswijk*CritValCorrBoswijkMultBERC[k,dets]) + (Re(ErrCorrStat)*(BoswijkStat < CritvalBoswijk*CritValCorrBoswijkMultBERC[k,dets]) < CritvalErrCorr*CritValCorrErrCorrMultBERC[k,dets])
-                UnionRejectionLocalAsyPowerBERCAsymmMult[k,dets,cc,rr] <- mean(UnionRejectionStatBERCAsymmMult)
+         
 
 ## -------------------------------- Fisher Type Tests --------------------------------"
                 # Define Statistics" # ErrCorrPValue
@@ -597,48 +455,6 @@ for (k in 1:kmax){# Number of Regressor Loop"
                     
                }
 
-                # Evaluate Local Power"
-           #     FisherLocalAsyPowerEJ[k,dets,cc,rr] <- mean((FisherStatEJ > CritvalFisherEJ))
-            #    FisherLocalAsyPowerBJ[k,dets,cc,rr] <- mean((FisherStatBJ > CritvalFisherBJ))
-             #   FisherLocalAsyPowerBE[k,dets,cc,rr] <- mean((FisherStatBE > CritvalFisherBE))
-              #  FisherLocalAsyPowerBJE[k,dets,cc,rr] <- mean((FisherStatBJE > CritvalFisherBJE))
-               # FisherLocalAsyPowerBECR[k,dets,cc,rr] <- mean((FisherStatBECR > CritvalFisherBECR))
-                #FisherLocalAsyPowerBECRJE[k,dets,cc,rr] <- mean((FisherStatBECRJE > CritvalFisherBECRJE))
-        #        FisherLocalAsyPowerBECRJ[k,dets,cc,rr] <- mean((FisherStatBECRJ > CritvalFisherBECRJ))
-         #       FisherLocalAsyPowerEJw[k,dets,cc,rr] <- mean((FisherStatEJw > CritvalFisherEJw))
-
-                ## -------------------------------- Inverse Normal -------------------------------- */"
-#                InvNormStatBJE <- 1/sqrt(3)*(norminv(EngleGrangerPValue)+norminv(JohansenPValue)+norminv(BoswijkPValue))"
-#                if (cc == 1 && rr == 1){
-#                    NullDistrInvNormBJE <- sort(InvNormStatBJE)
-#                    CritvalInvNormBJE <- NullDistrInvNormBJE[rep*.05]
-#                    CritvalInvNormBJE1 <- NullDistrInvNormBJE[rep*.01]
-#                    CritvalInvNormBJE2 <- NullDistrInvNormBJE[rep*.05]
-#                    CritvalInvNormBJE3 <- NullDistrInvNormBJE[rep*.10]
-#                }
-#                InvNormLocalAsyPowerBJE[k,dets,cc,rr]=mean((InvNormStatBJE <= CritvalInvNormBJE))  #condition not right
-                ## -------------------------------- Min Pval -------------------------------- *"
-                # Define Test Statistics"
-                MinStatBECR <- min(ErrCorrPValue,BoswijkPValue)
-                MinStatEJ <- min(EngleGrangerPValue,JohansenPValue)
-
-                if (cc == 1 && rr == 1){# Calculate Critical Values"
-                    NullDistrMinBECR <- sort(MinStatBECR)
-                    CritvalMinBECR <- NullDistrMinBECR[rep*.05]
-                    CritvalMinBECR1 <- NullDistrMinBECR[rep*.01]
-                    CritvalMinBECR2 <- NullDistrMinBECR[rep*.05]
-                    CritvalMinBECR3 <- NullDistrMinBECR[rep*.10]
-
-                    NullDistrMinEJ <- sort(MinStatEJ)
-                    CritvalMinEJ <- NullDistrMinEJ[rep*.05]
-                    CritvalMinEJ1 <- NullDistrMinEJ[rep*.01]
-                    CritvalMinEJ2 <- NullDistrMinEJ[rep*.05]
-                    CritvalMinEJ3 <- NullDistrMinEJ[rep*.10]
-                }
-
-                # Local Power"
-         #       MinLocalAsyPowerBERC[k,dets,cc,rr] <- mean((MinStatBECR < CritvalMinBECR))
-          #      MinLocalAsyPowerEJ[k,dets,cc,rr] <- mean((MinStatEJ < CritvalMinEJ))
 
             }# R2"
         }# c"
@@ -769,13 +585,6 @@ for (k in 1:kmax){# Number of Regressor Loop"
         
     }# dets */"
 }# k */"
-#save workspace
-#if (savecv==1){
-#   save critical_values CV
-#    save NullDistributions NullDistr"
-#}
 
-
-##### Am Ende muss du alles in einer RDATA datei laden 
 
 
