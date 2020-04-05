@@ -38,16 +38,18 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
                      choices = c("none", "const", "trend"))
   test <- match.arg(test,
                     choices = c("eg-j", "all"))
+  crit <- match.arg(as.character(crit),
+                    c(0.01, 0.05, 0.10))
 
-  #if (nrow(x) == 0L)
-  #  stop("0 (non-NA) cases")
-  #if (NROW(y) != nrow(x))
-  #  stop("Incompatible dimensions")
+  if (nrow(x) == 0)
+    stop("0 (non-NA) cases")
+  if (NROW(y) != nrow(x))
+    stop("Incompatible dimensions")
   lag <- lags
   if (lag < 0)
-    stop("Lags must be set to an non negative value.")
+    stop("Lags must be set to a non negative value.")
   if (crit < 0)
-    warning("Level of critical value must be set to a non negative.")
+    stop("Level of critical value must be set to a non negative.")
 
     #-----------------------------------------------------------------------------------------
   # Code trendtypes

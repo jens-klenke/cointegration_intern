@@ -32,6 +32,14 @@ boswijk <- function(formula, data, lags = 1, trend = "const"){
   x <- model.matrix(mt, mf)[, -1]
   trend <- match.arg(trend,
                      choices = c("none", "const", "trend"))
+  if (nrow(x) == 0)
+    stop("0 (non-NA) cases")
+  if (NROW(y) != nrow(x))
+    stop("Incompatible dimensions")
+  lag <- lags
+  if (lag < 0)
+    stop("Lags must be set to a non negative value.")
+
 
   #-----------------------------------------------------------------------------------------
   # Lag Matrix
