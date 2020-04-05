@@ -22,6 +22,8 @@ johansen <- function(formula, data, type = "eigen", lags = 1, trend = "const"){
   #-----------------------------------------------------------------------------------------
   mf <- match.call()
   m <- match(c("formula", "data"), names(mf), 0L)
+  if (is.null(data))
+    stop()
   mf <- mf[c(1L, m)]
   mf[[1L]] <- quote(stats::model.frame)
   mf <- eval(mf, parent.frame())
