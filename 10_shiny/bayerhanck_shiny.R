@@ -13,7 +13,8 @@ sidebar <- dashboardSidebar(
     menuItem("Data", tabName = "Data", icon = icon("chart-bar")),
     sliderInput("Lags", "Number of Lags included:", 
                 min = 0, max = 20, 
-                value = 1),
+                value = 1,
+                step = 1),
     radioButtons("Trend", "Deterministic components to be included:",
                  choices = as.list(c("none", "const", "trend")), 
                  selected = "const"),
@@ -21,8 +22,9 @@ sidebar <- dashboardSidebar(
                  choices = as.list(c("eg-j", "all")),
                  selected = "all"),
     radioButtons("Critical", "Level for the critical value:",
-                 choices = as.list(c(0.01, 0.05, 0.1)),
-                 selected = 0.05))
+                 choices = as.list(c("0.01", "0.05", "0.10")),
+                 selected = "0.05")
+  )
 )
 
 #-----------------------------------------------------------------------------------------
@@ -97,9 +99,9 @@ server <- function(input, output, session) {
             data = dat, 
             lags = input$Lags,
             trend = input$Trend,
-            test = input$Test#,
-            #crit = input$Critical
-        )))
+            test = input$Test,
+            crit = as.numeric(input$Critical))
+        ))
     plot(bh, "dark")
   })
   output$bh_test <- renderPrint({
@@ -113,8 +115,8 @@ server <- function(input, output, session) {
                        data = dat, 
                        lags = input$Lags,
                        trend = input$Trend,
-                       test = input$Test#,
-                       #crit = input$Critical
+                       test = input$Test,
+                       crit = as.numeric(input$Critical)
                        )))
       summary(bh)
   })
