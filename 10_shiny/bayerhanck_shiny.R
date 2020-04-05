@@ -101,20 +101,6 @@ server <- function(input, output, session) {
             #crit = input$Critical
         )))
     plot(bh, "dark")
-    
-    
-    
-    #  geom_density(aes(x = Sepal.Length), col = "#18825B", linetype = 5, 
-    #               fill = "#18825B", alpha = 0.3) +
-    #  theme(plot.background = element_rect(fill = "#1B2B37", colour = "#1B2B37"),
-    #        panel.background = element_rect(fill = "#1B2B37"),
-    #        panel.grid.major.y = element_line(size = 0.3, colour = "#546069"),
-    #        panel.grid.minor.y = element_blank(),
-    #        panel.grid.major.x = element_line(size = 0.3, colour = "#546069"),
-    #        panel.grid.minor.x = element_blank(),
-    #        axis.text = element_text(colour = "#FFFFFF"),
-    #        axis.line = element_line(size = 0.3, colour = "#546069"),
-    #        axis.title = element_text(colour = "#FFFFFF"))
   })
   output$bh_test <- renderPrint({
       inFile <- input$csv_file
