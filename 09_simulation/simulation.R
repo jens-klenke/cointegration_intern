@@ -12,7 +12,7 @@ BU <- function(uu,d){
     B <- v/sqrt(tt)
 }
 
-###rankindx
+## rankindx
 rankindx <- function(a,b){
     A <- dim(matrix(a))
     aux <-cbind(a, 1:A[1])
@@ -27,7 +27,7 @@ rankindx <- function(a,b){
 # savecv=0; # Save Critical values"
 R2 <- seq(0, 0.95, 0.05)
 
-T <- 100
+T <- 10
 #c <- c(-(seq(0,30,1)))
 c = 0
 kmax <- 11 #  max of Variables
@@ -158,9 +158,9 @@ cv_B_ECR_J_E_3 <- matrix(NA, nrow = kmax, ncol = cases)
 
 ### foreach -> k 
 
-for (k in 1:kmax){# Number of Regressor Loop"
-    for (dets in 1:cases){# Number of cases Loop"
-        # initialization of Null Distribution of Test statistic"
+for (k in 1:kmax){# Number of Regressor Loop
+    for (dets in 1:cases){# Number of cases Loop
+        # initialization of Null Distribution of Test statistic
         NullStatBoswijk <- rep(NA, rep)
         NullStatJohansen <- rep(NA, rep)
         NullStatEngleGranger <- rep(NA, rep)
@@ -188,7 +188,7 @@ for (k in 1:kmax){# Number of Regressor Loop"
                 
                 # Loop over repetitions"
                 for (j in 1:rep){
-                    u <- matrix( rnorm(T*(k+1)), nrow = T, ncol = k+1) # Draw random Shocks"
+                    u <- matrix(rnorm(T*(k+1)), nrow = T, ncol = k+1) # Draw random Shocks"
                     W1 <- apply(matrix(u[, 1:k], ncol = k),2,cumsum)/sqrt(T)
                     u12 <- matrix(sqrt(R2run/(1-R2run))*(u[,1:k]%*% matrix(rep(1, k),ncol = 1))/sqrt(k) + u[ ,k+1], ncol = 1)#Matrix multiplication
                     J12 <- BU(u12,c_run)#Ohrnstein Uhlenbeck Process"
@@ -213,14 +213,12 @@ for (k in 1:kmax){# Number of Regressor Loop"
                     W1dJ12dc <- apply(W1d[1:T-1,] * matrix(rep(J12dc[1:T-1,],k),ncol = k), 2, mean) 
                     J12dc_sq <- mean(J12dc[1:T-1]^2)
                     J12DW2 <- mean(J12dc[1:T-1] * u[2:T,k+1])
+                    
                     # -------------------------------- Boswijk------------------------"
                     BoswijkStat[j] <- c_run^2*J12dc_sq + 2*c_run*sqrt(T)*J12DW2 + WdcDW2%*%WdcWdci%*%WdcDW2
                     if (cc == 1 && rr == 1){
                         NullStatBoswijk[j] <- BoswijkStat[j]
-                    }# else {
-                      #  BoswijkPValue[j] <- 1- min(abs(BoswijkStat[j]- NullDistrBoswijk))/rep+10^(-10000)
-                    #}
-
+                    }
                     # -------------------------------- Johansen -------------------------------- */"
 
                     Gc <- matrix(apply(Wdc*matrix(rep(J12dc, ncol(Wdc)), ncol = ncol(Wdc)),2 ,mean), ncol = 1)%*%t(matrix(c(rep(0,k), c_run)/sqrt(T), ncol = 1))
@@ -231,6 +229,7 @@ for (k in 1:kmax){# Number of Regressor Loop"
                     if (cc == 1 && rr == 1){
                         NullStatJohansen[j] <- JohansenStat[j]
                     }
+                    
                     # -------------------------------- Engle-Granger -------------------------------- */"
 
                     etadc <-matrix(c( (-W1dW1di%*%(apply(W1d[1:T-1,] * matrix(rep(J12dc[1:T-1,], k),ncol = k), 2, mean))) , 1), ncol = 1)
@@ -257,16 +256,16 @@ for (k in 1:kmax){# Number of Regressor Loop"
                         NullStatErrCorr[j] <- Re(ErrCorrStat[j])
                     }
 
-                }#rep loop end"
+                }#rep loop end
 
-                ## Write Null Distributions and Critical Values for underlying tests"
+                ## Write Null Distributions and Critical Values for underlying tests
                 NullDistrBoswijk <- sort(NullStatBoswijk)
                 CritvalBoswijk <- NullDistrBoswijk[rep*.95]
                 CritvalBoswijk1 <- NullDistrBoswijk[rep*.99]
                 CritvalBoswijk2 <- NullDistrBoswijk[rep*.95]
                 CritvalBoswijk3 <- NullDistrBoswijk[rep*.90]
                 if (cc == 1 && rr == 1){
-                    BoswijkPValue <- 1- rankindx(NullStatBoswijk,1)/rep+10.^(-1000)
+                    BoswijkPValue <- 1 - rankindx(NullStatBoswijk,1)/rep+10^(-1000)
                 }
 
                 NullDistrJohansen <- sort(NullStatJohansen)
@@ -275,7 +274,7 @@ for (k in 1:kmax){# Number of Regressor Loop"
                 CritvalJohansen2 <- NullDistrJohansen[rep*.95]
                 CritvalJohansen3 <- NullDistrJohansen[rep*.90]
                 if (cc == 1 && rr == 1){
-                    JohansenPValue <- 1-rankindx(NullStatJohansen,1)/rep+10.^(-1000)
+                    JohansenPValue <- 1-rankindx(NullStatJohansen,1)/rep+10^(-1000)
                 }
 
                 NullDistrEngleGranger <- sort(NullStatEngleGranger)
@@ -284,15 +283,14 @@ for (k in 1:kmax){# Number of Regressor Loop"
                 CritvalEngleGranger2 <- NullDistrEngleGranger[rep*0.05]
                 CritvalEngleGranger3 <- NullDistrEngleGranger[rep*0.10]
                 if (cc == 1 && rr == 1){
-                    EngleGrangerPValue <- rankindx(NullStatEngleGranger,1)/rep+10.^(-1000)
+                    EngleGrangerPValue <- rankindx(NullStatEngleGranger,1)/rep+10^(-1000)
                 }
-
 
                 NullDistrErrCorr <- sort(NullStatErrCorr)
                 CritvalErrCorr <- NullDistrErrCorr[rep*0.05]
 
                 if (cc == 1){
-                    ErrCorrPValue <- rankindx(NullStatErrCorr,1)/rep+10.^(-1000)
+                    ErrCorrPValue <- rankindx(NullStatErrCorr,1)/rep+10^(-1000)
                     if (rr==1){
                         CritValErrCorr1 <- NullDistrErrCorr[rep*0.01]
                         CritValErrCorr2 <- NullDistrErrCorr[rep*0.05]
@@ -300,7 +298,6 @@ for (k in 1:kmax){# Number of Regressor Loop"
                     }
                 }
          
-
 ## -------------------------------- Fisher Type Tests --------------------------------"
                 # Define Statistics" # ErrCorrPValue
                 # 2 tests 
@@ -455,19 +452,20 @@ for (k in 1:kmax){# Number of Regressor Loop"
                     
                }
 
+                print('------------------')
+                print(paste('Simultet: R2 = ', R2run, 'which is the', rr ,'of' , length(R2)))
+                print('------------------')
+                print('')
+                print(paste('Simultet: Case = ', dets, 'which is the', dets ,'of' , max(cases)))
+                print('')
+                print('------------------')
+                print('')
+                
 
             }# R2"
         }# c"
         
-        print('------------------')
-        print(paste('Simultet: R2 = ', R2run, 'which is the', rr ,'of' , length(R2)))
-        print('------------------')
-        print('')
-        print(paste('Simultet: Case = ', dets, 'which is the', dets ,'of' , max(cases)))
-        print('')
-        print('------------------')
-        print('')
-
+        
 ###### storing 
         
         #Füllen
