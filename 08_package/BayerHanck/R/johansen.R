@@ -34,6 +34,9 @@ johansen <- function(formula, data, type = "eigen", lags = 1, trend = "const"){
   #-----------------------------------------------------------------------------------------
   # Johansen Test
   #-----------------------------------------------------------------------------------------
+  if (identical(trend, "trend"))
+    trend = "both"
+
   jo_vec <- tsDyn::VECM(x, lag = lags,
                         include = trend, # Bezeichnung Trend anpassen
                         estim = "ML")

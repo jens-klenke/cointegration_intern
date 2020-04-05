@@ -124,22 +124,21 @@ server <- function(input, output, session) {
       inFile <- input$csv_file
       if (is.null(inFile))
           return(NULL)
-      df <- readr::read_csv(inFile$datapath)
+      dat <- readr::read_csv(inFile$datapath)
       updateSelectInput(session, "IndVar",
-                        choices = as.list(names(select_if(df, is.numeric))))
+                        choices = as.list(names(select_if(dat, is.numeric))))
   })
   observeEvent(input$csv_file, {
       inFile <- input$csv_file
       if (is.null(inFile))
           return(NULL)
-      df <- readr::read_csv(inFile$datapath)
+      dat <- readr::read_csv(inFile$datapath)
       updateSelectInput(session, "DepVar",
-                        choices = as.list(names(select_if(df, is.numeric))))
+                        choices = as.list(names(select_if(dat, is.numeric))))
   })
 }
 
 
 shinyApp(ui, server)
-
 
 
