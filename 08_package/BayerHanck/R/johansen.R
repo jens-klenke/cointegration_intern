@@ -32,6 +32,8 @@ johansen <- function(formula, data, type = "eigen", lags = 1, trend = "const"){
   y <- model.response(mf, "numeric")
   x <- model.matrix(mt, mf)[, -1]
   x <- cbind(y, x)
+  trend <- match.arg(trend,
+                     choices = c("none", "const", "trend"))
 
   #-----------------------------------------------------------------------------------------
   # Johansen Test

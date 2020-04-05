@@ -27,6 +27,8 @@ englegranger <- function(formula, data, lags = 1, trend = "const"){
   mt <- attr(mf, "terms")
   mf <- na.omit(mf)
   y <- model.response(mf, "numeric")
+  trend <- match.arg(trend,
+                     choices = c("none", "const", "trend"))
 
   #-----------------------------------------------------------------------------------------
   # Trend Specification

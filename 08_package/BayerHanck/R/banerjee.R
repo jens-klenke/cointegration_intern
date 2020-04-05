@@ -30,6 +30,8 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
   mf <- na.omit(mf)
   y <- model.response(mf, "numeric")
   x <- model.matrix(mt, mf)[, -1]
+  trend <- match.arg(trend,
+                     choices = c("none", "const", "trend"))
 
   #-----------------------------------------------------------------------------------------
   # Lag Matrix

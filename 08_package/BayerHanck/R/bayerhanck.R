@@ -34,21 +34,22 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   y <- model.response(mf, "numeric")
   x <- model.matrix(mt, mf)[, -1]
   nvar <- ncol(cbind(y, x))
+  trend <- match.arg(trend,
+                     choices = c("none", "const", "trend"))
+  test <- match.arg(test,
+                    choices = c("eg-j", "all"))
 
   #if (nrow(x) == 0L)
   #  stop("0 (non-NA) cases")
   #if (NROW(y) != nrow(x))
   #  stop("Incompatible dimensions")
-  #if (trend != "none" & trend != "constant" & trend != "trend")
-  #  stop("Trend cannot be specified")
-  #if (lags < 1)
-  #  stop("Lags must be >= 1")
-  #if (lags < nrow(x))
-  #  stop("Lags cannot exceed number of observations")
-  #if (crit < 0)
-  #  stop("Level of critical value cannot be negative")
+  lag <- lags
+  if (lag < 0)
+    stop("Lags must be set to an non negative value.")
+  if (crit < 0)
+    warning("Level of critical value must be set to a non negative.")
 
-  #-----------------------------------------------------------------------------------------
+    #-----------------------------------------------------------------------------------------
   # Code trendtypes
   #-----------------------------------------------------------------------------------------
   if (identical(trend, "none")){
