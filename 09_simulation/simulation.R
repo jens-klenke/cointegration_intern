@@ -156,7 +156,7 @@ cv_B_ECR_J_E_3 <- matrix(NA, nrow = kmax, ncol = cases)
 
 
 
-
+### foreach -> k 
 
 for (k in 1:kmax){# Number of Regressor Loop"
     for (dets in 1:cases){# Number of cases Loop"
