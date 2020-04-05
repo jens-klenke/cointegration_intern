@@ -32,15 +32,15 @@ plot.bh.test <- function(object, theme = "dark") {
           plot.title = ggplot2::element_text(hjust = 0.5))
 
   if (identical(theme, "light")) {
-    gg.bh +
+    suppressWarnings(   gg.bh +
       ggthemes::theme_economist() +
       ggplot2::stat_ecdf(geom = "step") +
       ggplot2::theme(plot.background = ggplot2::element_rect(fill = "#FFFFFF", colour = "#FFFFFF"),
                      panel.background = ggplot2::element_rect(fill = "#FFFFFF"),
                      panel.grid.major.y = ggplot2::element_line(size = 0.3, colour = "#546069"),
-                     axis.line = ggplot2::element_line(size = 0.3, colour = "#546069"))
+                     axis.line = ggplot2::element_line(size = 0.3, colour = "#546069")))
   } else if (identical(theme, "dark")) {
-    gg.bh +
+    suppressWarnings(   gg.bh +
       ggthemes::theme_economist() +
       ggplot2::stat_ecdf(geom = "step", color = "white") +
       ggplot2::theme(plot.background = ggplot2::element_rect(fill = "#1B2B37", colour = "#1B2B37"),
@@ -49,7 +49,7 @@ plot.bh.test <- function(object, theme = "dark") {
                      axis.text = ggplot2::element_text(colour = "#FFFFFF"),
                      axis.line = ggplot2::element_line(size = 0.3, colour = "#546069"),
                      axis.title = ggplot2::element_text(colour = "#FFFFFF"),
-                     axis.ticks.x = ggplot2::element_line(colour = "#FFFFFF"))
+                     axis.ticks.x = ggplot2::element_line(colour = "#FFFFFF")))
   }
 }
 
