@@ -6,7 +6,7 @@
 #' @param formula An object of class "formula" to describe the model.
 #' @param data An optional data frame containing the variables in the model.
 #' @param lags Number of lags to be included.
-#' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
+#' @param trend Type of deterministic component to be included, "none" for no deterministic,
 #' "const" for a constant and "trend" for a constant plus trend.
 #' @param test Selection of tests to choose from. Choices are either "eg-j", for Engle-Granger and Johansen, or "all", for Engle-Granger, Johansen, Banerjee and Boswijk.
 #' @param crit Level for the critical value of the test to be reported.

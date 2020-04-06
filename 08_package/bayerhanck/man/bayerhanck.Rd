@@ -13,7 +13,7 @@ bayerhanck(formula, data, lags = 1, trend = "const", test = "all", crit = 0.05)
 
 \item{lags}{Number of lags to be included.}
 
-\item{trend}{Type of deterministic component to be inlcuded, "none" for no deterministics,
+\item{trend}{Type of deterministic component to be included, "none" for no deterministic,
 "const" for a constant and "trend" for a constant plus trend.}
 
 \item{test}{Selection of tests to choose from. Choices are either "eg-j", for Engle-Granger and Johansen, or "all", for Engle-Granger, Johansen, Banerjee and Boswijk.}
