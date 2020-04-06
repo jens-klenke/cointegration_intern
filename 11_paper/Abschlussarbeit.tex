@@ -311,7 +311,7 @@ tests and their combination, Bayer and Hanck use the following model by
 
 \begin{align}
 \label{eq:regressor}
-\triangle \pmb{x}_t  = \pmb{\tau}_1 &+  \pmb{\nu}_{1t}\\
+\triangle \pmb{x}_t = \pmb{\tau}_1 &+  \pmb{\nu}_{1t}\\
 \label{eq:y}
 y_t  = \left(\mu_2 - \pmb{\theta}' \pmb{\mu}_1 \right) &+ \left(\tau_2 - \pmb{\theta}' \pmb{\tau}_1 \right)t + \pmb{\theta}' x_t + u_t \nonumber
 \end{align}
@@ -327,8 +327,14 @@ Under the following two assumptions and \(\rho = 1\) the
 \(\mathcal{H}_0\) hypothesis holds for the vector \(\pmb{z}_t\):
 
 \begin{itemize}
-\item[] Assumption 1: $\{ \pmb{\nu}_t \}$ satisfied a Functional CLT, i.e. $\displaystyle T^{-1/2} \sum_{t = 1}^{[\cdot T]} \pmb{\nu}_t \Rightarrow \pmb{\Omega}^{1/2} \pmb{W}(\cdot)$, i.e $\pmb{z}_t$ is $I(1)$  
-\item[] Assumption 2: There are no cointegrated relationships among the variables in $\pmb{x}_t$
+  \item[] Assumption 1: 
+  \begin{itemize}
+    \item[] $\{ \pmb{\nu}_t \}$ satisfied a Functional CLT, i.e. $\displaystyle T^{-1/2} \sum_{t = 1}^{[\cdot T]} \pmb{\nu}_t \Rightarrow \pmb{\Omega}^{1/2} \pmb{W}(\cdot)$, i.e $\pmb{z}_t$ is $I(1)$  
+  \end{itemize}
+  \item[] Assumption 2:
+  \begin{itemize}
+    \item[] There are no cointegrated relationships among the variables in $\pmb{x}_t$
+  \end{itemize}
 \end{itemize}
 
 Two essential properties of this model are: firstly, the local power of
@@ -359,10 +365,14 @@ regression
 As opposed to the Engle-Granger Test, \textcite{Johansen1988}'s
 cointegration test is able to test for \(h\) multiple cointegration
 relationships. The null hypothesis is \(h = 0\). To implement this test,
-a vector error correction model \begin{align}
-\triangle {\bf z}_t = {\bf \Pi z}_{t-1} + \sum^{P-1}_{p=1}\pmg{\Gamma}_p \triangle{\bf z}_{t-p} + {\bf d}_t + {\bf \epsilon}_t
-\end{align} needs to estimated first. Bayer and Hanck employ the test
-statstic \(\lambda_{\max} (h) = - T \ ln(1 - \hat{\pi}_1)\), where
+a vector error correction model
+
+\begin{align}
+\triangle {\bf z}_t = {\bf \Pi z}_{t-1} + \sum^{P-1}_{p=1}\pmb{\Gamma}_p \triangle{\bf z}_{t-p} + {\bf d}_t + \pmb{\epsilon}_t
+\end{align}
+
+needs to estimated first. Bayer and Hanck employ the test statstic
+\(\lambda_{\max} (h) = - T \ ln(1 - \hat{\pi}_1)\), where
 \(\hat{\pi}_1\) denotes the largest solution of
 \(|\pi \pmb{S}_{11} - \pmb{S}_{10} \pmb{S}_{00}^{-1} \pmb{S}_{01}|= 0\).\footnote{\(\pmb{S}_{ij}\)
   denotes the moment matrices of redcued rank regression residuals.}
