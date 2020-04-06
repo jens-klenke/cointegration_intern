@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[11.5pt,a4paper]{article}
 \usepackage{lmodern}
 
 \usepackage{amssymb,amsmath}
@@ -407,15 +407,15 @@ The test statistic has the property, that the distribution under the
 \(\left(\tilde{\chi}_{\mathcal{I}}^{2} \rightarrow_{d} \mathcal{F}_{\mathcal{I}} \right)\).
 This guarantees, that the statistic has a well-defined asymptotic null
 distribution. According to \textcite{Bayerhanck2009}, this null
-distribution is nuisance parameter free and only depends on how many
-tests are combined and on the \(\xi_i\). Consequently, the joint
-\(\mathcal{H_0}\) hypotheses can be simulated.
+distribution is nuisance parameter free and only depends on the amount
+of tests combined and the selection of tests combined. Consequently, the
+joint \(\mathcal{H_0}\) hypotheses can be simulated.
 
 Under the alternative hypotheses \(\mathcal{H}_1\) the test statistic
 probability converges to
 \(\tilde{\chi}_{\mathcal{I}}^{2} \rightarrow_P \infty\), which means
-that the test statistic is consistent if at least one of combined tests
-is consistend.
+that the test statistic is consistent if at least one of the underlying
+tests is consistent.
 
 \hypertarget{implementation-of-the-package-bayerhanck-in-r}{%
 \section{\texorpdfstring{Implementation of the Package
@@ -440,17 +440,27 @@ implemented functions from the packages \textbf{urca} and
 latter two, those had to be programmed manually. All functions take
 several arguments, from which only \texttt{formula} and \texttt{data}
 need to be filled out by the practitioner. Further arguments orientate
-themselves on the default values defined in the Stata implementation.
-For the argument \texttt{lags}, which determines the number of lags to
-be included in the model, the default value is therefore set to 1. The
-argument \texttt{trend} describes the deterministic components of the
-model. The practitioner may choose from \texttt{none}, for no
-deterministics, \texttt{const}, for a (unrestricted) constant and
-\texttt{trend}, for a (unrestricted) constant plus (unrestricted) trend.
-The default value is set to \texttt{const}. The functions of the
-underlying tests all return an object of classes \texttt{co.test} and
-\texttt{list}. The console also returns the value of the test statistic,
-as well as the name of the test executed.
+themselves on the default values defined in the Stata implementation of
+the Bayer-Hanck Test. For the argument \texttt{lags}, which determines
+the number of lags to be included in the model, the default value is
+therefore set to 1. The argument \texttt{trend} describes the
+deterministic components of the model. The practitioner may choose from
+\texttt{none}, for no deterministics, \texttt{const}, for a
+(unrestricted) constant and \texttt{trend}, for a (unrestricted)
+constant plus (unrestricted) trend. The default value is set to
+\texttt{const}. Aside from the Johansen Test, all functions where
+programmed in such a way, that \texttt{trend\ =\ "none"} simply removes
+the intercept from all performed linear regressions in the functions.
+For \texttt{trend\ =\ "trend"} the intercept was maintained and a trend
+component was added with \texttt{seq\_along()}. This generates a
+sequence, which usually takes the length of the dependent variable
+\(y\). For \texttt{trend\ =\ "const"} the intercept was maintained and
+thus no changes were made to the linear regression formula. The trend
+selection for the Johansen Test will be explained later on.
+
+The functions of the underlying tests all return an object of classes
+\texttt{co.test} and \texttt{list}. The console also returns the value
+of the test statistic, as well as the name of the executed test.
 
 In accordance with the previously explained structure, the function
 \texttt{englegranger()} takes the form:
