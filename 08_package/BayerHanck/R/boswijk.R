@@ -89,7 +89,7 @@ boswijk <- function(formula, data, lags = 1, trend = "const"){
     lm_res <- lm(BB_res ~ res)
   } else if (identical(trend, "trend")) {
     tr <- seq_along(y)[-c(1, 2)]
-    res <- cbind(res, tr)
+    suppressWarnings(res <- cbind(res, tr))
     lm_res <- lm(BB_res ~ res)
     res <- res[, -which(colnames(res) == "tr")]
   }
