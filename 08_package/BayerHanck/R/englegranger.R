@@ -1,17 +1,24 @@
-#' Engle-Granger Test
+#' Cointegration Tests
 #'
-#' Executes Engle-Granger Test.
+#' Executes Cointegration Tests, which serve as underlying Tests for the Bayer-Hanck Fisher Type Statistic.
 #'
 #' @param formula An object of class "formula" to describe the model.
 #' @param data An optional data frame containing the variables in the model.
 #' @param lags Number of lags to be included.
 #' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
 #' "const" for a constant and "trend" for a constant plus trend.
+#' @param type Test to be conducted, either "eigen" or "trace".
 #'
-#' @return \code{englegranger} returns an object of class \code{"co.test"}.
+#' @return Returns an object of class \code{"co.test"}.
 #' @export
 #'
 #' @references Engle, R. and Granger, C. (1987), Co-integration and Error Correction: Representation, Estimation, and Testing, Econometrica 55(2), 251-76.
+#'
+#' Johansen, S. (1988), Statistical analysis of cointegration vectors, Journal of Economic Dynamics and Control 12(2-3), 231-254.
+#'
+#' Banerjee, A., Dolado, J. J. and Mestre, R. (1998), Error-correction Mechanism Tests for Cointegration in a Single-equation Framework, Journal of Times Series Analysis 19(3), 267-283.
+#'
+#' Boswijk, H. P. (1994), Testing for an unstable root in conditional and structural error correction models, Journal of Econometrics 63(1), 37-60.
 #'
 #' @examples englegranger(linvestment ~ lincome + lconsumption, data = Lutkepohl)
 englegranger <- function(formula, data, lags = 1, trend = "const"){

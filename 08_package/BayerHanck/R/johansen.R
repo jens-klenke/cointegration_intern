@@ -1,20 +1,4 @@
-#' Johansen Test
-#'
-#' Executes Johansen Test.
-#'
-#' @param formula An object of class "formula" to describe the model.
-#' @param data An optional data frame containing the variables in the model.
-#' @param type Test to be conducted, either "eigen" or "trace".
-#' @param lags Number of lags to be included.
-#' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
-#' "const" for a constant and "trend" for a constant plus trend.
-#'
-#' @return \code{johansen} returns an object of class \code{"co.test"}.
-#' @export
-#'
-#' @references Johansen, S. (1988), Statistical analysis of cointegration vectors, Journal of Economic Dynamics and Control 12(2-3), 231-254.
-#'
-#' @examples johansen(linvestment ~ lincome + lconsumption, data = Lutkepohl)
+#' @describeIn englegranger Johansen Test
 johansen <- function(formula, data, type = "eigen", lags = 1, trend = "const"){
 
   #-----------------------------------------------------------------------------------------

@@ -1,19 +1,5 @@
-#' Banerjee Test
+#' @describeIn englegranger Banerjee Test
 #'
-#' Executes Banerjee Test.
-#'
-#' @param formula An object of class "formula" to describe the model.
-#' @param data An optional data frame containing the variables in the model.
-#' @param lags Number of lags to be included.
-#' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
-#' "const" for a constant and "trend" for a constant plus trend.
-#'
-#' @return \code{banerjee} returns an object of class \code{"co.test"}.
-#' @export
-#'
-#' @references Banerjee, A., Dolado, J. J. and Mestre, R. (1998), Error-correction Mechanism Tests for Cointegration in a Single-equation Framework, Journal of Times Series Analysis 19(3), 267-283.
-#'
-#' @examples banerjee(linvestment ~ lincome + lconsumption, data = Lutkepohl)
 banerjee <- function(formula, data, lags = 1, trend = "const"){
 
   #-----------------------------------------------------------------------------------------

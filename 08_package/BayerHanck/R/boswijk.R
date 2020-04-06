@@ -1,19 +1,5 @@
-#' Boswijk Test
+#' @describeIn englegranger Boswijk Test
 #'
-#' Executes Boswijk Test.
-#'
-#' @param formula An object of class "formula" to describe the model.
-#' @param data An optional data frame containing the variables in the model.
-#' @param lags Number of lags to be included.
-#' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
-#' "const" for a constant and "trend" for a constant plus trend.
-#'
-#' @return \code{boswijk} returns an object of class \code{"co.test"}.
-#' @export
-#'
-#' @references Boswijk, H. P. (1994), Testing for an unstable root in conditional and structural error correction models, Journal of Econometrics 63(1), 37-60.
-#'
-#' @examples boswijk(linvestment ~ lincome + lconsumption, data = Lutkepohl)
 boswijk <- function(formula, data, lags = 1, trend = "const"){
 
   #-----------------------------------------------------------------------------------------
