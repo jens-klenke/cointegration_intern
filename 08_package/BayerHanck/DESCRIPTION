@@ -18,7 +18,8 @@ Imports:
     base,
     dplyr,
     ggplot2,
-    magrittr
+    magrittr,
+    ggthemes
 Suggests: 
     knitr,
     rmarkdown
