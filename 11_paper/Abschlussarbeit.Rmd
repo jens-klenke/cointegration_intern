@@ -79,7 +79,7 @@ With these central findings it may be possible to achieve a more robust test by 
 
 Each of these tests has a slightly different approach to testing for a possible cointegration relationship. The Engle-Granger Test tests the null of non cointegration against the alternative hypothesis of at least one cointegration relationship. For this, a simple two-step procedure is used. Firstly, the residuals $\hat{u}_t$ of a regression of the dependent variable on the independent variable is computed. Then, the first differences of these residuals are regressed on the lagged residuals. The test statistic for the Engle-Granger Test is then the $t$-statistic $t^{ADF}_\gamma$ on $\gamma$ in the aforesaid second regression $\triangle \hat{u}_t = \gamma \hat{u}_{t-1} + \sum_{p = 1}^{P-1}\nu_p \triangle \hat{u}_{t-p} +\epsilon_t$. [@Englegranger1987]
 
-As opposed to the Engle-Granger Test, @Johansen1988's cointegration test is able to test for $h$ multiple cointegration relationships. The null hypothesis is $h = 0$. To implement this test, a vector error correction model 
+As opposed to the Engle-Granger Test, @Johansen1988's cointegration test is able to test for $h$ multiple cointegration relationships. The null hypothesis is $h = 0$. To implement this test, a vector error correction model (VECM)
 
 \begin{align}
 \triangle {\bf z}_t = {\bf \Pi z}_{t-1} + \sum^{P-1}_{p=1}\pmb{\Gamma}_p \triangle{\bf z}_{t-p} + {\bf d}_t + \pmb{\epsilon}_t
@@ -121,13 +121,14 @@ englegranger(formula, data, lags = 1, trend = "const")
 The structure of this function is orientated towards the implementation of the Engle-Granger test in the aforesaid Stata module. Therefore, none of the various existing functions in R is used. Firstly, a linear regression is performed, according to the formula entered in `englegranger()`. Next, an augmented Dickey-Fuller test is applied to the residuals from this regression. For this, the function `ur.df()` from the **urca** package is used. The output value of the test statistic is then used as the test statistic of the Engle-Granger test.
 
 The function for the Johansen test contains the additional argument `type`, which specifies if an maximum eigenvalue or a trace test should be conducted. Therefore, the options are either `trace` or `eigen`, with `eigen` being the default choice. The structure of the function takes the form:
+
 ```{r eval = FALSE}
 johansen(formula, data, type = "eigen", lags = 1, trend = "const")
 ```
 
-Firstly, the function estimates a VECM by Johansen (MLE) method with `VECM` from the package **tsDyn**. Then, a test of the cointegrating rank is conducted. For this, the function `rank.test()` from the same package is used. In comparison with similar functions `rank.test()` possesses the advantage of the possibility to select the unrestricted constant or trend. Here, the maximum eigenvalue is used as the output test statistic of `johansen()`.
+First of all, if the practitioner chooses `trend = "trend"`, it has to be renamed to `"both"`. This describes the required name for the following functions to correctly specify the requested deterministic component. Then, the function estimates a VECM by Johansen (MLE) method with `VECM` from the package **tsDyn**^[Compared to `ca.jo` from the **urca** package, the functions from **tsDyn** allow for the specification of an unrestricted constant and trend, which where used in the Stata Package for the Bayer-Hanck Test.]. A test of the cointegrating rank is conducted. For this, the function `rank.test()` from the same package is used. Here, the maximum eigenvalue is used as the output test statistic of `johansen()`.
 
-The construction of the functions for the Banerjee and Boswijk test was almost identical. Therefore, both functions will be illustrated in a single step. The arguments of both functions are identical to those from `englegranger()`:
+The construction of the functions for the Banerjee and Boswijk test was almost identical. Therefore, both functions will be illustrated in a single step. The arguments for both functions are identical to those from `englegranger()`:
 
 ```{r eval = FALSE}
 banerjee(formula, data, lags = 1, trend = "const")
@@ -135,24 +136,24 @@ boswijk(formula, data, lags = 1, trend = "const")
 
 ```
 
-For the construction of those functions, first differences had to be taken of the dependent, as well as the independent variables. Furthermore, a matrix of the lagged values of all variables in first differences was constructed.
+For the construction of these functions, first differences had to be taken of the dependent, as well as the independent variables. Furthermore, a matrix of the lagged values of all variables in first differences was constructed. Then, the procedure for the Banerjee and Boswijk test were implemented as outlined above. For calculating the test statistics, the coefficients, as well as the covanriance-matrix were extracted from the last linear regression model. For the Banerjee test, the coefficient of the first regressor has to be divided by the associated variance from the covariance-matrix. Here, one has to consider, that the position of said values changes, when `trend = "none"`, as the intercept is removed^[Due to the different order in the Stata output, this could have been ignored there, but poses a threat in R.]. 
 
-\textcolor{red}{Weitere Beschreibung Banerjee/Boswijk (Jens)}
-
-From this linear Regression the coefficients, as well as the covariance-matrix is extracted. Now, the test statistic of both tests can be calculated. For the test statistic of the Banerjee test, the coefficient of \textcolor{red}{Position} has to be divided by the associated entry in the covariance-matrix. For the test statistic of the Boswijk test, all coefficients will firstly be matrix multiplied with the inverse covariance-matrix. Next, this product will then again be matrix multiplied with the coefficients. 
+For the test statistic of the Boswijk test, the vector of coefficients will firstly be matrix multiplied with the inverse covariance-matrix. Next, this product will then again be matrix multiplied with the vector of coefficients. 
 
 ## Implementation of the function `bayerhanck()`
+
+@Bayerhanck2009's combined non-cointegration test can be carried out by the command `bayerhanck()`. It accepts all of the arguments of the previously explained underlying tests. Furthermore, it also contains the additional arguments `test`and `crit`, which can be passed to the function call. The function thus takes the form:
 
 ```{r eval = FALSE}
 bayerhanck(formula, data, lags = 1, trend = "const", 
            test = "all", crit = 0.05)
 ```
 
-The combined non-cointegration test can be carried out by the command `bayerhanck()` which accepts all the arguments of the underlying tests. Also the additional arguments `test` and `crit` can be passt to the function call. The argument `test` etermines which set of underlying tests should be executed. Here users can choose between the default `all` (performs all the above tests), or `eg-j`, which only carries out the Engel-Granger and Johansen test. For the argument `crit`, which sets the significance level of the test, the user may choose between `0.10`, the default `0.05`, or `0.01`, corresponding with 10 \%, 5 \%, or 1\% significance. 
+The argument `test` determines which combination of the underlying tests should be executed. Here, the practitioner can choose between the default `all` (performs all of the aforementioned tests) or `eg-j`, which only carries out the Engel-Granger and Johansen test.
 
-After the selected underlying tests have been performed, the test statistics of each test are obtained and the p-values are calculated by using the corresponding empirical null distribution which depends on the number of variables in the VAR and the trend specification.
+The argument `crit` sets the significance level of the test. The practitioner may choose between 0.01, 0.05 and 0.1, with the default 0.05.
 
-In the following step, the individual p-values are logarithmized , summed and then taken with minus 2 times, in accorance with equation \eqref{eq:bayer-hanck}, to obtain the test statistics. In the last step, the critical value is selected based on the specified significance level from the empirical null distribution of the combined test, which depends on the number of regressors and the trend type.
+After inserting the formula and the data, the selected underlying tests are called. The test statistics of each selected test are obtained and stored in a vector. Then, the p-values are calculated by using the corresponding empirical null distribution. This distribution depends on the number of variables, the trend specification and the combination of the underlying tests. Next, the p-values are logarithmised and summed. In accordance with equation \eqref{eq:bayer-hanck}, they are multiplied with -2 to obtain the test statistic. In the last step, the critical value is selected from the empirical null distribution, subject to the specified significance level.
 
 
 # Conclusion
