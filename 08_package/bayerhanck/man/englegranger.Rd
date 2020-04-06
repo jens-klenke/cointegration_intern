@@ -17,7 +17,7 @@ englegranger(formula, data, lags = 1, trend = "const")
 johansen(formula, data, type = "eigen", lags = 1, trend = "const")
 }
 \arguments{
-\item{formula}{An object of class "formula" to describe the model.}
+\item{formula}{An object of class \code{\link[stats]{formula}} to describe the model.}
 
 \item{data}{An optional data frame containing the variables in the model.}
 

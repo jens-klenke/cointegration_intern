@@ -7,7 +7,7 @@
 bayerhanck(formula, data, lags = 1, trend = "const", test = "all", crit = 0.05)
 }
 \arguments{
-\item{formula}{An object of class "formula" to describe the model.}
+\item{formula}{An object of class \code{\link[stats]{formula}} to describe the model.}
 
 \item{data}{An optional data frame containing the variables in the model.}
 
@@ -16,7 +16,9 @@ bayerhanck(formula, data, lags = 1, trend = "const", test = "all", crit = 0.05)
 \item{trend}{Type of deterministic component to be included, "none" for no deterministic,
 "const" for a constant and "trend" for a constant plus trend.}
 
-\item{test}{Selection of tests to choose from. Choices are either "eg-j", for Engle-Granger and Johansen, or "all", for Engle-Granger, Johansen, Banerjee and Boswijk.}
+\item{test}{Selection of tests to choose from. Choices are either "eg-j", for \code{\link{englegranger}}
+and \code{\link{johansen}}, or "all", for \code{\link{englegranger}}, \code{\link{johansen}},
+\code{\link{banerjee}} and \code{\link{boswijk}}.}
 
 \item{crit}{Level for the critical value of the test to be reported.}
 }
@@ -28,7 +30,7 @@ Produces a joint test-statistic for the null of non-cointegration, aggregating
 various cointegration tests.
 }
 \examples{
-bayerhanck(linvestment ~ lincome + lconsumption, data = Lutkepohl)
+\dontrun{bayerhanck(linvestment ~ lincome + lconsumption, data = Lutkepohl)}
 }
 \references{
 Bayer, C. and Hanck, C. (2009), Combining Non-Cointegration tests, METEOR RM 09/012, University of Maastricht.

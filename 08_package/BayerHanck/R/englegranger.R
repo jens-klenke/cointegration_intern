@@ -2,14 +2,14 @@
 #'
 #' Executes Cointegration Tests, which serve as underlying Tests for the Bayer-Hanck Fisher Type Statistic.
 #'
-#' @param formula An object of class "formula" to describe the model.
+#' @param formula An object of class \code{\link[stats]{formula}} to describe the model.
 #' @param data An optional data frame containing the variables in the model.
 #' @param lags Number of lags to be included.
 #' @param trend Type of deterministic component to be inlcuded, "none" for no deterministics,
 #' "const" for a constant and "trend" for a constant plus trend.
 #' @param type Test to be conducted, either "eigen" or "trace".
 #'
-#' @return Returns an object of class \code{"co.test"}.
+#' @return Returns an object of classes \code{"co.test"} and \code{"list"}.
 #' @export
 #'
 #' @references Engle, R. and Granger, C. (1987), Co-integration and Error Correction: Representation, Estimation, and Testing, Econometrica 55(2), 251-76.
