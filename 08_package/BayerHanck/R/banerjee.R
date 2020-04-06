@@ -98,7 +98,11 @@ banerjee <- function(formula, data, lags = 1, trend = "const"){
 
   betas <- stats::coef(lm_res)
   var_mat <- vcov(lm_res)
+  if (identical(trend, "none")) {
+    test.stat <- as.numeric(betas[1]/sqrt(var_mat[1, 1]))
+  } else {
   test.stat <- as.numeric(betas[2]/sqrt(var_mat[2, 2]))
+  }
 
   out <- list(test.stat = test.stat,
               lags = lags,
