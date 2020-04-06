@@ -3,7 +3,7 @@ plot.bh.test <- function(object, theme = "dark") {
   load("bayerhanck_cv.rda")
 
   #getting the distribution
-  if (identical(object$trend, "const"))
+  if (identical(object$test.type, "eg-j"))
     cv <- Null_Distr_E_J
   if (identical(object$test.type, "all"))
     cv <- Null_Distr_B_ECR_J_E
