@@ -43,7 +43,64 @@ An approach for resolving this issue might be a combination of the different tes
 So far, there exists a Stata module for computing the above-mentioned non-cointegration test. However, there is no implementation in R yet. Therefore, the objective of this work was the development of the R package **bayerhanck**, to implement the eponymous test. In section 2, the theoretical background of the combined non-cointegration test will be explained further. Next, the structure of the associated R package and its functions will be illustrated. Finally, the performance of this approach will be evaluated.
 
 # Theory of Non-Cointegration Tests
-\textcolor{red}{Jens}
+
+As @Bayerhanck2009 have pointed out, there is no "uniformly most powerful" test for cointegration since all common tests are affected by the nuisance parameter $R^2$, where $R^2$ is defined as the squared correlation of $\pmb{\nu}_{1t}$ with $\nu_{2t}$.^[$R^2:= \omega_{12}^{'} \pmb{\Omega}_{11}^{-1}\omega_{12} / \omega_{22}$] In addition, @pesavento2004 has shown that for different $R^2$ different tests are most powerful and hence it is not clear which test should be applied to a given data frame.  
+
+To derive the properties of the different underlying and combinded test Bayer and Hanck used the following model by @pesavento2004:
+
+\begin{align}
+  \label{eq:regressor}
+  \triangle \ \pmb{x}_t & = \tau_1 +  \pmb{\nu}_{1t}\\
+  \label{eq:y}
+  y_t & = \left( \mu_2 - \pmb{\theta^{'} \mu_1} \right) + \left( \tau_2 - \pmb{\theta^{'} \tau_1} \right)t + \pmb{\theta^{'} x}_t + u_t \\
+  & \qquad \text{where} \; u_t = \rho u_{t-1} + \nu_{2t} \nonumber
+\end{align}
+
+
+Equation \eqref{eq:regressor} describes the regressors while equation \eqref{eq:y} describes the possible cointgeration vector.  The observed sample can be denoted as as $\pmb{z}_0, \ldots , \pmb{z}_T$, where $\pmb{z}_t = (\pmb{x}_t^{'}, y_t)$. 
+
+Under the following two assumptions and $\rho = 1$ the $\mathcal{H}_0$ hypothesis holds for the vector $\pmb{z}_t$: 
+
+\begin{itemize}
+  \item[] Assumption 1: 
+  \begin{itemize}
+    \item[] $\{ \pmb{\nu}_t \}$ satisfied a Functional CLT, i.e. $\displaystyle T^{-1/2} \sum_{t = 1}^{[\cdot T]} \pmb{\nu}_t \Rightarrow \pmb{\Omega}^{1/2} \pmb{W}(\cdot)$, i.e $\pmb{z}_t$ is $I(1)$  
+  \end{itemize}
+  \item[] Assumption 2:
+  \begin{itemize}
+    \item[] There are no cointegrated relationships among the variables in $\pmb{x}_t$
+  \end{itemize}
+\end{itemize}
+
+Two important properties of this model are: first, the local power of the underlying tests only depeends on the parameters $c := T(\rho -1)$ and $R^2$. Second, even asymptotically these statistics are only weakly correletaed under $\mathcal{H}_0$. [@gregory_mixed_2004] 
+
+With these central findings it seems to be possible to achieve a more robust test by combining the individual underlying tests. Bayer and Hanck considered the cointegration tests of Engel and Granger, Johansen, Boswijk, and Banerjee as underlying tests.
+
+
+Each of these tests has a (slightly) different approach to testing for a possible cointegration relationship among the regressors. 
+
+In the @Englegranger1987 test, a possible cointegration is tested by regression of the difference of the residuals to the past residuals. Test statistic for the cointegration is the test value of the coefficient of the $L(\hat{u})$.^[t-statistic = $t_{\gamma}^{ADF}$ of the model equation: $\triangle \hat{u}_t = \gamma \hat{u}_{t-1} + \sum_{p = 1}^{P-1}\nu_p \triangle \hat{u}_{t-p} +\epsilon_t$] 
+
+@Johansen1988's cointegration test is able to test for different numbers $(h)$ of cointegration, where the zero hyothesis is $h = 0$. Bayer and Hanck employed the test statstic $\lambda_{\max} (h) = - T \ ln(1 - \hat{\pi}_1)$, where $\hat{\pi}_1$ denotes the largest solution of $|\pi \pmb{S}_{11} - \pmb{S}_{10} \pmb{S}_{00}^{-1} \pmb{S}_{01}|= 0$.^[$\pmb{S}_{ij}$ denotes the moment matrices of redcued rank regression residuals; to derive these properties one must first estmate the VECM] 
+
+The tests of @Boswijk1994 and @Banerjee1998 are both based on an error correction model test. Boswijk's test statistik $\hat{F}$ is the Wald statistic for $\mathcal{H}_0: (\varphi_0, \pmb{\phi}_1^{'}) = 0$, where Banerjee _et al._'s is the $t_{\gamma}^{ECR}$ ratio for $\mathcal{H}_0 : \varphi_0 = 0$ of the error correction model. 
+
+To derive the error correction model, the usual least squares estimate is used: $\triangle y_t = d_t + \pi_{0x}^{'} \triangle \pmb{x}_t + \varphi_0 y_{t-1} + \pmb{\varphi}_{1}^{'} \pmb{x}_{t-1} + \sum_{P = 1}^{P} \left( \pmb{\pi}_{px}^{'} \triangle  \pmb{x}_{t-p} + \pi_{py} \triangle y_{t - p} \right) + \epsilon_t$.   
+ 
+
+The combined test statistic $\tilde{X}_{\mathcal{I}}^2$ is than defined as:
+
+\begin{align}
+  \label{eq:bayer-hanck}
+  \tilde{\chi}_{\mathcal{I}}^{2} := -2 \sum_{i \in \mathcal{I}} ln(p_i) 
+\end{align}
+
+The test statistic has the property that the distribution under the $\mathcal{H}_0$ hpothesis converges to a random variable $\mathcal{F}_{\mathcal{I}}$ $\left(\tilde{\chi}_{\mathcal{I}}^{2} \rightarrow_{d} \mathcal{F}_{\mathcal{I}} \right)$, which gurantess that the statistic has a well-defined asymptotic null distribution. As @Bayerhanck2009 have shown the null distribution is nuisance parameter free and only deepens on how many tests are combined and on the $\xi_i$. Consequently, the joint $\mathcal{H_0}$ hypotheses can be simulated. 
+
+Under the alternative hypotheses $\mathcal{H}_1$ the test statistic probability converges to $\tilde{\chi}_{\mathcal{I}}^{2} \rightarrow_P  \infty$, which means that the test statistic is consistent if at least one of combined tests is consistend.
+
+
+
 
 # Implementation of the Package **bayerhanck** in R
 The package consists of four functions for the underlying tests, as well as the function for the combined test. Furthermore, the cumulative distribution function of the null hypothesis can be plotted. The package features will be illustrated by using real data from the lutkepohl dataset.
@@ -82,8 +139,30 @@ From this linear Regression the coefficients, as well as the covariance-matrix i
 
 ## Implementation of the function `bayerhanck()`
 
+```{r eval = FALSE}
+bayerhanck(formula, data, lags = 1, trend = "const", 
+           test = "all", crit = 0.05)
+```
+
+The combined non-cointegration test can be carried out by the command `bayerhanck()` which accepts all the arguments of the underlying tests. Also the additional arguments `test` and `crit` can be passt to the function call. The argument `test` etermines which set of underlying tests should be executed. Here users can choose between the default `all` (performs all the above tests), or `eg-j`, which only carries out the Engel-Granger and Johansen test. For the argument `crit`, which sets the significance level of the test, the user may choose between `0.10`, the default `0.05`, or `0.01`, corresponding with 10 \%, 5 \%, or 1\% significance. 
+
+After the selected underlying tests have been performed, the test statistics of each test are obtained and the p-values are calculated by using the corresponding empirical null distribution which depends on the number of variables in the VAR and the trend specification.
+
+In the following step, the individual p-values are logarithmized , summed and then taken with minus 2 times, in accorance with equation \eqref{eq:bayer-hanck}, to obtain the test statistics. In the last step, the critical value is selected based on the specified significance level from the empirical null distribution of the combined test, which depends on the number of regressors and the trend type.
 
 
 # Conclusion
 
 \newpage
+
+
+
+
+
+
+
+
+
+
+
+
