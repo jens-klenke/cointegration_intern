@@ -135,11 +135,12 @@ bayerhanck_1 <- function(formula, data, lags = 1, trend = "const", test = "all",
     crit.val <- Null_Distr_B_ECR_J_E[n_var, trendtype, 25000*(1-crit)]
 
 
+
   if (identical(test, "eg-j")){
-    n_p <- sum(bh.test <  Null_Distr_B_ECR_J_E[n_var, trendtype, ])
-    bh.pval <-  (n_p/length(Null_Distr_B_ECR_J_E[n_var, trendtype, ])) + .000000000001}
-  if (identical(test, "all")){
     n_p <- sum(bh.test <  Null_Distr_E_J[n_var, trendtype, ])
+    bh.pval <-  (n_p/length(Null_Distr_E_J[n_var, trendtype, ])) + .000000000001}
+  if (identical(test, "all")){
+    n_p <- sum(bh.test <  Null_Distr_B_ECR_J_E[n_var, trendtype, ])
     bh.pval <-  (n_p/length(Null_Distr_B_ECR_J_E[n_var, trendtype, ])) + .000000000001}
 
 
