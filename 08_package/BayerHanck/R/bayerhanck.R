@@ -46,10 +46,6 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   crit <- match.arg(as.character(crit),
                     c(0.01, 0.05, 0.10))
 
-  if (nrow(x) == 0)
-    stop("0 (non-NA) cases")
-  if (NROW(y) != nrow(x))
-    stop("Incompatible dimensions")
   lag <- lags
   if (lag < 0)
     stop("Lags must be set to a non negative value.")
