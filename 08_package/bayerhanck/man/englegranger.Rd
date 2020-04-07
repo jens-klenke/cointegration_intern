@@ -29,7 +29,7 @@ johansen(formula, data, type = "eigen", lags = 1, trend = "const")
 \item{type}{Test to be conducted, either "eigen" or "trace".}
 }
 \value{
-Returns an object of class \code{"co.test"}.
+Returns an object of classes \code{"co.test"} and \code{"list"}.
 }
 \description{
 Executes Cointegration Tests, which serve as underlying Tests for the Bayer-Hanck Fisher Type Statistic.
@@ -44,7 +44,7 @@ Executes Cointegration Tests, which serve as underlying Tests for the Bayer-Hanc
 }}
 
 \examples{
-englegranger(linvestment ~ lincome + lconsumption, data = Lutkepohl)
+englegranger(humid ~ temp + pressure, data = nycflights13::weather)
 }
 \references{
 Engle, R. and Granger, C. (1987), Co-integration and Error Correction: Representation, Estimation, and Testing, Econometrica 55(2), 251-76.

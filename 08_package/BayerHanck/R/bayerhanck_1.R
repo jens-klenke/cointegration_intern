@@ -1,22 +1,4 @@
-#' Joint Test-Statistic for the Null of Non-Cointegration
-#'
-#' Produces a joint test-statistic for the null of non-cointegration, aggregating
-#' various cointegration tests.
-#'
-#' @param formula An object of class "formula" to describe the model.
-#' @param data An optional data frame containing the variables in the model.
-#' @param lags Number of lags to be included.
-#' @param trend Type of deterministic component to be included, "none" for no deterministic,
-#' "const" for a constant and "trend" for a constant plus trend.
-#' @param test Selection of tests to choose from. Choices are either "eg-j", for Engle-Granger and Johansen, or "all", for Engle-Granger, Johansen, Banerjee and Boswijk.
-#' @param crit Level for the critical value of the test to be reported.
-#'
-#' @return \code{bayerhanck} returns an object of class \code{"bh.test"}.
-#' @export
-#'
-#' @references Bayer, C. and Hanck, C. (2009), Combining Non-Cointegration tests, METEOR RM 09/012, University of Maastricht.
-#'
-#' @examples bayerhanck(linvestment ~ lincome + lconsumption, data = Lutkepohl)
+#' @describeIn bayerhanck Bayer-Hanck Test-Statistic with values obtained by own simulation.
 bayerhanck_1 <- function(formula, data, lags = 1, trend = "const", test = "all", crit = 0.05) {
 
   #-----------------------------------------------------------------------------------------
