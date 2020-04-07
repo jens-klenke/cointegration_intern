@@ -1,16 +1,16 @@
 ---
-title: "Title"
-subtitle: "Subtitle"
-type: "Type of Paper"
-author: "Name"
-discipline: "Study Path"
+title: 'Combining non-cointegration Tests in R'
+subtitle: 'Advanced R for Econometricians'
+type: "Projects"
+author: 'Jens Klenke, Janine Langerbein, Niklas Mika'
+discipline: "VWL M.Sc."
 date: "today"
-studid: "Matriculation Number"
+studid: "3071594 | 3061371 | 3071485  "
 supervisor: "Prof. Dr. Christoph Hanck"
-secondsupervisor: "Prof. Dr. Andreas Behr"
+secondsupervisor: "Martin Arnold"
 ssemester: "1"
-estdegree_emester: "Summer Term 2019"
-deadline: "Deadline"
+estdegree_emester: "Winter Term 2019"
+deadline: "April 7th 2020"
 output:
   pdf_document:
     keep_tex: yes
@@ -193,9 +193,9 @@ Here, the execution of `plot` accesses the test statistic of the `bayerhanck` fu
 
 # Illustration
 
-The package shall be illustrated on the data set `ibmskpo` from the package **MTS** [@tsay_mts_2020]. It contains monthly simple returns of the stocks of International Business Machines *ibm*, Coca Cola *ko*, and the S&P composite index *sp*. We will test for a cointegration relationship between the variables *sp*, *ko*, and *ibm*. The sample period is from January 1961 till Decembet 2011 and the data can be load with the command `data("mts-examples", package="MTS")`.
+The package shall be illustrated on the data set `ibmskpo` from the package **MTS** [@tsay_mts_2020]. It contains monthly simple returns of the stocks of International Business Machines *ibm*, Coca Cola *ko*, and the S&P composite index *sp*. We will test for a cointegration relationship between the variables *sp*, *ko*, and *ibm*. The sample period is from January 1961 till Decembet 2011 and the data can be load into the global entironment with the command `data("mts-examples", package = "MTS")`.To keep a certain clarity we will show the test only in the variant `eg-j`. The procedure can be applied in the same with the option `all`, to include all four underlying tests. 
 
-The functions for the underlying tests will be demonstrated with a Engle-Granger test and a Johansen test:
+The functions for the underlying tests will be demonstrated with a Engle-Granger test and the Johansen test:
 
 ```{r eval=FALSE}
 eg_test <- englegranger(sp ~ ibm + ko, data = ibmspko)
@@ -295,6 +295,9 @@ Value of the Fisher Type Test statistic: 110.5241
 5% Critical value for the Test statistic: 10.8454 
 P-value of the Fisher Type Test statistic: 0
 ```
+
+The test statistics of the individual tests, but also of the combined tests, are relatively clear. Basically all tests reject the $\mathcal{H}_0$, that there is no cointegration. But as @Bayerhanck2009 have shown, there are several examples from the literature where the evidence is not so clear. A further interpretation of the results shall not be made here.
+
 
 To demonstrate the implemented method for the generic function `plot()`, we will additionally plot the object from `bayerhanck_1` for `test = "all"`. For a harmonious appearance in this documentation, we will set `theme = "light"`.
 

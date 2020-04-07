@@ -101,8 +101,8 @@
 \fi
 \hypersetup{breaklinks=true,
             bookmarks=true,
-            pdfauthor={Name},
-            pdftitle={Title},
+            pdfauthor={Jens Klenke, Janine Langerbein, Niklas Mika},
+            pdftitle={Combining non-cointegration Tests in R},
             colorlinks=true,
             citecolor=blue,
             urlcolor=blue,
@@ -129,11 +129,11 @@
 }
 
 \setlength{\droptitle}{-2em}
-  \title{Title}
+  \title{Combining non-cointegration Tests in R}
   \pretitle{\vspace{\droptitle}\centering\huge}
   \posttitle{\par}
-\subtitle{Subtitle}
-  \author{Name}
+\subtitle{Advanced R for Econometricians}
+  \author{Jens Klenke, Janine Langerbein, Niklas Mika}
   \preauthor{\centering\large\emph}
   \postauthor{\par}
   \predate{\centering\large\emph}
@@ -178,18 +178,18 @@
   \\
   \vspace{1.5cm}
   \begin{center}
-  \huge{Title}\\
+  \huge{Combining non-cointegration Tests in R}\\
   \vspace{.25cm}
-  \Large{Subtitle}\\
+  \Large{Advanced R for Econometricians}\\
   \vspace{0.5cm}
-  \large{Type of Paper}\\
+  \large{Projects}\\
   \vspace{1cm}
   \large{
   \IfLanguageName{english}{Submitted to the Faculty of \\ Business Administration and Economics \\at the \\University of Duisburg-Essen}{Vorgelegt der \\Fakultät für Wirtschaftswissenschaften der \\ Universität Duisburg-Essen}\\}
   \vspace{0.75cm}
   \large{\IfLanguageName{english}{from:}{von:}}\\
   \vspace{0.5cm}
-  Name\\
+  Jens Klenke, Janine Langerbein, Niklas Mika\\
   \end{center}
   \vspace{4cm}
 
@@ -197,14 +197,14 @@
   \IfLanguageName{english}{Matriculation Number:}{Matrikelnummer}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
-  \hspace{1cm}Matriculation Number
+  \hspace{1cm}3071594 \textbar{} 3061371 \textbar{} 3071485
   \end{minipage}
 
   \noindent\begin{minipage}[t]{0.5\textwidth}
   \IfLanguageName{english}{Study Path:}{Studienfach:}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
-  \hspace{1cm}Study Path
+  \hspace{1cm}VWL M.Sc.
   \end{minipage}
 
   \noindent\begin{minipage}[t]{0.5\textwidth}
@@ -218,7 +218,7 @@
   \IfLanguageName{english}{Secondary Reviewer:}{Zweitgutachter}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
-  \hspace{1cm}Prof.~Dr.~Andreas Behr
+  \hspace{1cm}Martin Arnold
   \end{minipage}
 
   \noindent\begin{minipage}[t]{0.5\textwidth}
@@ -232,14 +232,14 @@
   \IfLanguageName{english}{Graduation (est.):}{Vsl. Studienabschluss:}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
-  \hspace{1cm}Summer Term 2019
+  \hspace{1cm}Winter Term 2019
   \end{minipage}
 
   \noindent\begin{minipage}[t]{0.5\textwidth}
   \IfLanguageName{english}{Deadline:}{Abgabefrist:}
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
-  \hspace{1cm}Deadline
+  \hspace{1cm}April 7th 2020
   \end{minipage}
 
 \end{titlepage}
@@ -687,11 +687,15 @@ simple returns of the stocks of International Business Machines
 \emph{ibm}, Coca Cola \emph{ko}, and the S\&P composite index \emph{sp}.
 We will test for a cointegration relationship between the variables
 \emph{sp}, \emph{ko}, and \emph{ibm}. The sample period is from January
-1961 till Decembet 2011 and the data can be load with the command
-\texttt{data("mts-examples",\ package="MTS")}.
+1961 till Decembet 2011 and the data can be load into the global
+entironment with the command
+\texttt{data("mts-examples",\ package\ =\ "MTS")}.To keep a certain
+clarity we will show the test only in the variant \texttt{eg-j}. The
+procedure can be applied in the same with the option \texttt{all}, to
+include all four underlying tests.
 
 The functions for the underlying tests will be demonstrated with a
-Engle-Granger test and a Johansen test:
+Engle-Granger test and the Johansen test:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -807,6 +811,13 @@ The summary then shows:
 \end{Highlighting}
 \end{Shaded}
 
+The test statistics of the individual tests, but also of the combined
+tests, are relatively clear. Basically all tests reject the
+\(\mathcal{H}_0\), that there is no cointegration. But as
+\textcite{Bayerhanck2009} have shown, there are several examples from
+the literature where the evidence is not so clear. A further
+interpretation of the results shall not be made here.
+
 To demonstrate the implemented method for the generic function
 \texttt{plot()}, we will additionally plot the object from
 \texttt{bayerhanck\_1} for \texttt{test\ =\ "all"}. For a harmonious
@@ -881,7 +892,7 @@ Ich versichere an Eides statt durch meine Unterschrift, dass ich die vorstehende
 \vspace{1cm}
 \rule{0pt}{2\baselineskip} %
 \par\noindent\makebox[2.25in]{\indent Essen, den \hrulefill} \hfill\makebox[2.25in]{\hrulefill}%
-\par\noindent\makebox[2.25in][l]{} \hfill\makebox[2.25in][c]{Name}%
+\par\noindent\makebox[2.25in][l]{} \hfill\makebox[2.25in][c]{Jens Klenke, Janine Langerbein, Niklas Mika}%
 
 
 \end{document}
