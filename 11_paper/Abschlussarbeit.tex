@@ -581,10 +581,10 @@ specified significance level.
 \texttt{bayerhanck\_1()}}{Implementation of the function bayerhanck\_1()}}\label{implementation-of-the-function-bayerhanck_1}}
 
 The obtained values from the previously presented function
-\texttt{bayerhanck()} are based on critical values provided by the
-technical appendix of \textcite{Bayerhanck2009}. As an extension to this
+\texttt{bayerhanck()} use the critical values provided by the technical
+appendix from \textcite{Bayerhanck2009}. As an extension to this
 function, the function \texttt{bayerhanck\_1()} has been developed. It
-contains additional null distributions obtained from a specifically
+contains additional null distributions, calculated with a specifically
 conducted simulation. Analogous to the basic version, it takes the form:
 
 \begin{Shaded}
@@ -594,29 +594,20 @@ conducted simulation. Analogous to the basic version, it takes the form:
 \end{Highlighting}
 \end{Shaded}
 
-The only difference is that this functioncall of the bayerhanck test
-does not execute the test using the critical values we have gathered
-from paper, but rather calculates the statistics with its own simulated
-values. Now that we have the simulated distributions under the
-\(\mathcal{H}_0\) of the Bayer hanck statistics available we are able to
-calculate and print p-values.
-
-In the current implementation of the function, we have stayed with the
-initial options \texttt{eg-j} and \texttt{all} for the argument
-\texttt{test}. Mainly because the amount of data is already quite large
-and increases with each additional alternative test combination by about
-7 MB. The main reason for this is that for each combination of
-regressors and trendtype we need to have a simulated \(\mathcal{H}_0\)
-distribution with, in our case, 25 000 values. In order to reduce the
-amount of data and allow for further test combinations, the simulated
-distribution could be reduced to 10000 values per kombination of
-regressors and trendtype when the package is further developed.
-
-At the moment, the package already has a size of about 16 MB with only
-two test options. On the one hand the function needs the two null
-distributions for the bayerhanck statistics and on the other hand the
-null distribution of the underlying tests, which also has a size of 5
-MB.
+Due to the availability of the simulated distributions unter the
+\(\mathcal{H}_0\), the function is now capable of calculating and
+printing p-values. In its current implementation, the function stayed
+with the initial options for the argument \texttt{test}, \texttt{eg-j}
+and \texttt{all}. At this point in time, the amount of data is already
+large and further increases with each additional test combination by
+about 7 Megabyte. This is due to the fact, that for each combination of
+regressors and trendtypes, a simulated \(\mathcal{H}_0\) distribution
+with 25,000 values is needed. In the current state, the package with the
+function \texttt{bayerhanck\_1} has a size of about 16 Megabyte with
+only two test options. However, in order to reduce the amount of data
+and allow for further test combinations, the simulated distribution
+might be reduced to 10,000 values per combination of regressors and
+trendtypes, once the package is further developed.
 
 \hypertarget{implementation-of-the-function-plot-and-plot.bh.test}{%
 \subsection{\texorpdfstring{Implementation of the function
