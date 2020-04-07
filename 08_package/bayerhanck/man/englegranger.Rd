@@ -44,7 +44,8 @@ Executes Cointegration Tests, which serve as underlying Tests for the Bayer-Hanc
 }}
 
 \examples{
-englegranger(humid ~ temp + pressure, data = nycflights13::weather)
+data("mts-examples", package="MTS")
+englegranger(sp ~ ibm + ko, data = ibmspko)
 }
 \references{
 Engle, R. and Granger, C. (1987), Co-integration and Error Correction: Representation, Estimation, and Testing, Econometrica 55(2), 251-76.

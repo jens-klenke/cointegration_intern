@@ -22,7 +22,9 @@
 #'
 #' @references Bayer, C. and Hanck, C. (2009), Combining Non-Cointegration tests, METEOR RM 09/012, University of Maastricht.
 #'
-#' @examples bayerhanck(humid ~ temp + pressure, data = nycflights13::weather)
+#' @examples
+#' data("mts-examples", package="MTS")
+#' bayerhanck(sp ~ ibm + ko, data = ibmspko)
 bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", crit = 0.05) {
 
   #-----------------------------------------------------------------------------------------
