@@ -1,8 +1,6 @@
 #' @export
 plot.bh.test <- function(object, theme = "dark") {
 
-  load("bayerhanck_cv.rda")
-
   #getting the distribution
   if (identical(object$test.type, "eg-j"))
     cv <- Null_Distr_E_J

@@ -15,7 +15,8 @@
 #'
 #' @return \code{bayerhanck} returns an object of classes \code{"bh.test"} and \code{"list"}.
 #'
-#' The function \code{summary} is used to print a summary,
+#' The function \code{summary} is used to print a summary, whereas the cumulative distribution
+#' under the null hypothesis can be plotted with \code{plot}.
 #'
 #' @export
 #'
