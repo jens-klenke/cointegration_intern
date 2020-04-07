@@ -167,6 +167,8 @@ bayerhanck_1(formula, data, lags = 1, trend = "const",
 Due to the availability of the simulated distributions unter the $\mathcal{H}_0$, the function is now capable of calculating and printing p-values. In its current implementation, the function stayed with the initial options for the argument `test`, `eg-j` and `all`. At this point in time, the amount of data is already large and further increases with each additional test combination by about 7 Megabyte. This is due to the fact, that for each combination of regressors and trendtypes, a simulated $\mathcal{H}_0$ distribution with 25,000 values is needed. In the current state, the package with the function `bayerhanck_1` has a size of about 16 Megabyte with only two test options. However, in order to reduce the amount of data and allow for further test combinations, the simulated distribution might be reduced to 10,000 values per combination of regressors and trendtypes, once the package is further developed.
 
 
+
+
 ## Implementation of the function `plot()` and `plot.bh.test()` 
 
 ```{r eval = FALSE}
