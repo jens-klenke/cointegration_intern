@@ -1,5 +1,5 @@
 #' @export
-summary.co.test <- function(object) {
+summary.co.test <- function(object, ...) {
   cat(c("----------------------------------------------------------",
         paste(c(object$test, "Test"),
               collapse = " "),
@@ -20,7 +20,7 @@ summary.co.test <- function(object) {
 }
 
 #' @export
-summary.bh.test <- function(object) {
+summary.bh.test <- function(object, ...) {
   cat(c("----------------------------------------------------------",
       "Bayerhanck Test for Non-Cointegration",
       "----------------------------------------------------------",

@@ -1,27 +1,27 @@
 #' @export
-plot.bh.test <- function(object, theme = "dark") {
-
+plot.bh.test <- function(x, theme = "dark", ...) {
+x
   #getting the distribution
-  if (identical(object$test.type, "eg-j"))
+  if (identical(x$test.type, "eg-j"))
     cv <- Null_Distr_E_J
-  if (identical(object$test.type, "all"))
+  if (identical(x$test.type, "all"))
     cv <- Null_Distr_B_ECR_J_E
 
-  if (identical(object$trend, "none")) {
+  if (identical(x$trend, "none")) {
     trendtype = 1
-  } else if (identical(object$trend, "const")) {
+  } else if (identical(x$trend, "const")) {
     trendtype = 2
-  } else if (identical(object$trend, "trend")) {
+  } else if (identical(x$trend, "trend")) {
     trendtype = 3
   }
 
-  x <- cv[object$K, trendtype, ]
-  y <- rep((1/length(x)), length(x))
+  z <- cv[x$K, trendtype, ]
+  y <- rep((1/length(z)), length(z))
 
-  df_gg <- data.frame(x, y)
+  df_gg <- data.frame(z, y)
 
-  gg.bh <- ggplot2::ggplot(data = df_gg, ggplot2::aes(x = x)) +
-    ggplot2::geom_vline(xintercept = object$bh.test, linetype = "dotted",
+  gg.bh <- ggplot2::ggplot(data = df_gg, ggplot2::aes(x = z)) +
+    ggplot2::geom_vline(xintercept = x$bh.test, linetype = "dotted",
                color = "red", size = 1) +
     ggplot2::labs(x = "\n \n Bayer-Hanck-Statistic", y = "F(Bayer-Hanck-Statistic) \n") +
     ggplot2::theme(plot.margin = ggplot2::unit(c(1, 1, 1, 1),"cm"),
