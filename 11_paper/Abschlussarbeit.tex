@@ -372,7 +372,7 @@ a vector error correction model (VECM)
 \triangle {\bf z}_t = {\bf \Pi z}_{t-1} + \sum^{P-1}_{p=1}\pmb{\Gamma}_p \triangle{\bf z}_{t-p} + {\bf d}_t + \pmb{\epsilon}_t
 \end{align}
 
-needs to estimated first. Bayer and Hanck employ the test statistic
+needs to be estimated first. Bayer and Hanck employ the test statistic
 \(\lambda_{\max} (h) = - T \ ln(1 - \hat{\pi}_1)\), where
 \(\hat{\pi}_1\) denotes the largest solution of
 \(|\pi \pmb{S}_{11} - \pmb{S}_{10} \pmb{S}_{00}^{-1} \pmb{S}_{01}|= 0\).\footnote{\(\pmb{S}_{ij}\)
@@ -409,8 +409,8 @@ The test statistic has the property, that the distribution under the
 This guarantees, that the statistic has a well-defined asymptotic null
 distribution. According to \textcite{Bayerhanck2009}, this null
 distribution is nuisance parameter free and only depends on the amount
-of tests combined and the selection of tests combined. Consequently, the
-joint \(\mathcal{H_0}\) hypotheses can be simulated.
+of tests combined. Consequently, the joint \(\mathcal{H_0}\) hypotheses
+can be simulated.
 
 Under the alternative hypotheses \(\mathcal{H}_1\) the test statistic
 probability converges to
@@ -517,7 +517,8 @@ deterministic component. Then, the function estimates a VECM by Johansen
   in the Stata Package for the Bayer-Hanck Test.}. A test of the
 cointegrating rank is conducted. For this, the function
 \texttt{rank.test()} from the same package is used. Here, the maximum
-eigenvalue is used as the output test statistic of \texttt{johansen()}.
+eigenvalue for \(h = 0\) is used as the output test statistic of
+\texttt{johansen()}.
 
 The construction of the functions for the Banerjee and Boswijk test was
 almost identical. Therefore, both functions will be illustrated in a
@@ -680,24 +681,23 @@ marked with a dotted x-intercept line.
 \hypertarget{illustration}{%
 \section{Illustration}\label{illustration}}
 
-The package shall be illustrated on the data set \texttt{weather} from
-the package \textbf{nycflights13} \autocite{wickham_nycflights13_2020}.
-It contains the hourly meteorological data for the airports LGA, JFK and
-EWR of the New York metropolitan area. We will test for a cointegration
-relationship between the variables \emph{humid}, \emph{temp} and
-\emph{pressure}. These stand for the relative humidity, temperature and
-sea level pressure in millibars.
+The package shall be illustrated on the data set \texttt{ibmskpo} from
+the package \textbf{MTS} \autocite{tsay_mts_2020}. It contains monthly
+simple returns of the stocks of International Business Machines
+\emph{ibm}, Coca Cola \emph{ko}, and the S\&P composite index \emph{sp}.
+We will test for a cointegration relationship between the variables
+\emph{sp}, \emph{ko}, and \emph{ibm}. The sample period is from January
+1961 till Decembet 2011 and the data can be load with the command
+\texttt{data("mts-examples",\ package="MTS")}.
 
 The functions for the underlying tests will be demonstrated with a
 Engle-Granger test and a Johansen test:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{eg_test <-}\StringTok{ }\KeywordTok{englegranger}\NormalTok{(humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure,}
-                        \DataTypeTok{data =}\NormalTok{ nycflights13}\OperatorTok{::}\NormalTok{weather)}
+\NormalTok{eg_test <-}\StringTok{ }\KeywordTok{englegranger}\NormalTok{(sp }\OperatorTok{~}\StringTok{ }\NormalTok{ibm }\OperatorTok{+}\StringTok{ }\NormalTok{ko, }\DataTypeTok{data =}\NormalTok{ ibmspko)}
 
-\NormalTok{jo_test <-}\StringTok{ }\KeywordTok{johansen}\NormalTok{(humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure, }
-                    \DataTypeTok{data =}\NormalTok{ nycflights13}\OperatorTok{::}\NormalTok{weather)}
+\NormalTok{jo_test <-}\StringTok{ }\KeywordTok{johansen}\NormalTok{(sp }\OperatorTok{~}\StringTok{ }\NormalTok{ibm }\OperatorTok{+}\StringTok{ }\NormalTok{ko, }\DataTypeTok{data =}\NormalTok{ ibmspko)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -710,11 +710,11 @@ Next, we will have a look at the summary of the tests:
 \OperatorTok{----------------------------------------------------------}
 \NormalTok{Engle}\OperatorTok{-}\NormalTok{Granger Test}
 \OperatorTok{----------------------------------------------------------}
-\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure}
+\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{sp }\OperatorTok{~}\StringTok{ }\NormalTok{ibm }\OperatorTok{+}\StringTok{ }\NormalTok{ko}
 \NormalTok{Lags}\OperatorTok{:}\StringTok{ }\DecValTok{1}
 \NormalTok{Trend}\OperatorTok{:}\StringTok{ }\NormalTok{const}
  
-\NormalTok{Value of test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{-30.3546}
+\NormalTok{Value of test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{-17.6686}
 \end{Highlighting}
 \end{Shaded}
 
@@ -727,11 +727,11 @@ and
 \OperatorTok{----------------------------------------------------------}
 \NormalTok{Johansen Test}
 \OperatorTok{----------------------------------------------------------}
-\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure}
+\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{sp }\OperatorTok{~}\StringTok{ }\NormalTok{ibm }\OperatorTok{+}\StringTok{ }\NormalTok{ko}
 \NormalTok{Lags}\OperatorTok{:}\StringTok{ }\DecValTok{1}
 \NormalTok{Trend}\OperatorTok{:}\StringTok{ }\NormalTok{const}
  
-\NormalTok{Value of test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{1186.6794}
+\NormalTok{Value of test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{279.5175}
 \end{Highlighting}
 \end{Shaded}
 
@@ -742,13 +742,8 @@ First, the results for the basic version are shown:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# test = "eg-j"}
-\NormalTok{bh_eg_j <-}\StringTok{ }\KeywordTok{bayerhanck}\NormalTok{(humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure, }
-                      \DataTypeTok{data =}\NormalTok{ nycflights13}\OperatorTok{::}\NormalTok{weather, }
+\NormalTok{bh_eg_j <-}\StringTok{ }\KeywordTok{bayerhanck}\NormalTok{(sp }\OperatorTok{~}\StringTok{ }\NormalTok{ibm  }\OperatorTok{+}\StringTok{ }\NormalTok{ko, }\DataTypeTok{data =}\NormalTok{ ibmspko,}
                       \DataTypeTok{test =} \StringTok{"eg-j"}\NormalTok{)}
-
-\CommentTok{# test = "all"}
-\NormalTok{bh_all <-}\StringTok{ }\KeywordTok{bayerhanck}\NormalTok{((humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure, }
-                      \DataTypeTok{data =}\NormalTok{ nycflights13}\OperatorTok{::}\NormalTok{weather))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -762,35 +757,17 @@ The summary for the basic version of \texttt{bayerhanck()} shows:
 \OperatorTok{----------------------------------------------------------}
 \NormalTok{Bayerhanck Test }\ControlFlowTok{for}\NormalTok{ Non}\OperatorTok{-}\NormalTok{Cointegration}
 \OperatorTok{----------------------------------------------------------}
-\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure}
+\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{sp }\OperatorTok{~}\StringTok{ }\NormalTok{ibm }\OperatorTok{+}\StringTok{ }\NormalTok{ko}
 \NormalTok{Lags}\OperatorTok{:}\StringTok{ }\DecValTok{1}
 \NormalTok{Trend}\OperatorTok{:}\StringTok{ }\NormalTok{const}
  
 \NormalTok{Underlying Tests}\OperatorTok{:}
 \StringTok{                }\NormalTok{Engle}\OperatorTok{-}\NormalTok{Granger Johansen}
-\NormalTok{Test Statistics      }\FloatTok{-30.3546} \FloatTok{1186.679}
-\NormalTok{p}\OperatorTok{-}\NormalTok{Values               }\FloatTok{0.0000}    \FloatTok{0.000}
+\NormalTok{Test Statistics      }\FloatTok{-17.6686} \FloatTok{279.5175}
+\NormalTok{p}\OperatorTok{-}\NormalTok{Values               }\FloatTok{0.0000}   \FloatTok{0.0000}
  
 \NormalTok{Value of the Fisher Type Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{110.5241}
 \DecValTok{5}\NormalTok{% Critical value }\ControlFlowTok{for}\NormalTok{ the Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{10.895}
-
-\CommentTok{# test = "all"}
-\KeywordTok{summary}\NormalTok{(bh_all)}
-
-\OperatorTok{----------------------------------------------------------}
-\NormalTok{Bayerhanck Test }\ControlFlowTok{for}\NormalTok{ Non}\OperatorTok{-}\NormalTok{Cointegration}
-\OperatorTok{----------------------------------------------------------}
-\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure}
-\NormalTok{Lags}\OperatorTok{:}\StringTok{ }\DecValTok{1}
-\NormalTok{Trend}\OperatorTok{:}\StringTok{ }\NormalTok{const}
- 
-\NormalTok{Underlying Tests}\OperatorTok{:}
-\StringTok{                }\NormalTok{Engle}\OperatorTok{-}\NormalTok{Granger Johansen Banerjee  Boswijk}
-\NormalTok{Test Statistics      }\FloatTok{-30.3546} \FloatTok{1186.679} \FloatTok{-18.0761} \FloatTok{729.9936}
-\NormalTok{p}\OperatorTok{-}\NormalTok{Values               }\FloatTok{0.0000}    \FloatTok{0.000}   \FloatTok{0.0000}   \FloatTok{0.0000}
- 
-\NormalTok{Value of the Fisher Type Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{221.0482}
-\DecValTok{5}\NormalTok{% Critical value }\ControlFlowTok{for}\NormalTok{ the Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{21.106}
 \end{Highlighting}
 \end{Shaded}
 
@@ -800,13 +777,8 @@ values:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{# test = "eg-j"}
-\NormalTok{bh_eg_j_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{bayerhanck_1}\NormalTok{(humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure, }
-                          \DataTypeTok{data =}\NormalTok{ nycflights13}\OperatorTok{::}\NormalTok{weather, }
-                          \DataTypeTok{test =} \StringTok{"eg-j"}\NormalTok{)}
-
-\CommentTok{# test = "all"}
-\NormalTok{bh_all_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{bayerhanck_1}\NormalTok{(humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure, }
-                         \DataTypeTok{data =}\NormalTok{ nycflights13}\OperatorTok{::}\NormalTok{weather)}
+\NormalTok{bh_eg_j_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{bayerhanck_1}\NormalTok{(sp }\OperatorTok{~}\StringTok{ }\NormalTok{ibm }\OperatorTok{+}\StringTok{ }\NormalTok{ko, }\DataTypeTok{data =}\NormalTok{ ibmspko,}
+                      \DataTypeTok{test =} \StringTok{"eg-j"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -820,36 +792,17 @@ The summary then shows:
 \OperatorTok{----------------------------------------------------------}
 \NormalTok{Bayerhanck Test }\ControlFlowTok{for}\NormalTok{ Non}\OperatorTok{-}\NormalTok{Cointegration}
 \OperatorTok{----------------------------------------------------------}
-\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure}
+\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{sp }\OperatorTok{~}\StringTok{ }\NormalTok{ibm }\OperatorTok{+}\StringTok{ }\NormalTok{ko}
 \NormalTok{Lags}\OperatorTok{:}\StringTok{ }\DecValTok{1}
 \NormalTok{Trend}\OperatorTok{:}\StringTok{ }\NormalTok{const}
  
 \NormalTok{Underlying Tests}\OperatorTok{:}
 \StringTok{                }\NormalTok{Engle}\OperatorTok{-}\NormalTok{Granger Johansen}
-\NormalTok{Test Statistics      }\FloatTok{-30.3546} \FloatTok{1186.679}
-\NormalTok{p}\OperatorTok{-}\NormalTok{Values               }\FloatTok{0.0000}    \FloatTok{0.000}
+\NormalTok{Test Statistics      }\FloatTok{-17.6686} \FloatTok{279.5175}
+\NormalTok{p}\OperatorTok{-}\NormalTok{Values               }\FloatTok{0.0000}   \FloatTok{0.0000}
  
 \NormalTok{Value of the Fisher Type Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{110.5241}
 \DecValTok{5}\NormalTok{% Critical value }\ControlFlowTok{for}\NormalTok{ the Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{10.8454} 
-\NormalTok{P}\OperatorTok{-}\NormalTok{value of the Fisher Type Test statistic}\OperatorTok{:}\StringTok{ }\DecValTok{0}
-
-\CommentTok{# test = "all"}
-\KeywordTok{summary}\NormalTok{(bh_all_}\DecValTok{1}\NormalTok{)}
-
-\OperatorTok{----------------------------------------------------------}
-\NormalTok{Bayerhanck Test }\ControlFlowTok{for}\NormalTok{ Non}\OperatorTok{-}\NormalTok{Cointegration}
-\OperatorTok{----------------------------------------------------------}
-\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure}
-\NormalTok{Lags}\OperatorTok{:}\StringTok{ }\DecValTok{1}
-\NormalTok{Trend}\OperatorTok{:}\StringTok{ }\NormalTok{const}
- 
-\NormalTok{Underlying Tests}\OperatorTok{:}
-\StringTok{                }\NormalTok{Engle}\OperatorTok{-}\NormalTok{Granger Johansen Banerjee  Boswijk}
-\NormalTok{Test Statistics      }\FloatTok{-30.3546} \FloatTok{1186.679} \FloatTok{-18.0761} \FloatTok{729.9936}
-\NormalTok{p}\OperatorTok{-}\NormalTok{Values               }\FloatTok{0.0000}    \FloatTok{0.000}   \FloatTok{0.0000}   \FloatTok{0.0000}
- 
-\NormalTok{Value of the Fisher Type Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{221.0482}
-\DecValTok{5}\NormalTok{% Critical value }\ControlFlowTok{for}\NormalTok{ the Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{21.034} 
 \NormalTok{P}\OperatorTok{-}\NormalTok{value of the Fisher Type Test statistic}\OperatorTok{:}\StringTok{ }\DecValTok{0}
 \end{Highlighting}
 \end{Shaded}

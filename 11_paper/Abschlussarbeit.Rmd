@@ -129,7 +129,7 @@ The function for the Johansen test contains the additional argument `type`, whic
 johansen(formula, data, type = "eigen", lags = 1, trend = "const")
 ```
 
-First of all, if the practitioner chooses `trend = "trend"`, it has to be renamed to `"both"`. This describes the required name for the following functions to correctly specify the requested deterministic component. Then, the function estimates a VECM by Johansen (MLE) method with `VECM` from the package **tsDyn**^[Compared to `ca.jo` from the **urca** package, the functions from **tsDyn** allow for the specification of an unrestricted constant and trend, which where used in the Stata Package for the Bayer-Hanck Test.]. A test of the cointegrating rank is conducted. For this, the function `rank.test()` from the same package is used. Here, the maximum eigenvalue is used as the output test statistic of `johansen()`.
+First of all, if the practitioner chooses `trend = "trend"`, it has to be renamed to `"both"`. This describes the required name for the following functions to correctly specify the requested deterministic component. Then, the function estimates a VECM by Johansen (MLE) method with `VECM` from the package **tsDyn**^[Compared to `ca.jo` from the **urca** package, the functions from **tsDyn** allow for the specification of an unrestricted constant and trend, which where used in the Stata Package for the Bayer-Hanck Test.]. A test of the cointegrating rank is conducted. For this, the function `rank.test()` from the same package is used. Here, the maximum eigenvalue for $h = 0$ is used as the output test statistic of `johansen()`.
 
 The construction of the functions for the Banerjee and Boswijk test was almost identical. Therefore, both functions will be illustrated in a single step. The arguments for both functions are identical to those from `englegranger()`:
 
@@ -193,16 +193,14 @@ Here, the execution of `plot` accesses the test statistic of the `bayerhanck` fu
 
 # Illustration
 
-The package shall be illustrated on the data set `weather` from the package **nycflights13** [@wickham_nycflights13_2020]. It contains the hourly meteorological data for the airports LGA, JFK and EWR of the New York metropolitan area. We will test for a cointegration relationship between the variables *humid*, *temp* and *pressure*. These stand for the relative humidity, temperature and sea level pressure in millibars. 
+The package shall be illustrated on the data set `ibmskpo` from the package **MTS** [@tsay_mts_2020]. It contains monthly simple returns of the stocks of International Business Machines *ibm*, Coca Cola *ko*, and the S&P composite index *sp*. We will test for a cointegration relationship between the variables *sp*, *ko*, and *ibm*. The sample period is from January 1961 till Decembet 2011 and the data can be load with the command `data("mts-examples", package="MTS")`.
 
 The functions for the underlying tests will be demonstrated with a Engle-Granger test and a Johansen test:
 
 ```{r eval=FALSE}
-eg_test <- englegranger(humid ~ temp + pressure,
-                        data = nycflights13::weather)
+eg_test <- englegranger(sp ~ ibm + ko, data = ibmspko)
 
-jo_test <- johansen(humid ~ temp + pressure, 
-                    data = nycflights13::weather)
+jo_test <- johansen(sp ~ ibm + ko, data = ibmspko)
 ```
 
 Next, we will have a look at the summary of the tests:
@@ -213,11 +211,11 @@ summary(eg_test)
 ----------------------------------------------------------
 Engle-Granger Test
 ----------------------------------------------------------
-Formula: humid ~ temp + pressure
+Formula: sp ~ ibm + ko
 Lags: 1
 Trend: const
  
-Value of test statistic: -30.3546
+Value of test statistic: -17.6686
 ```
 
 and
@@ -228,24 +226,20 @@ summary(jo_test)
 ----------------------------------------------------------
 Johansen Test
 ----------------------------------------------------------
-Formula: humid ~ temp + pressure
+Formula: sp ~ ibm + ko
 Lags: 1
 Trend: const
  
-Value of test statistic: 1186.6794
+Value of test statistic: 279.5175
 ```
 
 Next, we will calculate the Bayer-Hanck Test, both with the values from @Bayerhanck2009's technical appendix and the Simulation. First, the results for the basic version are shown:
 
 ```{r eval = FALSE}
 # test = "eg-j"
-bh_eg_j <- bayerhanck(humid ~ temp + pressure, 
-                      data = nycflights13::weather, 
+bh_eg_j <- bayerhanck(sp ~ ibm  + ko, data = ibmspko,
                       test = "eg-j")
 
-# test = "all"
-bh_all <- bayerhanck((humid ~ temp + pressure, 
-                      data = nycflights13::weather))
 ```
 
 The summary for the basic version of `bayerhanck()` shows:
@@ -257,48 +251,25 @@ summary(bh_eg_j)
 ----------------------------------------------------------
 Bayerhanck Test for Non-Cointegration
 ----------------------------------------------------------
-Formula: humid ~ temp + pressure
+Formula: sp ~ ibm + ko
 Lags: 1
 Trend: const
  
 Underlying Tests:
                 Engle-Granger Johansen
-Test Statistics      -30.3546 1186.679
-p-Values               0.0000    0.000
+Test Statistics      -17.6686 279.5175
+p-Values               0.0000   0.0000
  
 Value of the Fisher Type Test statistic: 110.5241
 5% Critical value for the Test statistic: 10.895
-
-# test = "all"
-summary(bh_all)
-
-----------------------------------------------------------
-Bayerhanck Test for Non-Cointegration
-----------------------------------------------------------
-Formula: humid ~ temp + pressure
-Lags: 1
-Trend: const
- 
-Underlying Tests:
-                Engle-Granger Johansen Banerjee  Boswijk
-Test Statistics      -30.3546 1186.679 -18.0761 729.9936
-p-Values               0.0000    0.000   0.0000   0.0000
- 
-Value of the Fisher Type Test statistic: 221.0482
-5% Critical value for the Test statistic: 21.106
 ```
 
 Next, we will calculate the Bayer-Hanck test with specifically simulated values:
 
 ```{r eval = FALSE}
 # test = "eg-j"
-bh_eg_j_1 <- bayerhanck_1(humid ~ temp + pressure, 
-                          data = nycflights13::weather, 
-                          test = "eg-j")
-
-# test = "all"
-bh_all_1 <- bayerhanck_1(humid ~ temp + pressure, 
-                         data = nycflights13::weather)
+bh_eg_j_1 <- bayerhanck_1(sp ~ ibm + ko, data = ibmspko,
+                      test = "eg-j")
 
 ```
 
@@ -311,36 +282,17 @@ summary(bh_eg_j_1)
 ----------------------------------------------------------
 Bayerhanck Test for Non-Cointegration
 ----------------------------------------------------------
-Formula: humid ~ temp + pressure
+Formula: sp ~ ibm + ko
 Lags: 1
 Trend: const
  
 Underlying Tests:
                 Engle-Granger Johansen
-Test Statistics      -30.3546 1186.679
-p-Values               0.0000    0.000
+Test Statistics      -17.6686 279.5175
+p-Values               0.0000   0.0000
  
 Value of the Fisher Type Test statistic: 110.5241
 5% Critical value for the Test statistic: 10.8454 
-P-value of the Fisher Type Test statistic: 0
-
-# test = "all"
-summary(bh_all_1)
-
-----------------------------------------------------------
-Bayerhanck Test for Non-Cointegration
-----------------------------------------------------------
-Formula: humid ~ temp + pressure
-Lags: 1
-Trend: const
- 
-Underlying Tests:
-                Engle-Granger Johansen Banerjee  Boswijk
-Test Statistics      -30.3546 1186.679 -18.0761 729.9936
-p-Values               0.0000    0.000   0.0000   0.0000
- 
-Value of the Fisher Type Test statistic: 221.0482
-5% Critical value for the Test statistic: 21.034 
 P-value of the Fisher Type Test statistic: 0
 ```
 
