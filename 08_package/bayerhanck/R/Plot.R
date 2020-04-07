@@ -24,9 +24,6 @@ plot.bh.test <- function(object, theme = "dark") {
   gg.bh <- ggplot2::ggplot(data = df_gg, ggplot2::aes(x = x)) +
     ggplot2::geom_vline(xintercept = object$bh.test, linetype = "dotted",
                color = "red", size = 1) +
-    ggplot2::annotate("text", x = (object$bh.test*1.05), y = 0.5,
-                      label = paste('B-H-S \n', round(object$bh.test, 2)),
-                      colour = 'red') +
     ggplot2::labs(x = "\n \n Bayer-Hanck-Statistic", y = "F(Bayer-Hanck-Statistic) \n") +
     ggplot2::theme(plot.margin = ggplot2::unit(c(1, 1, 1, 1),"cm"),
           plot.title = ggplot2::element_text(hjust = 0.5))

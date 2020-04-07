@@ -736,6 +736,7 @@ and
 
 Next, we will calculate the Bayer-Hanck Test, both with the values from
 \textcite{Bayerhanck2009}'s technical appendix and the Simulation.
+First, the results for the basic version are shown:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -791,6 +792,84 @@ The summary for the basic version of \texttt{bayerhanck()} shows:
 \DecValTok{5}\NormalTok{% Critical value }\ControlFlowTok{for}\NormalTok{ the Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{21.106}
 \end{Highlighting}
 \end{Shaded}
+
+Next, we will calculate the Bayer-Hanck test with specifically simulated
+values:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# test = "eg-j"}
+\NormalTok{bh_eg_j_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{bayerhanck_1}\NormalTok{(humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure, }
+                          \DataTypeTok{data =}\NormalTok{ nycflights13}\OperatorTok{::}\NormalTok{weather, }
+                          \DataTypeTok{test =} \StringTok{"eg-j"}\NormalTok{)}
+
+\CommentTok{# test = "all"}
+\NormalTok{bh_all_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\KeywordTok{bayerhanck_1}\NormalTok{(humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure, }
+                         \DataTypeTok{data =}\NormalTok{ nycflights13}\OperatorTok{::}\NormalTok{weather)}
+\end{Highlighting}
+\end{Shaded}
+
+The summary then shows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# test = "eg-j"}
+\KeywordTok{summary}\NormalTok{(bh_eg_j_}\DecValTok{1}\NormalTok{)}
+
+\OperatorTok{----------------------------------------------------------}
+\NormalTok{Bayerhanck Test }\ControlFlowTok{for}\NormalTok{ Non}\OperatorTok{-}\NormalTok{Cointegration}
+\OperatorTok{----------------------------------------------------------}
+\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure}
+\NormalTok{Lags}\OperatorTok{:}\StringTok{ }\DecValTok{1}
+\NormalTok{Trend}\OperatorTok{:}\StringTok{ }\NormalTok{const}
+ 
+\NormalTok{Underlying Tests}\OperatorTok{:}
+\StringTok{                }\NormalTok{Engle}\OperatorTok{-}\NormalTok{Granger Johansen}
+\NormalTok{Test Statistics      }\FloatTok{-30.3546} \FloatTok{1186.679}
+\NormalTok{p}\OperatorTok{-}\NormalTok{Values               }\FloatTok{0.0000}    \FloatTok{0.000}
+ 
+\NormalTok{Value of the Fisher Type Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{110.5241}
+\DecValTok{5}\NormalTok{% Critical value }\ControlFlowTok{for}\NormalTok{ the Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{10.8454} 
+\NormalTok{P}\OperatorTok{-}\NormalTok{value of the Fisher Type Test statistic}\OperatorTok{:}\StringTok{ }\DecValTok{0}
+
+\CommentTok{# test = "all"}
+\KeywordTok{summary}\NormalTok{(bh_all_}\DecValTok{1}\NormalTok{)}
+
+\OperatorTok{----------------------------------------------------------}
+\NormalTok{Bayerhanck Test }\ControlFlowTok{for}\NormalTok{ Non}\OperatorTok{-}\NormalTok{Cointegration}
+\OperatorTok{----------------------------------------------------------}
+\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure}
+\NormalTok{Lags}\OperatorTok{:}\StringTok{ }\DecValTok{1}
+\NormalTok{Trend}\OperatorTok{:}\StringTok{ }\NormalTok{const}
+ 
+\NormalTok{Underlying Tests}\OperatorTok{:}
+\StringTok{                }\NormalTok{Engle}\OperatorTok{-}\NormalTok{Granger Johansen Banerjee  Boswijk}
+\NormalTok{Test Statistics      }\FloatTok{-30.3546} \FloatTok{1186.679} \FloatTok{-18.0761} \FloatTok{729.9936}
+\NormalTok{p}\OperatorTok{-}\NormalTok{Values               }\FloatTok{0.0000}    \FloatTok{0.000}   \FloatTok{0.0000}   \FloatTok{0.0000}
+ 
+\NormalTok{Value of the Fisher Type Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{221.0482}
+\DecValTok{5}\NormalTok{% Critical value }\ControlFlowTok{for}\NormalTok{ the Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{21.034} 
+\NormalTok{P}\OperatorTok{-}\NormalTok{value of the Fisher Type Test statistic}\OperatorTok{:}\StringTok{ }\DecValTok{0}
+\end{Highlighting}
+\end{Shaded}
+
+To demonstrate the implemented method for the generic function
+\texttt{plot()}, we will additionally plot the object from
+\texttt{bayerhanck\_1} for \texttt{test\ =\ "all"}. For a harmonoius
+appearance in this documentation, we will set
+\texttt{theme\ =\ "light"}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(bh_all_}\DecValTok{1}\NormalTok{, }\DataTypeTok{theme =} \StringTok{"light"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+\centering
+\includegraphics{plot_bh.png}
+\caption{Cumulative Distribution Function under \(\mathcal{H}_0\)}
+\end{figure}
 
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
