@@ -1,5 +1,5 @@
 ---
-title: 'Combining non-cointegration Tests in R'
+title: 'Combining Non-Cointegration Tests in R'
 subtitle: 'Advanced R for Econometricians'
 type: "Projects"
 author: 'Jens Klenke, Janine Langerbein, Niklas Mika'
@@ -158,9 +158,47 @@ The argument `crit` sets the significance level of the test. The practitioner ma
 
 After inserting the formula and the data, the selected underlying tests are called. The test statistics of each selected test are obtained and stored in a vector. Then, the p-values are calculated by using the corresponding empirical null distribution. This distribution depends on the number of variables, the trend specification and the combination of the underlying tests. Next, the p-values are logarithmised and summed. In accordance with equation \eqref{eq:bayer-hanck}, they are multiplied with -2 to obtain the test statistic. In the last step, the critical value is selected from the empirical null distribution, subject to the specified significance level.
 
-## Implementation of the function `bayerhanck_1()`
+## Implementation of the function `bayerhanck_1()` 
 
-The obtained values from the previously presented function `bayerhanck()` use the critical values provided by the technical appendix from @Bayerhanck2009. As an extension to this function, the function `bayerhanck_1()` has been developed. It contains additional null distributions, calculated with a specifically conducted simulation. Analogous to the basic version, it takes the form:
+The obtained values from the previously presented function `bayerhanck()` use the critical values provided by the technical appendix from @Bayerhanck2009. As an extension to this function, the function `bayerhanck_1()` has been developed. It contains additional null distributions, calculated with a Monte Carlo simulation. 
+
+The simulation considers different combinations of the number of variables $K\in\{2,...,12\}$, nuisance parameter $R^2\in\{0,0.05,...,0.95\}$, and cases of determinstic trends in the variables, with (i) = no deterministics, (ii)  = constant, and (iii) = constant and trend means. Since only the null distribution is of any interest, the parameter $c$ will be hold constant to zero. The simulation is run with 25,000 repetitions with a vector length of $T = 1000$. 
+
+
+```{r, include = FALSE, warning = FALSE, error=FALSE}
+
+load('bayerhanck_cv.Rda')
+load('crit_values.Rda')
+library(dplyr)
+library(kableExtra)
+
+row_names <- seq(1:11)
+dt_0.05 <- round(Null_Distr_B_ECR_J_E[,,25000*0.95],4)
+cv_b_h <- round(crit_val_2_0.05,4)
+
+space <- rep('',nrow(dt_0.05))
+diff_sim <- round(dt_0.05 - cv_b_h,4)
+
+overview <- cbind(row_names, space, dt_0.05, space,cv_b_h, space, diff_sim) 
+```
+
+Table \ref{tab:com} shows the 5% critical values of the simulation in the first block. The values of Bayer and Hanck are in the second, while their difference is shown in the third block. Overall, the simulated values do not deviate too far from those by Bayer and Hanck. 
+It can therefore be assumed, that the simulation delivers reliable results.
+
+```{r, echo = FALSE, warning = FALSE, error=FALSE}
+
+
+
+knitr::kable(overview, digits = 4, caption = '\\label{tab:com} Comparison of the simulated values with the critical values obtained by Bayer and Hanck \n', 
+              col.names = c("K-1",'',"(i) ","(ii)","(iii)", '',"(i) ","(ii)","(iii)", '', "(i) ","(ii)","(iii)" ), align = 'c',   booktabs = TRUE, linesep = "")%>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size = 8)%>%
+  add_header_above(c(" ",'', "Simulation" = 3,'', "Bayer & Hanck" = 3,'', "Difference" = 3))
+                
+  
+
+```  
+
+With this simulation, the function `bayerhanck_1` can be implemented. Analogous to the basic version, it takes the form:
 
 ```{r eval = FALSE}
 bayerhanck_1(formula, data, lags = 1, trend = "const", 
