@@ -1,5 +1,5 @@
 #' @describeIn englegranger Banerjee Test
-#'
+#' @export
 banerjee <- function(formula, data, lags = 1, trend = "const"){
 
   #-----------------------------------------------------------------------------------------

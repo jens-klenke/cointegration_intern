@@ -1,5 +1,5 @@
 #' @describeIn englegranger Boswijk Test
-#'
+#' @export
 boswijk <- function(formula, data, lags = 1, trend = "const"){
 
   #-----------------------------------------------------------------------------------------

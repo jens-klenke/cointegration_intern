@@ -1,4 +1,5 @@
 #' @describeIn bayerhanck Bayer-Hanck Test-Statistic with values obtained by own simulation.
+#' @export
 bayerhanck_1 <- function(formula, data, lags = 1, trend = "const", test = "all", crit = 0.05) {
 
   #-----------------------------------------------------------------------------------------
