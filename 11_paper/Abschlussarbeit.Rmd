@@ -355,6 +355,14 @@ plot(bh_all_1, theme = "light")
 
 # Conclusion
 
+The implementation of the R package **bayerhanck** has been documented. It contains functions for two different versions of the Bayer-Hanck Test for non cointegration, as well as functions for the underlying cointegration tests. The former has been implemented in a functional way, so that the functions `bayerhanck()` and `bayerhanck_1()` call the underlying test functions. Since the underyling tests can be executed autonomously, the scope of application is increased. The sub-functions certainly require more effort so the tests can be applied to more versatile problems. This applies above all to the tests of Banerjee and Boswijk, as we found no well working implementation in R. 
+
+In the current version we also developed a further implementation with the `bayerhanck_1()` function. This function additionally calculates the p-value of the test statistics based on the empirical distribution stored in the function. For the aforementioned data set with two regressors and approximately 26,000 observations, the function needs about one second computation time. Further speed up of the calculation might be desired, if one wants to work with bigger data. One consideration might be to write the code directly in `C`, instead of `R`, to save a step in the translation process.
+
+Furthermore, two methods for the generic functions `summary()` and `plot()` were defined Another implementation, which was not covered in this documentation, is a user friendly application within a shiny app. If it is published on a server, potential users might use the functions of this package without using `R`themselves.
+
+Of course, this package will be an object to further development. A plausible advancement could be to increase the number of possible tests and allow other combinations, than already implemented. For this, the simulated distributions of the null distribution would have to be stored. The power of each combination would have to be checked first. However, this might lead to the problem, that users may tend to try out different combinations, until they get their desired result.
+
 \newpage
 
 
