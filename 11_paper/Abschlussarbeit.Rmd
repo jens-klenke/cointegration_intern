@@ -84,7 +84,7 @@ As opposed to the Engle-Granger Test, @Johansen1988's cointegration test is able
 \triangle {\bf z}_t = {\bf \Pi z}_{t-1} + \sum^{P-1}_{p=1}\pmb{\Gamma}_p \triangle{\bf z}_{t-p} + {\bf d}_t + \pmb{\epsilon}_t
 \end{align}
 
-needs to estimated first. Bayer and Hanck employ the test statistic $\lambda_{\max} (h) = - T \ ln(1 - \hat{\pi}_1)$, where $\hat{\pi}_1$ denotes the largest solution of $|\pi \pmb{S}_{11} - \pmb{S}_{10} \pmb{S}_{00}^{-1} \pmb{S}_{01}|= 0$.^[$\pmb{S}_{ij}$ denotes the moment matrices of reduced rank regression residuals.]
+needs to be estimated first. Bayer and Hanck employ the test statistic $\lambda_{\max} (h) = - T \ ln(1 - \hat{\pi}_1)$, where $\hat{\pi}_1$ denotes the largest solution of $|\pi \pmb{S}_{11} - \pmb{S}_{10} \pmb{S}_{00}^{-1} \pmb{S}_{01}|= 0$.^[$\pmb{S}_{ij}$ denotes the moment matrices of reduced rank regression residuals.]
 
 The cointegration tests of @Boswijk1994 and @Banerjee1998 are based on error correction model tests. Boswijk's test statistic $\hat{F}$ is the Wald statistic for $\mathcal{H}_0: (\varphi_0, \pmb{\phi}_1^{'}) = 0$, whereas Banerjee _et al._'s test statistic is the $t_{\gamma}^{ECR}$ ratio for $\mathcal{H}_0 : \varphi_0 = 0$ of the error correction model. To derive the error correction model, the usual least squares estimate is used: $\triangle y_t = d_t + \pi_{0x}^{'} \triangle \pmb{x}_t + \varphi_0 y_{t-1} + \pmb{\varphi}_{1}^{'} \pmb{x}_{t-1} + \sum_{P = 1}^{P} \left( \pmb{\pi}_{px}^{'} \triangle  \pmb{x}_{t-p} + \pi_{py} \triangle y_{t - p} \right) + \epsilon_t$. 
 
@@ -97,7 +97,7 @@ From now on, $t_i$ denotes the test statistic of the underlying test $i$. If the
 
 where $\mathcal{I}$ is the index set of the $\xi_i$.
 
-The test statistic has the property, that the distribution under the $\mathcal{H}_0$ hypothesis converges to a random variable $\mathcal{F}_{\mathcal{I}}$ $\left(\tilde{\chi}_{\mathcal{I}}^{2} \rightarrow_{d} \mathcal{F}_{\mathcal{I}} \right)$. This guarantees, that the statistic has a well-defined asymptotic null distribution. According to @Bayerhanck2009, this null distribution is nuisance parameter free and only depends on the amount of tests combined and the selection of tests combined. Consequently, the joint $\mathcal{H_0}$ hypotheses can be simulated. 
+The test statistic has the property, that the distribution under the $\mathcal{H}_0$ hypothesis converges to a random variable $\mathcal{F}_{\mathcal{I}}$ $\left(\tilde{\chi}_{\mathcal{I}}^{2} \rightarrow_{d} \mathcal{F}_{\mathcal{I}} \right)$. This guarantees, that the statistic has a well-defined asymptotic null distribution. According to @Bayerhanck2009, this null distribution is nuisance parameter free and only depends on the amount of tests combined. Consequently, the joint $\mathcal{H_0}$ hypotheses can be simulated. 
 
 Under the alternative hypotheses $\mathcal{H}_1$ the test statistic probability converges to $\tilde{\chi}_{\mathcal{I}}^{2} \rightarrow_P  \infty$, which means that the test statistic is consistent if at least one of the underlying tests is consistent.
 
