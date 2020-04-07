@@ -1,4 +1,4 @@
-\documentclass[11.5pt,a4paper]{article}
+\documentclass[11pt,a4paper]{article}
 \usepackage{lmodern}
 
 \usepackage{amssymb,amsmath}
@@ -430,13 +430,14 @@ distribution function of the null hypothesis can be plotted.
 \subsection{Creating the package}\label{creating-the-package}}
 
 The package \textbf{bayerhanck} was created using
-\texttt{create\_package()} from \textbf{devtools}. This generates an R
-project, files for the package metadata, such as \texttt{DESCRIPTION},
-\texttt{NAMESPACE} and \texttt{LICENSE}, and a sub directory for the R
-code of subsequent functions. The individual functions were documented
-with the help of \textbf{roxygen2}. The roxygen comments in the source
-file were then converted to \texttt{.Rd} files in the sub directory
-\texttt{man/}.
+\texttt{create\_package()} from \textbf{devtools}
+\autocite{hester_devtools_2020}. This generates an R project, files for
+the package metadata, such as \texttt{DESCRIPTION}, \texttt{NAMESPACE}
+and \texttt{LICENSE}, and a sub directory for the R code of subsequent
+functions. The individual functions were documented with the help of
+\textbf{roxygen2} \autocite{wickham_roxygen2_2020}. The roxygen comments
+in the source file were then converted to \texttt{.Rd} files in the sub
+directory \texttt{man/}.
 
 \hypertarget{implementation-of-the-underlying-tests}{%
 \subsection{Implementation of the underlying
@@ -445,20 +446,21 @@ Tests}\label{implementation-of-the-underlying-tests}}
 The underlying tests can be carried out by their eponymous commands,
 namely \texttt{englegranger()}, \texttt{johansen()}, \texttt{banerjee()}
 and \texttt{boswijk()}. The former two partly rely on already
-implemented functions from the packages \textbf{urca} and
-\textbf{tsDyn}. Due to the absence of associated functions for the
-latter two, those had to be programmed manually. All functions take
-several arguments, from which only \texttt{formula} and \texttt{data}
-need to be filled out by the practitioner. Further arguments orientate
-themselves on the default values defined in the Stata implementation of
-the Bayer-Hanck Test. For the argument \texttt{lags}, which determines
-the number of lags to be included in the model, the default value is
-therefore set to 1. The argument \texttt{trend} describes the
-deterministic components of the model. The practitioner may choose from
-\texttt{none}, for no deterministics, \texttt{const}, for a
-(unrestricted) constant and \texttt{trend}, for a (unrestricted)
-constant plus (unrestricted) trend. The default value is set to
-\texttt{const}. Aside from the Johansen Test, all functions where
+implemented functions from the packages \textbf{urca}
+\autocite{pfaff_urca_2020} and \textbf{tsDyn}
+\autocite{stigler_tsdyn_2020}. Due to the absence of associated
+functions for the latter two, those had to be programmed manually. All
+functions take several arguments, from which only \texttt{formula} and
+\texttt{data} need to be filled out by the practitioner. Further
+arguments orientate themselves on the default values defined in the
+Stata implementation of the Bayer-Hanck Test. For the argument
+\texttt{lags}, which determines the number of lags to be included in the
+model, the default value is therefore set to 1. The argument
+\texttt{trend} describes the deterministic components of the model. The
+practitioner may choose from \texttt{none}, for no deterministics,
+\texttt{const}, for a (unrestricted) constant and \texttt{trend}, for a
+(unrestricted) constant plus (unrestricted) trend. The default value is
+set to \texttt{const}. Aside from the Johansen Test, all functions where
 programmed in such a way, that \texttt{trend\ =\ "none"} simply removes
 the intercept from all performed linear regressions in the functions.
 For \texttt{trend\ =\ "trend"} the intercept was maintained and a trend
@@ -669,12 +671,126 @@ Here, the execution of \texttt{plot} accesses the test statistic of the
 \texttt{bayerhanck} function, the number of regressors and the trend
 type. It can therefore deduce, which null distribution is to be plotted.
 This information is then passed to the function \texttt{ggplot} from the
-package \textbf{ggplot2}. \texttt{ggplot::stat\_ecdf()} is then used to
-plot the null distribution. In addition, the value of the Bayer-Hanck
-statistic is marked with a dotted x-intercept line.
+package \textbf{ggplot2} \autocite{wickham_ggplot2_2020}.
+\texttt{ggplot::stat\_ecdf()} is then used to plot the null
+distribution. In addition, the value of the Bayer-Hanck statistic is
+marked with a dotted x-intercept line.
 
 \hypertarget{illustration}{%
 \section{Illustration}\label{illustration}}
+
+The package shall be illustrated on the dataset \texttt{weather} from
+the package \textbf{nycflights13} \autocite{wickham_nycflights13_2020}.
+It contains the hourly meterological data for the airports LGA, JFK and
+EWR of the New York metropolitan area. We will test for a cointegration
+relationship between the variables \emph{humid}, \emph{temp} and
+\emph{pressure}. These stand for the relative humidity, temperature and
+sea level pressure in millibars.
+
+The functions for the underlying tests will be demonstrated with a
+Engle-Granger test and a Johansen test:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{eg_test <-}\StringTok{ }\KeywordTok{englegranger}\NormalTok{(humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure,}
+                        \DataTypeTok{data =}\NormalTok{ nycflights13}\OperatorTok{::}\NormalTok{weather)}
+
+\NormalTok{jo_test <-}\StringTok{ }\KeywordTok{johansen}\NormalTok{(humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure, }
+                    \DataTypeTok{data =}\NormalTok{ nycflights13}\OperatorTok{::}\NormalTok{weather)}
+\end{Highlighting}
+\end{Shaded}
+
+Next, we will have a look at the summary of the tests:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(eg_test)}
+
+\OperatorTok{----------------------------------------------------------}
+\NormalTok{Engle}\OperatorTok{-}\NormalTok{Granger Test}
+\OperatorTok{----------------------------------------------------------}
+\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure}
+\NormalTok{Lags}\OperatorTok{:}\StringTok{ }\DecValTok{1}
+\NormalTok{Trend}\OperatorTok{:}\StringTok{ }\NormalTok{const}
+ 
+\NormalTok{Value of test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{-30.3546}
+\end{Highlighting}
+\end{Shaded}
+
+and
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(jo_test)}
+
+\OperatorTok{----------------------------------------------------------}
+\NormalTok{Johansen Test}
+\OperatorTok{----------------------------------------------------------}
+\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure}
+\NormalTok{Lags}\OperatorTok{:}\StringTok{ }\DecValTok{1}
+\NormalTok{Trend}\OperatorTok{:}\StringTok{ }\NormalTok{const}
+ 
+\NormalTok{Value of test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{1186.6794}
+\end{Highlighting}
+\end{Shaded}
+
+Next, we will calculate the Bayer-Hanck Test, both with the values from
+\textcite{Bayerhanck2009}'s technical appendix and the Simulation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# test = "eg-j"}
+\NormalTok{bh_eg_j <-}\StringTok{ }\KeywordTok{bayerhanck}\NormalTok{(humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure, }
+                      \DataTypeTok{data =}\NormalTok{ nycflights13}\OperatorTok{::}\NormalTok{weather, }
+                      \DataTypeTok{test =} \StringTok{"eg-j"}\NormalTok{)}
+
+\CommentTok{# test = "all"}
+\NormalTok{bh_all <-}\StringTok{ }\KeywordTok{bayerhanck}\NormalTok{((humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure, }
+                      \DataTypeTok{data =}\NormalTok{ nycflights13}\OperatorTok{::}\NormalTok{weather))}
+\end{Highlighting}
+\end{Shaded}
+
+The summary for the basic version of \texttt{bayerhanck()} shows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# test = "eg-j"}
+\KeywordTok{summary}\NormalTok{(bh_eg_j)}
+
+\OperatorTok{----------------------------------------------------------}
+\NormalTok{Bayerhanck Test }\ControlFlowTok{for}\NormalTok{ Non}\OperatorTok{-}\NormalTok{Cointegration}
+\OperatorTok{----------------------------------------------------------}
+\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure}
+\NormalTok{Lags}\OperatorTok{:}\StringTok{ }\DecValTok{1}
+\NormalTok{Trend}\OperatorTok{:}\StringTok{ }\NormalTok{const}
+ 
+\NormalTok{Underlying Tests}\OperatorTok{:}
+\StringTok{                }\NormalTok{Engle}\OperatorTok{-}\NormalTok{Granger Johansen}
+\NormalTok{Test Statistics      }\FloatTok{-30.3546} \FloatTok{1186.679}
+\NormalTok{p}\OperatorTok{-}\NormalTok{Values               }\FloatTok{0.0000}    \FloatTok{0.000}
+ 
+\NormalTok{Value of the Fisher Type Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{110.5241}
+\DecValTok{5}\NormalTok{% Critical value }\ControlFlowTok{for}\NormalTok{ the Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{10.895}
+
+\CommentTok{# test = "all"}
+\KeywordTok{summary}\NormalTok{(bh_all)}
+
+\OperatorTok{----------------------------------------------------------}
+\NormalTok{Bayerhanck Test }\ControlFlowTok{for}\NormalTok{ Non}\OperatorTok{-}\NormalTok{Cointegration}
+\OperatorTok{----------------------------------------------------------}
+\NormalTok{Formula}\OperatorTok{:}\StringTok{ }\NormalTok{humid }\OperatorTok{~}\StringTok{ }\NormalTok{temp }\OperatorTok{+}\StringTok{ }\NormalTok{pressure}
+\NormalTok{Lags}\OperatorTok{:}\StringTok{ }\DecValTok{1}
+\NormalTok{Trend}\OperatorTok{:}\StringTok{ }\NormalTok{const}
+ 
+\NormalTok{Underlying Tests}\OperatorTok{:}
+\StringTok{                }\NormalTok{Engle}\OperatorTok{-}\NormalTok{Granger Johansen Banerjee  Boswijk}
+\NormalTok{Test Statistics      }\FloatTok{-30.3546} \FloatTok{1186.679} \FloatTok{-18.0761} \FloatTok{729.9936}
+\NormalTok{p}\OperatorTok{-}\NormalTok{Values               }\FloatTok{0.0000}    \FloatTok{0.000}   \FloatTok{0.0000}   \FloatTok{0.0000}
+ 
+\NormalTok{Value of the Fisher Type Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{221.0482}
+\DecValTok{5}\NormalTok{% Critical value }\ControlFlowTok{for}\NormalTok{ the Test statistic}\OperatorTok{:}\StringTok{ }\FloatTok{21.106}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}

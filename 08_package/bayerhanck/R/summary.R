@@ -48,7 +48,13 @@ summary.bh.test <- function(object) {
   }
   cat(c(paste(
     paste(c(crit, "%"), collapse = ""),
-    "Critical value for the Test statistic:", object$crit.val)))
+    "Critical value for the Test statistic:", round(object$crit.val, 4))))
+  if (is.numeric(object$bh.pval)) {
+    cat(c(" ",
+          paste(c("P-value of the Fisher Type Test statistic:", round(object$bh.pval, 4)),
+                collapse = " ")),
+        sep = "\n")
+  }
   out <- list(bh.test = object$bh.test)
   class(out) <- c("summary.bh.test")
   invisible(out)

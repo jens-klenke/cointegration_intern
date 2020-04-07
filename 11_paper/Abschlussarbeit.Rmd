@@ -23,7 +23,7 @@ lot: true
 lof: true
 graphics: true
 biblio-title: References
-fontsize: 11.5pt
+fontsize: 11pt
 geometry: lmargin=5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm
 biblio-files: references.bib
 classoption: a4paper
@@ -109,10 +109,10 @@ The package consists of four functions for the underlying tests, as well as the 
 
 ## Creating the package
 
-The package **bayerhanck** was created using `create_package()` from **devtools**. This generates an R project, files for the package metadata, such as `DESCRIPTION`, `NAMESPACE` and `LICENSE`, and a sub directory for the R code of subsequent functions. The individual functions were documented with the help of **roxygen2**. The roxygen comments in the source file were then converted to `.Rd` files in the sub directory `man/`. 
+The package **bayerhanck** was created using `create_package()` from **devtools** [@hester_devtools_2020]. This generates an R project, files for the package metadata, such as `DESCRIPTION`, `NAMESPACE` and `LICENSE`, and a sub directory for the R code of subsequent functions. The individual functions were documented with the help of **roxygen2** [@wickham_roxygen2_2020]. The roxygen comments in the source file were then converted to `.Rd` files in the sub directory `man/`. 
 
 ## Implementation of the underlying Tests
-The underlying tests can be carried out by their eponymous commands, namely `englegranger()`, `johansen()`, `banerjee()` and `boswijk()`. The former two partly rely on already implemented functions from the packages **urca** and **tsDyn**. Due to the absence of associated functions for the latter two, those had to be programmed manually. All functions take several arguments, from which only `formula` and `data` need to be filled out by the practitioner. Further arguments orientate themselves on the default values defined in the Stata implementation of the Bayer-Hanck Test. For the argument `lags`, which determines the number of lags to be included in the model, the default value is therefore set to 1. The argument `trend` describes the deterministic components of the model. The practitioner may choose from `none`, for no deterministics, `const`, for a (unrestricted) constant and `trend`, for a (unrestricted) constant plus (unrestricted) trend. The default value is set to `const`. Aside from the Johansen Test, all functions where programmed in such a way, that `trend = "none"` simply removes the intercept from all performed linear regressions in the functions. For `trend = "trend"` the intercept was maintained and a trend component was added with `seq_along()`. This generates a sequence, which usually takes the length of the dependent variable $y$. For `trend = "const"` the intercept was maintained and thus no changes were made to the linear regression formula. The trend selection for the Johansen Test will be explained later on. 
+The underlying tests can be carried out by their eponymous commands, namely `englegranger()`, `johansen()`, `banerjee()` and `boswijk()`. The former two partly rely on already implemented functions from the packages **urca** [@pfaff_urca_2020] and **tsDyn** [@stigler_tsdyn_2020]. Due to the absence of associated functions for the latter two, those had to be programmed manually. All functions take several arguments, from which only `formula` and `data` need to be filled out by the practitioner. Further arguments orientate themselves on the default values defined in the Stata implementation of the Bayer-Hanck Test. For the argument `lags`, which determines the number of lags to be included in the model, the default value is therefore set to 1. The argument `trend` describes the deterministic components of the model. The practitioner may choose from `none`, for no deterministics, `const`, for a (unrestricted) constant and `trend`, for a (unrestricted) constant plus (unrestricted) trend. The default value is set to `const`. Aside from the Johansen Test, all functions where programmed in such a way, that `trend = "none"` simply removes the intercept from all performed linear regressions in the functions. For `trend = "trend"` the intercept was maintained and a trend component was added with `seq_along()`. This generates a sequence, which usually takes the length of the dependent variable $y$. For `trend = "const"` the intercept was maintained and thus no changes were made to the linear regression formula. The trend selection for the Johansen Test will be explained later on. 
 
 The functions of the underlying tests all return an object of classes `co.test` and `list`. The console also returns the value of the test statistic, as well as the name of the executed test. 
 
@@ -190,11 +190,105 @@ plot(object, theme = "dark")
 
 The practitioner may use the argument `theme` to choose between `theme = "light"` for a light theme, and `theme = "dark"` for a dark theme. The latter was designed in such a way, that it matches the associated theme of the Shiny app. The dark theme is set to default. However, the practitioner is free to choose any other theme for `ggplot`, by simply adding it with the + operator.
 
-Here, the execution of `plot` accesses the test statistic of the `bayerhanck` function, the number of regressors and the trend type. It can therefore deduce, which null distribution is to be plotted. This information is then passed to the function `ggplot` from the package **ggplot2**. `ggplot::stat_ecdf()` is then used to plot the null distribution. In addition, the value of the Bayer-Hanck statistic is marked with a dotted x-intercept line.
+Here, the execution of `plot` accesses the test statistic of the `bayerhanck` function, the number of regressors and the trend type. It can therefore deduce, which null distribution is to be plotted. This information is then passed to the function `ggplot` from the package **ggplot2** [@wickham_ggplot2_2020]. `ggplot::stat_ecdf()` is then used to plot the null distribution. In addition, the value of the Bayer-Hanck statistic is marked with a dotted x-intercept line.
 
 # Illustration
 
-The package shall be illustrated on the dataset `weather` from the package **nycflights13**. It contains the hourly meterological data for the airports LGA, JFK and EWR of the New York metropolitan area. We will test for a cointegration relationship between the variables *humid*, *temp* and *pressure*. 
+The package shall be illustrated on the dataset `weather` from the package **nycflights13** [@wickham_nycflights13_2020]. It contains the hourly meterological data for the airports LGA, JFK and EWR of the New York metropolitan area. We will test for a cointegration relationship between the variables *humid*, *temp* and *pressure*. These stand for the relative humidity, temperature and sea level pressure in millibars. 
+
+The functions for the underlying tests will be demonstrated with a Engle-Granger test and a Johansen test:
+
+```{r eval=FALSE}
+eg_test <- englegranger(humid ~ temp + pressure,
+                        data = nycflights13::weather)
+
+jo_test <- johansen(humid ~ temp + pressure, 
+                    data = nycflights13::weather)
+```
+
+Next, we will have a look at the summary of the tests:
+
+```{r eval = FALSE}
+summary(eg_test)
+
+----------------------------------------------------------
+Engle-Granger Test
+----------------------------------------------------------
+Formula: humid ~ temp + pressure
+Lags: 1
+Trend: const
+ 
+Value of test statistic: -30.3546
+```
+
+and
+
+```{r eval=FALSE}
+summary(jo_test)
+
+----------------------------------------------------------
+Johansen Test
+----------------------------------------------------------
+Formula: humid ~ temp + pressure
+Lags: 1
+Trend: const
+ 
+Value of test statistic: 1186.6794
+```
+
+Next, we will calculate the Bayer-Hanck Test, both with the values from @Bayerhanck2009's technical appendix and the Simulation.
+
+```{r eval = FALSE}
+# test = "eg-j"
+bh_eg_j <- bayerhanck(humid ~ temp + pressure, 
+                      data = nycflights13::weather, 
+                      test = "eg-j")
+
+# test = "all"
+bh_all <- bayerhanck((humid ~ temp + pressure, 
+                      data = nycflights13::weather))
+```
+
+The summary for the basic version of `bayerhanck()` shows:
+
+```{r eval = FALSE}
+# test = "eg-j"
+summary(bh_eg_j)
+
+----------------------------------------------------------
+Bayerhanck Test for Non-Cointegration
+----------------------------------------------------------
+Formula: humid ~ temp + pressure
+Lags: 1
+Trend: const
+ 
+Underlying Tests:
+                Engle-Granger Johansen
+Test Statistics      -30.3546 1186.679
+p-Values               0.0000    0.000
+ 
+Value of the Fisher Type Test statistic: 110.5241
+5% Critical value for the Test statistic: 10.895
+
+# test = "all"
+summary(bh_all)
+
+----------------------------------------------------------
+Bayerhanck Test for Non-Cointegration
+----------------------------------------------------------
+Formula: humid ~ temp + pressure
+Lags: 1
+Trend: const
+ 
+Underlying Tests:
+                Engle-Granger Johansen Banerjee  Boswijk
+Test Statistics      -30.3546 1186.679 -18.0761 729.9936
+p-Values               0.0000    0.000   0.0000   0.0000
+ 
+Value of the Fisher Type Test statistic: 221.0482
+5% Critical value for the Test statistic: 21.106
+```
+
 
 # Conclusion
 
