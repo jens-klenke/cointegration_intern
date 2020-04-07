@@ -155,6 +155,49 @@ The argument `crit` sets the significance level of the test. The practitioner ma
 
 After inserting the formula and the data, the selected underlying tests are called. The test statistics of each selected test are obtained and stored in a vector. Then, the p-values are calculated by using the corresponding empirical null distribution. This distribution depends on the number of variables, the trend specification and the combination of the underlying tests. Next, the p-values are logarithmised and summed. In accordance with equation \eqref{eq:bayer-hanck}, they are multiplied with -2 to obtain the test statistic. In the last step, the critical value is selected from the empirical null distribution, subject to the specified significance level.
 
+## Implementation of the function `bayerhanck_1()`
+
+The obtained values from the previously presented function `bayerhanck()` are based on critical values provided by the technical appendix of @Bayerhanck2009. As an extension to this function, the function `bayerhanck_1()` has been developed. It contains additional null distributions obtained from a specifically conducted simulation. Analogous to the basic version, it takes the form:
+
+```{r eval = FALSE}
+bayerhanck_1(formula, data, lags = 1, trend = "const", 
+           test = "all", crit = 0.05)
+```
+
+The only difference is that this functioncall of the bayerhanck test does not execute the test using the critical values we have gathered from  paper, but rather calculates the statistics with its own simulated values. Now that we have the simulated distributions under the $\mathcal{H}_0$ of the Bayer hanck statistics available we are able to calculate and print p-values. 
+
+In the current implementation of the function, we have stayed with the initial options `eg-j` and `all` for the argument `test`. Mainly because the amount of data is already quite large and increases with each additional alternative test combination by about 7 MB. The main reason for this is that for each combination of regressors and trendtype we need to have a simulated $\mathcal{H}_0$ distribution with, in our case, 25 000 values. In order to reduce the amount of data and allow for further test combinations, the simulated distribution could be reduced to 10000 values per kombination of regressors and trendtype when the package is further developed.  
+
+At the moment, the package already has a size of about 16 MB with only two test options. On the one hand the function needs the two null distributions for the bayerhanck statistics and on the other hand the null distribution of the underlying tests, which also has a size of 5 MB. 
+
+## Implementation of the function `plot()` and `plot.bh.test()` 
+
+```{r eval = FALSE}
+plot(object, theme = "dark")
+plot.bh.test(object, theme = "dark")
+```
+
+In addition, we have also implemented a plot function that displays the simulated cumulative distribution under the $\mathcal{H}_0$ and the Bayer-Hanck statistics. The plot function can be executed either with the short command `plot()` or with the command `plot.bh.test()`.
+
+The function call needs the output object of the `bayerhanck()` function, therefore the object must have the class `bh.test`. The user may use the argument `theme` to choose between the option `dark` for a dark theme or `light` for a light theme. 
+
+The command passes the Bayerhanck statistics, the number of regressors and the trend type. Thus the function knows which null distribution should be plotted. This data is then passed to the `ggplot2` command and the function `ggplot::stat_ecdf()` is used to plot the zero distribution. Furthermore the bayerhanck statistic is indicated with an x-intercept line.
+
+
+## Implementation of own version of a `summary()` function  
+
+```{r eval = FALSE}
+summary(object)
+```
+
+To present the results of the Bayer-Hanck non cointegration test in a reasonable way we have also created our own `summary()` function. 
+
+The function only needs the created object from the `bayerhanck()` or `bayerhanck_1()` function of the class `bh.test`.
+
+The function includes and displays the originally entered formula of the VARS, the number of lags and the trend specification. Furthermore the matrix with the test statistics and the p-values for the underlying test is displayed. In the last third the bayerhanck statistic is displayed with the corresponding critical value  
+
+
+
 
 # Conclusion
 

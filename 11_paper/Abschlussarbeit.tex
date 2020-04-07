@@ -576,6 +576,102 @@ with -2 to obtain the test statistic. In the last step, the critical
 value is selected from the empirical null distribution, subject to the
 specified significance level.
 
+\hypertarget{implementation-of-the-function-bayerhanck_1}{%
+\subsection{\texorpdfstring{Implementation of the function
+\texttt{bayerhanck\_1()}}{Implementation of the function bayerhanck\_1()}}\label{implementation-of-the-function-bayerhanck_1}}
+
+The obtained values from the previously presented function
+\texttt{bayerhanck()} are based on critical values provided by the
+technical appendix of \textcite{Bayerhanck2009}. As an extension to this
+function, the function \texttt{bayerhanck\_1()} has been developed. It
+contains additional null distributions obtained from a specifically
+conducted simulation. Analogous to the basic version, it takes the form:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{bayerhanck_1}\NormalTok{(formula, data, }\DataTypeTok{lags =} \DecValTok{1}\NormalTok{, }\DataTypeTok{trend =} \StringTok{"const"}\NormalTok{, }
+           \DataTypeTok{test =} \StringTok{"all"}\NormalTok{, }\DataTypeTok{crit =} \FloatTok{0.05}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The only difference is that this functioncall of the bayerhanck test
+does not execute the test using the critical values we have gathered
+from paper, but rather calculates the statistics with its own simulated
+values. Now that we have the simulated distributions under the
+\(\mathcal{H}_0\) of the Bayer hanck statistics available we are able to
+calculate and print p-values.
+
+In the current implementation of the function, we have stayed with the
+initial options \texttt{eg-j} and \texttt{all} for the argument
+\texttt{test}. Mainly because the amount of data is already quite large
+and increases with each additional alternative test combination by about
+7 MB. The main reason for this is that for each combination of
+regressors and trendtype we need to have a simulated \(\mathcal{H}_0\)
+distribution with, in our case, 25 000 values. In order to reduce the
+amount of data and allow for further test combinations, the simulated
+distribution could be reduced to 10000 values per kombination of
+regressors and trendtype when the package is further developed.
+
+At the moment, the package already has a size of about 16 MB with only
+two test options. On the one hand the function needs the two null
+distributions for the bayerhanck statistics and on the other hand the
+null distribution of the underlying tests, which also has a size of 5
+MB.
+
+\hypertarget{implementation-of-the-function-plot-and-plot.bh.test}{%
+\subsection{\texorpdfstring{Implementation of the function
+\texttt{plot()} and
+\texttt{plot.bh.test()}}{Implementation of the function plot() and plot.bh.test()}}\label{implementation-of-the-function-plot-and-plot.bh.test}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(object, }\DataTypeTok{theme =} \StringTok{"dark"}\NormalTok{)}
+\KeywordTok{plot.bh.test}\NormalTok{(object, }\DataTypeTok{theme =} \StringTok{"dark"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+In addition, we have also implemented a plot function that displays the
+simulated cumulative distribution under the \(\mathcal{H}_0\) and the
+Bayer-Hanck statistics. The plot function can be executed either with
+the short command \texttt{plot()} or with the command
+\texttt{plot.bh.test()}.
+
+The function call needs the output object of the \texttt{bayerhanck()}
+function, therefore the object must have the class \texttt{bh.test}. The
+user may use the argument \texttt{theme} to choose between the option
+\texttt{dark} for a dark theme or \texttt{light} for a light theme.
+
+The command passes the Bayerhanck statistics, the number of regressors
+and the trend type. Thus the function knows which null distribution
+should be plotted. This data is then passed to the \texttt{ggplot2}
+command and the function \texttt{ggplot::stat\_ecdf()} is used to plot
+the zero distribution. Furthermore the bayerhanck statistic is indicated
+with an x-intercept line.
+
+\hypertarget{implementation-of-own-version-of-a-summary-function}{%
+\subsection{\texorpdfstring{Implementation of own version of a
+\texttt{summary()}
+function}{Implementation of own version of a summary() function}}\label{implementation-of-own-version-of-a-summary-function}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(object)}
+\end{Highlighting}
+\end{Shaded}
+
+To present the results of the Bayer-Hanck non cointegration test in a
+reasonable way we have also created our own \texttt{summary()} function.
+
+The function only needs the created object from the
+\texttt{bayerhanck()} or \texttt{bayerhanck\_1()} function of the class
+\texttt{bh.test}.
+
+The function includes and displays the originally entered formula of the
+VARS, the number of lags and the trend specification. Furthermore the
+matrix with the test statistics and the p-values for the underlying test
+is displayed. In the last third the bayerhanck statistic is displayed
+with the corresponding critical value
+
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
 
