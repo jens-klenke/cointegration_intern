@@ -288,8 +288,9 @@ Therefore, the objective of this work was the development of the R
 package \textbf{bayerhanck}, to implement the eponymous test. In section
 2, the theoretical background of the combined non-cointegration test
 will be explained further. Next, the structure of the associated R
-package and its functions will be illustrated. Finally, the performance
-of this approach will be evaluated.
+package and its functions will be explained in Section 3. In Section 4,
+the functions will be illustrated with a real data set. Finally,
+everything will be recapped in a conclusion.
 
 \hypertarget{theory-of-non-cointegration-tests}{%
 \section{Theory of Non-Cointegration
@@ -679,9 +680,9 @@ marked with a dotted x-intercept line.
 \hypertarget{illustration}{%
 \section{Illustration}\label{illustration}}
 
-The package shall be illustrated on the dataset \texttt{weather} from
+The package shall be illustrated on the data set \texttt{weather} from
 the package \textbf{nycflights13} \autocite{wickham_nycflights13_2020}.
-It contains the hourly meterological data for the airports LGA, JFK and
+It contains the hourly meteorological data for the airports LGA, JFK and
 EWR of the New York metropolitan area. We will test for a cointegration
 relationship between the variables \emph{humid}, \emph{temp} and
 \emph{pressure}. These stand for the relative humidity, temperature and
@@ -855,7 +856,7 @@ The summary then shows:
 
 To demonstrate the implemented method for the generic function
 \texttt{plot()}, we will additionally plot the object from
-\texttt{bayerhanck\_1} for \texttt{test\ =\ "all"}. For a harmonoius
+\texttt{bayerhanck\_1} for \texttt{test\ =\ "all"}. For a harmonious
 appearance in this documentation, we will set
 \texttt{theme\ =\ "light"}.
 
@@ -880,7 +881,7 @@ Bayer-Hanck Test for non cointegration, as well as functions for the
 underlying cointegration tests. The former has been implemented in a
 functional way, so that the functions \texttt{bayerhanck()} and
 \texttt{bayerhanck\_1()} call the underlying test functions. Since the
-underyling tests can be executed autonomously, the scope of application
+underlying tests can be executed autonomously, the scope of application
 is increased. The sub-functions certainly require more effort so the
 tests can be applied to more versatile problems. This applies above all
 to the tests of Banerjee and Boswijk, as we found no well working
