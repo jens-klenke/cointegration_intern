@@ -85,7 +85,7 @@ As opposed to the Engle-Granger Test, @Johansen1988's cointegration test is able
 \triangle {\bf z}_t = {\bf \Pi z}_{t-1} + \sum^{P-1}_{p=1}\pmb{\Gamma}_p \triangle{\bf z}_{t-p} + {\bf d}_t + \pmb{\epsilon}_t
 \end{align}
 
-needs to estimated first. Bayer and Hanck employ the test statstic $\lambda_{\max} (h) = - T \ ln(1 - \hat{\pi}_1)$, where $\hat{\pi}_1$ denotes the largest solution of $|\pi \pmb{S}_{11} - \pmb{S}_{10} \pmb{S}_{00}^{-1} \pmb{S}_{01}|= 0$.^[$\pmb{S}_{ij}$ denotes the moment matrices of redcued rank regression residuals.]
+needs to estimated first. Bayer and Hanck employ the test statistic $\lambda_{\max} (h) = - T \ ln(1 - \hat{\pi}_1)$, where $\hat{\pi}_1$ denotes the largest solution of $|\pi \pmb{S}_{11} - \pmb{S}_{10} \pmb{S}_{00}^{-1} \pmb{S}_{01}|= 0$.^[$\pmb{S}_{ij}$ denotes the moment matrices of reduced rank regression residuals.]
 
 The cointegration tests of @Boswijk1994 and @Banerjee1998 are based on error correction model tests. Boswijk's test statistic $\hat{F}$ is the Wald statistic for $\mathcal{H}_0: (\varphi_0, \pmb{\phi}_1^{'}) = 0$, whereas Banerjee _et al._'s test statistic is the $t_{\gamma}^{ECR}$ ratio for $\mathcal{H}_0 : \varphi_0 = 0$ of the error correction model. To derive the error correction model, the usual least squares estimate is used: $\triangle y_t = d_t + \pi_{0x}^{'} \triangle \pmb{x}_t + \varphi_0 y_{t-1} + \pmb{\varphi}_{1}^{'} \pmb{x}_{t-1} + \sum_{P = 1}^{P} \left( \pmb{\pi}_{px}^{'} \triangle  \pmb{x}_{t-p} + \pi_{py} \triangle y_{t - p} \right) + \epsilon_t$. 
 
@@ -105,7 +105,11 @@ Under the alternative hypotheses $\mathcal{H}_1$ the test statistic probability 
 
 
 # Implementation of the Package **bayerhanck** in R
-The package consists of four functions for the underlying tests, as well as the function for the combined test. Furthermore, the cumulative distribution function of the null hypothesis can be plotted. The package features will be illustrated by using real data from the lutkepohl dataset.
+The package consists of four functions for the underlying tests, as well as the function for the combined test. Furthermore, the cumulative distribution function of the null hypothesis can be plotted.
+
+## Creating the package
+
+The package **bayerhanck** was created using `create_package()` from **devtools**. This generates an R project, files for the package metadata, such as `DESCRIPTION`, `NAMESPACE` and `LICENSE`, and a sub directory for the R code of subsequent functions. The individual functions were documented with the help of **roxygen2**. The roxygen comments in the source file were then converted to `.Rd` files in the sub directory `man/`. 
 
 ## Implementation of the underlying Tests
 The underlying tests can be carried out by their eponymous commands, namely `englegranger()`, `johansen()`, `banerjee()` and `boswijk()`. The former two partly rely on already implemented functions from the packages **urca** and **tsDyn**. Due to the absence of associated functions for the latter two, those had to be programmed manually. All functions take several arguments, from which only `formula` and `data` need to be filled out by the practitioner. Further arguments orientate themselves on the default values defined in the Stata implementation of the Bayer-Hanck Test. For the argument `lags`, which determines the number of lags to be included in the model, the default value is therefore set to 1. The argument `trend` describes the deterministic components of the model. The practitioner may choose from `none`, for no deterministics, `const`, for a (unrestricted) constant and `trend`, for a (unrestricted) constant plus (unrestricted) trend. The default value is set to `const`. Aside from the Johansen Test, all functions where programmed in such a way, that `trend = "none"` simply removes the intercept from all performed linear regressions in the functions. For `trend = "trend"` the intercept was maintained and a trend component was added with `seq_along()`. This generates a sequence, which usually takes the length of the dependent variable $y$. For `trend = "const"` the intercept was maintained and thus no changes were made to the linear regression formula. The trend selection for the Johansen Test will be explained later on. 
@@ -136,7 +140,7 @@ boswijk(formula, data, lags = 1, trend = "const")
 
 ```
 
-For the construction of these functions, first differences had to be taken of the dependent, as well as the independent variables. Furthermore, a matrix of the lagged values of all variables in first differences was constructed. Then, the procedure for the Banerjee and Boswijk test were implemented as outlined above. For calculating the test statistics, the coefficients, as well as the covanriance-matrix were extracted from the last linear regression model. For the Banerjee test, the coefficient of the first regressor has to be divided by the associated variance from the covariance-matrix. Here, one has to consider, that the position of said values changes, when `trend = "none"`, as the intercept is removed^[Due to the different order in the Stata output, this could have been ignored there, but poses a threat in R.]. 
+For the construction of these functions, first differences had to be taken of the dependent, as well as the independent variables. Furthermore, a matrix of the lagged values of all variables in first differences was constructed. Then, the procedure for the Banerjee and Boswijk test were implemented as outlined above. For calculating the test statistics, the coefficients, as well as the covariance-matrix were extracted from the last linear regression model. For the Banerjee test, the coefficient of the first regressor has to be divided by the associated variance from the covariance-matrix. Here, one has to consider, that the position of said values changes, when `trend = "none"`, as the intercept is removed^[Due to the different order in the Stata output, this could have been ignored there, but poses a threat in R.]. 
 
 For the test statistic of the Boswijk test, the vector of coefficients will firstly be matrix multiplied with the inverse covariance-matrix. Next, this product will then again be matrix multiplied with the vector of coefficients. 
 
@@ -149,7 +153,7 @@ bayerhanck(formula, data, lags = 1, trend = "const",
            test = "all", crit = 0.05)
 ```
 
-The argument `test` determines which combination of the underlying tests should be executed. Here, the practitioner can choose between the default `all` (performs all of the aforementioned tests) or `eg-j`, which only carries out the Engel-Granger and Johansen test.
+The argument `test` determines which combination of the underlying tests should be executed. Here, the practitioner can choose between the default `all` (performs all of the aforementioned tests) or `eg-j`, which only carries out the Engle-Granger and Johansen test.
 
 The argument `crit` sets the significance level of the test. The practitioner may choose between 0.01, 0.05 and 0.1, with the default 0.05.
 
@@ -164,7 +168,7 @@ bayerhanck_1(formula, data, lags = 1, trend = "const",
            test = "all", crit = 0.05)
 ```
 
-Due to the availability of the simulated distributions unter the $\mathcal{H}_0$, the function is now capable of calculating and printing p-values. In its current implementation, the function stayed with the initial options for the argument `test`, `eg-j` and `all`. At this point in time, the amount of data is already large and further increases with each additional test combination by about 7 Megabyte. This is due to the fact, that for each combination of regressors and trendtypes, a simulated $\mathcal{H}_0$ distribution with 25,000 values is needed. In the current state, the package with the function `bayerhanck_1` has a size of about 16 Megabyte with only two test options. However, in order to reduce the amount of data and allow for further test combinations, the simulated distribution might be reduced to 10,000 values per combination of regressors and trendtypes, once the package is further developed.
+Due to the availability of the simulated distributions under the $\mathcal{H}_0$, the function is now capable of calculating and printing p-values. In its current implementation, the function stayed with the initial options for the argument `test`, `eg-j` and `all`. At this point in time, the amount of data is already large and further increases with each additional test combination by about 7 Megabyte. This is due to the fact, that for each combination of regressors and trend types, a simulated $\mathcal{H}_0$ distribution with 25,000 values is needed. In the current state, the package with the function `bayerhanck_1` has a size of about 16 Megabyte with only two test options. However, in order to reduce the amount of data and allow for further test combinations, the simulated distribution might be reduced to 10,000 values per combination of regressors and trend types, once the package is further developed.
 
 ## Implementation of the methods `summary.co.test` and `summary.bh.test`
 
@@ -174,7 +178,7 @@ For a better representation of the calculated test statistics, this package defi
 summary(object)
 ```
 
-It requieres an object of classes `co.test` or `bh.test`, generated by the aforesaid functions. `summary` then prints the formula, the number of lags and the trend specification, entered in the function calls. Furthermore, the matrix with the test statistics, as well as the calculated p-values for the underlying tests is displayed. In a final step, the Bayer-Hanck statistic and its corresponding critical value are shown.
+It requires an object of classes `co.test` or `bh.test`, generated by the aforesaid functions. `summary` then prints the formula, the number of lags and the trend specification, entered in the function calls. Furthermore, the matrix with the test statistics, as well as the calculated p-values for the underlying tests is displayed. In a final step, the Bayer-Hanck statistic and its corresponding critical value are shown.
 
 ## Implementation of the method `plot.bh.test`
 
@@ -189,6 +193,8 @@ The practitioner may use the argument `theme` to choose between `theme = "light"
 Here, the execution of `plot` accesses the test statistic of the `bayerhanck` function, the number of regressors and the trend type. It can therefore deduce, which null distribution is to be plotted. This information is then passed to the function `ggplot` from the package **ggplot2**. `ggplot::stat_ecdf()` is then used to plot the null distribution. In addition, the value of the Bayer-Hanck statistic is marked with a dotted x-intercept line.
 
 # Illustration
+
+The package shall be illustrated on the dataset `weather` from the package **nycflights13**. It contains the hourly meterological data for the airports LGA, JFK and EWR of the New York metropolitan area. We will test for a cointegration relationship between the variables *humid*, *temp* and *pressure*. 
 
 # Conclusion
 

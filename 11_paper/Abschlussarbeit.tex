@@ -371,11 +371,11 @@ a vector error correction model (VECM)
 \triangle {\bf z}_t = {\bf \Pi z}_{t-1} + \sum^{P-1}_{p=1}\pmb{\Gamma}_p \triangle{\bf z}_{t-p} + {\bf d}_t + \pmb{\epsilon}_t
 \end{align}
 
-needs to estimated first. Bayer and Hanck employ the test statstic
+needs to estimated first. Bayer and Hanck employ the test statistic
 \(\lambda_{\max} (h) = - T \ ln(1 - \hat{\pi}_1)\), where
 \(\hat{\pi}_1\) denotes the largest solution of
 \(|\pi \pmb{S}_{11} - \pmb{S}_{10} \pmb{S}_{00}^{-1} \pmb{S}_{01}|= 0\).\footnote{\(\pmb{S}_{ij}\)
-  denotes the moment matrices of redcued rank regression residuals.}
+  denotes the moment matrices of reduced rank regression residuals.}
 
 The cointegration tests of \textcite{Boswijk1994} and
 \textcite{Banerjee1998} are based on error correction model tests.
@@ -424,9 +424,19 @@ R}{Implementation of the Package bayerhanck in R}}\label{implementation-of-the-p
 
 The package consists of four functions for the underlying tests, as well
 as the function for the combined test. Furthermore, the cumulative
-distribution function of the null hypothesis can be plotted. The package
-features will be illustrated by using real data from the lutkepohl
-dataset.
+distribution function of the null hypothesis can be plotted.
+
+\hypertarget{creating-the-package}{%
+\subsection{Creating the package}\label{creating-the-package}}
+
+The package \textbf{bayerhanck} was created using
+\texttt{create\_package()} from \textbf{devtools}. This generates an R
+project, files for the package metadata, such as \texttt{DESCRIPTION},
+\texttt{NAMESPACE} and \texttt{LICENSE}, and a sub directory for the R
+code of subsequent functions. The individual functions were documented
+with the help of \textbf{roxygen2}. The roxygen comments in the source
+file were then converted to \texttt{.Rd} files in the sub directory
+\texttt{man/}.
 
 \hypertarget{implementation-of-the-underlying-tests}{%
 \subsection{Implementation of the underlying
@@ -523,9 +533,9 @@ taken of the dependent, as well as the independent variables.
 Furthermore, a matrix of the lagged values of all variables in first
 differences was constructed. Then, the procedure for the Banerjee and
 Boswijk test were implemented as outlined above. For calculating the
-test statistics, the coefficients, as well as the covanriance-matrix
-were extracted from the last linear regression model. For the Banerjee
-test, the coefficient of the first regressor has to be divided by the
+test statistics, the coefficients, as well as the covariance-matrix were
+extracted from the last linear regression model. For the Banerjee test,
+the coefficient of the first regressor has to be divided by the
 associated variance from the covariance-matrix. Here, one has to
 consider, that the position of said values changes, when
 \texttt{trend\ =\ "none"}, as the intercept is removed\footnote{Due to
@@ -558,7 +568,7 @@ form:
 The argument \texttt{test} determines which combination of the
 underlying tests should be executed. Here, the practitioner can choose
 between the default \texttt{all} (performs all of the aforementioned
-tests) or \texttt{eg-j}, which only carries out the Engel-Granger and
+tests) or \texttt{eg-j}, which only carries out the Engle-Granger and
 Johansen test.
 
 The argument \texttt{crit} sets the significance level of the test. The
@@ -594,20 +604,20 @@ conducted simulation. Analogous to the basic version, it takes the form:
 \end{Highlighting}
 \end{Shaded}
 
-Due to the availability of the simulated distributions unter the
+Due to the availability of the simulated distributions under the
 \(\mathcal{H}_0\), the function is now capable of calculating and
 printing p-values. In its current implementation, the function stayed
 with the initial options for the argument \texttt{test}, \texttt{eg-j}
 and \texttt{all}. At this point in time, the amount of data is already
 large and further increases with each additional test combination by
 about 7 Megabyte. This is due to the fact, that for each combination of
-regressors and trendtypes, a simulated \(\mathcal{H}_0\) distribution
+regressors and trend types, a simulated \(\mathcal{H}_0\) distribution
 with 25,000 values is needed. In the current state, the package with the
 function \texttt{bayerhanck\_1} has a size of about 16 Megabyte with
 only two test options. However, in order to reduce the amount of data
 and allow for further test combinations, the simulated distribution
 might be reduced to 10,000 values per combination of regressors and
-trendtypes, once the package is further developed.
+trend types, once the package is further developed.
 
 \hypertarget{implementation-of-the-methods-summary.co.test-and-summary.bh.test}{%
 \subsection{\texorpdfstring{Implementation of the methods
@@ -624,7 +634,7 @@ displaying this, one has to call:
 \end{Highlighting}
 \end{Shaded}
 
-It requieres an object of classes \texttt{co.test} or \texttt{bh.test},
+It requires an object of classes \texttt{co.test} or \texttt{bh.test},
 generated by the aforesaid functions. \texttt{summary} then prints the
 formula, the number of lags and the trend specification, entered in the
 function calls. Furthermore, the matrix with the test statistics, as
