@@ -35,7 +35,8 @@ and \code{\link{johansen}}, or "all", for \code{\link{englegranger}}, \code{\lin
 \value{
 \code{bayerhanck} returns an object of classes \code{"bh.test"} and \code{"list"}.
 
-The function \code{summary} is used to print a summary,
+The function \code{summary} is used to print a summary, whereas the cumulative distribution
+under the null hypothesis can be plotted with \code{plot}.
 }
 \description{
 Produces a joint test-statistic for the null of non-cointegration, aggregating
@@ -47,7 +48,8 @@ various cointegration tests.
 }}
 
 \examples{
-bayerhanck(humid ~ temp + pressure, data = nycflights13::weather)
+data("mts-examples", package="MTS")
+bayerhanck(sp ~ ibm + ko, data = ibmspko)
 }
 \references{
 Bayer, C. and Hanck, C. (2009), Combining Non-Cointegration tests, METEOR RM 09/012, University of Maastricht.

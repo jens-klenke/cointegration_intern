@@ -19,7 +19,8 @@ Imports:
     dplyr,
     ggplot2,
     magrittr,
-    ggthemes
+    ggthemes,
+    MTS
 Suggests: 
     knitr,
     rmarkdown

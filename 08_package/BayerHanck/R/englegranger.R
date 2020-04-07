@@ -20,7 +20,9 @@
 #'
 #' Boswijk, H. P. (1994), Testing for an unstable root in conditional and structural error correction models, Journal of Econometrics 63(1), 37-60.
 #'
-#' @examples englegranger(humid ~ temp + pressure, data = nycflights13::weather)
+#' @examples
+#' data("mts-examples", package="MTS")
+#' englegranger(sp ~ ibm + ko, data = ibmspko)
 englegranger <- function(formula, data, lags = 1, trend = "const"){
 
   #-----------------------------------------------------------------------------------------
