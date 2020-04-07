@@ -8,7 +8,7 @@ date: "today"
 studid: "3071594 | 3061371 | 3071485  "
 supervisor: "Prof. Dr. Christoph Hanck"
 secondsupervisor: "Martin Arnold"
-ssemester: "1"
+ssemester: "5"
 estdegree_emester: "Winter Term 2019"
 deadline: "April 7th 2020"
 output:
@@ -23,7 +23,7 @@ lot: true
 lof: true
 graphics: true
 biblio-title: References
-fontsize: 11pt
+fontsize: 12pt
 geometry: lmargin=5cm,rmargin=2.5cm,tmargin=2.5cm,bmargin=2.5cm
 biblio-files: references.bib
 classoption: a4paper
@@ -181,6 +181,13 @@ diff_sim <- round(dt_0.05 - cv_b_h,4)
 
 overview <- cbind(row_names, space, dt_0.05, space,cv_b_h, space, diff_sim) 
 ```
+
+The first step in the loop, to generate the data basis for the simulation, is to draw random shocks $u$ from a normal distribution. Next, the Wiener process is simulated, which is calculated as a cumulative sum by the root of the length of the vector$(T)$. Furthermore, the Ohrnstein Uhlenbeck Process has to be modelled.
+
+Afterwards, the Vienna and Ohrstein Uhlenbeck Process is corrected according to the type of trend. If a constant trend is present, the mean value is subtracted and if both a constant and a trend are present, both are subtracted. Finally, the common components are calculated. 
+
+Then the test statistics of each test are calculated and stored in a vector, which is then sorted. Because we have simulated under the assumptions of $\mathcal{H}_0$ we have now simulated the asymptotic zero distribution.^[For futher details see @pesavento2004]
+
 
 Table \ref{tab:com} shows the 5% critical values of the simulation in the first block. The values of Bayer and Hanck are in the second, while their difference is shown in the third block. Overall, the simulated values do not deviate too far from those by Bayer and Hanck. 
 It can therefore be assumed, that the simulation delivers reliable results.

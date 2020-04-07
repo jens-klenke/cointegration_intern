@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[12pt,a4paper]{article}
 \usepackage{lmodern}
 
 \usepackage{amssymb,amsmath}
@@ -140,6 +140,20 @@
   \postdate{\par}
   \date{today}
 
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 
 %% linespread settings
 
@@ -225,7 +239,7 @@
   Semester:
   \end{minipage}
   \begin{minipage}[t]{0.7\textwidth}
-  \hspace{1cm}\IfLanguageName{english}{\nth{1} Semester}{1. Fachsemester}
+  \hspace{1cm}\IfLanguageName{english}{\nth{5} Semester}{5. Fachsemester}
   \end{minipage}
 
   \noindent\begin{minipage}[t]{0.5\textwidth}
@@ -598,8 +612,70 @@ The obtained values from the previously presented function
 \texttt{bayerhanck()} use the critical values provided by the technical
 appendix from \textcite{Bayerhanck2009}. As an extension to this
 function, the function \texttt{bayerhanck\_1()} has been developed. It
-contains additional null distributions, calculated with a specifically
-conducted simulation. Analogous to the basic version, it takes the form:
+contains additional null distributions, calculated with a Monte Carlo
+simulation.
+
+The simulation considers different combinations of the number of
+variables \(K\in\{2,...,12\}\), nuisance parameter
+\(R^2\in\{0,0.05,...,0.95\}\), and cases of determinstic trends in the
+variables, with (i) = no deterministics, (ii) = constant, and (iii) =
+constant and trend means. Since only the null distribution is of any
+interest, the parameter \(c\) will be hold constant to zero. The
+simulation is run with 25,000 repetitions with a vector length of
+\(T = 1000\).
+
+The first step in the loop, to generate the data basis for the
+simulation, is to draw random shocks \(u\) from a normal distribution.
+Next, the Wiener process is simulated, which is calculated as a
+cumulative sum by the root of the length of the vector\((T)\).
+Furthermore, the Ohrnstein Uhlenbeck Process has to be modelled.
+
+Afterwards, the Vienna and Ohrstein Uhlenbeck Process is corrected
+according to the type of trend. If a constant trend is present, the mean
+value is subtracted and if both a constant and a trend are present, both
+are subtracted. Finally, the common components are calculated.
+
+Then the test statistics of each test are calculated and stored in a
+vector, which is then sorted. Because we have simulated under the
+assumptions of \(\mathcal{H}_0\) we have now simulated the asymptotic
+zero distribution.\footnote{For futher details see
+  \textcite{pesavento2004}}
+
+Table \ref{tab:com} shows the 5\% critical values of the simulation in
+the first block. The values of Bayer and Hanck are in the second, while
+their difference is shown in the third block. Overall, the simulated
+values do not deviate too far from those by Bayer and Hanck. It can
+therefore be assumed, that the simulation delivers reliable results.
+
+\begin{table}[!h]
+
+\caption{\label{tab:unnamed-chunk-6}\label{tab:com} Comparison of the simulated values with the critical values obtained by Bayer and Hanck 
+}
+\centering
+\fontsize{8}{10}\selectfont
+\begin{tabular}[t]{ccccccccccccc}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{1}{c}{} & \multicolumn{3}{c}{Simulation} & \multicolumn{1}{c}{} & \multicolumn{3}{c}{Bayer \& Hanck} & \multicolumn{1}{c}{} & \multicolumn{3}{c}{Difference} \\
+\cmidrule(l{3pt}r{3pt}){3-5} \cmidrule(l{3pt}r{3pt}){7-9} \cmidrule(l{3pt}r{3pt}){11-13}
+K-1 &  & (i)  & (ii) & (iii) &  & (i)  & (ii) & (iii) &  & (i)  & (ii) & (iii)\\
+\midrule
+\rowcolor{gray!6}  1 &  & 21.4612 & 21.9236 & 22.2115 &  & 21.352 & 21.931 & 22.215 &  & 0.1092 & -0.0074 & -0.0035\\
+2 &  & 20.7519 & 21.034 & 21.4147 &  & 20.776 & 21.106 & 21.342 &  & -0.0241 & -0.072 & 0.0727\\
+\rowcolor{gray!6}  3 &  & 20.4037 & 20.5608 & 20.7352 &  & 20.237 & 20.486 & 20.788 &  & 0.1667 & 0.0748 & -0.0528\\
+4 &  & 19.8926 & 20.3695 & 20.4537 &  & 19.951 & 20.143 & 20.44 &  & -0.0584 & 0.2265 & 0.0137\\
+\rowcolor{gray!6}  5 &  & 19.7254 & 20.0637 & 20.2773 &  & 19.747 & 19.888 & 20.17 &  & -0.0216 & 0.1757 & 0.1073\\
+6 &  & 19.5992 & 19.6468 & 19.9456 &  & 19.564 & 19.761 & 19.934 &  & 0.0352 & -0.1142 & 0.0116\\
+\rowcolor{gray!6}  7 &  & 19.4889 & 19.5973 & 19.7426 &  & 19.471 & 19.688 & 19.722 &  & 0.0179 & -0.0907 & 0.0206\\
+8 &  & 19.5606 & 19.4804 & 19.4853 &  & 19.471 & 19.447 & 19.678 &  & 0.0896 & 0.0334 & -0.1927\\
+\rowcolor{gray!6}  9 &  & 19.3962 & 19.5299 & 19.5159 &  & 19.365 & 19.492 & 19.582 &  & 0.0312 & 0.0379 & -0.0661\\
+10 &  & 19.1658 & 19.3574 & 19.4524 &  & 19.268 & 19.365 & 19.398 &  & -0.1022 & -0.0076 & 0.0544\\
+\rowcolor{gray!6}  11 &  & 19.2348 & 19.2533 & 19.3622 &  & 19.151 & 19.345 & 19.404 &  & 0.0838 & -0.0917 & -0.0418\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+With this simulation, the function \texttt{bayerhanck\_1} can be
+implemented. Analogous to the basic version, it takes the form:
 
 \begin{Shaded}
 \begin{Highlighting}[]
