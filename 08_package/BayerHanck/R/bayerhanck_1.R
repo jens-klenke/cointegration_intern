@@ -23,10 +23,6 @@ bayerhanck_1 <- function(formula, data, lags = 1, trend = "const", test = "all",
   crit <- match.arg(as.character(crit),
                     c(0.01, 0.05, 0.10))
 
-  if (nrow(x) == 0)
-    stop("0 (non-NA) cases")
-  if (NROW(y) != nrow(x))
-    stop("Incompatible dimensions")
   lag <- lags
   if (lag < 0)
     stop("Lags must be set to a non negative value.")
@@ -72,7 +68,6 @@ bayerhanck_1 <- function(formula, data, lags = 1, trend = "const", test = "all",
   #-----------------------------------------------------------------------------------------
   # Obtain P-Values
   #-----------------------------------------------------------------------------------------
-  load('null_dist.rda')
 
   N <- nrow(null_dist)
 
@@ -95,9 +90,6 @@ bayerhanck_1 <- function(formula, data, lags = 1, trend = "const", test = "all",
   # Calculate Bayer-Hanck Fisher Statistics
   #-----------------------------------------------------------------------------------------
 
-  #### Load critical values ####
-  load('bayerhanck_cv.Rda')
-
   #### compute statistics ####
   if (identical(test, "eg-j"))
     bh.test <- -2*sum(log(pval.stat[1:2]))
@@ -108,8 +100,6 @@ bayerhanck_1 <- function(formula, data, lags = 1, trend = "const", test = "all",
   n_var <- nvar - 1
 
   ### obtain critical Value
-
-
 
   if (identical(test, "eg-j"))
     crit.val <- Null_Distr_E_J[n_var, trendtype, 25000*(1-crit)]

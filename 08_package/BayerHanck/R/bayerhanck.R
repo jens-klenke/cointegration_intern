@@ -91,7 +91,6 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   #-----------------------------------------------------------------------------------------
   # Obtain P-Values
   #-----------------------------------------------------------------------------------------
-  load('null_dist.rda')
 
   N <- nrow(null_dist)
 
@@ -113,9 +112,6 @@ bayerhanck <- function(formula, data, lags = 1, trend = "const", test = "all", c
   #-----------------------------------------------------------------------------------------
   # Calculate Bayer-Hanck Fisher Statistics
   #-----------------------------------------------------------------------------------------
-
-  #### Load critical values ####
-  load('crit_values.rda')
 
   #### Select matrices of critical value ####
 
