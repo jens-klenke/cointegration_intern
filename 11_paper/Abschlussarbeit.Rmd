@@ -162,7 +162,7 @@ After inserting the formula and the data, the selected underlying tests are call
 
 The obtained values from the previously presented function `bayerhanck()` use the critical values provided by the technical appendix from @Bayerhanck2009. As an extension to this function, the function `bayerhanck_1()` has been developed. It contains additional null distributions, calculated with a Monte Carlo simulation. 
 
-The simulation considers different combinations of the number of variables $K\in\{2,...,12\}$, nuisance parameter $R^2\in\{0,0.05,...,0.95\}$, and cases of determinstic trends in the variables, with (i) = no deterministics, (ii)  = constant, and (iii) = constant and trend means. Since only the null distribution is of any interest, the parameter $c$ will be hold constant to zero. The simulation is run with 25,000 repetitions with a vector length of $T = 1000$. 
+The simulation considers different combinations of the number of variables $K\in\{2,...,12\}$, nuisance parameter $R^2\in\{0,0.05,...,0.95\}$, and cases of deterministic trends in the variables, with (i) = no deterministics, (ii)  = constant, and (iii) = constant and trend means. Since only the null distribution is of any interest, the parameter $c$ will be hold constant to zero. The simulation is run with 25,000 repetitions with a vector length of $T = 1000$. 
 
 
 ```{r, include = FALSE, warning = FALSE, error=FALSE}
@@ -182,11 +182,11 @@ diff_sim <- round(dt_0.05 - cv_b_h,4)
 overview <- cbind(row_names, space, dt_0.05, space,cv_b_h, space, diff_sim) 
 ```
 
-The first step in the loop, to generate the data basis for the simulation, is to draw random shocks $u$ from a normal distribution. Next, the Wiener process is simulated, which is calculated as a cumulative sum by the root of the length of the vector$(T)$. Furthermore, the Ohrnstein Uhlenbeck Process has to be modelled.
+The first step in the loop, to generate the data basis for the simulation, is to draw random shocks $u$ from a normal distribution. Next, the Wiener process is simulated, which is calculated as a cumulative sum by the root of the length of the vector$(T)$. Furthermore, the Ohrnstein Uhlenbeck Process has to be modeled.
 
 Afterwards, the Vienna and Ohrstein Uhlenbeck Process is corrected according to the type of trend. If a constant trend is present, the mean value is subtracted and if both a constant and a trend are present, both are subtracted. Finally, the common components are calculated. 
 
-Then the test statistics of each test are calculated and stored in a vector, which is then sorted. Because we have simulated under the assumptions of $\mathcal{H}_0$ we have now simulated the asymptotic zero distribution.^[For futher details see @pesavento2004]
+Then the test statistics of each test are calculated and stored in a vector, which is then sorted. Because we have simulated under the assumptions of $\mathcal{H}_0$ we have now simulated the asymptotic zero distribution.^[For further details see @pesavento2004]
 
 
 Table \ref{tab:com} shows the 5% critical values of the simulation in the first block. The values of Bayer and Hanck are in the second, while their difference is shown in the third block. Overall, the simulated values do not deviate too far from those by Bayer and Hanck. 
@@ -238,7 +238,7 @@ Here, the execution of `plot` accesses the test statistic of the `bayerhanck` fu
 
 # Illustration
 
-The package shall be illustrated on the data set `ibmskpo` from the package **MTS** [@tsay_mts_2020]. It contains monthly simple returns of the stocks of International Business Machines *ibm*, Coca Cola *ko*, and the S&P composite index *sp*. We will test for a cointegration relationship between the variables *sp*, *ko*, and *ibm*. The sample period is from January 1961 till Decembet 2011 and the data can be load into the global entironment with the command `data("mts-examples", package = "MTS")`.To keep a certain clarity we will show the test only in the variant `eg-j`. The procedure can be applied in the same with the option `all`, to include all four underlying tests. 
+The package shall be illustrated on the data set `ibmskpo` from the package **MTS** [@tsay_mts_2020]. It contains monthly simple returns of the stocks of International Business Machines *ibm*, Coca Cola *ko*, and the S&P composite index *sp*. We will test for a cointegration relationship between the variables *sp*, *ko*, and *ibm*. The sample period is from January 1961 till December 2011 and the data can be load into the global environment with the command `data("mts-examples", package = "MTS")`.To keep a certain clarity we will show the test only in the variant `eg-j`. The procedure can be applied in the same with the option `all`, to include all four underlying tests. 
 
 The functions for the underlying tests will be demonstrated with a Engle-Granger test and the Johansen test:
 
