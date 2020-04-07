@@ -1,3 +1,4 @@
+#' @export
 plot.bh.test <- function(object, theme = "dark") {
 
   load("bayerhanck_cv.rda")
