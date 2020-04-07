@@ -1,4 +1,4 @@
-#' @describeIn englegranger Banerjee Test
+#' @describeIn englegranger Executes Banerjee Test.
 #' @export
 banerjee <- function(formula, data, lags = 1, trend = "const"){
 

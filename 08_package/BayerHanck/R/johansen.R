@@ -1,4 +1,4 @@
-#' @describeIn englegranger Johansen Test
+#' @describeIn englegranger Executes Johansen Test.
 #' @export
 johansen <- function(formula, data, type = "eigen", lags = 1, trend = "const"){
 
