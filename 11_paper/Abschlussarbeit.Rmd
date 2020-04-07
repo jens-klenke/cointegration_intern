@@ -344,10 +344,10 @@ P-value of the Fisher Type Test statistic: 0
 The test statistics of the individual tests, but also of the combined tests, are relatively clear. Basically all tests reject the $\mathcal{H}_0$, that there is no cointegration. But as @Bayerhanck2009 have shown, there are several examples from the literature where the evidence is not so clear. A further interpretation of the results shall not be made here.
 
 
-To demonstrate the implemented method for the generic function `plot()`, we will additionally plot the object from `bayerhanck_1` for `test = "all"`. For a harmonious appearance in this documentation, we will set `theme = "light"`.
+To demonstrate the implemented method for the generic function `plot()`, we will additionally plot the object from `bayerhanck_1` for `test = "eg_j"`. For a harmonious appearance in this documentation, we will set `theme = "light"`.
 
 ```{r eval = FALSE}
-plot(bh_all_1, theme = "light")
+plot(bh_eg_j_1, theme = "light")
 ```
 
 ![Cumulative Distribution Function under $\mathcal{H}_0$](plot_bh.png) 
