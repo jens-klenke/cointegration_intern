@@ -617,7 +617,7 @@ simulation.
 
 The simulation considers different combinations of the number of
 variables \(K\in\{2,...,12\}\), nuisance parameter
-\(R^2\in\{0,0.05,...,0.95\}\), and cases of determinstic trends in the
+\(R^2\in\{0,0.05,...,0.95\}\), and cases of deterministic trends in the
 variables, with (i) = no deterministics, (ii) = constant, and (iii) =
 constant and trend means. Since only the null distribution is of any
 interest, the parameter \(c\) will be hold constant to zero. The
@@ -628,7 +628,7 @@ The first step in the loop, to generate the data basis for the
 simulation, is to draw random shocks \(u\) from a normal distribution.
 Next, the Wiener process is simulated, which is calculated as a
 cumulative sum by the root of the length of the vector\((T)\).
-Furthermore, the Ohrnstein Uhlenbeck Process has to be modelled.
+Furthermore, the Ohrnstein Uhlenbeck Process has to be modeled.
 
 Afterwards, the Vienna and Ohrstein Uhlenbeck Process is corrected
 according to the type of trend. If a constant trend is present, the mean
@@ -638,7 +638,7 @@ are subtracted. Finally, the common components are calculated.
 Then the test statistics of each test are calculated and stored in a
 vector, which is then sorted. Because we have simulated under the
 assumptions of \(\mathcal{H}_0\) we have now simulated the asymptotic
-zero distribution.\footnote{For futher details see
+zero distribution.\footnote{For further details see
   \textcite{pesavento2004}}
 
 Table \ref{tab:com} shows the 5\% critical values of the simulation in
@@ -763,8 +763,8 @@ simple returns of the stocks of International Business Machines
 \emph{ibm}, Coca Cola \emph{ko}, and the S\&P composite index \emph{sp}.
 We will test for a cointegration relationship between the variables
 \emph{sp}, \emph{ko}, and \emph{ibm}. The sample period is from January
-1961 till Decembet 2011 and the data can be load into the global
-entironment with the command
+1961 till December 2011 and the data can be load into the global
+environment with the command
 \texttt{data("mts-examples",\ package\ =\ "MTS")}.To keep a certain
 clarity we will show the test only in the variant \texttt{eg-j}. The
 procedure can be applied in the same with the option \texttt{all}, to

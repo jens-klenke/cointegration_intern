@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.4.2)  7 APR 2020 21:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.4.2)  7 APR 2020 22:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1233,15 +1233,6 @@ Package xcolor Warning: Incompatible color definition on input line 799.
 
 Package xcolor Warning: Incompatible color definition on input line 803.
 
-
-Package xcolor Warning: Incompatible color definition on input line 816.
-
-
-Package xcolor Warning: Incompatible color definition on input line 816.
-
-
-Package xcolor Warning: Incompatible color definition on input line 816.
-
 [10]
 
 Package xcolor Warning: Incompatible color definition on input line 816.
@@ -1270,6 +1261,7 @@ Package xcolor Warning: Incompatible color definition on input line 852.
 
 Package xcolor Warning: Incompatible color definition on input line 857.
 
+[11]
 
 Package xcolor Warning: Incompatible color definition on input line 863.
 
@@ -1279,7 +1271,6 @@ Package xcolor Warning: Incompatible color definition on input line 863.
 
 Package xcolor Warning: Incompatible color definition on input line 867.
 
-[11]
 
 Package xcolor Warning: Incompatible color definition on input line 888.
 
@@ -1289,18 +1280,19 @@ Package xcolor Warning: Incompatible color definition on input line 888.
 
 Package xcolor Warning: Incompatible color definition on input line 903.
 
+[12]
 
 Package xcolor Warning: Incompatible color definition on input line 907.
 
 
 Package xcolor Warning: Incompatible color definition on input line 907.
 
-<plot_bh.png, id=231, 752.8125pt x 376.40625pt>
+<plot_bh.png, id=235, 752.8125pt x 376.40625pt>
 File: plot_bh.png Graphic file (type png)
 <use plot_bh.png>
 Package pdftex.def Info: plot_bh.png  used on input line 911.
 (pdftex.def)             Requested size: 384.12457pt x 192.06227pt.
-[12] [13 <./plot_bh.png>] [14]
+[13 <./plot_bh.png>] [14]
 Overfull \hbox (0.16885pt too wide) in paragraph at lines 959--959
 [][]$\T1/lmr/m/n/12 (+14) https : / / EconPapers . repec . org / RePEc : ecm : 
 emetrp : v : 55 : y : 1987 : i : 2 : p :
@@ -1316,6 +1308,9 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 974.
 Package rerunfilecheck Info: File `Abschlussarbeit.out' has not changed.
 (rerunfilecheck)             Checksum: 1E1ABBAA665E8C7A80436E302D46217B;2493.
 
+LaTeX Warning: There were undefined references.
+
+
 Package biblatex Warning: Please rerun LaTeX.
 (biblatex)                Page breaks have changed.
 
@@ -1324,11 +1319,11 @@ Package logreq Info: Writing requests to 'Abschlussarbeit.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23496 strings out of 480994
- 381869 string characters out of 5916033
+ 23494 strings out of 480994
+ 381847 string characters out of 5916033
  1230637 words of memory out of 5000000
  38383 multiletter control sequences out of 15000+600000
- 619091 words of font info for 138 fonts, out of 8000000 for 9000
+ 619000 words of font info for 137 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  58i,12n,63p,867b,6737s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.5} has been referenced but does not exi
@@ -1367,7 +1362,7 @@ f-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/
 public/lm/lmtk10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtt10.p
 fb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtt12.pfb><c:/texlive/201
 9/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on Abschlussarbeit.pdf (21 pages, 402081 bytes).
+Output written on Abschlussarbeit.pdf (21 pages, 402276 bytes).
 PDF statistics:
  378 PDF objects out of 1000 (max. 8388607)
  324 compressed objects within 4 object streams
