@@ -36,11 +36,11 @@ Executes Cointegration Tests, which serve as underlying Tests for the Bayer-Hanc
 }
 \section{Functions}{
 \itemize{
-\item \code{banerjee}: Banerjee Test
+\item \code{banerjee}: Executes Banerjee Test.
 
-\item \code{boswijk}: Boswijk Test
+\item \code{boswijk}: Executes Boswijk Test.
 
-\item \code{johansen}: Johansen Test
+\item \code{johansen}: Executes Johansen Test.
 }}
 
 \examples{

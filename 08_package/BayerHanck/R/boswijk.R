@@ -1,4 +1,4 @@
-#' @describeIn englegranger Boswijk Test
+#' @describeIn englegranger Executes Boswijk Test.
 #' @export
 boswijk <- function(formula, data, lags = 1, trend = "const"){
 

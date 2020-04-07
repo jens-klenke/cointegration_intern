@@ -7,14 +7,7 @@
 \usage{
 bayerhanck(formula, data, lags = 1, trend = "const", test = "all", crit = 0.05)
 
-bayerhanck_1(
-  formula,
-  data,
-  lags = 1,
-  trend = "const",
-  test = "all",
-  crit = 0.05
-)
+bayerhanck_1(formula, data, lags = 1, trend = "const", test = "all", crit = 0.05)
 }
 \arguments{
 \item{formula}{An object of class \code{\link[stats]{formula}} to describe the model.}
@@ -44,6 +37,8 @@ various cointegration tests.
 }
 \section{Functions}{
 \itemize{
+\item \code{bayerhanck}: Bayer-Hanck Test-Statistic with values obtained from the technical appendix of Bayer and Hanck (2009).
+
 \item \code{bayerhanck_1}: Bayer-Hanck Test-Statistic with values obtained by own simulation.
 }}
 
