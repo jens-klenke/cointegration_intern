@@ -1,0 +1,27 @@
+Package: bayerhanck
+Title: A Joint Test-Statistic for the Null of Non-Cointegration
+Version: 0.0.0.9000
+Authors@R: c(
+	person("Janine", "Langerbein", email = "janine.langerbein@icloud.com", role = c("aut", "cre")),
+	person("Jens", "Klenke", email = "jens-klenke@hotmail.de", role = c("aut")))
+Description: bayerhanck produces a joint test-statistic for the null of non-cointegration based on Engle-Granger, Johansen maximum eigenvalue, Boswijk and Banerjee tests. Also see Bayer, Christian and Christoph Hanck: "Combining Non-Cointegration tests", METEOR RM 09/012, University of Maastricht.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.0
+Imports: 
+    Hmisc,
+    here,
+    tsDyn,
+    urca,
+    stats,
+    base,
+    dplyr,
+    ggplot2,
+    magrittr,
+    ggthemes,
+    MTS
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
