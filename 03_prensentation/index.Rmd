@@ -1,8 +1,8 @@
 ---
-title: "Analysing FIFA Data with the Bayesian LASSO"
+title: "Combining Non-Cointegration Tests in R"
 subtitle: ""
-author: "Jens Klenke"
-date: " March 3rd 2020"
+author: "Jens Klenke, Janine Langerbein, Niklas Mika"
+date: " April 17th 2020"
 output:
   xaringan::moon_reader:
     css: ["default", "assets/sydney-fonts.css", "assets/sydney.css"]
@@ -21,7 +21,7 @@ output:
 ---
 class: inverse
 
-```{r, load_refs, echo=FALSE, cache=FALSE}
+```{r, include=FALSE, cache=FALSE}
 library(RefManageR)
 BibOptions(check.entries = FALSE, 
            bib.style = "authoryear", 
@@ -31,34 +31,6 @@ BibOptions(check.entries = FALSE,
            dashed = FALSE)
 myBib <- ReadBib("assets/example.bib", check = FALSE)
 
-
-```
-
-# Structure
- 
-
-1. Overview of the Data
-2. Used Models
-3. Estimation
-4. Resutls of the Models 
-5. Residuals Analysis
-6. Conclusion
-
----
-# Original Dataset
-
-* Data from 2015 till 2020 (6 Years)
-  + 2019 used for the estimation
-  + 2020 to compare the models
-* Data for over 15 000 players per year
-* 104 variables in the datasets 
-  + 12 variables included for the estimation
-* Different grading pattern for Goalkeepers
-
----
-# Overview of some important Variables 
-
-```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 options(servr.daemon = TRUE)
 options(servr.interval = 0.5)
@@ -69,5 +41,23 @@ options(servr.interval = 0.5)
 source(here::here("01_code/packages/packages.R"))
 
 
+
 ```
+
+# Structure
+ 
+
+1. Theory of Non-Cointegration Test
+2. Implementation
+3. Tutorial 
+4. Further work
+
+---
+# Implementation
+
+```{r eval = FALSE}
+bayerhanck(formula, data, lags = 1, trend = "const", 
+           test = "all", crit = 0.05)
+```
+
 
