@@ -48,16 +48,43 @@ source(here::here("01_code/packages/packages.R"))
  
 
 1. Theory of Non-Cointegration Test
-2. Implementation
+2. Implementation & Problems
 3. Tutorial 
 4. Further work
 
 ---
 # Implementation
 
+## Loading the package from `Github`
+
+```{r eval = FALSE}
+# install.packages('devtools')
+library(devtools)
+
+# install_github("jens-klenke/bayerhnack")  # install Package from Github
+library(bayerhanck)
+
+```
+
+## Included functions
+
+- `bayerhanck()`
+- `bayerhnack_1()`
+- `summary()`
+- `plot()`
+---
+
+
+
+
 ```{r eval = FALSE}
 bayerhanck(formula, data, lags = 1, trend = "const", 
            test = "all", crit = 0.05)
 ```
+
+
+
+
+
 
 
