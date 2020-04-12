@@ -1,0 +1,61 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# pvurt
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+This package has been created as part of my master thesis. The package has only one user facing function: <tt>computePVale()</tt>, which approximates p-value (cumulative probability) for augmented Dickey-Fuller unit root test based on the distribution of the test statistics. The approximation is based on pre-trained generalized additive logistic model or logistic regression with polynomial terms.
+
+The function can take either a numeric value or the output from the four functions of the following three packages:  <tt>adfTest()</tt> and <tt>unitrootTest()</tt> from <tt>fUnitRoots</tt>, <tt>adf.test()</tt> from <tt>tseries</tt> and, lastly, <tt>ur.df()</tt> from <tt>urca</tt>. If output from any of the function is passed on, <tt>computePVale()</tt> appends its approximation result to the original output. 
+
+## Installation
+
+The package has not been released in [CRAN](https://CRAN.R-project.org). To install use:
+
+``` r
+devtools::install_github("mlincon/pvurt")
+```
+Since the package must be complied, ensure that <tt>Rtools.exe</tt> is installed beforehand.
+
+## Example
+
+```{r example}
+library(pvurt)
+
+y <- arima.sim(model = list(order = c(0, 1, 0)), n = 100)
+
+# Test type: with drift and trend
+# package: fUnitRoots
+library(fUnitRoots)
+computePValue(adfTest(y, lags = 3, type = "ct"))
+
+computePValue(unitrootTest(y, lags = 3, type = "ct"))
+
+# package: urca
+library(urca)
+computePValue(ur.df(y, lags = 3, type = "trend"))
+# print summary
+summary(computePValue(ur.df(y, lags = 3, type = "trend")))
+
+# package: tseries
+library(tseries)
+computePValue(adf.test(y, alternative = "stationary", k = 3))
+
+# no packages
+tStat <- -2.239
+sampleSize <- 100
+computePValue(tStat, n = sampleSize, model = "gam", type = "ct")
+```
