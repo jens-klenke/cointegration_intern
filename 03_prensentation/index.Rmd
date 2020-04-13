@@ -53,6 +53,7 @@ source(here::here("01_code/packages/packages.R"))
 4. Further work
 
 ---
+class: inverse
 # Implementation
 
 ## Loading the package from `Github`
