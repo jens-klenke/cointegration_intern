@@ -24,4 +24,6 @@ pacman::p_load(dplyr,
                cowplot,
                imputeTS,
                modelr,
-               tsDyn)
+               tsDyn,
+               parallel,
+               doParallel)
