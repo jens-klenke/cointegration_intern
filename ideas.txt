@@ -1,0 +1,4 @@
+Questions
+- P-values from build in functions -> p.Wert gleich? (dann werden wir auch die erste matrix los)
+- Bowsijk und Banerjee auch eine approximation schätzen?
+- Nur zwei Cases (all, E_g und Joh)
