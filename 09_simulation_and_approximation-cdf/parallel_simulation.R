@@ -7,26 +7,29 @@ source(here::here('09_simulation_and_approximation-cdf/sim_functions.R'))
 
 ## parallelation 
 num_cores <- detectCores() # need to change for the server
-use_cores <- num_cores/2  # need to change for the server
+use_cores <-  num_cores/2  # need to change for the server
 
 registerDoParallel(use_cores) # cores need to be hard coded for the server
 
 ## Parameters
 R2 <- seq(0, 0.95, 0.05) # long term correlation
-N <- 10 # length for every trajectory
+N <- 100000 # length for every trajectory
 c_run <- 0 # Parameter pesavanto model
 K <- 11 #  max of Variables
 rep <- 5 # Number of Repetitions 25000
 cases <- 3 # cases 
 lambda <- (seq(1:N)/N) 
-
+data <- NULL
 
 
 
 ## Loop
- 
-for (k in 1:kmax){# Number of Regressor Loop ### parallelisieren
+tictoc::tic() 
+#for (k in 1:K){# Number of Regressor Loop ### parallelisieren
+A <- foreach (k = 1:K) %dopar% { 
+    data <- NULL   
     for (dets in 1:cases){# Number of cases Loop
+        
         # initialization of Null Distribution of Test statistic
         NullStatBoswijk <- rep(NA, rep)
         NullStatJohansen <- rep(NA, rep)
@@ -37,11 +40,13 @@ for (k in 1:kmax){# Number of Regressor Loop ### parallelisieren
         NullDistrEngleGranger <- NA
         NullDistrErrCorr <- NA
         BoswijkPValu <- rep(NA, rep)
+        JohansenPValue <- rep(NA, rep)
+        EngleGrangerPValue <- rep(NA, rep)
+        ErrCorrPValue <- rep(NA, rep)
         
         for (rr in 1:length(R2)){ # Loop over Pesavento R2"
-            for (cc in 1:length(c)){#Loop over Local to unity parameter"
 
-                # Set R2 and c corresponding to loop"
+                # Set R2 
                 R2run <- R2[rr]
                 
                 # Loop over repetitions"
@@ -70,34 +75,32 @@ for (k in 1:kmax){# Number of Regressor Loop ### parallelisieren
                 
                     NullStatErrCorr[j] <- stat_Banerjee(c_run = c_run, R2run = R2run, N = N, k = k, J12DW2 = c_terms$J12DW2, 
                                                         W1dJ12dc = c_terms$W1dJ12dc, W1dW1di = c_terms$W1dW1di, 
-                                                        W1d = c_terms$W1d, J12dc_sq = c_terms$J12dc_sq)
+                                                        W1d = c_terms$W1d, J12dc_sq = c_terms$J12dc_sq, u = c_terms$u)
                     
                 }#rep loop end
                 
                 ## Write Null Distributions and p-values for the underlying tests
                 NullDistrBoswijk <- sort(NullStatBoswijk)
-                BoswijkPValue <- 1 - rank(NullDistrBoswijk)/rep+10^(-1000)
+                BoswijkPValue <- 1 - rank(NullStatBoswijk)/rep+10^(-100)
                 
                 NullDistrJohansen <- sort(NullStatJohansen)
-                JohansenPValue <- 1- rank(NullDistrJohansen)/rep+10^(-1000)
-                
+                JohansenPValue <- 1- rank(NullStatJohansen)/rep+10^(-100)
                 
                 NullDistrEngleGranger <- sort(NullStatEngleGranger)
-                EngleGrangerPValue <- rank(NullDistrEngleGranger)/rep+10^(-1000)
+                EngleGrangerPValue <- rank(NullStatEngleGranger)/rep+10^(-100)
                 
                 NullDistrErrCorr <- sort(NullStatErrCorr)
-                ErrCorrPValue <- rank(NullDistrErrCorr)/rep+10^(-1000)
-            
-                }
+                ErrCorrPValue <- rank(NullStatErrCorr)/rep+10^(-100)
                 
                 ## -------------------------------- Fisher Type Tests --------------------------------"
                 
-                # test statistics 
+                # Fisher test statistics 
                 # 2 tests 
                 FisherStat_E_J <- -2*(log(EngleGrangerPValue) + log(JohansenPValue))
                 
                 #4 tests
-                FisherStat_all<- -2*(log(ErrCorrPValue)+log(BoswijkPValue)+log(EngleGrangerPValue)+log(JohansenPValue))
+                FisherStat_all <- -2*( log(ErrCorrPValue) + log(BoswijkPValue) + 
+                                       log(EngleGrangerPValue) + log(JohansenPValue))
                 
                 # Write Null Distributions and p-values 
                     
@@ -106,12 +109,50 @@ for (k in 1:kmax){# Number of Regressor Loop ### parallelisieren
                 Fisher_E_J_PValue <- rankindx(NullDistrFisher_E_J, 1)/rep+10^(-1000)
                     
                 #4 tests
-                NullDistrFisher_all <- sort(FisherStat_B_ECR_J_E)
+                NullDistrFisher_all <- sort(FisherStat_all)
                 Fisher_all_PValue <-rankindx(NullDistrFisher_all, 1)/rep+10^(-1000)
+                
+                # p-value
+                BoswijkPValue <- sort(BoswijkPValue, decreasing = TRUE)
+                JohansenPValue <- sort(JohansenPValue, decreasing = TRUE)
+                EngleGrangerPValue <- sort(EngleGrangerPValue)
+                ErrCorrPValue <- sort(ErrCorrPValue) 
                 
             }# R2
         
+        D <- data.frame(
+            p_value_E_G = EngleGrangerPValue,
+            stat_E_G = NullDistrEngleGranger,
+            p_value_J = JohansenPValue,
+            stat_J = NullDistrJohansen,
+            p_value_Bo = BoswijkPValue,
+            stat_Bo = NullDistrBoswijk,
+            p_value_Ba = ErrCorrPValue,
+            stat_Ba = NullDistrErrCorr,
+            p_value_Fisher_E_J = Fisher_E_J_PValue,
+            stat_Fisher_E_J = NullDistrFisher_E_J,
+            p_value_Fisher_all = Fisher_all_PValue,
+            stat_Fisher_all = NullDistrFisher_all,
+            k = k,
+            case = dets
+            
+        )
+        data <- rbind(data, D)
+         
     }# dets 
+    data
 }# k 
+tictoc::toc()
 
 
+BB <- tibble::as_tibble(A)
+
+
+
+# ErrCorrPValue on the sim different
+
+
+
+
+# To do
+## R2 needed for ErroCor?

@@ -35,17 +35,17 @@ sim_terms <- function(N,k, R2run, c_run, dets){
         W1d <- W1
         J12dc <- J12
     } else if (dets==2){#Constant, no trend"
-        W1d <- W1 - (matrix(rep( apply(W1,2,mean), T), nrow = T, byrow = TRUE)) 
-        J12dc <- J12 - matrix(rep(1, T)* apply(J12, 2, mean), nrow = T, byrow = TRUE) 
+        W1d <- W1 - (matrix(rep( apply(W1,2,mean), N), nrow = N, byrow = TRUE)) 
+        J12dc <- J12 - matrix(rep(1, N)* apply(J12, 2, mean), nrow = N, byrow = TRUE) 
     } else if (dets==3){# Constant and Trend"
-        W1d <- W1 - (4-6*matrix(rep(t(lambda), k), ncol = k))*matrix(rep(apply(W1, 2, mean), T), nrow = T, byrow = TRUE) - (12*matrix(rep(t(lambda), k), ncol = k)-6)*matrix(rep(apply(matrix(rep((lambda), k), ncol = k)*W1,2, mean), T), ncol = k, byrow = TRUE) 
-        J12dc <- J12 - (4-6*lambda)*rep(mean(J12), T) - (12*lambda-6) * rep(mean(lambda*J12), T) 
+        W1d <- W1 - (4-6*matrix(rep(t(lambda), k), ncol = k))*matrix(rep(apply(W1, 2, mean), N), nrow = N, byrow = TRUE) - (12*matrix(rep(t(lambda), k), ncol = k)-6)*matrix(rep(apply(matrix(rep((lambda), k), ncol = k)*W1,2, mean), N), ncol = k, byrow = TRUE) 
+        J12dc <- J12 - (4-6*lambda)*rep(mean(J12), N) - (12*lambda-6) * rep(mean(lambda*J12), N) 
     }
     Wdc <- cbind(W1d, J12dc)
     
     # -----------------------------Common Terms------------"
     WdcDW2 <- apply(Wdc[1:N-1,]* matrix(rep(u[2:N,k+1], k+1), ncol = k+1), 2, mean)
-    WdcWdci <- solve(1/N^2* t(Wdc)%*%Wdc)
+    WdcWdci <- solve(1/N^2*t(Wdc)%*%Wdc)
     W1dW1di <- solve(1/N * t(W1d[1:N-1,])%*% W1d[1:N-1,])
     W1dJ12dc <- apply(W1d[1:N-1,] * matrix(rep(J12dc[1:N-1,],k),ncol = k), 2, mean) 
     J12dc_sq <- mean(J12dc[1:N-1]^2)
@@ -109,7 +109,7 @@ stat_Eng_Gr <- function(c_run, R2run, N, k, W1dW1di, W1d, J12dc, Wdc, u, u12){
 
 # ECR (Banerjee)
 
-stat_Banerjee <- function(c_run, R2run, N, k, J12DW2, W1dJ12dc, W1dW1di, W1d, J12dc_sq){
+stat_Banerjee <- function(c_run, R2run, N, k, J12DW2, W1dJ12dc, W1dW1di, W1d, J12dc_sq, u){
     
     zaehler <- sqrt(N)* (t(J12DW2)-W1dJ12dc%*%W1dW1di%*%apply(W1d[1:N-1,]*
                                                                   matrix(rep(u[2:N,k+1],k), ncol = k), 2, mean ))               
