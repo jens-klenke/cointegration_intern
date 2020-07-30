@@ -27,4 +27,5 @@ pacman::p_load(dplyr,
                tsDyn,
                parallel,
                doParallel,
-               foreach)
+               foreach, 
+               tibble)

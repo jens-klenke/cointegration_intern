@@ -13,20 +13,17 @@ registerDoParallel(use_cores) # cores need to be hard coded for the server
 
 ## Parameters
 R2 <- seq(0, 0.95, 0.05) # long term correlation
-N <- 100000 # length for every trajectory
+N <- 1000 # length for every trajectory
 c_run <- 0 # Parameter pesavanto model
 K <- 11 #  max of Variables
-rep <- 5 # Number of Repetitions 25000
+rep <- 100 # Number of Repetitions 25000
 cases <- 3 # cases 
 lambda <- (seq(1:N)/N) 
-data <- NULL
-
-
 
 ## Loop
 tictoc::tic() 
 #for (k in 1:K){# Number of Regressor Loop ### parallelisieren
-A <- foreach (k = 1:K) %dopar% { 
+Data <- foreach (k = 1:K, .combine = rbind) %dopar% { 
     data <- NULL   
     for (dets in 1:cases){# Number of cases Loop
         
@@ -120,7 +117,7 @@ A <- foreach (k = 1:K) %dopar% {
                 
             }# R2
         
-        D <- data.frame(
+        D <- tibble::tibble(
             p_value_E_G = EngleGrangerPValue,
             stat_E_G = NullDistrEngleGranger,
             p_value_J = JohansenPValue,
@@ -144,15 +141,3 @@ A <- foreach (k = 1:K) %dopar% {
 }# k 
 tictoc::toc()
 
-
-BB <- tibble::as_tibble(A)
-
-
-
-# ErrCorrPValue on the sim different
-
-
-
-
-# To do
-## R2 needed for ErroCor?
