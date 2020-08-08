@@ -28,4 +28,7 @@ pacman::p_load(dplyr,
                parallel,
                doParallel,
                foreach, 
-               tibble)
+               tibble,
+               caret,
+               broom)
+

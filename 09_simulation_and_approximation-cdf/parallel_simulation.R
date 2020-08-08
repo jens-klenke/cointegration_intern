@@ -16,7 +16,7 @@ R2 <- seq(0, 0.95, 0.05) # long term correlation
 N <- 1000 # length for every trajectory
 c_run <- 0 # Parameter pesavanto model
 K <- 11 #  max of Variables
-rep <- 10000 # Number of Repetitions 25000
+rep <- 100000 # Number of Repetitions 100000
 cases <- 3 # cases 
 lambda <- (seq(1:N)/N) 
 
@@ -141,13 +141,21 @@ Data <- foreach (k = 1:K, .combine = rbind) %dopar% {
 }# k 
 tictoc::toc()
 
-names(Data)
+# split dataset in cases
+data_case_1 <- Data %>%
+    dplyr::filter(case == 1)
 
+data_case_2 <- Data %>%
+    dplyr::filter(case == 2)
 
-fit <- lm(p_value_E_G ~ poly(stat_E_G, 5) + poly(k, 5) + poly(case, 2),  data = Data)
-summary(fit)
+data_case_3 <- Data %>%
+    dplyr::filter(case == 3)
 
-saveRDS(Data, here::here('09_simulation_and_approximation-cdf/Data.rds'))
+fit_case_1 <- lm(p_value_E_G ~ poly(stat_E_G, 3) + poly(k, 3) ,  data = data_case_1)
+summary(fit_case_1)
 
+fit_case_2 <- lm(p_value_E_G ~ poly(stat_E_G, 3) + poly(k, 3) ,  data = data_case_2)
+summary(fit_case_2)
 
-
+fit_case_3 <- lm(p_value_E_G ~ poly(stat_E_G, 3) + poly(k, 3) ,  data = data_case_3)
+summary(fit_case_3)
