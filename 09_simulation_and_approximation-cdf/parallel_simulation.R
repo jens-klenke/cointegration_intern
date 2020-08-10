@@ -151,6 +151,7 @@ data_case_2 <- Data %>%
 data_case_3 <- Data %>%
     dplyr::filter(case == 3)
 
+#### models ####
 fit_case_1 <- lm(p_value_E_G ~ poly(stat_E_G, 3) + poly(k, 3) ,  data = data_case_1)
 summary(fit_case_1)
 
@@ -159,3 +160,12 @@ summary(fit_case_2)
 
 fit_case_3 <- lm(p_value_E_G ~ poly(stat_E_G, 3) + poly(k, 3) ,  data = data_case_3)
 summary(fit_case_3)
+
+model <- train(
+    p_value_E_G ~ poly(stat_E_G, 3) + poly(k, 3) ,  data = data_case_1,
+    method = "lm",
+    trControl = trainControl(
+        method = "cv", number = 10,
+        verboseIter = TRUE
+    )
+)
