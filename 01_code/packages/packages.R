@@ -30,5 +30,7 @@ pacman::p_load(dplyr,
                foreach, 
                tibble,
                caret,
-               broom)
+               broom,
+               pryr,
+               gam)
 
