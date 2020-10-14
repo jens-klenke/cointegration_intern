@@ -7,7 +7,7 @@ source(here::here('09_simulation_and_approximation-cdf/sim_functions.R'))
 
 ## parallelation 
 num_cores <- detectCores() # need to change for the server
-use_cores <- num_cores/2  # need to change for the server
+use_cores <- num_cores-1  # need to change for the server
 
 registerDoParallel(use_cores) # cores need to be hard coded for the server
 
@@ -16,7 +16,7 @@ R2 <- seq(0, 0.95, 0.05) # long term correlation
 N <- 1000 # length for every trajectory
 c_run <- 0 # Parameter pesavanto model
 K <- 11 #  max of Variables
-rep <- 100000 # Number of Repetitions 100000
+rep <- 1000000 # Number of Repetitions 100000
 cases <- 3 # cases 
 lambda <- (seq(1:N)/N) 
 
@@ -140,3 +140,7 @@ Data <- foreach (k = 1:K, .combine = rbind) %dopar% {
     data
 }# k 
 tictoc::toc()
+
+base::saveRDS(Data, file = here::here('09_simulation_and_approximation-cdf/Data_1m.rds'))
+
+save(Data, )
