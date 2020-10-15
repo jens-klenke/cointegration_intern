@@ -4,7 +4,6 @@ source(here::here('01_code/packages/packages.R'))
 ## sub functions 
 source(here::here('09_simulation_and_approximation-cdf/sim_functions.R'))
 
-
 ## parallelation 
 num_cores <- detectCores() # need to change for the server
 use_cores <- num_cores-1  # need to change for the server
@@ -143,4 +142,3 @@ tictoc::toc()
 
 base::saveRDS(Data, file = here::here('09_simulation_and_approximation-cdf/Data_1m.rds'))
 
-save(Data, )
