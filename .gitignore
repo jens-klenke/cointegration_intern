@@ -37,3 +37,4 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+09_simulation_and_approximation-cdf/Data_100k.rds
