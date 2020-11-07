@@ -32,5 +32,6 @@ pacman::p_load(dplyr,
                caret,
                broom,
                pryr,
-               gam)
+               gam,
+               modelr)
 

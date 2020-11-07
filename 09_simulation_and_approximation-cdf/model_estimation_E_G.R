@@ -19,7 +19,7 @@ source(here::here('01_code/packages/packages.R'))
 ## load simulation data 
 Data <- base::readRDS(here::here('09_simulation_and_approximation-cdf/Data.rds'))
 
-# split dataset in cases
+# split data set in cases
 data_case_1 <- Data %>%
     dplyr::filter(case == 1)
 
@@ -84,7 +84,7 @@ model_metrics_EG_1 <- rbind(model_metrics_EG_1,
                        metric_fun(mod_E_G_case.1_p_5, test_EG_data_case_1, dep_VAR = 'p_value_E_G'),
                        metric_fun(mod_E_G_case.1_p_6, test_EG_data_case_1, dep_VAR = 'p_value_E_G'))
 
-## delete model
+ ## delete model
 
 rm(list = c('mod_E_G_case.1_p_3', 'mod_E_G_case.1_p_4', 'mod_E_G_case.1_p_5', 'mod_E_G_case.1_p_6'))
 
