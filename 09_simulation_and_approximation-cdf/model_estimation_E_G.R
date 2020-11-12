@@ -19,7 +19,7 @@ source(here::here('01_code/packages/packages.R'))
 ## load simulation data 
 #Data <- base::readRDS(here::here('09_simulation_and_approximation-cdf/Data.rds'))
 if(Sys.info()['user'] == "Jens-"){
-    Data <- base::readRDS('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data.rds')
+    Data <- base::readRDS('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_100k.rds')
 }
 
 
@@ -88,6 +88,7 @@ model_metrics <- rbind(model_metrics ,
 
 # delete model
 rm(list = c('mod_E_J_case.1_p_3', 'mod_E_J_case.1_p_4', 'mod_E_J_case.1_p_5', 'mod_E_J_case.1_p_6'))
+
 
 # functional form: poly(t, p) + (1/k) + poly(t, p)*(1/k)
 mod_E_J_case.1_p_3_3 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + I(1/k) + poly(k, 3)*(1/k),
@@ -183,6 +184,8 @@ model_metrics <- rbind(model_metrics ,
 # delete model
 rm(list = c('mod_E_J_case.1_p_3_k_1', 'mod_E_J_case.1_p_4_k_1', 'mod_E_J_case.1_p_5_k_1', 'mod_E_J_case.1_p_6_k_1'))
 
+
+colnames(model_metrics) <- c('model', 'RMSE', 'RMSE_p<0.2', 'formula')
 
 ### GAM 
 mod_E_G_case.1_gam_3 <- mgcv::gam(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + ns(k, 6) + ns(stat_E_G*k, 6),
