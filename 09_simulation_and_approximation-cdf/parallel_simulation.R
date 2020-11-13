@@ -40,7 +40,7 @@ Data <- foreach (k = 1:K, .combine = rbind) %dopar% {
         EngleGrangerPValue <- rep(NA, rep)
         ErrCorrPValue <- rep(NA, rep)
         
-        for (rr in 1:length(R2)){ # Loop over Pesavento R2"
+        for (rr in 1:length(R2)){ # Loop over Pesaventos R2"
 
                 # Set R2 
                 R2run <- R2[rr]
