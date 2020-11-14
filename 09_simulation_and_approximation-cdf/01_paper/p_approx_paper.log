@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.10)  14 NOV 2020 23:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2020.11.10)  14 NOV 2020 23:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1207,21 +1207,28 @@ ogo_en.png>]
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.315 
+l.317 
        [1
 
-]
-
-LaTeX Warning: Empty bibliography on input line 317.
-
+]pdfTeX warning (ext4): destination with the same identifier (name{page.I}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.322 \cleardoublepage
+                       [1]
 \blx@maxsegment@1=\count475
 \blx@sectionciteorder@1=\count476
-Package biblatex Info: Reference section=1 on input line 320.
-Package biblatex Info: Setting label 'refsection:1' on input line 320.
-[2
+Package biblatex Info: Reference section=1 on input line 324.
+Package biblatex Info: Setting label 'refsection:1' on input line 324.
+pdfTeX warning (ext4): destination with the same identifier (name{page.II}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.358 ...bibliography[title = Software-References]
+                                                   [2
 
 ] [3]
-Package biblatex Info: Reference section=0 on input line 356.
+Package biblatex Info: Reference section=0 on input line 360.
 [4]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
@@ -1258,43 +1265,39 @@ Package biblatex Info: Reference section=0 on input line 356.
 [5
 
 
-]
-
-LaTeX Warning: Empty bibliography on input line 382.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
+]pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
+ been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.399 \end{document}
+l.403 \end{document}
                      [1
 
 
 ] (./p_approx_paper.aux)
 Package rerunfilecheck Info: File `p_approx_paper.out' has not changed.
-(rerunfilecheck)             Checksum: 3676684FC9004777368E1E5DA2F2917C;977.
+(rerunfilecheck)             Checksum: B3C3F8C59F40844A4A969F66A2AC8A11;977.
 Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
 \openout1 = `p_approx_paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24312 strings out of 479485
- 398006 string characters out of 5875915
- 1314381 words of memory out of 5000000
- 40757 multiletter control sequences out of 15000+600000
+ 24321 strings out of 479485
+ 398306 string characters out of 5875915
+ 1314476 words of memory out of 5000000
+ 40765 multiletter control sequences out of 15000+600000
  587255 words of font info for 102 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 66i,6n,81p,747b,6835s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 66i,6n,81p,986b,6835s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}<c:/texlive/2020/tex
 mf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2020/texmf-dist/fonts/type
 1/public/lm/lmr12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr17.p
 fb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2020/
 texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2020/texmf-dist/fonts/typ
 e1/public/lm/lmri12.pfb>
-Output written on p_approx_paper.pdf (9 pages, 177670 bytes).
+Output written on p_approx_paper.pdf (10 pages, 178641 bytes).
 PDF statistics:
- 203 PDF objects out of 1000 (max. 8388607)
- 181 compressed objects within 2 object streams
- 46 named destinations out of 1000 (max. 500000)
+ 210 PDF objects out of 1000 (max. 8388607)
+ 187 compressed objects within 2 object streams
+ 47 named destinations out of 1000 (max. 500000)
  8276 words of extra memory for PDF output out of 10000 (max. 10000000)
 

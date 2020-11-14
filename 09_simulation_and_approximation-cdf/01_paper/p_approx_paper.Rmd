@@ -57,9 +57,15 @@ Start of the paper
 
 # main 
 
+
+@tibshirani_regression_1996
+
+
 <!-- end of main part -->
 
 \pagebreak
+
+\pagenumbering{Roman}
 
 \addcontentsline{toc}{section}{References}
 \printbibliography[title = References]
