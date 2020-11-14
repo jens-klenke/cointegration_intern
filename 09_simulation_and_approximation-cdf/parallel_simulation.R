@@ -75,7 +75,8 @@ Data <- foreach (k = 1:K, .combine = rbind) %dopar% {
                     
                 }#rep loop end
                 
-                ## Write Null Distributions and p-values for the underlying tests
+                ## Write Null Distributions and p-values for the underlying tests 
+                ## p-values are ranked by the NullStat and not by NULLDist to not lose the association
                 NullDistrBoswijk <- sort(NullStatBoswijk)
                 BoswijkPValue <- 1 - rank(NullStatBoswijk)/rep+10^(-100)
                 
@@ -103,12 +104,12 @@ Data <- foreach (k = 1:K, .combine = rbind) %dopar% {
                 # Engel - Johansen
                 NullDistrFisher_E_J <- sort(FisherStat_E_J)
                 Fisher_E_J_PValue <- rankindx(NullDistrFisher_E_J, 1)/rep+10^(-1000)
-                    
+
                 #4 tests
                 NullDistrFisher_all <- sort(FisherStat_all)
                 Fisher_all_PValue <-rankindx(NullDistrFisher_all, 1)/rep+10^(-1000)
                 
-                # p-value
+                # sorting of the p-values of the underlying tests 
                 BoswijkPValue <- sort(BoswijkPValue, decreasing = TRUE)
                 JohansenPValue <- sort(JohansenPValue, decreasing = TRUE)
                 EngleGrangerPValue <- sort(EngleGrangerPValue)

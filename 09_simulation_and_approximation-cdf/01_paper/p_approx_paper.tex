@@ -1,0 +1,399 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{lmodern}
+
+\usepackage{placeins}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[lmargin = 5cm,rmargin = 2.5cm,tmargin = 2.5cm,bmargin = 2.5cm]{geometry}
+
+% Figure Placement:
+\usepackage{float}
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure}[1][2] {
+    \expandafter\origfigure\expandafter[H]
+} {
+    \endorigfigure
+}
+
+%%%% Jens %%%%
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\usepackage{numprint}
+\npthousandsep{\,}
+
+%% citation setup
+\usepackage{csquotes}
+
+\usepackage[backend=biber, maxbibnames = 99, style = apa]{biblatex}
+\setlength\bibitemsep{1.5\itemsep}
+\addbibresource{R_packages.bib}
+\bibliography{references.bib}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true, linktocpage = TRUE]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={Jens Klenke and Janine Langerbein},
+            pdftitle={P-Approximation},
+            colorlinks=true,
+            citecolor=black,
+            urlcolor=black,
+            linkcolor=black,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{5}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+  \title{P-Approximation}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+\subtitle{Seminar in Econometrics}
+  \author{Jens Klenke and Janine Langerbein}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \predate{\centering\large\emph}
+  \postdate{\par}
+  \date{today}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+
+%% linespread settings
+
+\usepackage{setspace}
+
+\onehalfspacing
+
+% Language Setup
+
+\usepackage{ifthen}
+\usepackage{iflang}
+\usepackage[super]{nth}
+\usepackage[ngerman, english]{babel}
+
+%Acronyms
+\usepackage[printonlyused, withpage, nohyperlinks]{acronym}
+\usepackage{changepage}
+
+% Multicols for the Title page
+\usepackage{multicol}
+
+\begin{document}
+
+\selectlanguage{english}
+
+%%%%%%%%%%%%%% Jens %%%%%
+\numberwithin{equation}{section}
+
+
+%\maketitle
+
+\begin{titlepage}
+  \noindent\begin{minipage}{0.6\textwidth}
+	  \IfLanguageName{english}{University of Duisburg-Essen}{Universität Duisburg-Essen}\\
+	  \IfLanguageName{english}{Faculty of Business Administration and Economics}{Fakultät für Wirtschaftswissensschaften}\\
+	  \IfLanguageName{english}{Chair of Econometrics}{Lehrstuhl für Ökonometrie}\\
+  \end{minipage}
+	\begin{minipage}{0.4\textwidth}
+	  \begin{flushright}
+  	  \vspace{-0.5cm}
+      \IfLanguageName{english}{\includegraphics*[width=5cm]{Includes/duelogo_en.png}}{\includegraphics*[width=5cm]{Includes/duelogo_de.png}}
+	  \end{flushright}
+	\end{minipage}
+  \\
+  \vspace{0.25cm}
+  \begin{center}
+  \huge{P-Approximation}\\
+  \vspace{.25cm}
+  \Large{Seminar in Econometrics}\\
+  \vspace{0.5cm}
+  \large{Term Paper}\\
+  \vspace{0.5cm}
+  \large{  \IfLanguageName{english}{Submitted to the Faculty of \\  Business Administration and Economics  \\at the \\University of Duisburg-Essen}{Vorgelegt der \\Fakultät für Wirtschaftswissenschaften der \\ Universität Duisburg-Essen}\\}
+  \vspace{0.75cm}
+  \large{\IfLanguageName{english}{from:}{von:}}\\
+  \vspace{0.5cm}
+  Jens Klenke and Janine Langerbein\\
+  \end{center}
+  %\vspace{2cm}
+  \vfill
+  \hrulefill
+
+  \noindent\begin{minipage}[t]{0.3\textwidth}
+  \IfLanguageName{english}{Reviewer:}{Erstgutachter:}
+  \end{minipage}
+  \begin{minipage}[t]{0.7\textwidth}
+  \hspace{1cm}Christoph Hanck
+  \end{minipage}
+
+  \noindent\begin{minipage}[t]{0.3\textwidth}
+  \IfLanguageName{english}{Deadline:}{Abgabefrist:}
+  \end{minipage}
+  \begin{minipage}[t]{0.7\textwidth}
+  \hspace{1cm}Jan.~17th 2020
+  \end{minipage}
+
+  \hrulefill
+
+  \begin{multicols}{3}
+  
+  \begin{scriptsize}
+  
+  Name:
+
+  Matriculation Number:
+
+  E-Mail:
+
+  Study Path:
+
+  Semester:
+
+  Graduation (est.):
+ 
+  \columnbreak
+
+  Jens Klenke
+
+  3071594
+  
+  jens.klenke@stud.uni-due.de
+
+  M.Sc. Economics
+
+  \nth{5}
+
+  Winter Term 2020
+  
+  \columnbreak
+  
+  Janine Langerbein
+
+  307
+  
+  janine.langerbein@stud.uni-due.de
+
+  M.Sc. Economics
+
+  \nth{5}
+
+  Winter Term 2020
+  
+  \end{scriptsize}
+  
+  \end{multicols}
+  
+  
+
+\end{titlepage}
+
+\newgeometry{top=2cm, left = 5cm, right = 2.5cm, bottom = 2.5cm}
+
+
+\pagenumbering{Roman}
+{
+\hypersetup{linkcolor=black}
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+}
+
+\newpage
+\listoffigures
+\addcontentsline{toc}{section}{List of Figures}
+
+%\newpage
+\listoftables
+\addcontentsline{toc}{section}{List of Tables}
+
+\section*{List of Abbreviations}
+\addcontentsline{toc}{section}{List of Abbreviations}
+
+\begin{adjustwidth}{1.5em}{0pt}
+
+\begin{acronym}[dummyyyy]
+ \acro{bagging}{Bootstrap Aggregation}
+ \acro{LASSO}{Least Absolute Shrinkage and Selection Operator}
+ \acro{OLS}{ordinary least squares}
+ \acro{pcr}{Principal Components Regression}
+ \acro{pls}{Partial Least Squares}
+ \acro{RMSE}{Root Mean Squared Error}
+ \acro{MCMC}{Markov chain Monte Carlo} 
+ \acro{i.i.d.}{independent and identically distributed}
+ \acroplural{LRG}[LRG]{längefristige Refinanzierungsgeschäfte}
+
+%Falls eine Abkürzung in der Mehrzahl nicht einfach auf "s" endet muss das speziell eingestellt werden.
+% \acro{slmtA}{super lange mega tolle Abkürzung} %Einzahl
+ %\acroplural{slmtA}[slmtAs]{super lange mega tolle Abkürzungen} %Mehrzahl
+ \acro{dummyyyy}{dummyyy}
+\end{acronym}
+
+\end{adjustwidth}
+
+\restoregeometry
+
+\newpage
+\pagenumbering{arabic} %Roman arabic
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Start of the paper
+
+\hypertarget{int-2}{%
+\subsection{int 2}\label{int-2}}
+
+\hypertarget{main}{%
+\section{main}\label{main}}
+
+\pagebreak
+
+\addcontentsline{toc}{section}{References}
+\printbibliography[title = References]
+\cleardoublepage
+
+\begin{refsection}
+\nocite{R-base}
+\nocite{R-stargazer}
+\nocite{R-stringr}
+\nocite{R-tidyr}
+\nocite{R-dplyr}
+\nocite{R-glmnet}
+\nocite{R-class}
+\nocite{R-MASS}
+\nocite{R-plm}
+\nocite{R-leaps}
+\nocite{R-caret}
+\nocite{R-tree}
+\nocite{R-gbm}
+\nocite{R-plotmo}
+\nocite{R-pls}
+\nocite{R-splines}
+\nocite{R-tictoc}
+\nocite{R-plotly}
+\nocite{R-inspectdf}
+\nocite{R-rpart}
+\nocite{R-rpart.plot}
+\nocite{R-stargazer}
+\nocite{R-knitr}
+\nocite{R-purrr}
+\nocite{R-randomForest}
+\nocite{R-rstudioapi}
+
+
+
+
+
+\nocite{R-Studio}
+
+\printbibliography[title = Software-References]
+\addcontentsline{toc}{section}{Software-References}
+\end{refsection}
+
+\cleardoublepage
+\appendix
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{A\arabic{table}}
+\renewcommand{\thefigure}{A\arabic{figure}}
+
+\newgeometry{top=1cm, left = 5cm, right = 2.5cm, bottom = 2cm}
+
+\hypertarget{appendices}{%
+\section{Appendices}\label{appendices}}
+
+Better sorting of the Appendix
+
+\restoregeometry
+
+\cleardoublepage
+\newpage
+\renewcommand*{\mkbibnamefamily}[1]{\textbf{#1}}
+\renewcommand*{\mkbibnamegiven}[1]{\textbf{#1}}
+\renewcommand*{\mkbibnameprefix}[1]{\textbf{#1}}
+\renewcommand*{\mkbibnamesuffix}[1]{\textbf{#1}}
+
+
+\printbibliography[title=References]
+\pagenumbering{arabic}
+
+
+\newpage
+\textbf{Eidesstattliche Versicherung}
+
+\bigskip
+
+Ich versichere an Eides statt durch meine Unterschrift, dass ich die vorstehende Arbeit selbständig und ohne fremde Hilfe angefertigt und alle Stellen, die ich wörtlich oder annähernd wörtlich aus Veröffentlichungen entnommen habe, als solche kenntlich gemacht habe, mich auch keiner anderen als der angegebenen Literatur oder sonstiger Hilfsmittel bedient habe. Die Arbeit hat in dieser oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen.
+
+\vspace{1cm}
+\rule{0pt}{2\baselineskip} %
+\par\noindent\makebox[2.25in]{\indent Essen, den \hrulefill} \hfill\makebox[2.25in]{\hrulefill}%
+\par\noindent\makebox[2.25in][l]{} \hfill\makebox[2.25in][c]{Jens Klenke and Janine Langerbein}%
+
+
+\end{document}

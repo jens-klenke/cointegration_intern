@@ -19,9 +19,12 @@ source(here::here('01_code/packages/packages.R'))
 ## load simulation data 
 #Data <- base::readRDS(here::here('09_simulation_and_approximation-cdf/Data.rds'))
 if(Sys.info()['user'] == "Jens-"){
-    Data <- base::readRDS('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_100k.rds')
+#    Data <- base::readRDS('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_100k.rds')
+    load('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_1_m.RData')
 }
 
+# parallel 
+registerDoParallel(5)
 
 # split dataset in cases
 data_case_1 <- Data %>%
@@ -62,7 +65,8 @@ tictoc::tic()
 mod_E_J_case.1_p_3 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + I(1/k),
                                    data = data_case_1, 
                                    method = 'lm', 
-                                   trControl = CV_control)
+                                   trControl = CV_control,
+                                   allowParallel = TRUE)
 
 mod_E_J_case.1_p_4 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 4) + I(1/k),
                                    data = data_case_1, 
