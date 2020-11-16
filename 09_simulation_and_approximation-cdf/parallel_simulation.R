@@ -103,17 +103,17 @@ Data <- foreach (k = 1:K, .combine = rbind) %dopar% {
                     
                 # Engel - Johansen
                 NullDistrFisher_E_J <- sort(FisherStat_E_J)
-                Fisher_E_J_PValue <- rankindx(NullDistrFisher_E_J, 1)/rep+10^(-1000)
+                Fisher_E_J_PValue <- 1 - rankindx(NullDistrFisher_E_J, 1)/rep+10^(-1000)
 
                 #4 tests
                 NullDistrFisher_all <- sort(FisherStat_all)
-                Fisher_all_PValue <-rankindx(NullDistrFisher_all, 1)/rep+10^(-1000)
+                Fisher_all_PValue <- 1 - rankindx(NullDistrFisher_all, 1)/rep+10^(-1000)
                 
                 # sorting of the p-values of the underlying tests 
                 BoswijkPValue <- sort(BoswijkPValue, decreasing = TRUE)
                 JohansenPValue <- sort(JohansenPValue, decreasing = TRUE)
-                EngleGrangerPValue <- sort(EngleGrangerPValue)
-                ErrCorrPValue <- sort(ErrCorrPValue) 
+                EngleGrangerPValue <- sort(EngleGrangerPValue, decreasing = TRUE)
+                ErrCorrPValue <- sort(ErrCorrPValue, decreasing = TRUE) 
                 
             }# R2
         
