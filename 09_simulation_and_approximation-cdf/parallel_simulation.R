@@ -110,10 +110,11 @@ Data <- foreach (k = 1:K, .combine = rbind) %dopar% {
                 Fisher_all_PValue <- 1 - rankindx(NullDistrFisher_all, 1)/rep+10^(-1000)
                 
                 # sorting of the p-values of the underlying tests 
+                # check what is testing what (cointegration / non cointegratioon)
                 BoswijkPValue <- sort(BoswijkPValue, decreasing = TRUE)
                 JohansenPValue <- sort(JohansenPValue, decreasing = TRUE)
-                EngleGrangerPValue <- sort(EngleGrangerPValue, decreasing = TRUE)
-                ErrCorrPValue <- sort(ErrCorrPValue, decreasing = TRUE) 
+                EngleGrangerPValue <- sort(EngleGrangerPValue)
+                ErrCorrPValue <- sort(ErrCorrPValue) 
                 
             }# R2
         
