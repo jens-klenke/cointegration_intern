@@ -1,41 +1,43 @@
-# Ohrnstein Uhlenbeck Process"
+## Ohrnstein Uhlenbeck Process
 BU <- function(uu,d){
-    tt <-dim(uu)[1] 
+    tt <- dim(uu)[1] 
     rho <- (1+d/tt)
     v <- matrix(rep(0, length(uu)), nrow = tt)
-    v[ ,1] <- uu[,1]
+    #v <- matrix(data = 0, nrow = tt, ncol = dim(uu)[2]) Eventuell minimal schneller
+    v[, 1] <- uu[, 1]
     for (t in 2:tt){
-        v[t,] <- rho*v[t-1, ] + uu[t, ]
+        v[t, ] <- rho*v[t-1, ] + uu[t, ]
     }
     B <- v/sqrt(tt)
 }
 
 ## rankindx
-rankindx <- function(a,b){
-    A <- dim(matrix(a))
-    aux <-cbind(a, 1:A[1])
-    aux <- aux[order(aux[,b]),]
+rankindx <- function(a, b){
+    A <- dim(matrix(a)) 
+    aux <- cbind(a, 1:A[1])
+    aux <- aux[order(aux[, b]), ]
     aux <- cbind(aux, 1:A[1])
-    aux <- aux[order(aux[,A[2]+1]),]
-    rankindx <- aux[ ,ncol(aux)]
+    aux <- aux[order(aux[, A[2]+1]), ]
+    rankindx <- aux[, ncol(aux)]
     return(rankindx)
 }
 
 ## term functions
 
-sim_terms <- function(N,k, R2run, c_run, dets){
+sim_terms <- function(N, k, R2run, c_run, dets){
     u <- matrix(rnorm(N*(k+1)), nrow = N, ncol = k+1) # Draw random Shocks
-    W1 <- apply(matrix(u[, 1:k], ncol = k),2,cumsum)/sqrt(N)
-    u12 <- matrix(sqrt(R2run/(1-R2run))*(u[,1:k]%*% matrix(rep(1, k),ncol = 1))/sqrt(k) + u[ ,k+1], ncol = 1)
+    W1 <- apply(matrix(u[, 1:k], ncol = k), 2, cumsum)/sqrt(N)
+    u12 <- matrix(sqrt(R2run/(1-R2run))*(u[, 1:k] %*% matrix(rep(1, k),ncol = 1))/sqrt(k) + u[, k+1], ncol = 1) # eventuell falsch
+    #u12 <- matrix(sqrt(R2run/(1-R2run))*(u[, 1:k] %*% matrix(rep(1, k),ncol = 1)) %/% sqrt(k) + u[, k+1], ncol = 1)
     J12 <- BU(u12,c_run) # Ohrnstein Uhlenbeck Process
     
     # Corrections according to case (Pesavanto)
     
-    if (dets==1){# No Constant, no trend"
+    if (dets==1){ #No Constant, no trend"
         W1d <- W1
         J12dc <- J12
-    } else if (dets==2){#Constant, no trend"
-        W1d <- W1 - (matrix(rep( apply(W1,2,mean), N), nrow = N, byrow = TRUE)) 
+    } else if (dets==2){ #Constant, no trend"
+        W1d <- W1 - (matrix(rep(apply(W1,2,mean), N), nrow = N, byrow = TRUE)) 
         J12dc <- J12 - matrix(rep(1, N)* apply(J12, 2, mean), nrow = N, byrow = TRUE) 
     } else if (dets==3){# Constant and Trend"
         W1d <- W1 - (4-6*matrix(rep(t(lambda), k), ncol = k))*matrix(rep(apply(W1, 2, mean), N), nrow = N, byrow = TRUE) - (12*matrix(rep(t(lambda), k), ncol = k)-6)*matrix(rep(apply(matrix(rep((lambda), k), ncol = k)*W1,2, mean), N), ncol = k, byrow = TRUE) 
