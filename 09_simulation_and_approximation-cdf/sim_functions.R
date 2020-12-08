@@ -28,7 +28,6 @@ sim_terms <- function(N, k, R2run, c_run, dets){
     u <- matrix(rnorm(N*(k+1)), nrow = N, ncol = k+1) # Draw random Shocks
     W1 <- apply(matrix(u[, 1:k], ncol = k), 2, cumsum)/sqrt(N)
     u12 <- matrix(sqrt(R2run/(1-R2run))*(u[, 1:k] %*% matrix(rep(1, k),ncol = 1))/sqrt(k) + u[, k+1], ncol = 1) # eventuell falsch
-    #u12 <- matrix(sqrt(R2run/(1-R2run))*(u[, 1:k] %*% matrix(rep(1, k),ncol = 1)) %/% sqrt(k) + u[, k+1], ncol = 1)
     J12 <- BU(u12,c_run) # Ohrnstein Uhlenbeck Process
     
     # Corrections according to case (Pesavanto)
