@@ -21,10 +21,10 @@ lambda <- (seq(1:N)/N)
 
 ## Loop
 tictoc::tic() 
-#for (k in 1:K){# Number of Regressor Loop ### parallelise
+# for (k in 1:K){# Number of Regressor Loop ### parallelise
 Data <- foreach (k = 1:K, .combine = rbind) %dopar% { 
     data <- NULL   
-    for (dets in 1:cases){# Number of cases Loop
+    for (dets in 1:cases){ # Number of cases Loop
         
         # initialization of Null Distribution of Test statistic
         NullStatBoswijk <- rep(NA, rep)
@@ -35,7 +35,7 @@ Data <- foreach (k = 1:K, .combine = rbind) %dopar% {
         NullDistrJohansen <- NA
         NullDistrEngleGranger <- NA
         NullDistrErrCorr <- NA
-        BoswijkPValu <- rep(NA, rep)
+        BoswijkPValue <- rep(NA, rep)
         JohansenPValue <- rep(NA, rep)
         EngleGrangerPValue <- rep(NA, rep)
         ErrCorrPValue <- rep(NA, rep)
