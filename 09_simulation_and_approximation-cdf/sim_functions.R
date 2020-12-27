@@ -94,14 +94,17 @@ stat_Johansen <- function(Wdc, J12dc, u, N, k, c_run, WdcWdci){
 
 stat_Eng_Gr <- function(c_run, R2run, N, k, W1dW1di, W1d, J12dc, Wdc, u, u12){
     
-    etadc <- matrix(c( (-W1dW1di%*%(apply(W1d[1:N-1, ] * matrix(rep(J12dc[1:N-1, ], k),ncol = k), 2, mean))), 1), ncol = 1)
+    etadc <- rbind(-W1dW1di%*%(apply(W1d[1:N-1, ] * matrix(rep(J12dc[1:N-1, ], k),ncol = k), 2, mean)), 1)
+    # etadc <- matrix(c(-W1dW1di%*%(apply(W1d[1:N-1, ] * matrix(rep(J12dc[1:N-1, ], k),ncol = k), 2, mean)), 1), ncol = 1)
     Adc <- 1/N*t(Wdc[1:N-1, ])%*%Wdc[1:N-1, ]
-    Dmat <- rbind(cbind(diag(k), (sqrt(R2run/(1-R2run))*rep(1, k)/sqrt(k))), 
-                  c((sqrt(R2run/(1-R2run))*rep(1, k)/sqrt(k)), (1+R2run/(1-R2run))))
+    Dmat <- rbind(cbind(diag(k), (rep(sqrt(R2run / (1-R2run)), k)) / sqrt(k)),
+                  c(rep(sqrt(R2run/(1-R2run)), k)/sqrt(k), (1+R2run/(1-R2run))))
+    # Dmat <- rbind(cbind(diag(k), (sqrt(R2run/(1-R2run))*rep(1, k)/sqrt(k))), 
+    #               c((sqrt(R2run/(1-R2run))*rep(1, k)/sqrt(k)), (1+R2run/(1-R2run))))
     utilde <- cbind(u[, 1:k], u12)
     Wdc_dWtilde <- 1/sqrt(N)*t(Wdc[1:N-1, ])%*%utilde[2:N, ]
     
-    stat <- c_run*sqrt( t(etadc)%*%Adc%*%etadc)/sqrt(t(etadc)%*%Dmat%*%etadc)+
+    stat <- c_run*sqrt(t(etadc)%*%Adc%*%etadc)/sqrt(t(etadc)%*%Dmat%*%etadc)+
         (t(etadc)%*%Wdc_dWtilde%*%etadc)/(sqrt(t(etadc)%*%Dmat%*%etadc)*sqrt(t(etadc)%*%Adc%*%etadc))
     
     return(stat)
@@ -111,11 +114,15 @@ stat_Eng_Gr <- function(c_run, R2run, N, k, W1dW1di, W1d, J12dc, Wdc, u, u12){
 
 stat_Banerjee <- function(c_run, R2run, N, k, J12DW2, W1dJ12dc, W1dW1di, W1d, J12dc_sq, u){
     
-    zaehler <- sqrt(N)* (t(J12DW2)-W1dJ12dc%*%W1dW1di%*%apply(W1d[1:N-1, ]*
-                                                                  matrix(rep(u[2:N, k+1], k), ncol = k), 2, mean ))               
-    nenner <- (sqrt(as.complex( t(J12dc_sq) - W1dJ12dc%*%W1dW1di%*%W1dJ12dc)))
+    zaehler <- sqrt(N)*(t(J12DW2)-W1dJ12dc%*%W1dW1di%*%apply(W1d[1:N-1, ]*
+                                                                  matrix(rep(u[2:N, k+1], k), ncol = k), 2, mean))
     
-    stat <- c_run*sqrt(as.complex(t(J12dc_sq)-W1dJ12dc%*%W1dW1di%*%W1dJ12dc)) + zaehler/nenner
+    nenner <- (sqrt(as.complex(J12dc_sq - W1dJ12dc%*%W1dW1di%*%W1dJ12dc)))
+    # nenner <- (sqrt(as.complex(t(J12dc_sq) - W1dJ12dc%*%W1dW1di%*%W1dJ12dc)))
+    
+    stat <- c_run*sqrt(as.complex(J12dc_sq-W1dJ12dc%*%W1dW1di%*%W1dJ12dc)) + zaehler/nenner
+     
+    # stat <- c_run*sqrt(as.complex(t(J12dc_sq)-W1dJ12dc%*%W1dW1di%*%W1dJ12dc)) + zaehler/nenner
     
     stat <- Re(stat)
     
