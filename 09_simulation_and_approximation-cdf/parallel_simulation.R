@@ -78,16 +78,16 @@ Data <- foreach (k = 1:K, .combine = rbind) %dopar% {
                 ## Write Null Distributions and p-values for the underlying tests 
                 ## p-values are ranked by the NullStat and not by NULLDist to not lose the association
                 NullDistrBoswijk <- sort(NullStatBoswijk)
-                BoswijkPValue <- 1 - rank(NullStatBoswijk)/rep+10^(-100)
+                BoswijkPValue <- 1 - rankindx(NullStatBoswijk, 1)/rep+10^(-100)
                 
                 NullDistrJohansen <- sort(NullStatJohansen)
-                JohansenPValue <- 1- rank(NullStatJohansen)/rep+10^(-100)
+                JohansenPValue <- 1- rankindx(NullStatJohansen, 1)/rep+10^(-100)
                 
                 NullDistrEngleGranger <- sort(NullStatEngleGranger)
-                EngleGrangerPValue <- rank(NullStatEngleGranger)/rep+10^(-100)
+                EngleGrangerPValue <- rankindx(NullStatEngleGranger, 1)/rep+10^(-100)
                 
                 NullDistrErrCorr <- sort(NullStatErrCorr)
-                ErrCorrPValue <- rank(NullStatErrCorr)/rep+10^(-100)
+                ErrCorrPValue <- rankindx(NullStatErrCorr, 1)/rep+10^(-100)
                 
                 ## -------------------------------- Fisher Type Tests --------------------------------"
                 
@@ -96,12 +96,12 @@ Data <- foreach (k = 1:K, .combine = rbind) %dopar% {
                 FisherStat_E_J <- -2*(log(EngleGrangerPValue) + log(JohansenPValue))
                 
                 #4 tests
-                FisherStat_all <- -2*( log(ErrCorrPValue) + log(BoswijkPValue) + 
-                                       log(EngleGrangerPValue) + log(JohansenPValue))
+                FisherStat_all <- -2*(log(ErrCorrPValue) + log(BoswijkPValue) + 
+                                      log(EngleGrangerPValue) + log(JohansenPValue))
                 
                 # Write Null Distributions and p-values 
                     
-                # Engel - Johansen
+                # 2 tests
                 NullDistrFisher_E_J <- sort(FisherStat_E_J)
                 Fisher_E_J_PValue <- 1 - rankindx(NullDistrFisher_E_J, 1)/rep+10^(-1000)
 
@@ -133,8 +133,8 @@ Data <- foreach (k = 1:K, .combine = rbind) %dopar% {
             stat_Fisher_all = NullDistrFisher_all,
             k = k,
             case = dets
-            
-        )
+            )
+        
         data <- rbind(data, D)
          
     }# dets 

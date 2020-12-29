@@ -30,7 +30,7 @@ sim_terms <- function(N, k, R2run, c_run, dets){
     u12 <- matrix(sqrt(R2run/(1-R2run))*(u[, 1:k] %*% matrix(rep(1, k), ncol = 1))/sqrt(k) + u[, k+1], ncol = 1) 
     J12 <- BU(u12,c_run) # Ohrnstein Uhlenbeck Process
     
-    # Corrections according to case (Pesavanto)
+    # Corrections according to case (Pesavento)
     
     if (dets == 1){ #No Constant, no trend"
         W1d <- W1
