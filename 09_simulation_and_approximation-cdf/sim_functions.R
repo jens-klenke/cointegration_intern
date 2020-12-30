@@ -2,8 +2,8 @@
 BU <- function(uu,d){
     tt <- dim(uu)[1] 
     rho <- (1+d/tt)
-    v <- matrix(rep(0, length(uu)), nrow = tt)
-    #v <- matrix(data = 0, nrow = tt, ncol = dim(uu)[2]) Eventuell minimal schneller
+    # v <- matrix(rep(0, length(uu)), nrow = tt)
+    v <- matrix(data = 0, nrow = tt, ncol = dim(uu)[2]) 
     v[, 1] <- uu[, 1]
     for (t in 2:tt){
         v[t, ] <- rho*v[t-1, ] + uu[t, ]
@@ -36,21 +36,25 @@ sim_terms <- function(N, k, R2run, c_run, dets){
         W1d <- W1
         J12dc <- J12
     } else if (dets == 2){ #Constant, no trend"
-        W1d <- W1 - matrix(rep(apply(W1, 2, mean), N), nrow = N, byrow = TRUE)
+        W1d <- W1 - matrix(rep(colMeans(W1), N), nrow = N, byrow = TRUE)
+       # W1d <- W1 - matrix(rep(apply(W1, 2, mean), N), nrow = N, byrow = TRUE)
         J12dc <- J12 - matrix(rep(mean(J12), N), nrow = N, byrow = TRUE)
        # J12dc <- J12 - matrix(rep(1, N)* apply(J12, 2, mean), nrow = N, byrow = TRUE)
     } else if (dets == 3){# Constant and Trend"
-        W1d <- W1 - (4-6*matrix(rep(lambda, k), ncol = k))*matrix(rep(apply(W1, 2, mean), N), nrow = N, byrow = TRUE) - (12*matrix(rep(lambda, k), ncol = k)-6)*matrix(rep(apply(matrix(rep(lambda, k), ncol = k)*W1, 2, mean), N), ncol = k, byrow = TRUE) 
+        W1d <- W1 - (4-6*matrix(rep(lambda, k), ncol = k))*matrix(rep(colMeans(W1), N), nrow = N, byrow = TRUE) - 
+            (12*matrix(rep(lambda, k), ncol = k)-6)*matrix(rep(colMeans(matrix(rep(lambda, k), ncol = k)*W1), N), ncol = k, byrow = TRUE)
         # W1d <- W1 - (4-6*matrix(rep(t(lambda), k), ncol = k))*matrix(rep(apply(W1, 2, mean), N), nrow = N, byrow = TRUE) - (12*matrix(rep(t(lambda), k), ncol = k)-6)*matrix(rep(apply(matrix(rep((lambda), k), ncol = k)*W1,2, mean), N), ncol = k, byrow = TRUE) 
         J12dc <- J12 - (4-6*lambda)*rep(mean(J12), N) - (12*lambda-6) * rep(mean(lambda*J12), N) 
     }
     Wdc <- cbind(W1d, J12dc)
     
     # -----------------------------Common Terms------------"
-    WdcDW2 <- apply(Wdc[1:N-1, ]* matrix(rep(u[2:N, k+1], k+1), ncol = k+1), 2, mean)
+    WdcDW2 <-  colMeans(Wdc[1:N-1, ] * matrix(rep(u[2:N, k+1], k+1), ncol = k+1))
+   # WdcDW2 <- apply(Wdc[1:N-1, ]* matrix(rep(u[2:N, k+1], k+1), ncol = k+1), 2, mean)
     WdcWdci <- solve(1/N^2*t(Wdc)%*%Wdc)
     W1dW1di <- solve(1/N * t(W1d[1:N-1, ])%*% W1d[1:N-1, ])
-    W1dJ12dc <- apply(W1d[1:N-1, ] * matrix(rep(J12dc[1:N-1, ], k), ncol = k), 2, mean) 
+    W1dJ12dc <- colMeans(W1d[1:N-1, ] * matrix(rep(J12dc[1:N-1, ], k), ncol = k))
+   # W1dJ12dc <- apply(W1d[1:N-1, ] * matrix(rep(J12dc[1:N-1, ], k), ncol = k), 2, mean) 
     J12dc_sq <- mean(J12dc[1:N-1]^2)
     J12DW2 <- mean(J12dc[1:N-1] * u[2:N, k+1])
     
@@ -81,7 +85,7 @@ stat_Boswijk <- function(c_run, N, J12dc_sq, J12DW2, WdcDW2, WdcWdci){
 
 stat_Johansen <- function(Wdc, J12dc, u, N, k, c_run, WdcWdci){
     
-    Gc <- matrix(apply(Wdc*matrix(rep(J12dc, ncol(Wdc)), ncol = ncol(Wdc)), 2 ,mean), ncol = 1) %*% c(rep(0, k), c_run) / sqrt(N)
+    Gc <- matrix(colMeans(Wdc*matrix(rep(J12dc, ncol(Wdc)), ncol = ncol(Wdc))), ncol = 1) %*% c(rep(0, k), c_run) / sqrt(N)
     # Gc <- matrix(apply(Wdc*matrix(rep(J12dc, ncol(Wdc)), ncol = ncol(Wdc)),2 ,mean), ncol = 1)%*%t(matrix(c(rep(0,k), c_run)/sqrt(N), ncol = 1))    
     Wdc_dW_pr <- 1/N*t(u[2:N, ])%*%Wdc[1:N-1, ]
     dW_Wdc_pr <- 1/N*t(Wdc[1:N-1, ])%*%u[2:N, ]
@@ -94,7 +98,7 @@ stat_Johansen <- function(Wdc, J12dc, u, N, k, c_run, WdcWdci){
 
 stat_Eng_Gr <- function(c_run, R2run, N, k, W1dW1di, W1d, J12dc, Wdc, u, u12){
     
-    etadc <- rbind(-W1dW1di%*%(apply(W1d[1:N-1, ] * matrix(rep(J12dc[1:N-1, ], k),ncol = k), 2, mean)), 1)
+    etadc <- rbind(-W1dW1di%*%(colMeans(W1d[1:N-1, ] * matrix(rep(J12dc[1:N-1, ], k),ncol = k))), 1)
     # etadc <- matrix(c(-W1dW1di%*%(apply(W1d[1:N-1, ] * matrix(rep(J12dc[1:N-1, ], k),ncol = k), 2, mean)), 1), ncol = 1)
     Adc <- 1/N*t(Wdc[1:N-1, ])%*%Wdc[1:N-1, ]
     Dmat <- rbind(cbind(diag(k), (rep(sqrt(R2run / (1-R2run)), k)) / sqrt(k)),
@@ -114,8 +118,8 @@ stat_Eng_Gr <- function(c_run, R2run, N, k, W1dW1di, W1d, J12dc, Wdc, u, u12){
 
 stat_Banerjee <- function(c_run, R2run, N, k, J12DW2, W1dJ12dc, W1dW1di, W1d, J12dc_sq, u){
     
-    zaehler <- sqrt(N)*(t(J12DW2)-W1dJ12dc%*%W1dW1di%*%apply(W1d[1:N-1, ]*
-                                                                  matrix(rep(u[2:N, k+1], k), ncol = k), 2, mean))
+    zaehler <- sqrt(N)*(t(J12DW2)-W1dJ12dc%*%W1dW1di%*%colMeans(W1d[1:N-1, ]*matrix(rep(u[2:N, k+1], k), ncol = k)))
+   # zaehler <- sqrt(N)*(t(J12DW2)-W1dJ12dc%*%W1dW1di%*%apply(W1d[1:N-1, ]*matrix(rep(u[2:N, k+1], k), ncol = k), 2, mean))
     
     nenner <- (sqrt(as.complex(J12dc_sq - W1dJ12dc%*%W1dW1di%*%W1dJ12dc)))
     # nenner <- (sqrt(as.complex(t(J12dc_sq) - W1dJ12dc%*%W1dW1di%*%W1dJ12dc)))
