@@ -1,15 +1,32 @@
 ## Ohrnstein Uhlenbeck Process
-BU <- function(uu,d){
-    tt <- dim(uu)[1] 
-    rho <- (1+d/tt)
-    # v <- matrix(rep(0, length(uu)), nrow = tt)
-    v <- matrix(data = 0, nrow = tt, ncol = dim(uu)[2]) 
-    v[, 1] <- uu[, 1]
-    for (t in 2:tt){
-        v[t, ] <- rho*v[t-1, ] + uu[t, ]
-    }
-    B <- v/sqrt(tt)
-}
+Rcpp::cppFunction('
+NumericMatrix BU (NumericMatrix uu, double d) {
+  int tt = uu.nrow();
+  double rho = (1+d / tt);
+  NumericMatrix v(tt, uu.ncol());
+  for (int i = 0; i < tt; i++) {
+    v(i, 0) = uu(i, 0);
+  }
+  for (int j = 1; j < tt; j++) {
+    int h = j-1;
+    v(j, _) = rho * v(h, _) + uu(j, _);
+  }
+  NumericMatrix B = v/sqrt(tt);
+  return B;
+                  }')
+
+
+#BU <- function(uu,d){
+#    tt <- dim(uu)[1] 
+#    rho <- (1+d/tt)
+#    # v <- matrix(rep(0, length(uu)), nrow = tt)
+#    v <- matrix(data = 0, nrow = tt, ncol = dim(uu)[2]) 
+#    v[, 1] <- uu[, 1]
+#    for (t in 2:tt){
+#        v[t, ] <- rho*v[t-1, ] + uu[t, ]
+#    }
+#    B <- v/sqrt(tt)
+#}
 
 ## rankindx
 rankindx <- function(a, b){
