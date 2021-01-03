@@ -111,10 +111,10 @@ Data <- foreach (k = 1:K, .combine = rbind) %dopar% {
                 
                 # sorting of the p-values of the underlying tests 
                 # check what is testing what (cointegration / non cointegration)
-                BoswijkPValue <- sort(BoswijkPValue, decreasing = TRUE)
-                JohansenPValue <- sort(JohansenPValue, decreasing = TRUE)
-                EngleGrangerPValue <- sort(EngleGrangerPValue)
-                ErrCorrPValue <- sort(ErrCorrPValue) 
+                BoswijkPValue <- sort(BoswijkPValue, decreasing = TRUE) # Null: 
+                JohansenPValue <- sort(JohansenPValue, decreasing = TRUE) # Null: h cointegration relationships
+                EngleGrangerPValue <- sort(EngleGrangerPValue) # Null: no cointegration
+                ErrCorrPValue <- sort(ErrCorrPValue) # Null: no cointegration:
                 
             }# R2
         

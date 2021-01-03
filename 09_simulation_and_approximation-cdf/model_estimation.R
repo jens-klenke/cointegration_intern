@@ -34,7 +34,7 @@ data_case_3 <- Data %>%
     dplyr::filter(case == 3)
 
 ### train caret 
-CV_control <- trainControl(method = "cv", number = 10) 
+CV_control <- caret::trainControl(method = "cv", number = 10) 
 
 #### E_G_model #### 
 
