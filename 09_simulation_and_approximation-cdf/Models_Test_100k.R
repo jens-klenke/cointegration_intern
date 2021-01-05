@@ -74,10 +74,10 @@ case_1_all_lm_log_no_k <- caret::train(p_value_Fisher_all ~ log(stat_Fisher_all)
                                   method = "lm", 
                                   trControl = CV_control)
 
-case_1_all_mars <- caret::train(p_value_Fisher_all ~ log(stat_Fisher_all) + k, 
-                                  data = data_case_1,
-                                  method = "earth", 
-                                  trControl = CV_control)
+case_1_all_lm <- caret::train(p_value_Fisher_all ~ stat_Fisher_all + k, 
+                              data = data_case_1,
+                              method = "gam", 
+                              trControl = CV_control)
 
 # model_metrics <- NULL
 model_metrics <- rbind(model_metrics,
@@ -88,14 +88,8 @@ model_metrics <- rbind(model_metrics,
                       # metric_fun(case_1_all_lm_I, test_all_data_case_1, test_all_data_case_1_0.2, "p_value_Fisher_all"), 
                       # metric_fun(case_1_all_lm_log_I, test_all_data_case_1, test_all_data_case_1_0.2, "p_value_Fisher_all"), 
                       # metric_fun(case_1_all_lm_log_no_k, test_all_data_case_1, test_all_data_case_1_0.2, "p_value_Fisher_all")
-                      metric_fun(case_1_all_mars, test_all_data_case_1, test_all_data_case_1_0.2, "p_value_Fisher_all")
                       )
 
 # colnames(model_metrics) <- c("Formula", "CV RMSE", "Out of sample RMSE", "Out of sample RMSE p <= 0.2")
 save(model_metrics, file = "model_metrics.RData")
-
-
-
-
-
 
