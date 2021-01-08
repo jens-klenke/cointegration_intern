@@ -1,14 +1,29 @@
 ### functions 
-metric_fun <- function(object, new_data_0.2, dep_VAR){
+metric_fun <- function(object){
     model <- substitute(object)
-    RMSE <- object$results$RMSE
     
-    PRED <- predict(object, new_data_0.2)
-    RMSE_0.2 <- sqrt((sum((new_data_0.2[, dep_VAR] - PRED)^2)/length(PRED)))
+    values <- tibble(PRED = object$fitted.values,
+                        dependent = object$model[,'p_value_Fisher_E_J'])%>%
+        dplyr::mutate(PRED_cor = case_when(
+            PRED <= 0 ~ 1e-12,
+            PRED >= 1 ~ 1-1e-12,
+            TRUE ~ PRED))
     
-    call <- object$call$form[3]
     
-    metric <- c(as.character(model), as.numeric(RMSE), as.numeric(RMSE_0.2), as.character(call))
+    RMSE <- sqrt((sum((values$PRED - values$dependent)^2)/nrow(values)))
+    RMSE_cor <- sqrt((sum((values$PRED_cor - values$dependent)^2)/nrow(values)))
+    
+    values_0.2 <- values %>%
+        dplyr::filter(dependent >= 0.8)
+    
+    RMSE_0.2 <- sqrt((sum((values_0.2$PRED - values_0.2$dependent)^2)/nrow(values_0.2)))
+    RMSE_cor_0.2 <- sqrt((sum((values_0.2$PRED_cor - values_0.2$dependent)^2)/nrow(values_0.2)))
+    
+    mod_call <- object$call$form[3]
+    case <- object$call$data
+    
+    metric <- c(as.character(model), as.numeric(RMSE), as.numeric(RMSE_cor), 
+                as.numeric(RMSE_0.2), as.numeric(RMSE_cor_0.2), as.character(mod_call), as.character(case))
     
     return(metric)
 }
@@ -17,16 +32,13 @@ metric_fun <- function(object, new_data_0.2, dep_VAR){
 source(here::here('01_code/packages/packages.R'))
 
 ## load simulation data 
-#Data <- base::readRDS(here::here('09_simulation_and_approximation-cdf/Data.rds'))
+
+# jens 
 if(Sys.info()['nodename'] == "DESKTOP-ATT92OH"){
-#    Data <- base::readRDS('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_100k.rds')
     load('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_1_m.RData')
-}else if(Sys.info()['nodename'] == "OEK-TS01"){
+} else if(Sys.info()['nodename'] == "OEK-TS01"){ # Server
     load('D:\\Klenke\\Data_1_m.RData')
 }
-
-# parallel 
-registerDoParallel(5)
 
 # split dataset in cases
 data_case_1 <- Data %>%
@@ -38,57 +50,34 @@ data_case_2 <- Data %>%
 data_case_3 <- Data %>%
     dplyr::filter(case == 3)
 
-### train caret 
-CV_control <- trainControl(method = "cv", number = 10) 
-
-#### E_G_model #### 
-
-# test dataset for 0.2 '
-
-# function for test dataset # own RMSE function 
-
-test_E_J_data_case_1 <- Data %>%
-    dplyr::filter(case == 1, 
-                  p_value_Fisher_E_J <= 0.2)
-
-test_E_J_data_case_2 <- Data %>%
-    dplyr::filter(case == 2, 
-                  p_value_Fisher_E_J <= 0.2)
-
-test_E_J_data_case_3 <- Data %>%
-    dplyr::filter(case == 3, 
-                  p_value_Fisher_E_J <= 0.2)
-
 ### set up metrics
-model_metrics <- NULL
+model_metrics_E_J <- NULL
 
 tictoc::tic()
 
 #### models  case 1 ####
 # functional form: poly(t, p) + (1/k)
-mod_E_J_case.1_p_3 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + I(1/k),
-                                   data = data_case_1, 
-                                   method = 'lm', 
-                                   trControl = CV_control,
-                                   allowParallel = TRUE)
 
-mod_E_J_case.1_p_4 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 4) + I(1/k),
-                                   data = data_case_1, 
-                                   method = 'lm', 
-                                   trControl = CV_control)
 
-mod_E_J_case.1_p_5 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 5) + I(1/k),
-                                   data = data_case_1, 
-                                   method = 'lm', 
-                                   trControl = CV_control)
+mod_E_J_case.1_p_3 = lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + I(1/k),
+                                   data = data_case_1)
 
-mod_E_J_case.1_p_6 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + I(1/k),
-                                   data = data_case_1, 
-                                   method = 'lm', 
-                                   trControl = CV_control)
+
+metric_fun(mod_E_J_case.1_p_3)
+
+mod_E_J_case.1_p_3 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + I(1/k),
+                         data = data_case_1)
+
+mod_E_J_case.1_p_4 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 4) + I(1/k),
+                                   data = data_case_1)
+
+mod_E_J_case.1_p_5 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 5) + I(1/k),
+                                   data = data_case_1)
+mod_E_J_case.1_p_6 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + I(1/k),
+                                   data = data_case_1)
 
 # save metrics
-model_metrics <- rbind(model_metrics ,
+model_metrics_E_J <- rbind(model_metrics ,
                        metric_fun(mod_E_J_case.1_p_3, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),
                        metric_fun(mod_E_J_case.1_p_4, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),
                        metric_fun(mod_E_J_case.1_p_5, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),

@@ -33,5 +33,7 @@ pacman::p_load(dplyr,
                broom,
                pryr,
                gam,
-               modelr)
+               modelr, 
+               microbenchmark,
+               RcppEigen)
 
