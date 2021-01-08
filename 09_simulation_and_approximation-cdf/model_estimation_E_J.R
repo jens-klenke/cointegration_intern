@@ -18,9 +18,11 @@ source(here::here('01_code/packages/packages.R'))
 
 ## load simulation data 
 #Data <- base::readRDS(here::here('09_simulation_and_approximation-cdf/Data.rds'))
-if(Sys.info()['user'] == "Jens-"){
+if(Sys.info()['nodename'] == "DESKTOP-ATT92OH"){
 #    Data <- base::readRDS('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_100k.rds')
     load('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_1_m.RData')
+}else if(Sys.info()['nodename'] == "OEK-TS01"){
+    load('D:\\Klenke\\Data_1_m.RData')
 }
 
 # parallel 
@@ -41,7 +43,9 @@ CV_control <- trainControl(method = "cv", number = 10)
 
 #### E_G_model #### 
 
-# test dataset for 0.2
+# test dataset for 0.2 '
+
+# function for test dataset # own RMSE function 
 
 test_E_J_data_case_1 <- Data %>%
     dplyr::filter(case == 1, 
