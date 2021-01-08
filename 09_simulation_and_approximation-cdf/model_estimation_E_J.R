@@ -1,4 +1,4 @@
-### functions 
+### functions  ####
 metric_fun <- function(object){
     model <- substitute(object)
     
@@ -28,14 +28,20 @@ metric_fun <- function(object){
     return(metric)
 }
 
-## packages
+# delete function 
+
+delete_fun <- function(){
+    rm(list=setdiff(ls(.GlobalEnv), important_things), envir = .GlobalEnv)
+}
+
+#### packages ####
 source(here::here('01_code/packages/packages.R'))
 
 ## load simulation data 
 
-# jens 
-if(Sys.info()['nodename'] == "DESKTOP-ATT92OH"){
-    load('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_1_m.RData')
+if(Sys.info()['nodename'] == "DESKTOP-ATT92OH"){ # jens 
+    Data <- readRDS('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_100k.rds')
+#    load('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_1_m.RData')
 } else if(Sys.info()['nodename'] == "OEK-TS01"){ # Server
     load('D:\\Klenke\\Data_1_m.RData')
 }
@@ -53,161 +59,127 @@ data_case_3 <- Data %>%
 ### set up metrics
 model_metrics_E_J <- NULL
 
+# save important things
+important_things <- ls()
+# add the list of important things to things
+important_things <- ls()
+
 tictoc::tic()
 
 #### models  case 1 ####
 # functional form: poly(t, p) + (1/k)
 
 
-mod_E_J_case.1_p_3 = lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + I(1/k),
-                                   data = data_case_1)
-
-
-metric_fun(mod_E_J_case.1_p_3)
-
 mod_E_J_case.1_p_3 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + I(1/k),
-                         data = data_case_1)
+                                   data = data_case_1)
 
 mod_E_J_case.1_p_4 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 4) + I(1/k),
                                    data = data_case_1)
 
 mod_E_J_case.1_p_5 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 5) + I(1/k),
                                    data = data_case_1)
+
 mod_E_J_case.1_p_6 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + I(1/k),
                                    data = data_case_1)
 
 # save metrics
-model_metrics_E_J <- rbind(model_metrics ,
-                       metric_fun(mod_E_J_case.1_p_3, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),
-                       metric_fun(mod_E_J_case.1_p_4, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),
-                       metric_fun(mod_E_J_case.1_p_5, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),
-                       metric_fun(mod_E_J_case.1_p_6, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'))
+model_metrics_E_J <- rbind(model_metrics_E_J ,
+                           metric_fun(mod_E_J_case.1_p_3),
+                           metric_fun(mod_E_J_case.1_p_4),
+                           metric_fun(mod_E_J_case.1_p_5),
+                           metric_fun(mod_E_J_case.1_p_6))
 
+# assigning variable names
+colnames(model_metrics_E_J) <- c('model', 'RMSE', 'Cor_RMSE', 'RMSE_0.2', 'Cor_RMSE_0.2', 'call', 'case')
+                           
 # delete model
-rm(list = c('mod_E_J_case.1_p_3', 'mod_E_J_case.1_p_4', 'mod_E_J_case.1_p_5', 'mod_E_J_case.1_p_6'))
+delete_fun()
 
 
 # functional form: poly(t, p) + (1/k) + poly(t, p)*(1/k)
-mod_E_J_case.1_p_3_3 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + I(1/k) + poly(k, 3)*(1/k),
-                                     data = data_case_1, 
-                                     method = 'lm', 
-                                     trControl = CV_control)
+mod_E_J_case.1_p_3_3 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + I(1/k) + poly(k, 3)*(1/k),
+                                     data = data_case_1)
 
-mod_E_J_case.1_p_4_4 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 4) + I(1/k) + poly(k, 4)*(1/k),
-                                     data = data_case_1, 
-                                     method = 'lm', 
-                                     trControl = CV_control)
+mod_E_J_case.1_p_4_4 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 4) + I(1/k) + poly(k, 4)*(1/k),
+                                     data = data_case_1)
 
-mod_E_J_case.1_p_5_5 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 5) + I(1/k) + poly(k, 5)*(1/k),
-                                     data = data_case_1, 
-                                     method = 'lm', 
-                                     trControl = CV_control)
+mod_E_J_case.1_p_5_5 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 5) + I(1/k) + poly(k, 5)*(1/k),
+                                     data = data_case_1)
 
-mod_E_J_case.1_p_6_6 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + I(1/k) + poly(k, 6)*(1/k),
-                                     data = data_case_1, 
-                                     method = 'lm', 
-                                     trControl = CV_control)
+mod_E_J_case.1_p_6_6 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + I(1/k) + poly(k, 6)*(1/k),
+                                     data = data_case_1)
 
 # save metrics
-model_metrics <- rbind(model_metrics ,
-                       metric_fun(mod_E_J_case.1_p_3_3, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),
-                       metric_fun(mod_E_J_case.1_p_4_4, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),
-                       metric_fun(mod_E_J_case.1_p_5_5, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),
-                       metric_fun(mod_E_J_case.1_p_6_6, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'))
+model_metrics_E_J <- rbind(model_metrics_E_J ,
+                       metric_fun(mod_E_J_case.1_p_3_3),
+                       metric_fun(mod_E_J_case.1_p_4_4),
+                       metric_fun(mod_E_J_case.1_p_5_5),
+                       metric_fun(mod_E_J_case.1_p_6_6))
 
 # delete model
-rm(list = c('mod_E_J_case.1_p_3_3', 'mod_E_J_case.1_p_4_4', 'mod_E_J_case.1_p_5_5', 'mod_E_J_case.1_p_6_6'))
-
+delete_fun()
 
 ####  chi^p ln  
-mod_E_J_case.1_p_3_log <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + log(k) + poly(k, 3)*log(k),
-                                       data = data_case_1, 
-                                       method = 'lm', 
-                                       trControl = CV_control)
+mod_E_J_case.1_p_3_log <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + log(k) + poly(k, 3)*log(k),
+                                       data = data_case_1)
 
-mod_E_J_case.1_p_4_log <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 4) + log(k) + poly(k, 4)*log(k),
-                                       data = data_case_1, 
-                                       method = 'lm', 
-                                       trControl = CV_control)
+mod_E_J_case.1_p_4_log <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 4) + log(k) + poly(k, 4)*log(k),
+                                       data = data_case_1)
 
-mod_E_J_case.1_p_5_log <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 5) + log(k) + poly(k, 5)*log(k),
-                                       data = data_case_1, 
-                                       method = 'lm', 
-                                       trControl = CV_control)
+mod_E_J_case.1_p_5_log <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 5) + log(k) + poly(k, 5)*log(k),
+                                       data = data_case_1)
 
-mod_E_J_case.1_p_6_log <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + log(k) + poly(k, 6)*log(k),
-                                       data = data_case_1, 
-                                       method = 'lm', 
-                                       trControl = CV_control)
+mod_E_J_case.1_p_6_log <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + log(k) + poly(k, 6)*log(k),
+                                       data = data_case_1)
 
 # save metrics
-model_metrics <- rbind(model_metrics ,
-                       metric_fun(mod_E_J_case.1_p_3_log, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),
-                       metric_fun(mod_E_J_case.1_p_4_log, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),
-                       metric_fun(mod_E_J_case.1_p_5_log, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),
-                       metric_fun(mod_E_J_case.1_p_6_log, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'))
+model_metrics_E_J <- rbind(model_metrics_E_J ,
+                       metric_fun(mod_E_J_case.1_p_3_log),
+                       metric_fun(mod_E_J_case.1_p_4_log),
+                       metric_fun(mod_E_J_case.1_p_5_log),
+                       metric_fun(mod_E_J_case.1_p_6_log))
 
 # delete model
-rm(list = c('mod_E_J_case.1_p_3_log', 'mod_E_J_case.1_p_4_log', 'mod_E_J_case.1_p_5_log', 'mod_E_J_case.1_p_6_log'))
+delete_fun()
 
 ####  chi^p + k + (1/k)  
-mod_E_J_case.1_p_3_k_1 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + k + I(1/k),
-                                       data = data_case_1, 
-                                       method = 'lm', 
-                                       trControl = CV_control)
+mod_E_J_case.1_p_3_k_1 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + k + I(1/k),
+                                       data = data_case_1)
 
-mod_E_J_case.1_p_4_k_1 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 4) + k + I(1/k),
-                                       data = data_case_1, 
-                                       method = 'lm', 
-                                       trControl = CV_control)
+mod_E_J_case.1_p_4_k_1 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 4) + k + I(1/k),
+                                       data = data_case_1)
 
-mod_E_J_case.1_p_5_k_1 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 5) + k + I(1/k),
-                                       data = data_case_1, 
-                                       method = 'lm', 
-                                       trControl = CV_control)
+mod_E_J_case.1_p_5_k_1 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 5) + k + I(1/k),
+                                       data = data_case_1)
 
-mod_E_J_case.1_p_6_k_1 <- caret::train(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + k + I(1/k),
-                                       data = data_case_1, 
-                                       method = 'lm', 
-                                       trControl = CV_control)
+mod_E_J_case.1_p_6_k_1 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + k + I(1/k),
+                                       data = data_case_1)
 
 # save metrics
-model_metrics <- rbind(model_metrics ,
-                       metric_fun(mod_E_J_case.1_p_3_k_1, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),
-                       metric_fun(mod_E_J_case.1_p_4_k_1, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),
-                       metric_fun(mod_E_J_case.1_p_5_k_1, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'),
-                       metric_fun(mod_E_J_case.1_p_6_k_1, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J'))
+model_metrics_E_J <- rbind(model_metrics_E_J ,
+                       metric_fun(mod_E_J_case.1_p_3_k_1),
+                       metric_fun(mod_E_J_case.1_p_4_k_1),
+                       metric_fun(mod_E_J_case.1_p_5_k_1),
+                       metric_fun(mod_E_J_case.1_p_6_k_1))
 
 # delete model
-rm(list = c('mod_E_J_case.1_p_3_k_1', 'mod_E_J_case.1_p_4_k_1', 'mod_E_J_case.1_p_5_k_1', 'mod_E_J_case.1_p_6_k_1'))
-
-
-colnames(model_metrics) <- c('model', 'RMSE', 'RMSE_p<0.2', 'formula')
+delete_fun()
 
 ### GAM 
-mod_E_G_case.1_gam_3 <- mgcv::gam(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + ns(k, 6) + ns(stat_E_G*k, 6),
+mod_E_G_case.1_gam_6 <- mgcv::gam(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + ns(k, 6) + ns(stat_E_G*k, 6),
                                   data = data_case_1)
     
     
-    
-metric_fun(mod_E_G_case.1_gam_3, test_E_J_data_case_1, dep_VAR = 'p_value_Fisher_E_J')
+model_metrics_E_J <- rbind(model_metrics_E_J ,
+                           metric_fun(mod_E_G_case.1_gam_6))
 
-
+delete_fun()
 tictoc::toc()
-
-
-
 
 ############################ Case 2 ##########################
 
-fit_case_2 <- lm(p_value_E_G ~ poly(stat_E_G, 3) + poly(k, 3) ,  data = data_case_2)
-summary(fit_case_2)
-
 
 ############################ Case 3 ##########################
-
-fit_case_3 <- lm(p_value_E_G ~ poly(stat_E_G, 3) + poly(k, 3) ,  data = data_case_3)
-summary(fit_case_3)
 
 
 
