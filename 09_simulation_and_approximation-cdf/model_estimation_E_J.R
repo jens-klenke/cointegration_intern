@@ -20,14 +20,27 @@ metric_fun <- function(object){
     mod_call <- object$call$form[3]
     case <- object$call$data
     
-    c(as.character(mod_call), as.numeric(RMSE), as.numeric(RMSE_cor), 
-      as.numeric(RMSE_0.2), as.numeric(RMSE_cor_0.2), as.character(case))
+    values <- values%>%
+        dplyr::filter(dependent %in% seq(0.001, 1.0 , 0.001))
+    
+    mod_sum <- tibble(model = as.character(mod_call),
+                      RMSE = as.numeric(RMSE),
+                      RMSE_cor = as.numeric(RMSE_cor),
+                      RMSE_0.2 = as.numeric(RMSE_0.2), 
+                      RMSE_cor_0.2 = as.numeric(RMSE_cor_0.2), 
+                      case = as.character(case),
+                      obs = list(values %>% dplyr::select(dependent)),
+                      pred = list(values %>% dplyr::select(PRED)),
+                      pred_cor = list(values %>% dplyr::select(PRED_cor))
+    )
+    return(mod_sum)
 }
 
-bind_model_metrics <- function(object) {
-    model_metrics_E_J <- rbind(model_metrics_E_J, 
-                               metric_fun(object))
-    model_metrics_E_J
+bind_model_metrics <- function(new_metrics, old_metrics =  model_metrics_E_J) {
+    model_metrics_E_J <- rbind(old_metrics,
+                               new_metrics)
+    
+    return(model_metrics_E_J)
 }
 
 # Delete Function 
@@ -47,7 +60,8 @@ if(Sys.info()['nodename'] == "DESKTOP-ATT92OH") { # Jens
     # load('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_1_m.RData')
 } else if(Sys.info()['nodename'] == "OEK-TS01") { # Server
     load('D:\\Klenke\\Data_1_m.RData')
-}
+} # Wieso schreibst du hier nicht deine eigenen Command rein? 
+
 
 # Split Dataset in Cases
 data_case_1 <- Data %>%
@@ -93,9 +107,7 @@ model_metrics_E_J <- rbind(model_metrics_E_J ,
                            metric_fun(mod_E_J_case.1_p_5),
                            metric_fun(mod_E_J_case.1_p_6))
 
-# assigning variable names
-colnames(model_metrics_E_J) <- c('model', 'RMSE', 'Cor_RMSE', 'RMSE_0.2', 'Cor_RMSE_0.2', 'call', 'case')
-                           
+
 # delete model
 delete_fun()
 
@@ -199,7 +211,8 @@ models_log <- list(
     mod_E_J_case.1_poly_log_m_7 <- lm(p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), 7) * log(k),
                                 data = data_case_1))
 
-model_metrics <- models_log %>% purrr::map(bind_model_metrics)
+model_metrics_E_J <- bind_model_metrics(models_log %>% purrr::map_dfr(metric_fun))
+
 
 #------
 ### GAM 
