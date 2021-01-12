@@ -183,6 +183,15 @@ models_log <- list(
     mod_E_J_case.1_poly_log_7 <- lm(p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), 7) + log(k),
                                 data = data_case_1),
     
+    mod_E_J_case.1_poly_log_8 <- lm(p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), 8) + log(k),
+                                      data = data_case_1), 
+    
+    mod_E_J_case.1_poly_log_9 <- lm(p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), 9) + log(k),
+                                      data = data_case_1),
+    
+    mod_E_J_case.1_poly_log_10 <- lm(p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), 10) + log(k),
+                                       data = data_case_1),
+    
     mod_E_J_case.1_poly_log_m_3 <- lm(p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), 3) * log(k),
                                 data = data_case_1),
     
@@ -196,23 +205,41 @@ models_log <- list(
                                 data = data_case_1),
     
     mod_E_J_case.1_poly_log_m_7 <- lm(p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), 7) * log(k),
-                                data = data_case_1)
+                                data = data_case_1),
+    
+    mod_E_J_case.1_poly_log_m_8 <- lm(p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), 8) * log(k),
+                                      data = data_case_1), 
+    
+    mod_E_J_case.1_poly_log_m_9 <- lm(p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), 9) * log(k),
+                                      data = data_case_1),
+    
+    mod_E_J_case.1_poly_log_m_10 <- lm(p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), 10) * log(k),
+                                      data = data_case_1)
 )
 
+# save metrics
 model_metrics_E_J <- bind_model_metrics(models_log %>% purrr::map_dfr(metric_fun))
 
 
-#------
-### GAM 
-mod_E_G_case.1_gam_6 <- mgcv::gam(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + ns(k, 6) + ns(stat_E_G*k, 6),
-                                  data = data_case_1)
-    
-    
-model_metrics_E_J <- rbind(model_metrics_E_J ,
-                           metric_fun(mod_E_G_case.1_gam_6))
+# delete model
+delete_fun()
+
+
+# Generalized Additive Models
+models_gam <- list(
+    mod_E_G_case.1_gam_6_log <- mgcv::gam(p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), 6) + ns(k, 6) + ns(stat_E_G*k, 6),
+                                      data = data_case_1)
+)
+
+
+# save metrics
+model_metrics_E_J <- bind_model_metrics(models_gam %>% purrr::map_dfr(metric_fun))
+
 
 delete_fun()
 tictoc::toc()
+
+save(model_metrics_E_J, file = "model_metrics_E_J.Rdata")
 
 #-----------------------
 # Models - Case 2
