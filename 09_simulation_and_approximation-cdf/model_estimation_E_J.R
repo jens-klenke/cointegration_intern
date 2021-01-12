@@ -88,98 +88,70 @@ important_things <- c(ls(),
 tictoc::tic()
 
 # functional form: poly(t, p) + (1/k)
+
+models_poly <- list(
 mod_E_J_case.1_p_3 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + I(1/k),
-                                   data = data_case_1)
+                                   data = data_case_1),
 
 mod_E_J_case.1_p_4 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 4) + I(1/k),
-                                   data = data_case_1)
+                                   data = data_case_1),
 
 mod_E_J_case.1_p_5 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 5) + I(1/k),
-                                   data = data_case_1)
+                                   data = data_case_1),
 
 mod_E_J_case.1_p_6 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + I(1/k),
-                                   data = data_case_1)
-
-# save metrics
-model_metrics_E_J <- rbind(model_metrics_E_J ,
-                           metric_fun(mod_E_J_case.1_p_3),
-                           metric_fun(mod_E_J_case.1_p_4),
-                           metric_fun(mod_E_J_case.1_p_5),
-                           metric_fun(mod_E_J_case.1_p_6))
-
-
-# delete model
-delete_fun()
-
+                                   data = data_case_1), 
 
 # functional form: poly(t, p) + (1/k) + poly(t, p)*(1/k)
+
 mod_E_J_case.1_p_3_3 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + I(1/k) + poly(k, 3)*(1/k),
-                                     data = data_case_1)
+                           data = data_case_1),
 
 mod_E_J_case.1_p_4_4 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 4) + I(1/k) + poly(k, 4)*(1/k),
-                                     data = data_case_1)
+                           data = data_case_1),
 
 mod_E_J_case.1_p_5_5 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 5) + I(1/k) + poly(k, 5)*(1/k),
-                                     data = data_case_1)
+                           data = data_case_1),
 
 mod_E_J_case.1_p_6_6 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + I(1/k) + poly(k, 6)*(1/k),
-                                     data = data_case_1)
+                           data = data_case_1))
 
 # save metrics
-model_metrics_E_J <- rbind(model_metrics_E_J ,
-                       metric_fun(mod_E_J_case.1_p_3_3),
-                       metric_fun(mod_E_J_case.1_p_4_4),
-                       metric_fun(mod_E_J_case.1_p_5_5),
-                       metric_fun(mod_E_J_case.1_p_6_6))
+model_metrics_E_J <- bind_model_metrics(models_poly %>% purrr::map_dfr(metric_fun))
+
 
 # delete model
 delete_fun()
 
+models_poly_2 <- list(
 # functional form: poly(t, p) + log(k) + poly(t, p)*log(k)
 mod_E_J_case.1_p_3_log <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + log(k) + poly(k, 3)*log(k),
-                                       data = data_case_1)
+                                       data = data_case_1),
 
 mod_E_J_case.1_p_4_log <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 4) + log(k) + poly(k, 4)*log(k),
-                                       data = data_case_1)
+                                       data = data_case_1),
 
 mod_E_J_case.1_p_5_log <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 5) + log(k) + poly(k, 5)*log(k),
-                                       data = data_case_1)
+                                       data = data_case_1),
 
 mod_E_J_case.1_p_6_log <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + log(k) + poly(k, 6)*log(k),
-                                       data = data_case_1)
-
-# save metrics
-model_metrics_E_J <- rbind(model_metrics_E_J ,
-                       metric_fun(mod_E_J_case.1_p_3_log),
-                       metric_fun(mod_E_J_case.1_p_4_log),
-                       metric_fun(mod_E_J_case.1_p_5_log),
-                       metric_fun(mod_E_J_case.1_p_6_log))
-
-# delete model
-delete_fun()
+                                       data = data_case_1),
 
 # functional form: poly(t, p) + k + (1/k)
 mod_E_J_case.1_p_3_k_1 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 3) + k + I(1/k),
-                                       data = data_case_1)
+                                       data = data_case_1),
 
 mod_E_J_case.1_p_4_k_1 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 4) + k + I(1/k),
-                                       data = data_case_1)
+                                       data = data_case_1),
 
 mod_E_J_case.1_p_5_k_1 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 5) + k + I(1/k),
-                                       data = data_case_1)
+                                       data = data_case_1),
 
 mod_E_J_case.1_p_6_k_1 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, 6) + k + I(1/k),
-                                       data = data_case_1)
+                                       data = data_case_1))
 
 # save metrics
-model_metrics_E_J <- rbind(model_metrics_E_J ,
-                       metric_fun(mod_E_J_case.1_p_3_k_1),
-                       metric_fun(mod_E_J_case.1_p_4_k_1),
-                       metric_fun(mod_E_J_case.1_p_5_k_1),
-                       metric_fun(mod_E_J_case.1_p_6_k_1))
-
-
-
+model_metrics_E_J <- bind_model_metrics(models_poly_2 %>% purrr::map_dfr(metric_fun))
 
 # delete model
 delete_fun()
