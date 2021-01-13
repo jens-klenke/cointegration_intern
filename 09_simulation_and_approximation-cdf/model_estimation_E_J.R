@@ -220,9 +220,38 @@ models_log <- list(
 # save metrics
 model_metrics_E_J <- bind_model_metrics(models_log %>% purrr::map_dfr(metric_fun))
 
-
 # delete model
 delete_fun()
+
+
+# Boxcox Transformation
+lambda_x <- Rfast::bc(data_case_1$stat_Fisher_E_J)
+data_case_1 <- data_case_1 %>% mutate(
+    stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_x)-1)/lambda_x
+)
+
+models_bc <- list(
+    mod_E_J_case.1_bc_poly_log_m_10 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) * log(k),
+                                         data = data_case_1),
+    mod_E_J_case.1_bc_poly_m_10 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) * k, 
+                                     data = data_case_1),
+    mod_E_J_case.1_bc_poly_10 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) + k, 
+                                     data = data_case_1),
+    mod_E_J_case.1_bc_poly_log_10 <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) + log(k), 
+                                   data = data_case_1),
+    mod_E_J_case.1_bc_poly_log_m_10_I <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) * log(k) + I(1/k),
+                                         data = data_case_1),
+    mod_E_J_case.1_bc_poly_m_10_I <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) * k + I(1/k),
+                                           data = data_case_1),
+    mod_E_J_case.1_bc_poly_log_m_10_poly_m_I <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) * log(k) + poly(stat_Fisher_E_J_bc, 10)*I(1/k),
+                                           data = data_case_1),
+    mod_E_J_case.1_bc_poly_log_m_10_poly_m_I_sqrt <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) * log(k) + poly(stat_Fisher_E_J_bc, 10)*I(1/k),
+                                                  data = data_case_1) + sqrt(k),
+    mod_E_J_case.1_bc_poly_log_m_10_poly_m_sqrt <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) * log(k) + poly(stat_Fisher_E_J_bc, 10)*sqrt(k),
+                                                  data = data_case_1)
+)
+data_case_1$k
+
 
 
 # Generalized Additive Models
