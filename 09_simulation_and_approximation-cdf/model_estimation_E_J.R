@@ -2,18 +2,27 @@
 # Functions
 #-----------------------
 metric_fun <- function(object){
+    dep_var <- as.character(object$call$form[2])
     values <- tibble(
+        Ref =  new_data$p_value_E_G,
         PRED = object$fitted.values,
-        dependent = object$model[, as.character(object$call$form[2])]) %>%
+        dependent = object$model[, dep_var])
+    
+    dep_max <- max(values$dependent)
+    dep_min <- min(values$dependent)
+    
+    
+    values <- values%>%
         dplyr::mutate(PRED_cor = case_when(
-            PRED <= 0 ~ 1e-12,
-            PRED >= 1 ~ 1-1e-12,
+            PRED <= dep_min ~ dep_min + 1e-12,
+            PRED >= dep_max ~ dep_max - 1e-12,
             TRUE ~ PRED))
     
     RMSE <- sqrt((sum((values$PRED - values$dependent)^2)/nrow(values)))
     RMSE_cor <- sqrt((sum((values$PRED_cor - values$dependent)^2)/nrow(values)))
+    
     values_0.2 <- values %>%
-        dplyr::filter(dependent >= 0.8)
+        dplyr::filter(Ref >= 0.8)
     RMSE_0.2 <- sqrt((sum((values_0.2$PRED - values_0.2$dependent)^2)/nrow(values_0.2)))
     RMSE_cor_0.2 <- sqrt((sum((values_0.2$PRED_cor - values_0.2$dependent)^2)/nrow(values_0.2)))
     
@@ -35,7 +44,6 @@ metric_fun <- function(object){
     )
     return(mod_sum)
 }
-
 
 bind_model_metrics <- function(new_metrics, old_metrics =  model_metrics_E_J) {
     model_metrics_E_J <- rbind(old_metrics,
@@ -103,10 +111,6 @@ data_case_3 <- data_case_3 %>% mutate(
     stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_x_case_3_stat)-1)/lambda_x_case_3_stat,
     p_value_Fisher_E_J_bc = ((p_value_Fisher_E_J^lambda_x_case_3_p)-1)/lambda_x_case_3_p
 )
-
-
-
-
 
 
 #-----------------------

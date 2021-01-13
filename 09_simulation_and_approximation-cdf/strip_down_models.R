@@ -23,12 +23,15 @@ predict(fit_case_1, test_data)
 
 ##### linear / poly / lm model 
 
+object_size(fit_case_1)
+
 fit_case_1$fitted.values <- NULL
 fit_case_1$residuals <- NULL
 fit_case_1$effects <- NULL
 fit_case_1$model <- NULL
 fit_case_1$qr$qr <- NULL
 
+object_size(fit_case_1)
 
 #### GAM models ####
 fit_gam_case_1 <- gam::gam(p_value_E_G ~ ns(stat_E_G, 3),  data = data_case_1)
