@@ -245,13 +245,13 @@ models_bc <- list(
                                            data = data_case_1),
     mod_E_J_case.1_bc_poly_log_m_10_poly_m_I <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) * log(k) + poly(stat_Fisher_E_J_bc, 10)*I(1/k),
                                            data = data_case_1),
-    mod_E_J_case.1_bc_poly_log_m_10_poly_m_I_sqrt <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) * log(k) + poly(stat_Fisher_E_J_bc, 10)*I(1/k),
-                                                  data = data_case_1) + sqrt(k),
+    mod_E_J_case.1_bc_poly_log_m_10_poly_m_I_sqrt <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) * log(k) + poly(stat_Fisher_E_J_bc, 10)*I(1/k) + sqrt(k),
+                                                  data = data_case_1),
     mod_E_J_case.1_bc_poly_log_m_10_poly_m_sqrt <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) * log(k) + poly(stat_Fisher_E_J_bc, 10)*sqrt(k),
                                                   data = data_case_1)
 )
-data_case_1$k
 
+model_metrics_E_J <- bind_model_metrics(models_bc %>% purrr::map_dfr(metric_fun))
 
 
 # Generalized Additive Models
