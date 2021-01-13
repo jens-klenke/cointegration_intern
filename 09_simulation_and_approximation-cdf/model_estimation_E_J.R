@@ -2,33 +2,46 @@
 # Functions
 #-----------------------
 metric_fun <- function(object){
+    
+    # dependent variable 
     dep_var <- as.character(object$call$form[2])
+    
+    # interesting border
+    dep_var_int_bor <- object$model[nrow(object$model)/11*0.8, dep_var]
+    # dataset for prediction
     values <- tibble(
-        Ref =  new_data$p_value_E_G,
+        # hier muss die ref class noch einmal anders eingelesen werden 
+        # andere möglichkeit nrow()/11*0.8
+        #Ref =  new_data$p_value_E_G,
         PRED = object$fitted.values,
         dependent = object$model[, dep_var])
     
+    # max and min values of the response variable to correct for it 
     dep_max <- max(values$dependent)
     dep_min <- min(values$dependent)
     
-    
+    # computing corrected predictions
     values <- values%>%
         dplyr::mutate(PRED_cor = case_when(
             PRED <= dep_min ~ dep_min + 1e-12,
             PRED >= dep_max ~ dep_max - 1e-12,
             TRUE ~ PRED))
     
+    # RMSE and corrected RMSE on the full dataset
     RMSE <- sqrt((sum((values$PRED - values$dependent)^2)/nrow(values)))
     RMSE_cor <- sqrt((sum((values$PRED_cor - values$dependent)^2)/nrow(values)))
     
+    # smaller dataset only the intersting part, correction is at 
     values_0.2 <- values %>%
-        dplyr::filter(Ref >= 0.8)
+        dplyr::filter(dependent >= dep_var_int_bor)
     RMSE_0.2 <- sqrt((sum((values_0.2$PRED - values_0.2$dependent)^2)/nrow(values_0.2)))
     RMSE_cor_0.2 <- sqrt((sum((values_0.2$PRED_cor - values_0.2$dependent)^2)/nrow(values_0.2)))
     
+    # save call and case
     mod_call <- object$call$form[3]
     case <- object$call$data
     
+    # values for the plots 
     values <- values%>%
         dplyr::filter(dependent %in% seq(0.001, 1.0 , 0.001))
     
