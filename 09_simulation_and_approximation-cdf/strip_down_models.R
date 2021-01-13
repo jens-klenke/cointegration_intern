@@ -33,6 +33,8 @@ fit_case_1$qr$qr <- NULL
 #### GAM models ####
 fit_gam_case_1 <- gam::gam(p_value_E_G ~ ns(stat_E_G, 3),  data = data_case_1)
 
+fit_gam_case_1 <- gam_case.1_bc_poly_log_m_10_poly_m_sqrt
+
 fit_gam_case_1$fitted.values <- NULL
 fit_gam_case_1$residuals <- NULL
 fit_gam_case_1$effects <- NULL
@@ -49,5 +51,4 @@ fit_gam_case_1$prior.weights <- NULL
 fit_gam_case_1$model <- NULL
 fit_gam_case_1$data <- NULL
 
-
-
+object_size(fit_gam_case_1)
