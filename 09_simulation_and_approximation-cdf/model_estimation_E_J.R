@@ -5,14 +5,11 @@ metric_fun <- function(object){
     
     # dependent variable 
     dep_var <- as.character(object$call$form[2])
-    
-    # interesting border
+    # interesting border fo RMSE_0.2
     dep_var_int_bor <- object$model[nrow(object$model)/11*0.8, dep_var]
+    
     # dataset for prediction
     values <- tibble(
-        # hier muss die ref class noch einmal anders eingelesen werden 
-        # andere möglichkeit nrow()/11*0.8
-        #Ref =  new_data$p_value_E_G,
         PRED = object$fitted.values,
         dependent = object$model[, dep_var])
     
@@ -43,7 +40,7 @@ metric_fun <- function(object){
     
     # values for the plots 
     values <- values%>%
-        dplyr::filter(dependent %in% seq(0.001, 1.0 , 0.001))
+        dplyr::slice(seq.int(1, nrow(values), nrow(values)/(1000*11)))
     
     mod_sum <- tibble(model = as.character(mod_call),
                       RMSE = as.numeric(RMSE),
@@ -51,10 +48,9 @@ metric_fun <- function(object){
                       RMSE_0.2 = as.numeric(RMSE_0.2), 
                       RMSE_cor_0.2 = as.numeric(RMSE_cor_0.2), 
                       case = as.character(case),
-                      obs = list(values %>% dplyr::select(dependent)),
-                      pred = list(values %>% dplyr::select(PRED)),
-                      pred_cor = list(values %>% dplyr::select(PRED_cor))
+                      pred = list(values)
     )
+    
     return(mod_sum)
 }
 
@@ -98,33 +94,38 @@ data_case_3 <- Data %>%
 # - Boxcox Transformation ----
 
 # case_1 
-lambda_x_case_1_stat <- Rfast::bc(data_case_1$stat_Fisher_E_J)
-lambda_x_case_1_p <- Rfast::bc(data_case_1$p_value_Fisher_E_J)
+lambda_stat_case_1 <- Rfast::bc(data_case_1$stat_Fisher_E_J)
+lambda_p_case_1 <- Rfast::bc(data_case_1$p_value_Fisher_E_J)
 
 data_case_1 <- data_case_1 %>% mutate(
-    stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_x_case_1_stat)-1)/lambda_x_case_1_stat,
-    p_value_Fisher_E_J_bc = ((p_value_Fisher_E_J^lambda_x_case_1_p)-1)/lambda_x_case_1_p
+    stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat_case_1)-1)/lambda_stat_case_1,
+    p_value_Fisher_E_J_bc = ((p_value_Fisher_E_J^lambda_p_case_1)-1)/lambda_p_case_1
     )
     
 
 # case_2 
-lambda_x_case_2_stat <- Rfast::bc(data_case_2$stat_Fisher_E_J)
-lambda_x_case_2_p <- Rfast::bc(data_case_2$p_value_Fisher_E_J)
+lambda_stat_case_2 <- Rfast::bc(data_case_2$stat_Fisher_E_J)
+lambda_p_case_2 <- Rfast::bc(data_case_2$p_value_Fisher_E_J)
 
 data_case_2 <- data_case_2 %>% mutate(
-    stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_x_case_2_stat)-1)/lambda_x_case_2_stat,
-    p_value_Fisher_E_J_bc = ((p_value_Fisher_E_J^lambda_x_case_2_p)-1)/lambda_x_case_2_p
+    stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat_case_2)-1)/lambda_stat_case_2,
+    p_value_Fisher_E_J_bc = ((p_value_Fisher_E_J^lambda_p_case_2)-1)/lambda_p_case_2
 )
 
 # case_3 
-lambda_x_case_3_stat <- Rfast::bc(data_case_3$stat_Fisher_E_J)
-lambda_x_case_3_p <- Rfast::bc(data_case_3$p_value_Fisher_E_J)
+lambda_stat_case_3 <- Rfast::bc(data_case_3$stat_Fisher_E_J)
+lambda_p_case_3 <- Rfast::bc(data_case_3$p_value_Fisher_E_J)
 
 data_case_3 <- data_case_3 %>% mutate(
-    stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_x_case_3_stat)-1)/lambda_x_case_3_stat,
-    p_value_Fisher_E_J_bc = ((p_value_Fisher_E_J^lambda_x_case_3_p)-1)/lambda_x_case_3_p
+    stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat_case_3)-1)/lambda_stat_case_3,
+    p_value_Fisher_E_J_bc = ((p_value_Fisher_E_J^lambda_p_case_3)-1)/lambda_p_case_3
 )
 
+lambda_bc_EJ <- tibble(
+    case = rep(1:3, each = 2), 
+    side = rep(c('stat', 'p'), times = 3),
+    value = c(lambda_stat_case_1, lambda_p_case_1, lambda_stat_case_2, lambda_p_case_2,  lambda_stat_case_3, lambda_p_case_3)   
+)
 
 #-----------------------
 # Set up metrics
@@ -295,7 +296,10 @@ models_bc <- list(
     mod_E_J_case.1_bc_poly_log_m_10_poly_m_I_sqrt <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) * log(k) + poly(stat_Fisher_E_J_bc, 10)*I(1/k) + sqrt(k),
                                                   data = data_case_1),
     mod_E_J_case.1_bc_poly_log_m_10_poly_m_sqrt <- lm(p_value_Fisher_E_J ~ poly(stat_Fisher_E_J_bc, 10) * log(k) + poly(stat_Fisher_E_J_bc, 10)*sqrt(k),
-                                                  data = data_case_1)
+                                                  data = data_case_1),
+    
+    mod_E_J_case.1_bc_bc <- lm(p_value_Fisher_E_J_bc ~ poly(stat_Fisher_E_J_bc, 10) * log(k) + poly(stat_Fisher_E_J_bc, 10)*sqrt(k),
+                                                      data = data_case_1)
 )
 
 model_metrics_E_J <- bind_model_metrics(models_bc %>% purrr::map_dfr(metric_fun))
