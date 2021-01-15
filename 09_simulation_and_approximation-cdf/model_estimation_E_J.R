@@ -1,26 +1,28 @@
 #---- Functions ----
-metric_fun <- function(object){
+# metric function
+metric_fun <- function(object, lambda_p = lambda_p){
+    
+    # save call and case
+    mod_call <- paste(object$call$form[2], object$call$form[1], object$call$form[3])
+    case <- object$call$data
     
     # dependent variable 
     dep_var <- as.character(object$call$form[2])
     
-    # interesting border fo RMSE_0.2
-    dep_var_int_bor <- object$model[nrow(object$model)/11*0.8, dep_var]
-    
     # dataset for prediction
     values <- tibble(
-        PRED = object$fitted.values,
-        dependent = object$model[, dep_var])
-    
-    # max and min values of the response variable to correct for it 
-    dep_max <- max(values$dependent)
-    dep_min <- min(values$dependent)
+        PRED = if(str_sub(dep_var , nchar(dep_var)-2, nchar(dep_var)) == '_bc'){ 
+            invBoxCox(object$fitted.values, lambda_p)} else 
+            {object$fitted.values},    # y_hat 
+        dependent = rep(seq(0+(1/(nrow(object$model)/11)), 1, 1/(nrow(object$model)/11)), 11)
+        #object$model$p_value_Fisher_E_J[1:5]
+    )
     
     # computing corrected predictions
     values <- values%>%
         dplyr::mutate(PRED_cor = case_when(
-            PRED <= dep_min ~ dep_min + 1e-12,
-            PRED >= dep_max ~ dep_max - 1e-12,
+            PRED <= 0 ~ 1e-12,
+            PRED >= 1 ~ 1 - 1e-12,
             TRUE ~ PRED))
     
     # RMSE and corrected RMSE on the full dataset
@@ -29,17 +31,13 @@ metric_fun <- function(object){
     
     # smaller dataset only the intersting part, correction is at 
     values_0.2 <- values %>%
-        dplyr::filter(dependent >= dep_var_int_bor)
+        dplyr::filter(dependent >= 0.8)
     RMSE_0.2 <- sqrt((sum((values_0.2$PRED - values_0.2$dependent)^2)/nrow(values_0.2)))
     RMSE_cor_0.2 <- sqrt((sum((values_0.2$PRED_cor - values_0.2$dependent)^2)/nrow(values_0.2)))
     
-    # save call and case
-    mod_call <- paste(object$call$form[2], object$call$form[1], object$call$form[3])
-    case <- object$call$data
-    
     # values for the plots 
     values <- values%>%
-        dplyr::slice(seq.int(1, nrow(values), nrow(values)/(1000*11)))
+        dplyr::filter(dependent %in% seq(0.001, 1, 0.001))
     
     mod_sum <- tibble(model = as.character(mod_call),
                       RMSE = as.numeric(RMSE),
@@ -53,6 +51,7 @@ metric_fun <- function(object){
     return(mod_sum)
 }
 
+# bind functionen
 bind_model_metrics <- function(new_metrics, old_metrics =  model_metrics_E_J) {
     model_metrics_E_J <- rbind(old_metrics,
                                new_metrics)
@@ -60,7 +59,13 @@ bind_model_metrics <- function(new_metrics, old_metrics =  model_metrics_E_J) {
     return(model_metrics_E_J)
 }
 
-# Delete Function 
+# inverse BoxCox function
+invBoxCox <- function(x, lambda = lambda_p){
+    x <- if (lambda == 0) exp(as.complex(x)) else (lambda*as.complex(x) + 1)^(1/lambda)
+    return(Re(x))
+}
+
+# delete function 
 delete_fun <- function(){
     rm(list=setdiff(ls(.GlobalEnv), important_things), envir = .GlobalEnv)
 }
@@ -122,7 +127,6 @@ lambda_bc_EJ <- tibble(
     value = c(lambda_stat_case_1, lambda_p_case_1, lambda_stat_case_2, lambda_p_case_2,  lambda_stat_case_3, lambda_p_case_3)   
 )
 
-
 #---- Set up metrics -----
 
 model_metrics_E_J <- NULL
@@ -133,7 +137,6 @@ important_things <- c(ls(),
 
 
 # ----  Models - Case 1 ----
-
 tictoc::tic()
 
 models_poly <- list(
@@ -295,6 +298,8 @@ models_bc <- list(
 )
 
 model_metrics_E_J <- bind_model_metrics(models_bc %>% purrr::map_dfr(metric_fun))
+
+
 
 delete_fun()
 
