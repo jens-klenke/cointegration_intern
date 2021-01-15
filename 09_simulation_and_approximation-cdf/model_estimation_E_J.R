@@ -296,10 +296,31 @@ models_bc <- list(
 
 model_metrics_E_J <- bind_model_metrics(models_bc %>% purrr::map_dfr(metric_fun))
 
-
-
-
 delete_fun()
+
+
+# bc y
+models_bc_y <- list(
+    mod_E_J_case.1_bc_poly_log_m_6_y <- lm(p_value_Fisher_E_J_bc ~ poly(stat_Fisher_E_J_bc, 6)*log(k), 
+                                           data = data_case_1), 
+    mod_E_J_case.1_bc_poly_log_m_10_y <- lm(p_value_Fisher_E_J_bc ~ poly(stat_Fisher_E_J_bc, 10)*log(k), 
+                                            data = data_case_1), 
+    mod_E_J_case.1_bc_poly_log_6_y <- lm(p_value_Fisher_E_J_bc ~ poly(stat_Fisher_E_J_bc, 6) + log(k), 
+                                         data = data_case_1), 
+    mod_E_J_case.1_bc_poly_log_10_y <- lm(p_value_Fisher_E_J_bc ~ poly(stat_Fisher_E_J_bc, 10) + log(k), 
+                                          data = data_case_1), 
+    mod_E_J_case.1_bc_poly_log_m_6_I_y <- lm(p_value_Fisher_E_J_bc ~ poly(stat_Fisher_E_J_bc, 6)*log(k) + I(1/k), 
+                                             data = data_case_1), 
+    mod_E_J_case.1_bc_poly_log_m_10_I_y <- lm(p_value_Fisher_E_J_bc ~ poly(stat_Fisher_E_J_bc, 10)*log(k) + I(1/k), 
+                                              data = data_case_1),
+    mod_E_J_case.1_bc_poly_log_m_6_poly_m_I_y <- lm(p_value_Fisher_E_J_bc ~ poly(stat_Fisher_E_J_bc, 6)*log(k) + poly(stat_Fisher_E_J_bc, 6)*I(1/k), 
+                                                    data = data_case_1),
+    mod_E_J_case.1_bc_poly_log_m_10_poly_m_I_y <- lm(p_value_Fisher_E_J_bc ~ poly(stat_Fisher_E_J_bc, 10)*log(k) + poly(stat_Fisher_E_J_bc, 10)*I(1/k), 
+                                                     data = data_case_1)
+)
+
+model_metrics_E_J <- bind_model_metrics(models_bc_y %>% purrr::map_dfr(metric_fun))
+
 tictoc::toc()
 
 
