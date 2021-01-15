@@ -1,6 +1,6 @@
 #---- Functions ----
 # metric function
-metric_fun <- function(object, lambda_p = lambda_p){
+metric_fun <- function(object){
     
     # save call and case
     mod_call <- paste(object$call$form[2], object$call$form[1], object$call$form[3])
@@ -12,7 +12,7 @@ metric_fun <- function(object, lambda_p = lambda_p){
     # dataset for prediction
     values <- tibble(
         PRED = if(str_sub(dep_var , nchar(dep_var)-2, nchar(dep_var)) == '_bc'){ 
-            invBoxCox(object$fitted.values, lambda_p)} else 
+            invBoxCox(object$fitted.values)} else 
             {object$fitted.values},    # y_hat 
         dependent = rep(seq(0+(1/(nrow(object$model)/11)), 1, 1/(nrow(object$model)/11)), 11)
         #object$model$p_value_Fisher_E_J[1:5]
@@ -60,8 +60,8 @@ bind_model_metrics <- function(new_metrics, old_metrics =  model_metrics_E_J) {
 }
 
 # inverse BoxCox function
-invBoxCox <- function(x, lambda = lambda_p){
-    x <- if (lambda == 0) exp(as.complex(x)) else (lambda*as.complex(x) + 1)^(1/lambda)
+invBoxCox <- function(x){
+    x <- if (lambda_p == 0) exp(as.complex(x)) else (lambda_p*as.complex(x) + 1)^(1/lambda_p)
     return(Re(x))
 }
 
@@ -96,11 +96,11 @@ data_case_3 <- Data %>%
 
 # case_1 
 lambda_stat_case_1 <- Rfast::bc(data_case_1$stat_Fisher_E_J)
-lambda_p_case_1 <- Rfast::bc(data_case_1$p_value_Fisher_E_J)
+lambda_p <- Rfast::bc(data_case_1$p_value_Fisher_E_J)
 
 data_case_1 <- data_case_1 %>% mutate(
     stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat_case_1)-1)/lambda_stat_case_1,
-    p_value_Fisher_E_J_bc = ((p_value_Fisher_E_J^lambda_p_case_1)-1)/lambda_p_case_1
+    p_value_Fisher_E_J_bc = ((p_value_Fisher_E_J^lambda_p)-1)/lambda_p
     )
 
 # case_2 
