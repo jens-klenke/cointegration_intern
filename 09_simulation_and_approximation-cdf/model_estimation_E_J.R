@@ -34,7 +34,7 @@ metric_fun <- function(object){
     RMSE_cor_0.2 <- sqrt((sum((values_0.2$PRED_cor - values_0.2$dependent)^2)/nrow(values_0.2)))
     
     # save call and case
-    mod_call <- object$call$form
+    mod_call <- paste(object$call$form[2], object$call$form[1], object$call$form[2])
     case <- object$call$data
     
     # values for the plots 
