@@ -820,5 +820,5 @@ tictoc::toc()
 
 #---- saving metrics ----
 
-save(model_metrics_E_J, file = here::here("09_simulation_and_approximation-cdt/model_metrics_E_J.Rdata"))
-save(lambda_bc_EJ, file = here::here("09_simulation_and_approximation-cdt/lambda_bc_EJ.Rdata"))
+save(model_metrics_E_J, file = here::here("09_simulation_and_approximation-cdf/model_metrics_E_J.Rdata"))
+save(lambda_bc_EJ, file = here::here("09_simulation_and_approximation-cdf/lambda_bc_EJ.Rdata"))
