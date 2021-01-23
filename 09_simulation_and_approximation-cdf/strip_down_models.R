@@ -25,11 +25,15 @@ predict(fit_case_1, test_data)
 
 object_size(fit_case_1)
 
-fit_case_1$fitted.values <- NULL
-fit_case_1$residuals <- NULL
-fit_case_1$effects <- NULL
-fit_case_1$model <- NULL
-fit_case_1$qr$qr <- NULL
+clean_model <- function(){
+    object$fitted.values <- NULL
+    object$residuals <- NULL
+    object$effects <- NULL
+    object$model <- NULL
+    object$qr$qr <- NULL 
+    
+    return(object)
+}
 
 object_size(fit_case_1)
 

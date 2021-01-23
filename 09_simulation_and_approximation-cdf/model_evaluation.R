@@ -268,3 +268,5 @@ plot_data_e_j_case_3 <-
           ), 
           axis.title.x = element_text(size = 20),
           axis.title.y = element_text(size = 20))
+
+

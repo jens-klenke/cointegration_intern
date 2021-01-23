@@ -36,5 +36,7 @@ pacman::p_load(dplyr,
                modelr, 
                microbenchmark,
                RcppEigen,
-               formattable)
+               formattable,
+               tidypredict,
+               broom)
 
