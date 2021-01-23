@@ -35,5 +35,6 @@ pacman::p_load(dplyr,
                gam,
                modelr, 
                microbenchmark,
-               RcppEigen)
+               RcppEigen,
+               formattable)
 
