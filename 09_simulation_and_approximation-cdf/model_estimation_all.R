@@ -55,10 +55,10 @@ metric_fun <- function(object){
 
 # bind functionen
 bind_model_metrics <- function(new_metrics, old_metrics =  model_metrics_ALL) {
-    model_metrics_E_J <- rbind(old_metrics,
+    model_metrics_all <- rbind(old_metrics,
                                new_metrics)
     
-    return(model_metrics_E_J)
+    return(model_metrics_all)
 }
 
 # inverse BoxCox function

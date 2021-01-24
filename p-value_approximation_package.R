@@ -1,9 +1,9 @@
 #-- functions ----
 bc_value <- function(test, case, variable){
-    final_model_metrics%>%
+    final_model_metrics %>%
         dplyr::filter(test == {{test}},
-                      case == {{case}})%>%
-        dplyr::select({{variable}})%>%
+                      case == {{case}}) %>%
+        dplyr::select({{variable}}) %>%
         pull()
     
 }
@@ -44,7 +44,7 @@ new_data <- tibble(
     stat_Fisher_all_bc = NA, 
     stat_Fisher_E_J = NA, 
     stat_Fisher_E_J_lg = NA,
-    stat_Fisher_E_J_bc = NA)%>%
+    stat_Fisher_E_J_bc = NA) %>%
     dplyr::mutate(stat_Fisher_E_J = ifelse(identical(test, 'eg-j'), stat, NA),
                   stat_Fisher_all = ifelse(identical(test, 'all'), stat, NA)
                   )
@@ -52,8 +52,8 @@ new_data <- tibble(
 #-- bc computing ----  
 
 # eg-j test and case = 1
-if(identical(test, 'eg-j') &  identical(trendtype, 1)){
-    new_data <- new_data%>%
+if(identical(test, 'eg-j') & identical(trendtype, 1)){
+    new_data <- new_data %>%
       dplyr::mutate(stat_Fisher_E_J_bc = (((stat_Fisher_E_J^bc_value('eg-j', 1, 'bc_stat'))-1)/bc_value('eg-j', 1, 'bc_stat')),
                     stat_Fisher_E_J_lg = log(stat_Fisher_E_J)
                     )
@@ -134,14 +134,14 @@ if(identical(test, 'all') &  identical(trendtype, 1)){
 if(identical(test, 'all') &  identical(trendtype, 2)){
   p.value_lg <- predict(mod_ALL_case_2, new_data)
   
-  p.value <- log(p.value_lg)
+  p.value <- exp(p.value_lg)
 }
 
 # all and case = 3
 if(identical(test, 'all') &  identical(trendtype, 3)){
   p.value_lg <- predict(mod_ALL_case_3, new_data)
   
-  p.value <- log(p.value_lg)
+  p.value <- exp(p.value_lg)
 }
 
 
