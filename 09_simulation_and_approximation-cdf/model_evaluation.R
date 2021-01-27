@@ -16,7 +16,6 @@ k_com <- function(data){
     dep <- data [,'dependent']%>%
         pull()
     K = 1
-    i = 2
     
     k <- rep(NA, length(dep)) 
     k[1] <- 1

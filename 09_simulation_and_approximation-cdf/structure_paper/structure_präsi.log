@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.1.20)  21 JAN 2021 22:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.1.20)  27 JAN 2021 14:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -919,7 +919,12 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 23.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 23.
- [1
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
+9.
+
+(c:/texlive/2020/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [1
 
 {c:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./structure_pr
 äsi.aux)
@@ -927,21 +932,22 @@ Package rerunfilecheck Info: File `structure_präsi.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 19845 strings out of 479304
- 363092 string characters out of 5871219
+ 19879 strings out of 479304
+ 363946 string characters out of 5871219
  674823 words of memory out of 5000000
- 36597 multiletter control sequences out of 15000+600000
- 433933 words of font info for 59 fonts, out of 8000000 for 9000
+ 36626 multiletter control sequences out of 15000+600000
+ 434308 words of font info for 60 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  118i,6n,119p,444b,341s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2020/tex
-mf-dist/fonts/enc/dvips/lm/lm-mathit.enc}<c:/texlive/2020/texmf-dist/fonts/type
-1/public/lm/lmmi12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr12.
-pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr17.pfb>
-Output written on structure_präsi.pdf (1 page, 54125 bytes).
+{c:/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2020/te
+xmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2020/texmf-dist/fonts/enc/dvi
+ps/lm/lm-mathit.enc}<c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmmi12.pf
+b><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2020/
+texmf-dist/fonts/type1/public/lm/lmr17.pfb>
+Output written on structure_präsi.pdf (1 page, 55565 bytes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
- 31 compressed objects within 1 object stream
- 8 named destinations out of 1000 (max. 500000)
+ 42 PDF objects out of 1000 (max. 8388607)
+ 35 compressed objects within 1 object stream
+ 9 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
