@@ -44,7 +44,7 @@ load(here::here("09_simulation_and_approximation-cdf/model_metrics_E_J_server.Rd
 
 table_all_case_1 <- formattable(model_metrics_ALL%>%
                 dplyr::filter(case == 'data_case_1')%>%
-                dplyr::filter(RMSE <= (min(RMSE)*2))%>%
+                dplyr::top_n(-5, RMSE_0.2)%>%
                 dplyr::select(-c(pred, case)),
             list(
     RMSE = color_tile("green", "red"),
@@ -55,7 +55,7 @@ table_all_case_1 <- formattable(model_metrics_ALL%>%
 
 table_all_case_2 <- formattable(model_metrics_ALL%>%
                                     dplyr::filter(case == 'data_case_2')%>%
-                                    dplyr::filter(RMSE <= (min(RMSE)*2))%>%
+                                    dplyr::top_n(-5, RMSE_0.2)%>%
                                     dplyr::select(-c(pred, case)),
                                 list(
                                     RMSE = color_tile("green", "red"),
@@ -66,7 +66,7 @@ table_all_case_2 <- formattable(model_metrics_ALL%>%
 
 table_all_case_3 <- formattable(model_metrics_ALL%>%
                                     dplyr::filter(case == 'data_case_3')%>%
-                                    dplyr::filter(RMSE <= (min(RMSE)*2))%>%
+                                    dplyr::top_n(-5, RMSE_0.2)%>%
                                     dplyr::select(-c(pred, case)),
                                 list(
                                     RMSE = color_tile("green", "red"),
@@ -154,13 +154,11 @@ plot_data_ALL_case_3 <-
 
 #-- Analysis E_J ----
 
-#-- Analysis ALL ----
-
 # tables 
 
 table_e_j_case_1 <- formattable(model_metrics_E_J%>%
                                     dplyr::filter(case == 'data_case_1')%>%
-                                    dplyr::filter(RMSE <= (min(RMSE)*2))%>%
+                                    dplyr::top_n(-5, RMSE_0.2)%>%
                                     dplyr::select(-c(pred, case)),
                                 list(
                                     RMSE = color_tile("green", "red"),
@@ -171,7 +169,7 @@ table_e_j_case_1 <- formattable(model_metrics_E_J%>%
 
 table_e_j_case_2 <- formattable(model_metrics_E_J%>%
                                     dplyr::filter(case == 'data_case_2')%>%
-                                    dplyr::filter(RMSE <= (min(RMSE)*2))%>%
+                                    dplyr::top_n(-5, RMSE_0.2)%>%
                                     dplyr::select(-c(pred, case)),
                                 list(
                                     RMSE = color_tile("green", "red"),
@@ -182,7 +180,7 @@ table_e_j_case_2 <- formattable(model_metrics_E_J%>%
 
 table_e_j_case_3 <- formattable(model_metrics_E_J%>%
                                     dplyr::filter(case == 'data_case_3')%>%
-                                    dplyr::filter(RMSE <= (min(RMSE)*2))%>%
+                                    dplyr::top_n(-5, RMSE_0.2)%>%
                                     dplyr::select(-c(pred, case)),
                                 list(
                                     RMSE = color_tile("green", "red"),
@@ -267,5 +265,3 @@ plot_data_e_j_case_3 <-
           ), 
           axis.title.x = element_text(size = 20),
           axis.title.y = element_text(size = 20))
-
-
