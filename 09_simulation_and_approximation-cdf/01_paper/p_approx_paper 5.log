@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.27)  11 FEB 2021 19:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.27)  11 FEB 2021 11:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1237,7 +1237,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-<Includes/duelogo_en.png, id=35, 230.8625pt x 89.33376pt>
+<Includes/duelogo_en.png, id=39, 230.8625pt x 89.33376pt>
 File: Includes/duelogo_en.png Graphic file (type png)
 <use Includes/duelogo_en.png>
 Package pdftex.def Info: Includes/duelogo_en.png  used on input line 165.
@@ -1318,28 +1318,28 @@ des/duelogo_en.png>]
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.325 
+l.321 
        [1
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.I}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.330 \cleardoublepage
+l.326 \cleardoublepage
                        [1]
 \blx@maxsegment@1=\count373
 \blx@sectionciteorder@1=\count374
-Package biblatex Info: Reference section=1 on input line 332.
-Package biblatex Info: Setting label 'refsection:1' on input line 332.
+Package biblatex Info: Reference section=1 on input line 328.
+Package biblatex Info: Setting label 'refsection:1' on input line 328.
 pdfTeX warning (ext4): destination with the same identifier (name{page.II}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.366 ...bibliography[title = Software-References]
+l.362 ...bibliography[title = Software-References]
                                                    [2
 
 ] [3]
-Package biblatex Info: Reference section=0 on input line 368.
+Package biblatex Info: Reference section=0 on input line 364.
 [4]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
@@ -1377,29 +1377,29 @@ Package biblatex Info: Reference section=0 on input line 368.
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 411.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 407.
 [6
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 411.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 407.
 (./p_approx_paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 411.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 411.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 407.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 407.
 Package rerunfilecheck Info: File `p_approx_paper.out' has not changed.
-(rerunfilecheck)             Checksum: B04C5C3F0BEA71D1AC4538C4511FBBA1;892.
+(rerunfilecheck)             Checksum: B3C3F8C59F40844A4A969F66A2AC8A11;977.
 Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
 \openout1 = `p_approx_paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23091 strings out of 492616
- 369812 string characters out of 6129481
- 949919 words of memory out of 5000000
- 26477 multiletter control sequences out of 15000+600000
- 54104 words of font info for 92 fonts, out of 8000000 for 9000
+ 23098 strings out of 492616
+ 369954 string characters out of 6129481
+ 949976 words of memory out of 5000000
+ 26482 multiletter control sequences out of 15000+600000
+ 57102 words of font info for 93 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 58i,6n,63p,803b,5337s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 58i,6n,63p,986b,5337s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/local/
 texlive/2019/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/20
 19/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2019/texmf-di
@@ -1407,10 +1407,10 @@ st/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/ty
 pe1/public/lm/lmr6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/l
 m/lmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmri12.pfb
 >
-Output written on p_approx_paper.pdf (10 pages, 178622 bytes).
+Output written on p_approx_paper.pdf (10 pages, 178336 bytes).
 PDF statistics:
- 204 PDF objects out of 1000 (max. 8388607)
- 181 compressed objects within 2 object streams
- 46 named destinations out of 1000 (max. 500000)
- 8268 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 211 PDF objects out of 1000 (max. 8388607)
+ 188 compressed objects within 2 object streams
+ 48 named destinations out of 1000 (max. 500000)
+ 8276 words of extra memory for PDF output out of 10000 (max. 10000000)
 

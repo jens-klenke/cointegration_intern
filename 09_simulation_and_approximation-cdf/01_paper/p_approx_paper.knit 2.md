@@ -38,23 +38,19 @@ classoption: a4paper
 
 <!-- Git version -->
 
-```{r , include=FALSE}
-Sys.setlocale(locale = "English_United States.1252") ## English US Windows
-knitr::opts_chunk$set(echo = TRUE)
 
-#options(kableExtra.latex.load_packages = FALSE)
-
-## packages
-source(here::here('01_code/packages/packages.R'))
-```
 
 # Introduction
-Meta tests have been shown to be a powerful tool when testing for the null of non-cointegration. The distribution of their test statistic, however, is mostly not available in closed form. This might pose difficulties when implementing the meta tests in econometric software packages, as one has to include tables of critical values and p-values for each combination of the underlying tests. Software package size limitations are therefore quickly exceeded. 
+Meta tests have been shown to be a powerful tool when testing for the null of non-cointegration. The distribution of their test statistic, however, is not always available in closed form. 
 
-In this paper, we propose supervised Machine Learning Algorithms to approximate the p-values of the meta test by Bayer and Hanck [-@Bayerhanck_2012], which tests for the null of non-cointegration. This approach might reduce the size of associated software packages considerably. The algorithms are trained on simulated data for various specifications of the aforementioned test. 
+Start of the paper
+
+## int 2 
+
+# main 
 
 
-# Main 
+@tibshirani_regression_1996
 
 
 <!-- end of main part -->
