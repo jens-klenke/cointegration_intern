@@ -1,0 +1,25 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {english}{}
+\babel@toc {english}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{List of Figures}{II}{section*.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{List of Tables}{II}{section*.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{List of Abbreviations}{II}{section*.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Bayer Hanck Test}{1}{section.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Simulation}{2}{section.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Models}{2}{section.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Package}{2}{section.5}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{References}{I}{section.5}% 
+\defcounter {refsection}{1}\relax 
+\contentsline {section}{Software-References}{IV}{section*.6}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A}Appendices}{V}{appendix.A}% 

@@ -311,15 +311,69 @@ packages, as one has to include tables of critical values and p-values
 for each combination of the underlying tests. Software package size
 limitations are therefore quickly exceeded.
 
-In this paper, we propose supervised Machine Learning Algorithms to
+In this paper we propose supervised Machine Learning Algorithms to
 approximate the p-values of the meta test by Bayer and Hanck
-\autocite*{Bayerhanck_2012}, which tests for the null of
+\autocite*{Bayerhanck_2012} which tests for the null of
 non-cointegration. This approach might reduce the size of associated
 software packages considerably. The algorithms are trained on simulated
 data for various specifications of the aforementioned test.
 
-\hypertarget{main}{%
-\section{Main}\label{main}}
+Ergebnis der Models (1-2 Sätze)
+
+Inhalt Paper
+
+\hypertarget{bayer-hanck-test}{%
+\section{Bayer Hanck Test}\label{bayer-hanck-test}}
+
+The choice as to which of the available cointegration tests to use is a
+recurrent issue in econometric time series analysis. Bayer and Hanck
+\autocite*{Bayerhanck_2012} propose powerful meta tests which provide
+unambiguous test decisions. They combine several residual- and
+system-based tests in the manner of Fisher's \autocite*{Fisher_1932}
+Chi-squared test.
+
+Bayer and Hanck build their work on results from Pesavento
+\autocite*{Pesavento_2004}, who defines the underlying model as
+\(z'_t = [x'_t, y_t]\). \(x_t\), an \(n_1 \times 1\) vector, describes
+the regressor dynamics, while \(y_t\) is a scalar which defines the
+cointegrating relation. They can be written as \begin{align}
+\Delta x_t &= \tau_1 + v_{1t}, \\
+y_t &= (\mu_2 - \gamma' \mu_1) + (\tau_2 - \gamma' \tau_1) t + \gamma' x_t + u_t, \\
+u_t &= \rho u_{t-1} + v_{2t}.
+\end{align} \(\mu_1\), \(\mu_2\) \(\tau_1\) and \(\tau_2\) are the
+deterministic parts of the model. They are subject to the following
+restrictions: (i) \(\mu_2 - \gamma' \mu_1\) and \(\tau = 0\) which
+translates to no deterministics, (ii) \(\tau = 0\) which corresponds a
+constant in the cointegrating vector, (iii)
+\(\tau_2 - \gamma' \tau_1 = 0\), a constant plus trend.
+
+\(v_t = [v'_{1t} v_{2t}]'\) with \(\Omega\) the long-run covariance
+matrix of \(v_t\). For derivation of \(v_t\) see Pesavento
+\autocite*{Pesavento_2004}. Pesavento shows that \{\(v_t\)\} satisfies
+an FCLT,
+i.e.~\(T^{-1/2} \sum^{[T \cdot]}_{t=1} v_t \Rightarrow \Omega^{1/2} W(\cdot)\).
+It is further assumed that the \(x_t\) are not cointegrated.
+
+It clearly follows from (2.3) that \(z_t\) is cointegrated if
+\(\rho < 1\). Hence the null hypothesis of no cointegration is
+\(H_0: p = 1\).
+
+Furthermore, Pesavento introduces two other parameters. Firstly,
+\(\text{R}^2\) measures the squared correlation of \(v_{1t}\) and
+\(v_{2t}\). It can be interpreted as the influence of the right-hand
+side variables in (2.2). When there is no long-run correlation between
+those variables and the errors from the cointegration regression,
+\(\text{R}^2\) equals zero. Secondly, the number of lags is approximated
+by a finite number \(k\).
+
+\hypertarget{simulation}{%
+\section{Simulation}\label{simulation}}
+
+\hypertarget{models}{%
+\section{Models}\label{models}}
+
+\hypertarget{package}{%
+\section{Package}\label{package}}
 
 \pagebreak
 
