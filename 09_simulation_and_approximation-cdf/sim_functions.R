@@ -1,4 +1,4 @@
-## Ohrnstein Uhlenbeck Process
+## Ornstein Uhlenbeck Process
 Rcpp::cppFunction('
 NumericMatrix BU (NumericMatrix uu, double d) {
   int tt = uu.nrow();
