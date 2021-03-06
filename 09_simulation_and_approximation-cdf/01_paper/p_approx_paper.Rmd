@@ -8,7 +8,7 @@ date: "today"
 studid: "3071594"
 supervisor: "Christoph Hanck"
 secondsupervisor: "NA"
-semester: "5"
+semester: "6"
 estdegree_emester: "Winter Term 2020"
 deadline: "Jan. 17th 2020"
 output:
@@ -53,27 +53,44 @@ Meta tests have been shown to be a powerful tool when testing for the null of no
 
 In this paper we propose supervised Machine Learning Algorithms to approximate the p-values of the meta test by Bayer and Hanck [-@Bayerhanck_2012] which tests for the null of non-cointegration. This approach might reduce the size of associated software packages considerably. The algorithms are trained on simulated data for various specifications of the aforementioned test. 
 
-Ergebnis der Models (1-2 Sätze)
+\textcolor{red}{Ergebnis der Models (1-2 Sätze)}
 
-Inhalt Paper
+\textcolor{red}{Inhalt Paper}
 
 # Bayer Hanck Test
-The choice as to which of the available cointegration tests to use is a recurrent issue in econometric time series analysis. Bayer and Hanck [-@Bayerhanck_2012] propose powerful meta tests which provide unambiguous test decisions. They combine several residual- and system-based tests in the manner of Fisher's [-@Fisher_1932] Chi-squared test. 
+The choice as to which of the available cointegration tests to use is a recurrent issue in econometric time series analysis. @Bayerhanck_2012 propose powerful meta tests which provide unambiguous test decisions. They combine several residual- and system-based tests in the manner of Fisher's [-@Fisher_1932] Chi-squared test. 
 
-Bayer and Hanck build their work on results from Pesavento [-@Pesavento_2004], who defines the underlying model as $z'_t = [x'_t, y_t]$. $x_t$, an $n_1 \times 1$ vector, describes the regressor dynamics, while $y_t$ is a scalar which defines the cointegrating relation. They can be written as 
+Bayer and Hanck build their work on results from @Pesavento_2004, who defines the underlying model as $z'_t = [x'_t, y_t]$. $x_t$, an $n_1 \times 1$ vector, describes the regressor dynamics, while $y_t$ is a scalar which defines the cointegrating relation. They can be written as 
 \begin{align}
 \Delta x_t &= \tau_1 + v_{1t}, \\
 y_t &= (\mu_2 - \gamma' \mu_1) + (\tau_2 - \gamma' \tau_1) t + \gamma' x_t + u_t, \\
 u_t &= \rho u_{t-1} + v_{2t}.
 \end{align}
-$\mu_1$, $\mu_2$ $\tau_1$ and $\tau_2$ are the deterministic parts of the model. They are subject to the following restrictions: (i) $\mu_2 - \gamma' \mu_1$ and $\tau = 0$ which translates to no deterministics, (ii) $\tau = 0$ which corresponds a constant in the cointegrating vector, (iii) $\tau_2 - \gamma' \tau_1 = 0$, a constant plus trend.
+$\mu_1$, $\mu_2$ $\tau_1$ and $\tau_2$ are the deterministic parts of the model. They are subject to the following restrictions: (i) $\mu_2 - \gamma' \mu_1$ and $\tau = 0$ which translates to no deterministics, (ii) $\tau = 0$ which corresponds to a constant in the cointegrating vector, (iii) $\tau_2 - \gamma' \tau_1 = 0$, a constant plus trend.
 
-$v_t = [v'_{1t} v_{2t}]'$ with $\Omega$ the long-run covariance matrix of $v_t$. For derivation of $v_t$ see Pesavento [-@Pesavento_2004]. Pesavento shows that {$v_t$} satisfies an FCLT, i.e. $T^{-1/2} \sum^{[T \cdot]}_{t=1} v_t \Rightarrow \Omega^{1/2} W(\cdot)$. It is further assumed that the $x_t$ are not cointegrated.
+$v_t = [v'_{1t} v_{2t}]'$ with $\Omega$ the long-run covariance matrix of $v_t$. For derivation of $v_t$ see @Pesavento_2004. Pesavento shows that {$v_t$} satisfies an FCLT, i.e. $T^{-1/2} \sum^{[T \cdot]}_{t=1} v_t \Rightarrow \Omega^{1/2} W(\cdot)$. It is further assumed that the $x_t$ are not cointegrated.
 
 It clearly follows from (2.3) that $z_t$ is cointegrated if $\rho < 1$. Hence the null hypothesis of no cointegration is $H_0: p = 1$. 
 
-Furthermore, Pesavento introduces two other parameters. Firstly, $\text{R}^2$ measures the squared correlation of $v_{1t}$ and $v_{2t}$. It can be interpreted as the influence of the right-hand side variables in (2.2). When there is no long-run correlation between those variables and the errors from the cointegration regression, $\text{R}^2$ equals zero. Secondly, the number of lags is approximated by a finite number $k$.
+Furthermore, Pesavento introduces two other parameters. First, $\text{R}^2$ measures the squared correlation of $v_{1t}$ and $v_{2t}$. It can be interpreted as the influence of the right-hand side variables in (2.2). It ranks between zero and one. When there is no long-run correlation between those variables and the errors from the cointegration regression, $\text{R}^2$ equals zero. Secondly, the number of lags is approximated by a finite number $k$.
 
+\textcolor{red}{Assumptions (BH S. 84)?}
+
+Bayer and Hanck's [-@Bayerhanck_2012] meta test combines the test statistics of four stand-alone tests. Namely, these are the tests of @Englegranger_1987, @Johansen_1988, @Boswijk_1994 and @Banerjee_1998. 
+
+\textcolor{red}{Engle-Granger}
+
+\textcolor{red}{Johansen}
+
+\textcolor{red}{Banerjee and Boswijk}
+
+\textcolor{red}{"the test statistics are shown to converge under a local alternative to random variables whose distributions are functions of Brownian Motions and Ornstein–Uhlenbeck processes and of a single nuisance parameter"}
+
+To combine the results from the underlying tests Bayer and Hanck draw upon Fisher's combined probability test [@Fisher_1932]. It merges the tests using the formula
+\begin{align}
+\tilde{\chi}^2_{\mathcal{I}} := -2 \sum_{i \in \mathcal{I}} \ln{(p_i)}.
+\end{align}
+Let $t_i$ be the $i^{th}$ test statistic. If test $i$ rejects for large values, take $\xi_i := t_i$. If test $i$ rejects for small values, take $-\xi_i := t_i$. With $\Xi_i(x) := \text{Pr}_{\mathcal{H_0}}(\xi_i \geq x)$ the p-value of the $i^{th}$ test is $p_i := \Xi_i(\xi_i)$.
 
 # Simulation
 

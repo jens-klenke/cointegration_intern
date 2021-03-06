@@ -2151,6 +2151,12 @@
     <bcf:citekey order="3">Fisher_1932</bcf:citekey>
     <bcf:citekey order="4">Pesavento_2004</bcf:citekey>
     <bcf:citekey order="5">Pesavento_2004</bcf:citekey>
+    <bcf:citekey order="6">Bayerhanck_2012</bcf:citekey>
+    <bcf:citekey order="7">Englegranger_1987</bcf:citekey>
+    <bcf:citekey order="8">Johansen_1988</bcf:citekey>
+    <bcf:citekey order="9">Boswijk_1994</bcf:citekey>
+    <bcf:citekey order="10">Banerjee_1998</bcf:citekey>
+    <bcf:citekey order="11">Fisher_1932</bcf:citekey>
   </bcf:section>
   <!-- SECTION 1 -->
   <bcf:bibdata section="1">
