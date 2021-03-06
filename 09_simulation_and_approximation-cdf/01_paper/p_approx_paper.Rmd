@@ -86,8 +86,6 @@ Bayer and Hanck's [-@Bayerhanck_2012] meta test combines the test statistics of 
 
 \textcolor{red}{Banerjee and Boswijk}
 
-\textcolor{red}{"the test statistics are shown to converge under a local alternative to random variables whose distributions are functions of Brownian Motions and Ornstein–Uhlenbeck processes and of a single nuisance parameter"}
-
 To combine the results from the underlying tests Bayer and Hanck draw upon Fisher's combined probability test [@Fisher_1932]. It merges the tests using the formula
 
 \begin{equation}
