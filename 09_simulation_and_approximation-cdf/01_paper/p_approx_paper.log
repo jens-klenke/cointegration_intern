@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.27)  6 MAR 2021 17:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.27)  6 MAR 2021 17:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1393,11 +1393,11 @@ Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23188 strings out of 492616
- 371431 string characters out of 6129481
+ 23186 strings out of 492616
+ 371411 string characters out of 6129481
  950596 words of memory out of 5000000
  26522 multiletter control sequences out of 15000+600000
- 55791 words of font info for 109 fonts, out of 8000000 for 9000
+ 55700 words of font info for 108 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  58i,8n,63p,944b,5337s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
@@ -1415,7 +1415,7 @@ ic/lm/lmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmri12
 .pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr
 /local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texl
 ive/2019/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-Output written on p_approx_paper.pdf (12 pages, 221114 bytes).
+Output written on p_approx_paper.pdf (12 pages, 221113 bytes).
 PDF statistics:
  293 PDF objects out of 1000 (max. 8388607)
  261 compressed objects within 3 object streams
