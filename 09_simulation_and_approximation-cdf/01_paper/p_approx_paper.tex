@@ -429,10 +429,10 @@ on which and how many tests are combined. The distributions of the
 \section{Simulation}\label{simulation}}
 
 In this section, we describe the simulation of the null distribution of
-the meta test. The objective is to obtain data for training machine
-learning algorithms on approximating the p-values of the aforementioned
-test. In consideration of the different forms of the meta test we
-generated six data sets. These vary according to the specific
+the Bayer Hanck meta test. The objective is to obtain data for training
+machine learning algorithms on approximating the p-values of the
+aforementioned test. In consideration of the different forms of the meta
+test we generated six data sets. These vary according to the specific
 combination of the underlying tests and also account for the
 above-mentioned restrictions on the deterministic parts of the model.
 
@@ -442,9 +442,15 @@ This simulation relies largely on previous work by
 \(c = 0\)\footnote{Since we solely aim at simulating the distribution of
   the null of no cointegration we will not consider any further values
   of \(c\) here.} and set the number of repetitions to 1,000,000.
-\textcolor{red}{N?}
+\textcolor{red}{N? c vielleicht mal definieren}
 
-In accordance with
+To calculate the Bayer Hanck test statistic we first simulate the null
+distributions of the underlying test statistics. It can be shown that
+asymptotically these are non-standard but a function of standard
+Brownian motions. The latter is approximated by step functions using
+Gaussian random walk with \(N = 1000\) observations.
+\textcolor{red}{Referenz Theorem? OU Prozess? Nochmal auf Transformation je nach case eingehen?}
+p values durch cdf, Fisherstat + pvalues berechnen.
 
 \hypertarget{models}{%
 \section{Models}\label{models}}

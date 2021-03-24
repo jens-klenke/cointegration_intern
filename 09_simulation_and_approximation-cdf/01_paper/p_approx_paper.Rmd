@@ -105,13 +105,15 @@ Let $t_i$ be the $i^{th}$ test statistic. If test $i$ rejects for large values, 
 
 
 # Simulation
-In this section, we describe the simulation of the null distribution of the meta test. The objective is to obtain data for training machine learning algorithms on approximating the p-values of the aforementioned test. In consideration of the different forms of the meta test we generated six data sets. These vary according to the specific combination of the underlying tests and also account for the above-mentioned restrictions on the deterministic parts of the model.
+In this section, we describe the simulation of the null distribution of the Bayer Hanck meta test. The objective is to obtain data for training machine learning algorithms on approximating the p-values of the aforementioned test. In consideration of the different forms of the meta test we generated six data sets. These vary according to the specific combination of the underlying tests and also account for the above-mentioned restrictions on the deterministic parts of the model.
 
-This simulation relies largely on previous work by @Pesavento_2004. We consider $\text{R}^2 \in \{0, 0.05, 0.1, ..., 0.95\}$, $k = 11$ and $c = 0$^[Since we solely aim at simulating the distribution of the null of no cointegration we will not consider any further values of $c$ here.] and set the number of repetitions to 1,000,000. \textcolor{red}{N?}
+This simulation relies largely on previous work by @Pesavento_2004. We consider $\text{R}^2 \in \{0, 0.05, 0.1, ..., 0.95\}$, $k = 11$ and $c = 0$^[Since we solely aim at simulating the distribution of the null of no cointegration we will not consider any further values of $c$ here.] and set the number of repetitions to 1,000,000. \textcolor{red}{N? c vielleicht mal definieren}
+
+To calculate the Bayer Hanck test statistic we first simulate the null distributions of the underlying test statistics. It can be shown that asymptotically these are non-standard but a function of standard Brownian motions. The latter is approximated by step functions using Gaussian random walk with $N = 1000$ observations. \textcolor{red}{Referenz Theorem? OU Prozess? Nochmal auf Transformation je nach case eingehen?} p values durch cdf, Fisherstat + pvalues berechnen.
 
 
 
-In accordance with
+
 
 # Models
 
