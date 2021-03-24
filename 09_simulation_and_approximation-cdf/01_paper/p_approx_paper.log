@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.27)  6 MAR 2021 17:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.27)  24 MAR 2021 21:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1318,28 +1318,33 @@ des/duelogo_en.png>]
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.360 
+l.356 
        [1
 
-] [2] [3]pdfTeX warning (ext4): destination with the same identifier (name{page
-.I}) has been already used, duplicate ignored
+] [2]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 444.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 444.
+[3] [4]pdfTeX warning (ext4): destination with the same identifier (name{page.I
+}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.431 \cleardoublepage
+l.461 \cleardoublepage
                        [1]
 \blx@maxsegment@1=\count373
 \blx@sectionciteorder@1=\count374
-Package biblatex Info: Reference section=1 on input line 433.
-Package biblatex Info: Setting label 'refsection:1' on input line 433.
+Package biblatex Info: Reference section=1 on input line 463.
+Package biblatex Info: Setting label 'refsection:1' on input line 463.
 pdfTeX warning (ext4): destination with the same identifier (name{page.II}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.467 ...bibliography[title = Software-References]
+l.497 ...bibliography[title = Software-References]
                                                    [2
 
 ] [3]
-Package biblatex Info: Reference section=0 on input line 469.
+Package biblatex Info: Reference section=0 on input line 499.
 [4]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
@@ -1377,15 +1382,15 @@ Package biblatex Info: Reference section=0 on input line 469.
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 512.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 542.
 [6
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 512.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 542.
 (./p_approx_paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 512.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 512.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 542.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 542.
 Package rerunfilecheck Info: File `p_approx_paper.out' has not changed.
 (rerunfilecheck)             Checksum: 9F9FE293FFAFAD0B3A5766826857488A;1204.
 Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
@@ -1393,32 +1398,38 @@ Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23186 strings out of 492616
- 371411 string characters out of 6129481
- 950596 words of memory out of 5000000
- 26522 multiletter control sequences out of 15000+600000
- 55700 words of font info for 108 fonts, out of 8000000 for 9000
+ 23260 strings out of 492616
+ 372451 string characters out of 6129481
+ 950660 words of memory out of 5000000
+ 26565 multiletter control sequences out of 15000+600000
+ 87956 words of font info for 133 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 58i,8n,63p,944b,5337s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
-texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/20
-19/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2019/texmf-d
-ist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/
-dvips/lm/lm-mathit.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/l
-m/lmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmex10.p
-fb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/l
-ocal/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texliv
-e/2019/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2019/texm
-f-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2019/texmf-dist/font
-s/type1/public/lm/lmr6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publ
-ic/lm/lmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmri12
-.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr
-/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-Output written on p_approx_paper.pdf (12 pages, 221113 bytes).
+ 58i,9n,63p,944b,5337s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
+st, replaced by a fixed one
+
+{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/te
+xlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2019
+/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2019/texmf-dis
+t/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/dv
+ips/lm/lm-mathex.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/
+lmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmex10.pfb
+></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/loc
+al/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive
+/2019/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2019/texmf
+-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts
+/type1/public/lm/lmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publ
+ic/lm/lmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr6.
+pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/lo
+cal/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/
+2019/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/local/texlive/2019/texmf
+-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2019/texmf-dist/font
+s/type1/public/lm/lmsy6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pub
+lic/lm/lmsy8.pfb>
+Output written on p_approx_paper.pdf (13 pages, 273722 bytes).
 PDF statistics:
- 293 PDF objects out of 1000 (max. 8388607)
- 261 compressed objects within 3 object streams
- 64 named destinations out of 1000 (max. 500000)
- 8292 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 320 PDF objects out of 1000 (max. 8388607)
+ 284 compressed objects within 3 object streams
+ 68 named destinations out of 1000 (max. 500000)
+ 12388 words of extra memory for PDF output out of 14400 (max. 10000000)
 

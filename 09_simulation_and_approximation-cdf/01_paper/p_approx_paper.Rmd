@@ -61,13 +61,11 @@ In this paper we propose supervised Machine Learning Algorithms to approximate t
 The choice as to which of the available cointegration tests to use is a recurrent issue in econometric time series analysis. @Bayerhanck_2012 propose powerful meta tests which provide unambiguous test decisions. They combine several residual- and system-based tests in the manner of Fisher's [-@Fisher_1932] Chi-squared test. 
 
 Bayer and Hanck build their work on results from @Pesavento_2004, who defines the underlying model as $z'_t = [x'_t, y_t]$. $x_t$, an $n_1 \times 1$ vector, describes the regressor dynamics, while $y_t$ is a scalar which defines the cointegrating relation. They can be written as 
-
 \begin{align}
 \Delta x_t &= \tau_1 + v_{1t}, \\
 y_t &= (\mu_2 - \gamma' \mu_1) + (\tau_2 - \gamma' \tau_1) t + \gamma' x_t + u_t, \\
 u_t &= \rho u_{t-1} + v_{2t}.
 \end{align}
-
 $\mu_1$, $\mu_2$ $\tau_1$ and $\tau_2$ are the deterministic parts of the model. They are subject to the following restrictions: (i) $\mu_2 - \gamma' \mu_1$ and $\tau = 0$ which translates to no deterministics, (ii) $\tau = 0$ which corresponds to a constant in the cointegrating vector, (iii) $\tau_2 - \gamma' \tau_1 = 0$, a constant plus trend.
 
 $v_t = [v'_{1t} v_{2t}]'$ with $\Omega$ the long-run covariance matrix of $v_t$. For derivation of $v_t$ see @Pesavento_2004. Pesavento shows that {$v_t$} satisfies an FCLT, i.e. $T^{-1/2} \sum^{[T \cdot]}_{t=1} v_t \Rightarrow \Omega^{1/2} W(\cdot)$. It is further assumed that the $x_t$ are not cointegrated.
@@ -78,11 +76,19 @@ Furthermore, Pesavento introduces two other parameters. First, $\text{R}^2$ meas
 
 \textcolor{red}{Assumptions (BH S. 84)?}
 
-Bayer and Hanck's [-@Bayerhanck_2012] meta test combines the test statistics of four stand-alone tests. Namely, these are the tests of @Englegranger_1987, @Johansen_1988, @Boswijk_1994 and @Banerjee_1998. 
+Bayer and Hanck's [-@Bayerhanck_2012] meta test combines the test statistics of four stand-alone tests. Namely, these are the tests of @Englegranger_1987, @Johansen_1988, @Boswijk_1994 and @Banerjee_1998. For the sake of brevity the detailed derivation of the underlying tests has been deliberately omitted here. 
 
-\textcolor{red}{Engle-Granger}
+@Englegranger_1987 propose a two-step procedure to test the null hypothesis of no cointegration against the alternative of at least one cointegrating vector. First, the long-run relationship between $y_t$ and $\mathbf{x}_t$ is estimated by least squares regression. The obtained residuals $\hat{u}_t$ are then tested for a unit root. For this, Engle and Granger suggest the use of the $t$-statistic $t^{\text{ADF}}_\gamma$ in the Augmented Dickey-Fuller (ADF) regression:
+\begin{align}
+\Delta \hat{u}_t = \gamma \hat{u}_{t-1} + \sum^{k}_{i=1} \pi_i \Delta \hat{u}_{t-i} + \varepsilon_t.
+\end{align}
+The rejection of a unit root points to a cointegration relationship. 
 
-\textcolor{red}{Johansen}
+Johansen's [-@Johansen_1988] maximum eigenvalue test is a system-based test that allows for several cointegration relationships. Take the vector error correction model (VECM) 
+\begin{align}
+\Delta \mathbf{z}_t = \mathbf{\Pi z}_{t-1} + \sum^{k}_{i = 1} \mathbf{\Gamma}_p \Delta \mathbf{z}_{t-p} + \mathbf{d}_t + \mathbf{\varepsilon}_t.
+\end{align}
+\textcolor{red}{blabla Johansen test statistic}
 
 \textcolor{red}{Banerjee and Boswijk}
 
@@ -99,6 +105,13 @@ Let $t_i$ be the $i^{th}$ test statistic. If test $i$ rejects for large values, 
 
 
 # Simulation
+In this section, we describe the simulation of the null distribution of the meta test. The objective is to obtain data for training machine learning algorithms on approximating the p-values of the aforementioned test. In consideration of the different forms of the meta test we generated six data sets. These vary according to the specific combination of the underlying tests and also account for the above-mentioned restrictions on the deterministic parts of the model.
+
+This simulation relies largely on previous work by @Pesavento_2004. We consider $\text{R}^2 \in \{0, 0.05, 0.1, ..., 0.95\}$, $k = 11$ and $c = 0$^[Since we solely aim at simulating the distribution of the null of no cointegration we will not consider any further values of $c$ here.] and set the number of repetitions to 1,000,000. \textcolor{red}{N?}
+
+
+
+In accordance with
 
 # Models
 
