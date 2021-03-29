@@ -1,0 +1,239 @@
+\documentclass[a4paper, 12pt]{article}
+
+
+
+\input{settings/packages}
+
+\input{settings/pagestyle}
+\title{Zusammenfassung\\
+Entscheidungstheorie}
+\author{Jens Klenke}
+
+\usepackage{lscape}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\bc}{bc}
+\DeclareMathOperator{\poly}{poly}
+
+\renewcommand{\arraystretch}{1.5}
+
+\begin{document}
+
+\begin{table}
+	\centering
+	\begin{tabular}{ccc}
+		Number & Functional form & Range of $\gamma$ \\
+		\toprule
+		$1$ & $p = \text{poly}(t, \gamma) + \left( 1/k \right)$ & $\gamma \in \left\{3, 4, 5, 6 \right\}$\\
+		$2$ & $p = \text{poly}(t, \gamma) + \left( 1/k \right) + \text{poly}(t, \gamma) * 1/k $ & $\gamma \in \left\{3, 4, 5, 6 \right\}$\\
+		$3$ & $p = \text{poly}(t, \gamma) + \log (k) + \text{poly}(k, \gamma) * \log (k) $ & $\gamma \in \left\{3, 4, 5, 6 \right\}$\\
+		$4$ & $p = \text{poly}(t, \gamma) + k + \left( 1/k \right)$ & $\gamma \in \left\{3, 4, 5, 6 \right\}$\\
+		$5$ & $p = \text{poly}(\log (t), \gamma) + \log (k)$ & $\gamma \in \left\{3, 4, 5, 6, 8, 9, 10 \right\}$\\
+		$6$ & $p = \text{poly}(\log (t), \gamma) * \log (k)$ & $\gamma \in \left\{3, 4, 5, 6, 8, 9, 10 \right\}$\\ 	
+	\end{tabular}
+	\caption{Description of all tested models....}
+	\label{tab:func_form}	 
+\end{table}
+
+
+%%%%%%%%%%%%%%% table data case_1 ALL %%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{landscape}
+\begin{table}
+\resizebox{\textwidth}{!}{%
+	\centering
+	\begin{tabular}{lcccc}
+		Functional form & RMSE & RMSE\_cor & RMSE\_0.2 & RMSE\_cor\_0.2\\
+		\toprule
+		$\bc (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * \sqrt{k}$  & $4.97 \cdot 10^{-4}$& $4.69 \cdot 10^{-4}$ & $8.05 \cdot 10^{-4}$ &  $7.16 \cdot 10^{-4}$\\
+		$\bc (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$  & $5.39 \cdot 10^{-4}$ & $5.11 \cdot 10^{-4}$ & $ 8.54 \cdot 10^{-4}$ &  $7.61 \cdot 10^{-4}$\\
+		$p = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * \sqrt{k}$  & $7.68 \cdot 10^{-4}$ & $6.91 \cdot 10^{-4}$ & $1.01 \cdot 10^{-3}$ & $8.97 \cdot 10^{-4}$\\
+		$p = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k + \sqrt{k}$  & $7.79 \cdot 10^{-4}$ & $7.04 \cdot 10^{-4}$ & $1.05 \cdot 10^{-3}$ & $9.31 \cdot 10^{-4}$\\
+		$p = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$  & $7.82 \cdot 10^{-4}$ & $7.07 \cdot 10^{-4}$ & $1.06 \cdot 10^{-3}$ & $9.41 \cdot 10^{-4}$\\
+		\bottomrule
+	\end{tabular}
+	}
+	\caption{The 5 best models for the combined Non-Cointegration test of Bayer and Hanck, where \textit{all} underlying test are included and case 1.}
+	\label{tab:ALL_case_1}	 
+\end{table}
+%\end{landscape}
+
+%%%%%%%%%%%%%%% table data case_2 ALL %%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{landscape}
+\begin{table}
+\resizebox{\textwidth}{!}{%
+	\centering
+	\begin{tabular}{lcccc}
+		Functional form & RMSE & RMSE\_cor & RMSE\_0.2 & RMSE\_cor\_0.2\\
+		\toprule
+		$\log (p) = \poly(\bc (t), 10) * \log(k)$  & $1.27 \cdot 10^{-3}$& $1.25 \cdot 10^{-3}$ & $1.05 \cdot 10^{-3}$ &  $9.52 \cdot 10^{-4}$\\
+		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * \sqrt{k}$  & $6.82 \cdot 10^{-4}$ & $6.22 \cdot 10^{-4}$ & $ 1.28 \cdot 10^{-3}$ &  $1.12 \cdot 10^{-3}$\\
+		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$  & $7.32 \cdot 10^{-4}$ & $6.63 \cdot 10^{-4}$ & $1.39 \cdot 10^{-3}$ & $1.20 \cdot 10^{-3}$\\
+		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k + \sqrt{k}$  & $8.38 \cdot 10^{-4}$ & $7.78 \cdot 10^{-4}$ & $1.48 \cdot 10^{-3}$ & $1.31 \cdot 10^{-3}$\\
+		$\bc (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$  & $9.08 \cdot 10^{-4}$ & $8.42 \cdot 10^{-4}$ & $1.69 \cdot 10^{-3}$ & $1.50 \cdot 10^{-3}$\\
+		\bottomrule
+	\end{tabular}
+	}
+	\caption{The 5 best models for the combined Non-Cointegration test of Bayer and Hanck, where \textit{all} underlying test are included and case 2.}
+	\label{tab:ALL_case_2}	 
+\end{table}
+%\end{landscape}
+
+%%%%%%%%%%%%%%% table data case_3 ALL %%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{landscape}
+\begin{table}[h!]
+\resizebox{\textwidth}{!}{%
+	\centering
+	\begin{tabular}{lcccc}
+		Functional form & RMSE & RMSE\_cor & RMSE\_0.2 & RMSE\_cor\_0.2\\
+		\toprule
+		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * \sqrt{k}$  & $4.58 \cdot 10^{-4}$& $4.55 \cdot 10^{-4}$ & $3.37 \cdot 10^{-4}$ & $3.16 \cdot 10^{-4}$\\
+		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k $  & $5.17 \cdot 10^{-4}$ & $5.14 \cdot 10^{-4}$ & $ 3.904 \cdot 10^{-4}$ &  $3.73 \cdot 10^{-4}$\\
+		$\log (p) = \poly(\bc (t), 10) * \log(k)$  & $1.04 \cdot 10^{-3}$ & $1.04 \cdot 10^{-3}$ & $6.760 \cdot 10^{-4}$ & $6.50 \cdot 10^{-4}$\\		
+		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k + \sqrt{k}$  & $1.18 \cdot 10^{-3}$ & $1.17 \cdot 10^{-3}$ & $2.06 \cdot 10^{-3}$ & $2.05 \cdot 10^{-3}$\\		
+		$\bc (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$  & $1.16 \cdot 10^{-3}$ & $1.06 \cdot 10^{-3}$ & $2.08 \cdot 10^{-3}$ & $1.80 \cdot 10^{-3}$\\
+		\bottomrule
+	\end{tabular}
+	}
+	\caption{The 5 best models for the combined Non-Cointegration test of Bayer and Hanck, where \textit{all} underlying test are included and case 3.}
+	\label{tab:ALL_case_3}	 
+\end{table}
+%\end{landscape}
+
+%%%%%%%%%%%%%%% table data case_1 EG-J %%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{landscape}
+\begin{table}[h!]
+\resizebox{\textwidth}{!}{%
+	\centering
+	\begin{tabular}{lcccc}
+		Functional form & RMSE & RMSE\_cor & RMSE\_0.2 & RMSE\_cor\_0.2\\
+		\toprule
+		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$  & $4.75 \cdot 10^{-4}$& $4.44 \cdot 10^{-4}$ & $7.81 \cdot 10^{-4}$ & $6.84 \cdot 10^{-4}$\\
+		$\log (p) = \poly(\bc (t), 10) * \log(k)$  & $6.54 \cdot 10^{-4}$ & $5.87 \cdot 10^{-4}$ & $ 1.01 \cdot 10^{-3}$ &  $7.81 \cdot 10^{-4}$\\
+		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * \sqrt{k}$  & $7.60 \cdot 10^{-4}$ & $6.13 \cdot 10^{-4}$ & $1.46 \cdot 10^{-3}$ & $1.06 \cdot 10^{-3}$\\		
+		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k + \sqrt{k}$  & $7.64 \cdot 10^{-4}$ & $7.45 \cdot 10^{-4}$ & $1.29 \cdot 10^{-3}$ & $1.23 \cdot 10^{-3}$\\		
+		$\bc (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$  & $1.01 \cdot 10^{-3}$ & $9.17 \cdot 10^{-4}$ & $1.89 \cdot 10^{-3}$ & $1.65 \cdot 10^{-3}$\\
+		\bottomrule
+	\end{tabular}
+	}
+	\caption{The 5 best models for the combined Non-Cointegration test of Bayer and Hanck, where \textit{EG-J} underlying test are included and case 3.}
+	\label{tab:EG_J_case_1}	 
+\end{table}
+%\end{landscape}
+
+
+
+
+
+
+
+
+
+
+
+
+%	\FloatBarrier
+%	\FloatBarrier
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
