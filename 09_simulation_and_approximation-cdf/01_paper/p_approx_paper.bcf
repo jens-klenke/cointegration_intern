@@ -2812,32 +2812,32 @@
     <bcf:datasource type="file" datatype="bibtex">references.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="9">Bayerhanck_2012</bcf:citekey>
+    <bcf:citekey order="1">Bayerhanck_2012</bcf:citekey>
+    <bcf:citekey order="2">Bayerhanck_2012</bcf:citekey>
+    <bcf:citekey order="3">Bayerhanck_2012</bcf:citekey>
+    <bcf:citekey order="4">Bayerhanck_2012</bcf:citekey>
+    <bcf:citekey order="5">Fisher_1932</bcf:citekey>
+    <bcf:citekey order="6">Pesavento_2004</bcf:citekey>
+    <bcf:citekey order="7">Pesavento_2004</bcf:citekey>
+    <bcf:citekey order="8">Pesavento_2004</bcf:citekey>
+    <bcf:citekey order="9">Pesavento_2004</bcf:citekey>
     <bcf:citekey order="10">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="11">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="12">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="13">Fisher_1932</bcf:citekey>
-    <bcf:citekey order="14">Pesavento_2004</bcf:citekey>
-    <bcf:citekey order="15">Pesavento_2004</bcf:citekey>
-    <bcf:citekey order="16">Pesavento_2004</bcf:citekey>
-    <bcf:citekey order="17">Pesavento_2004</bcf:citekey>
-    <bcf:citekey order="18">Bayerhanck_2012</bcf:citekey>
+    <bcf:citekey order="11">Englegranger_1987</bcf:citekey>
+    <bcf:citekey order="12">Englegranger_1987</bcf:citekey>
+    <bcf:citekey order="13">Johansen_1988</bcf:citekey>
+    <bcf:citekey order="14">Johansen_1988</bcf:citekey>
+    <bcf:citekey order="15">Boswijk_1994</bcf:citekey>
+    <bcf:citekey order="16">Boswijk_1994</bcf:citekey>
+    <bcf:citekey order="17">Banerjee_1998</bcf:citekey>
+    <bcf:citekey order="18">Banerjee_1998</bcf:citekey>
     <bcf:citekey order="19">Englegranger_1987</bcf:citekey>
     <bcf:citekey order="20">Englegranger_1987</bcf:citekey>
     <bcf:citekey order="21">Johansen_1988</bcf:citekey>
-    <bcf:citekey order="22">Johansen_1988</bcf:citekey>
-    <bcf:citekey order="23">Boswijk_1994</bcf:citekey>
-    <bcf:citekey order="24">Boswijk_1994</bcf:citekey>
-    <bcf:citekey order="25">Banerjee_1998</bcf:citekey>
-    <bcf:citekey order="26">Banerjee_1998</bcf:citekey>
-    <bcf:citekey order="27">Englegranger_1987</bcf:citekey>
-    <bcf:citekey order="28">Englegranger_1987</bcf:citekey>
-    <bcf:citekey order="29">Johansen_1988</bcf:citekey>
-    <bcf:citekey order="30">Fisher_1932</bcf:citekey>
-    <bcf:citekey order="31">Fisher_1932</bcf:citekey>
-    <bcf:citekey order="32">Fisher_1932</bcf:citekey>
-    <bcf:citekey order="33">Pesavento_2004</bcf:citekey>
-    <bcf:citekey order="34">Pesavento_2004</bcf:citekey>
+    <bcf:citekey order="22">Fisher_1932</bcf:citekey>
+    <bcf:citekey order="23">Fisher_1932</bcf:citekey>
+    <bcf:citekey order="24">Fisher_1932</bcf:citekey>
+    <bcf:citekey order="25">Pesavento_2004</bcf:citekey>
+    <bcf:citekey order="26">Pesavento_2004</bcf:citekey>
   </bcf:section>
   <!-- SECTION 1 -->
   <bcf:bibdata section="1">
@@ -2875,22 +2875,6 @@
   </bcf:section>
   <!-- SECTION 0 (cont.) -->
   <bcf:section number="0">
-    <bcf:citekey order="35">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="36">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="37">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="38">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="39">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="40">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="41">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="42">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="43">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="44">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="45">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="46">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="47">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="48">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="49">Bayerhanck_2012</bcf:citekey>
-    <bcf:citekey order="50">Bayerhanck_2012</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.9)  28 MAR 2021 18:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.2.9)  30 MAR 2021 15:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1200,12 +1200,7 @@ ogo_en.png>]
 \openout6 = `p_approx_paper.lof'.
 
 (./p_approx_paper.lot
-Overfull \hbox (3.96545pt too wide) detected at line 11
- [][][]\T1/lmr/m/n/12 VIII[][]
- []
-
-
-Overfull \hbox (3.96545pt too wide) detected at line 13
+Overfull \hbox (3.96545pt too wide) detected at line 5
  [][][]\T1/lmr/m/n/12 VIII[][]
  []
 
@@ -1273,10 +1268,20 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
 [7
 
 
-] [8] [9
+] [8]
+
+LaTeX Warning: Text page IX contains only floats.
+
+[9] [10] [11
 
 
 ] (./p_approx_paper.aux)
@@ -1287,13 +1292,13 @@ Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24284 strings out of 479302
- 400632 string characters out of 5871205
- 1347446 words of memory out of 5000000
- 40745 multiletter control sequences out of 15000+600000
+ 24290 strings out of 479302
+ 400688 string characters out of 5871205
+ 1368735 words of memory out of 5000000
+ 40747 multiletter control sequences out of 15000+600000
  489529 words of font info for 176 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
- 73i,14n,81p,944b,6863s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 73i,13n,81p,944b,6863s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exi
 st, replaced by a fixed one
 
@@ -1312,11 +1317,12 @@ onts/type1/public/lm/lmr7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm
 /lmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texl
 ive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2020/texmf-dis
 t/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/publi
-c/lm/lmsy8.pfb>
-Output written on p_approx_paper.pdf (14 pages, 280344 bytes).
+c/lm/lmsy8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/
+msbm10.pfb>
+Output written on p_approx_paper.pdf (16 pages, 284247 bytes).
 PDF statistics:
- 351 PDF objects out of 1000 (max. 8388607)
- 309 compressed objects within 4 object streams
- 76 named destinations out of 1000 (max. 500000)
+ 356 PDF objects out of 1000 (max. 8388607)
+ 315 compressed objects within 4 object streams
+ 80 named destinations out of 1000 (max. 500000)
  47204 words of extra memory for PDF output out of 51595 (max. 10000000)
 

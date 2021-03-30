@@ -33,6 +33,15 @@ EG_J <- model_metrics_E_J %>%
     dplyr::slice_min(RMSE_cor_0.2, n = 5) %>%
     dplyr::select(-c(pred, case))
 
+EG_J_2 <- model_metrics_E_J %>%
+    dplyr::filter(case == 'data_case_2') %>%
+    dplyr::slice_min(RMSE_cor_0.2, n = 5) %>%
+    dplyr::select(-c(pred, case))
+
+EG_J_3 <- model_metrics_E_J %>%
+    dplyr::filter(case == 'data_case_3') %>%
+    dplyr::slice_min(RMSE_cor_0.2, n = 5) %>%
+    dplyr::select(-c(pred, case))
 
 
 
