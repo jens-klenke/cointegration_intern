@@ -234,13 +234,13 @@
 
   \nth{5}
 
-  Winter Term 2020
+  Summer Term 2021
   
   \columnbreak
   
   Janine Langerbein
 
-  307
+  3061371
   
   janine.langerbein@stud.uni-due.de
 
@@ -248,7 +248,7 @@
 
   \nth{5}
 
-  Winter Term 2020
+  Summer Term 2021
   
   \end{scriptsize}
   
@@ -284,6 +284,7 @@
 
 \begin{acronym}[dummyyyy]
  \acro{bagging}{Bootstrap Aggregation}
+ \acro{FCLT}{functional central limit theorem}
  \acro{LASSO}{Least Absolute Shrinkage and Selection Operator}
  \acro{OLS}{ordinary least squares}
  \acro{pcr}{Principal Components Regression}
@@ -313,9 +314,9 @@ Meta tests have been shown to be a powerful tool when testing for the
 null of non-cointegration. The distribution of their test statistic,
 however, is mostly not available in closed form. This might pose
 difficulties when implementing the meta tests in econometric software
-packages, as one has to include tables of critical values and p-values
-for each combination of the underlying tests. Software package size
-limitations are therefore quickly exceeded.
+packages, as one has to include the full null distribution for each
+combination of the underlying tests. Software package size limitations
+are therefore quickly exceeded.
 
 In this paper we propose supervised Machine Learning Algorithms to
 approximate the p-values of the meta test by \textcite{Bayerhanck_2012}
@@ -338,19 +339,21 @@ unambiguous test decisions. They combine several residual- and
 system-based tests in the manner of Fisher's \autocite*{Fisher_1932}
 Chi-squared test.
 
-Bayer and Hanck build their work on results from
+Bayer and Hanck build their paper on previous work from
 \textcite{Pesavento_2004}, who defines the underlying model as
-\(z'_t = [x'_t, y_t]\). \(x_t\), an \(n_1 \times 1\) vector, describes
-the regressor dynamics, while \(y_t\) is a scalar which defines the
-cointegrating relation. They can be written as \begin{align}
-\Delta x_t &= \tau_1 + v_{1t}, \\
-y_t &= (\mu_2 - \gamma' \mu_1) + (\tau_2 - \gamma' \tau_1) t + \gamma' x_t + u_t, \\
-u_t &= \rho u_{t-1} + v_{2t}.
-\end{align} \(\mu_1\), \(\mu_2\) \(\tau_1\) and \(\tau_2\) are the
-deterministic parts of the model. They are subject to the following
-restrictions: (i) \(\mu_2 - \gamma' \mu_1\) and \(\tau = 0\) which
-translates to no deterministics, (ii) \(\tau = 0\) which corresponds to
-a constant in the cointegrating vector, (iii)
+\(z'_t = [x'_t, y_t]\), with \(x_t\) being an \(n_1 \times 1\) vector
+and \(y_t\) a scalar, which displays the cointegration relation. They
+can be written as \textbackslash begin\{subequations\} \label{eq:1}
+\begin{align}
+\Delta x_t &= \tau_1 + v_{1t} \label{eq:11} \\
+y_t &= (\mu_2 - \gamma' \mu_1) + (\tau_2 - \gamma' \tau_1) t + \gamma' x_t + u_t, \label{eq:12} \\
+u_t &= \rho u_{t-1} + v_{2t}. \label{eq:13}
+\end{align} \textbackslash end\{subequation\} \(\Delta x_t\) presents
+the regressor dynamics. \(\mu_1\), \(\mu_2\), \(\tau_1\) and \(\tau_2\)
+are the deterministic parts of the model. They are subject to the
+following restrictions: (i) \(\mu_2 - \gamma' \mu_1\) and \(\tau = 0\)
+which translates to no deterministics, (ii) \(\tau = 0\) which
+corresponds to a constant in the cointegrating vector, (iii)
 \(\tau_2 - \gamma' \tau_1 = 0\), a constant plus trend.
 
 \(v_t = [v'_{1t} v_{2t}]'\) with \(\Omega\) the long-run covariance
@@ -360,23 +363,23 @@ FCLT,
 i.e.~\(T^{-1/2} \sum^{[T \cdot]}_{t=1} v_t \Rightarrow \Omega^{1/2} W(\cdot)\).
 It is further assumed that the \(x_t\) are not cointegrated.
 
-It clearly follows from (2.3) that \(z_t\) is cointegrated if
+It clearly follows from \eqref{eq:13} that \(z_t\) is cointegrated if
 \(\rho < 1\). Hence the null hypothesis of no cointegration is
 \(H_0: p = 1\).
 
 Furthermore, Pesavento introduces two other parameters. First,
 \(\text{R}^2\) measures the squared correlation of \(v_{1t}\) and
 \(v_{2t}\). It can be interpreted as the influence of the right-hand
-side variables in (2.2). It ranks between zero and one. When there is no
-long-run correlation between those variables and the errors from the
-cointegration regression, \(\text{R}^2\) equals zero. Secondly, the
-number of lags is approximated by a finite number \(k\).
+side variables in \eqref{eq:12}. It ranks between zero and one. When
+there is no long-run correlation between those variables and the errors
+from the cointegration regression, \(\text{R}^2\) equals zero. Secondly,
+the number of lags is approximated by a finite number \(k\).
 
 \textcolor{red}{Assumptions (BH S. 84)?}
 
-Bayer and Hanck's \autocite*{Bayerhanck_2012} meta test combines the
-test statistics of four stand-alone tests. Namely, these are the tests
-of \textcite{Englegranger_1987}, \textcite{Johansen_1988},
+Bayer and Hanck's \autocite*{Bayerhanck_2012} meta test considers the
+test statistics of up to four stand-alone tests. Namely, these are the
+tests of \textcite{Englegranger_1987}, \textcite{Johansen_1988},
 \textcite{Boswijk_1994} and \textcite{Banerjee_1998}. For the sake of
 brevity the detailed derivation of the underlying tests has been
 deliberately omitted here.
@@ -388,16 +391,20 @@ one cointegrating vector. First, the long-run relationship between
 The obtained residuals \(\hat{u}_t\) are then tested for a unit root.
 For this, Engle and Granger suggest the use of the \(t\)-statistic
 \(t^{\text{ADF}}_\gamma\) in the Augmented Dickey-Fuller (ADF)
-regression: \begin{align}
+regression: \begin{equation}
 \Delta \hat{u}_t = \gamma \hat{u}_{t-1} + \sum^{k}_{i=1} \pi_i \Delta \hat{u}_{t-i} + \varepsilon_t.
-\end{align} The rejection of a unit root points to a cointegration
+\label{eq:2}
+\end{equation} The rejection of a unit root points to a cointegration
 relationship.
 
 Johansen's \autocite*{Johansen_1988} maximum eigenvalue test is a
 system-based test that allows for several cointegration relationships.
-Take the vector error correction model (VECM) \begin{align}
+Take the vector error correction model (VECM)\footnote{Due to practical
+  reasons we omit the derivation of the VECM which is presumed to be
+  known.} \begin{equation}
 \Delta \mathbf{z}_t = \mathbf{\Pi z}_{t-1} + \sum^{k}_{i = 1} \mathbf{\Gamma}_p \Delta \mathbf{z}_{t-p} + \mathbf{d}_t + \mathbf{\varepsilon}_t.
-\end{align} \textcolor{red}{blabla Johansen test statistic}
+\label{eq:3}
+\end{equation} \textcolor{red}{blabla Johansen test statistic}
 
 \textcolor{red}{Banerjee and Boswijk}
 
@@ -407,7 +414,7 @@ merges the tests using the formula
 
 \begin{equation}
 \tilde{\chi}^2_{\mathcal{I}} := -2 \sum_{i \in \mathcal{I}} \ln{(p_i)}. 
-\label{Fisher}
+\label{eq:4}
 \end{equation}
 
 Let \(t_i\) be the \(i^{th}\) test statistic. If test \(i\) rejects for
@@ -427,7 +434,7 @@ null distributions \(F_{\mathcal{F_I}}\), as
 \(\mathcal{H}_0\) if \(T \rightarrow \infty\), with \(\mathcal{F_I}\)
 some random variable. It is therefore feasible to simulate the joint
 null distribution of the \(\xi_i\) to obtain the distribution
-\(F_{\mathcal{F_I}}\) of \ref{Fisher}. The \(F_{\mathcal{F_I}}\) depend
+\(F_{\mathcal{F_I}}\) of \eqref{eq:4}. The \(F_{\mathcal{F_I}}\) depend
 on which and how many tests are combined. The distributions of the
 \(\xi_i\) depend on \(K-1\) and the deterministic case.
 
@@ -439,7 +446,7 @@ the Bayer Hanck meta test. The objective is to obtain data for training
 machine learning algorithms on approximating the p-values of the
 aforementioned test. In consideration of the different forms of the meta
 test we generated six data sets. These vary according to the specific
-combination of the underlying tests and also account for the
+combinations of the underlying tests and also account for the
 above-mentioned restrictions on the deterministic parts of the model.
 
 This simulation relies largely on previous work by
