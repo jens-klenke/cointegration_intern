@@ -79,5 +79,31 @@ metric_fun <- function(object, data){
     return(mod_sum)
 }
 
+# Create tables for models
+table_E_J_fun <- function(data_case) {
+    expand_grid(calls_E_J, expo) %>%
+        # functional call, merge of power and call
+        dplyr::mutate(formula = merge_calls('power', .$expo, .$calls_E_J)) %>%
+        # adding data
+        dplyr::mutate(data = list(data_case)) %>%
+        # fitting the model 
+        dplyr::mutate(models = map2(formula, data, own_lm)) %>%
+        # calculating the metrics for model evaluation
+        dplyr::mutate(map2_df(models, data, metric_fun)) %>%
+        # deleting data and other unimportant variables
+        dplyr::select(-data)
+}
 
-
+table_all_fun <- function(data_case) {
+    expand_grid(calls_all, expo) %>%
+        # functional call, merge of power and call
+        dplyr::mutate(formula = merge_calls('power', .$expo, .$calls_all)) %>%
+        # adding data
+        dplyr::mutate(data = list(data_case)) %>%
+        # fitting the model 
+        dplyr::mutate(models = map2(formula, data, own_lm)) %>%
+        # calculating the metrics for model evaluation
+        dplyr::mutate(map2_df(models, data, metric_fun)) %>%
+        # deleting data and other unimportant variables
+        dplyr::select(-data)
+}
