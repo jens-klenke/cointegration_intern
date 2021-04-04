@@ -35,7 +35,7 @@ rm('Data')
 lambda_stat_case_1 <- Rfast::bc(data_case_1$stat_Fisher_E_J)
 lambda_p <- Rfast::bc(data_case_1$p_value_Fisher_E_J)
 
-data_case_1 <- data_case_1 %>% mutate(
+data_case_1 %<>% mutate(
     stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat_case_1)-1)/lambda_stat_case_1,
     p_value_Fisher_E_J_bc = ((p_value_Fisher_E_J^lambda_p)-1)/lambda_p, 
     p_value_Fisher_E_J_lg = log(p_value_Fisher_E_J)
@@ -44,7 +44,7 @@ data_case_1 <- data_case_1 %>% mutate(
 # case_2 
 lambda_stat_case_2 <- Rfast::bc(data_case_2$stat_Fisher_E_J)
 
-data_case_2 <- data_case_2 %>% mutate(
+data_case_2 %<>% mutate(
     stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat_case_2)-1)/lambda_stat_case_2,
     p_value_Fisher_E_J_bc = ((p_value_Fisher_E_J^lambda_p)-1)/lambda_p,
     p_value_Fisher_E_J_lg = log(p_value_Fisher_E_J)
@@ -53,7 +53,7 @@ data_case_2 <- data_case_2 %>% mutate(
 # case_3 
 lambda_stat_case_3 <- Rfast::bc(data_case_3$stat_Fisher_E_J)
 
-data_case_3 <- data_case_3 %>% mutate(
+data_case_3 %<>% mutate(
     stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat_case_3)-1)/lambda_stat_case_3,
     p_value_Fisher_E_J_bc = ((p_value_Fisher_E_J^lambda_p)-1)/lambda_p,
     p_value_Fisher_E_J_lg = log(p_value_Fisher_E_J)
