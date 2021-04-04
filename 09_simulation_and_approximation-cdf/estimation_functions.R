@@ -11,6 +11,15 @@ invBoxCox <- function(x){
     return(Re(x))
 }
 
+# BoxCox + log Transformation
+bc_log_E_J_fun <- function(data, lambda_stat) {
+    data %>%
+        mutate(
+            stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat)-1)/lambda_stat,
+            p_value_Fisher_E_J_bc = ((p_value_Fisher_E_J^lambda_p)-1)/lambda_p, 
+            p_value_Fisher_E_J_lg = log(p_value_Fisher_E_J))
+}
+
 # metric function
 metric_fun <- function(object, data){
     
