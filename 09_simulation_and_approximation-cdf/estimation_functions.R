@@ -1,14 +1,4 @@
 # functions
-merge_calls <- function(search_word, substitute, search_vector){
-    
-    vec_call <- rep(NA, length(search_vector))
-    
-    for (i in 1:length(search_vector)) {
-        vec_call[i] <- gsub(get('search_word'), substitute[i], search_vector[i])
-    }   
-    
-    return(vec_call)
-}
 
 # function automated lm    
 own_lm <- function(call_mod, data){
@@ -83,7 +73,8 @@ metric_fun <- function(object, data){
 table_E_J_fun <- function(data_case) {
     expand_grid(calls_E_J, expo) %>%
         # functional call, merge of power and call
-        dplyr::mutate(formula = merge_calls('power', .$expo, .$calls_E_J)) %>%
+        dplyr::mutate(dplyr::across("calls_E_J", str_replace, "power", 
+                                    as.character(.$expo), .names = "formula"))        
         # adding data
         dplyr::mutate(data = list(data_case)) %>%
         # fitting the model 
@@ -97,7 +88,8 @@ table_E_J_fun <- function(data_case) {
 table_all_fun <- function(data_case) {
     expand_grid(calls_all, expo) %>%
         # functional call, merge of power and call
-        dplyr::mutate(formula = merge_calls('power', .$expo, .$calls_all)) %>%
+        dplyr::mutate(dplyr::across("calls_all", str_replace, "power", 
+                                    as.character(.$expo), .names = "formula")) %>%
         # adding data
         dplyr::mutate(data = list(data_case)) %>%
         # fitting the model 
