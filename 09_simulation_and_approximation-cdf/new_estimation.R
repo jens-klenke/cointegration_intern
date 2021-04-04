@@ -28,6 +28,7 @@ data_case_2 <- Data %>%
 data_case_3 <- Data %>%
     dplyr::filter(case == 3)
 
+rm('Data')
 #---- Boxcox Transformation ----
 
 # case_1 
@@ -65,23 +66,24 @@ lambda_bc_EJ <- tibble(
 )
 
 #-- calls and range of power ----
-# expand Grid and sub 
+# E_J
 calls_E_J <- c('p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power)',
-           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + I(1/k)',
-           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + k + I(1/k)',
-           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + I(1/k) + poly(stat_Fisher_E_J, power) * I(1/k)',
-           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + log(k) + poly(stat_Fisher_E_J, power) * log(k)',
-           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) + k',
-           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) * k',
-           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) * k + (1/k)',
-           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) + log(k)',
+#           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + I(1/k)',
+#           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + k + I(1/k)',
+#           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + I(1/k) + poly(stat_Fisher_E_J, power) * I(1/k)',
+#           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + log(k) + poly(stat_Fisher_E_J, power) * log(k)',
+#           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) + k',
+#           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) * k',
+#           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) * k + (1/k)',
+#           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) + log(k)',
            'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) * log(k)'
            )
 
+# all
 calls_all <- c('p_value_Fisher_all ~ poly(stat_Fisher_all, power)')
 
-
-expo <- 3:10
+# power
+expo <- 2:3 #3:10
 
 
 #-- E_J case_1 ----
@@ -93,7 +95,9 @@ table_E_J_case_1 <- expand_grid(calls_E_J, expo) %>%
     # fitting the model 
     dplyr::mutate(models = map2(formula, data, own_lm)) %>%
     # calculating the metrics for model evaluation
-    dplyr::mutate(map2_df(models, data, metric_fun))
+    dplyr::mutate(map2_df(models, data, metric_fun)) %>%
+    # deleting data and other unimportant variables
+    dplyr::select(-data)
     
 #-- E_J case_2 ----
 table_E_J_case_2 <- expand_grid(calls_E_J, expo) %>%
@@ -104,4 +108,9 @@ table_E_J_case_2 <- expand_grid(calls_E_J, expo) %>%
     # fitting the model 
     dplyr::mutate(models = map2(formula, data, own_lm)) %>%
     # calculating the metrics for model evaluation
-    dplyr::mutate(map2_df(models, data, metric_fun))
+    dplyr::mutate(map2_df(models, data, metric_fun)) %>%
+    # deleting data and other unimportant variables
+    dplyr::select(-data)
+
+
+
