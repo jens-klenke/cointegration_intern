@@ -4,7 +4,7 @@ merge_calls <- function(search_word, substitute, search_vector){
     vec_call <- rep(NA, length(search_vector))
     
     for (i in 1:length(search_vector)) {
-        vec_call[i] <- sub(get('search_word'), substitute[i], search_vector[i])
+        vec_call[i] <- gsub(get('search_word'), substitute[i], search_vector[i])
     }   
     
     return(vec_call)

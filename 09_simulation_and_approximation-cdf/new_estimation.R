@@ -16,6 +16,10 @@ if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens
     load('D:\\Klenke\\Data_1_m.RData')
 }
 
+# just for the programming, delete before running final results
+Data %<>%
+    dplyr::sample_n(100000)
+
 # Split Dataset in Cases
 data_case_1 <- Data %>%
     dplyr::filter(case == 1)
@@ -60,33 +64,44 @@ lambda_bc_EJ <- tibble(
     value = c(lambda_stat_case_1, lambda_p, lambda_stat_case_2, lambda_p,  lambda_stat_case_3, lambda_p)   
 )
 
-
-
-
-# just for the programming, delete before running final results
-Data %<>%
-    dplyr::sample_n(100)
-
-
 #-- calls and range of power ----
 # expand Grid and sub 
-calls_E_J <- c(#'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power)',
-           #'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + I(1/k)',
-           #'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + k + I(1/k)',
-           #'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + I(1/k) + poly(stat_Fisher_E_J, power) * I(1/k)',
-           #'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + log(k) + poly(stat_Fisher_E_J, power) * log(k)',
-           #'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) + k',
-           #'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) * k',
-           #'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) * k + (1/k)',
-#           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) + log(k)',
+calls_E_J <- c('p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power)',
+           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + I(1/k)',
+           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + k + I(1/k)',
+           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + I(1/k) + poly(stat_Fisher_E_J, power) * I(1/k)',
+           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + log(k) + poly(stat_Fisher_E_J, power) * log(k)',
+           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) + k',
+           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) * k',
+           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) * k + (1/k)',
+           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) + log(k)',
            'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) * log(k)'
            )
-expo <- 2 #3:10
 
+calls_all <- c('p_value_Fisher_all ~ poly(stat_Fisher_all, power)')
+
+
+expo <- 3:10
+
+
+#-- E_J case_1 ----
 table_E_J_case_1 <- expand_grid(calls_E_J, expo) %>%
+    # functiona call, merge of power and call
     dplyr::mutate(formula = merge_calls('power', .$expo, .$calls_E_J)) %>%
-    dplyr::mutate(data = list(Data)) %>%
+    # adding data
+    dplyr::mutate(data = list(data_case_1)) %>%
     # fitting the model 
     dplyr::mutate(models = map2(formula, data, own_lm)) %>%
+    # calculating the metrics for model evaluation
     dplyr::mutate(map2_df(models, data, metric_fun))
     
+#-- E_J case_2 ----
+table_E_J_case_2 <- expand_grid(calls_E_J, expo) %>%
+    # functiona call, merge of power and call
+    dplyr::mutate(formula = merge_calls('power', .$expo, .$calls_E_J)) %>%
+    # adding data
+    dplyr::mutate(data = list(data_case_2)) %>%
+    # fitting the model 
+    dplyr::mutate(models = map2(formula, data, own_lm)) %>%
+    # calculating the metrics for model evaluation
+    dplyr::mutate(map2_df(models, data, metric_fun))

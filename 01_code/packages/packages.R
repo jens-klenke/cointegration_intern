@@ -38,5 +38,6 @@ pacman::p_load(dplyr,
                RcppEigen,
                formattable,
                tidypredict,
-               broom)
+               broom,
+               magrittr)
 
