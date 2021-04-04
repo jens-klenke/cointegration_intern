@@ -86,44 +86,29 @@ calls_all <- c('p_value_Fisher_all ~ poly(stat_Fisher_all, power)')
 expo <- 3:10
 
 #--------------- E_J -----
+table_E_J_fun <- function(data_case) {
+    expand_grid(calls_E_J, expo) %>%
+        # functional call, merge of power and call
+        dplyr::mutate(formula = merge_calls('power', .$expo, .$calls_E_J)) %>%
+        # adding data
+        dplyr::mutate(data = list(data_case)) %>%
+        # fitting the model 
+        dplyr::mutate(models = map2(formula, data, own_lm)) %>%
+        # calculating the metrics for model evaluation
+        dplyr::mutate(map2_df(models, data, metric_fun)) %>%
+        # deleting data and other unimportant variables
+        dplyr::select(-data)
+}
+
 #-- E_J case_1 ----
-table_E_J_case_1 <- expand_grid(calls_E_J, expo) %>%
-    # functional call, merge of power and call
-    dplyr::mutate(formula = merge_calls('power', .$expo, .$calls_E_J)) %>%
-    # adding data
-    dplyr::mutate(data = list(data_case_1)) %>%
-    # fitting the model 
-    dplyr::mutate(models = map2(formula, data, own_lm)) %>%
-    # calculating the metrics for model evaluation
-    dplyr::mutate(map2_df(models, data, metric_fun)) %>%
-    # deleting data and other unimportant variables
-    dplyr::select(-data)
-    
+table_E_J_case_1 <- table_E_J_fun(data_case_1)
+
 #-- E_J case_2 ----
-table_E_J_case_2 <- expand_grid(calls_E_J, expo) %>%
-    # functional call, merge of power and call
-    dplyr::mutate(formula = merge_calls('power', .$expo, .$calls_E_J)) %>%
-    # adding data
-    dplyr::mutate(data = list(data_case_2)) %>%
-    # fitting the model 
-    dplyr::mutate(models = map2(formula, data, own_lm)) %>%
-    # calculating the metrics for model evaluation
-    dplyr::mutate(map2_df(models, data, metric_fun)) %>%
-    # deleting data and other unimportant variables
-    dplyr::select(-data)
+table_E_J_case_2 <- table_E_J_fun(data_case_2)
 
 #-- E_J case_3 ----
-table_E_J_case_3 <- expand_grid(calls_E_J, expo) %>%
-    # functional call, merge of power and call
-    dplyr::mutate(formula = merge_calls('power', .$expo, .$calls_E_J)) %>%
-    # adding data
-    dplyr::mutate(data = list(data_case_3)) %>%
-    # fitting the model 
-    dplyr::mutate(models = map2(formula, data, own_lm)) %>%
-    # calculating the metrics for model evaluation
-    dplyr::mutate(map2_df(models, data, metric_fun)) %>%
-    # deleting data and other unimportant variables
-    dplyr::select(-data)
+table_E_J_case_3 <- table_E_J_fun(data_case_3)
+
 
 #--------------- ALL -----
 #-- all case_1 ----
