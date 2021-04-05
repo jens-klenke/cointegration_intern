@@ -35,7 +35,7 @@ rm('Data')
 lambda_stat_case_1 <- Rfast::bc(data_case_1$stat_Fisher_E_J)
 lambda_p <- Rfast::bc(data_case_1$p_value_Fisher_E_J)
 
-data_case_1 %>% bc_log_E_J_fun(lambda_stat_case_1)
+data_case_1 %<>% bc_log_E_J_fun(lambda_stat_case_1)
 
 # case_2 
 lambda_stat_case_2 <- Rfast::bc(data_case_2$stat_Fisher_E_J)
