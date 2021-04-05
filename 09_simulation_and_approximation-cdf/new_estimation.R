@@ -57,7 +57,7 @@ lambda_bc_EJ <- tibble(
 calls_E_J <- c('p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power)',
 #           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + I(1/k)',
 #           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + k + I(1/k)',
-#           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + I(1/k) + poly(stat_Fisher_E_J, power) * I(1/k)',
+           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + I(1/k) + poly(stat_Fisher_E_J, power) * I(1/k)',
 #           'p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power) + log(k) + poly(stat_Fisher_E_J, power) * log(k)',
 #           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) + k',
 #           'p_value_Fisher_E_J ~ poly(log(stat_Fisher_E_J), power) * k',

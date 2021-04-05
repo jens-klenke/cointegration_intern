@@ -365,10 +365,8 @@ It is further assumed that the \(x_t\) are not cointegrated.
 
 It clearly follows from \eqref{eq:13} that \(z_t\) is cointegrated if
 \(\rho < 1\). Hence the null hypothesis of no cointegration is
-\(H_0: p = 1\).
-
-Furthermore, Pesavento introduces two other parameters. First,
-\(\text{R}^2\) measures the squared correlation of \(v_{1t}\) and
+\(H_0: p = 1\). Furthermore, Pesavento introduces two other parameters.
+First, \(\text{R}^2\) measures the squared correlation of \(v_{1t}\) and
 \(v_{2t}\). It can be interpreted as the influence of the right-hand
 side variables in \eqref{eq:12}. It ranks between zero and one. When
 there is no long-run correlation between those variables and the errors
@@ -445,25 +443,28 @@ In this section, we describe the simulation of the null distribution of
 the Bayer Hanck meta test. The objective is to obtain data for training
 machine learning algorithms on approximating the p-values of the
 aforementioned test. In consideration of the different forms of the meta
-test we generated six data sets. These vary according to the specific
+test we generate six data sets. These vary according to the specific
 combinations of the underlying tests and also account for the
 above-mentioned restrictions on the deterministic parts of the model.
 
-This simulation relies largely on previous work by
-\textcite{Pesavento_2004}. We consider
+The following approach relies largely on previous work by
+\textcite{Pesavento_2004}. For calculating the Bayer Hanck test
+statistic we require the p-values of the underlying tests. For this, we
+simulate their null distributions. It can be shown that asymptotically
+these are functions of standard Brownian motions. Here, the latter are
+constructed by step functions using Gaussian random walk with
+\(N = 1000\) observations. The number of repetitions is set to
+1,000,000. Furthermore, we consider
 \(\text{R}^2 \in \{0, 0.05, 0.1, ..., 0.95\}\), \(k = 11\) and
 \(c = 0\)\footnote{Since we solely aim at simulating the distribution of
   the null of no cointegration we will not consider any further values
-  of \(c\) here.} and set the number of repetitions to 1,000,000.
-\textcolor{red}{N? c vielleicht mal definieren}
+  of \(c\) here.} \textcolor{red}{(c mal definieren)}.
 
-To calculate the Bayer Hanck test statistic we first simulate the null
-distributions of the underlying test statistics. It can be shown that
-asymptotically these are non-standard but a function of standard
-Brownian motions. The latter is approximated by step functions using
-Gaussian random walk with \(N = 1000\) observations.
-\textcolor{red}{Referenz Theorem? OU Prozess? Nochmal auf Transformation je nach case eingehen?}
-p values durch cdf, Fisherstat + pvalues berechnen.
+From the mass of test statistics we build the cumulative distribution
+function of each underlying test and calculate the respective p-values.
+These are inserted into \eqref{eq:4} to eventually obtain the Bayer
+Hanck test statistics. Analogous to the previous approach, we deduce the
+associated null distribution and the p-values.
 
 \hypertarget{models}{%
 \section{Models}\label{models}}
