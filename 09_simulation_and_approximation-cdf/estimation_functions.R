@@ -82,7 +82,7 @@ metric_fun <- function(object, data){
 table_E_J_fun <- function(data_case) {
     expand_grid(calls_E_J, expo) %>%
         # functional call, merge of power and call
-        dplyr::mutate(dplyr::across("calls_E_J", str_replace, "power", 
+        dplyr::mutate(dplyr::across("calls_E_J", str_replace_all, "power", 
                                     as.character(.$expo), .names = "formula")) %>%
         # adding data
         dplyr::mutate(data = list(data_case)) %>%
@@ -97,7 +97,7 @@ table_E_J_fun <- function(data_case) {
 table_all_fun <- function(data_case) {
     expand_grid(calls_all, expo) %>%
         # functional call, merge of power and call
-        dplyr::mutate(dplyr::across("calls_all", str_replace, "power", 
+        dplyr::mutate(dplyr::across("calls_all", str_replace_all, "power", 
                                     as.character(.$expo), .names = "formula")) %>%
         # adding data
         dplyr::mutate(data = list(data_case)) %>%
