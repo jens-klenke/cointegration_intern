@@ -23,19 +23,30 @@ predict(fit_case_1, test_data)
 
 ##### linear / poly / lm model 
 
-object_size(fit_case_1)
-
-clean_model <- function(){
-    object$fitted.values <- NULL
-    object$residuals <- NULL
-    object$effects <- NULL
-    object$model <- NULL
-    object$qr$qr <- NULL 
+clean_lm <- function(object) {
+    object$y = c()
+    object$model = c()
     
-    return(object)
+    object$residuals = c()
+    object$fitted.values = c()
+    object$effects = c()
+    object$qr$qr = c()  
+    object$linear.predictors = c()
+    object$weights = c()
+    object$prior.weights = c()
+    object$data = c()
+    
+    
+    object$family$variance = c()
+    object$family$dev.resids = c()
+    object$family$aic = c()
+    object$family$validmu = c()
+    object$family$simulate = c()
+    attr(object$terms,".Environment") = c()
+    attr(object$formula,".Environment") = c()
+    
+    object
 }
-
-object_size(fit_case_1)
 
 #### GAM models ####
 fit_gam_case_1 <- gam::gam(p_value_E_G ~ ns(stat_E_G, 3),  data = data_case_1)
@@ -59,3 +70,8 @@ fit_gam_case_1$model <- NULL
 fit_gam_case_1$data <- NULL
 
 object_size(fit_gam_case_1)
+
+
+
+
+

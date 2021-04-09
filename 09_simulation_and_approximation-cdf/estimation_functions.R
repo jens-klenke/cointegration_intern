@@ -2,7 +2,41 @@
 
 # function automated lm    
 own_lm <- function(call_mod, data){
-    lm(paste(call_mod, collapse = ''),  data = data)
+    # lm fit
+    mod <- lm(paste(call_mod, collapse = ''),  data = data)
+    # fitted values
+    fitted_values <- mod$fitted.values
+    # cleand model
+    mod <- clean_lm(mod)
+    
+    return(list(mod, 
+                fitted_values))
+}
+
+# clean model 
+clean_lm <- function(object) {
+    object$y = c()
+    object$model = c()
+    
+    object$residuals = c()
+    object$fitted.values = c()
+    object$effects = c()
+    object$qr$qr = c()  
+    object$linear.predictors = c()
+    object$weights = c()
+    object$prior.weights = c()
+    object$data = c()
+    
+    
+    object$family$variance = c()
+    object$family$dev.resids = c()
+    object$family$aic = c()
+    object$family$validmu = c()
+    object$family$simulate = c()
+    attr(object$terms,".Environment") = c()
+    attr(object$formula,".Environment") = c()
+    
+    object
 }
 
 # inverse BoxCox function
@@ -89,7 +123,7 @@ table_E_J_fun <- function(data_case) {
         # fitting the model 
         dplyr::mutate(models = map2(formula, data, own_lm)) %>%
         # calculating the metrics for model evaluation
-        dplyr::mutate(map2_df(models, data, metric_fun)) %>%
+#        dplyr::mutate(map2_df(models, data, metric_fun)) %>%
         # deleting data and other unimportant variables
         dplyr::select(-data)
 }
