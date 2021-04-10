@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.27)  5 APR 2021 17:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.6.27)  7 APR 2021 19:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1235,7 +1235,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-<Includes/duelogo_en.png, id=47, 230.8625pt x 89.33376pt>
+<Includes/duelogo_en.png, id=51, 230.8625pt x 89.33376pt>
 File: Includes/duelogo_en.png Graphic file (type png)
 <use Includes/duelogo_en.png>
 Package pdftex.def Info: Includes/duelogo_en.png  used on input line 171.
@@ -1332,12 +1332,12 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 [2] [3] [4] [3]
 \blx@maxsegment@1=\count373
 \blx@sectionciteorder@1=\count374
-Package biblatex Info: Reference section=1 on input line 483.
-Package biblatex Info: Setting label 'refsection:1' on input line 483.
+Package biblatex Info: Reference section=1 on input line 516.
+Package biblatex Info: Setting label 'refsection:1' on input line 516.
 [4
 
 ] [5]
-Package biblatex Info: Reference section=0 on input line 519.
+Package biblatex Info: Reference section=0 on input line 552.
 [6]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
@@ -1391,27 +1391,27 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: Text page IX contains only floats.
 
 [9] [10]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 715.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 748.
 [11
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 715.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 748.
 (./p_approx_paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 715.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 715.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 748.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 748.
 Package rerunfilecheck Info: File `p_approx_paper.out' has not changed.
-(rerunfilecheck)             Checksum: 9F9FE293FFAFAD0B3A5766826857488A;1204.
+(rerunfilecheck)             Checksum: 428EFFCC56A691A8D4B4BCDB88A4AFE0;1370.
 Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
 \openout1 = `p_approx_paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 23298 strings out of 492616
- 372808 string characters out of 6129481
- 997922 words of memory out of 5000000
- 26586 multiletter control sequences out of 15000+600000
- 88164 words of font info for 135 fonts, out of 8000000 for 9000
+ 23304 strings out of 492616
+ 372923 string characters out of 6129481
+ 997973 words of memory out of 5000000
+ 26590 multiletter control sequences out of 15000+600000
+ 91162 words of font info for 136 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  58i,13n,63p,944b,5337s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exi
@@ -1439,10 +1439,10 @@ cal/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/
 s/type1/public/lm/lmsy6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pub
 lic/lm/lmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
 s/symbols/msbm10.pfb>
-Output written on p_approx_paper.pdf (16 pages, 286203 bytes).
+Output written on p_approx_paper.pdf (16 pages, 288027 bytes).
 PDF statistics:
- 361 PDF objects out of 1000 (max. 8388607)
- 320 compressed objects within 4 object streams
- 81 named destinations out of 1000 (max. 500000)
- 12388 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 367 PDF objects out of 1000 (max. 8388607)
+ 326 compressed objects within 4 object streams
+ 83 named destinations out of 1000 (max. 500000)
+ 12396 words of extra memory for PDF output out of 14400 (max. 10000000)
 

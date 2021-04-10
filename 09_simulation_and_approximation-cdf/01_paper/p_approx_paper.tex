@@ -452,13 +452,13 @@ The following approach relies largely on previous work by
 statistic we require the p-values of the underlying tests. For this, we
 simulate their null distributions. It can be shown that asymptotically
 these are functions of standard Brownian motions. Here, the latter are
-constructed by step functions using Gaussian random walk with
-\(N = 1000\) observations. The number of repetitions is set to
-1,000,000. Furthermore, we consider
-\(\text{R}^2 \in \{0, 0.05, 0.1, ..., 0.95\}\), \(k = 11\) and
-\(c = 0\)\footnote{Since we solely aim at simulating the distribution of
-  the null of no cointegration we will not consider any further values
-  of \(c\) here.} \textcolor{red}{(c mal definieren)}.
+constructed by step functions using Gaussian random walk of size
+\(N = 1000\). The number of repetitions is set to 1,000,000.
+Furthermore, we consider \(\text{R}^2 \in \{0, 0.05, 0.1, ..., 0.95\}\),
+the maximum number of lags \(K = 11\) and \(c = 0\)\footnote{Since we
+  solely aim at simulating the distribution of the null of no
+  cointegration we will not consider any further values of \(c\) here.}
+\textcolor{red}{(c mal definieren)}.
 
 From the mass of test statistics we build the cumulative distribution
 function of each underlying test and calculate the respective p-values.
@@ -468,6 +468,39 @@ associated null distribution and the p-values.
 
 \hypertarget{models}{%
 \section{Models}\label{models}}
+
+We now use the generated data for training machine learning algorithms
+on predicting the approximated empirical CDF of the Bayer Hanck test. We
+work with the values of the test statistic and the number of lags \(k\)
+as predictors. As it is our objective to describe the null distribution
+with a less memory-intensive model we will only consider linear methods.
+For the same objective we compare the models according to their
+in-sample RMSE. The threat of overfitting is thus of no particular
+relevance here. For this reason, and to reduce computation time, we use
+no cross-validation.
+
+As the empirical CDF is typically known to be curved in an S-shape we
+skip the classic linear regression in favor of a more flexible model. We
+stay with least squares regression, but try various combinations of
+polynomial functions and interaction terms of the aforementioned
+regressors. The search for the best model is carried out via
+brute-force.
+
+\hypertarget{polynomial-regression}{%
+\subsection{Polynomial Regression}\label{polynomial-regression}}
+
+Polynomial Regression extends the classic linear regression model by
+fitting a polynomial equation of arbitrary order to the data. It thus
+takes the form
+
+\textcolor{red}{Gleichung hier einfügen, abstimmen mit Liste von Jens}.
+
+Here, we consider up to 10 degrees. Higher order polynomials produce
+very non-linear curves, but are prone to wiggly behaviour at the
+boundaries. This can be problematic, as
+
+We estimate all linear models for each possible combination of the
+underlying tests and the specifications of the model deterministics.
 
 \hypertarget{package}{%
 \section{Package}\label{package}}

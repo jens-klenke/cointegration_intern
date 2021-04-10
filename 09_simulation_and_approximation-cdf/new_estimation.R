@@ -10,7 +10,7 @@ source(here::here('09_simulation_and_approximation-cdf/estimation_functions.R'))
 if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens 
     Data <- readRDS('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_100k.rds')
     # load('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_1_m.RData')
-} else if(Sys.info()['nodename'] == "MacBook-Pro.local") { # Janine
+} else if(Sys.info()['user'] == "Janine") { # Janine
     load("/Users/Janine/Desktop/BayerHanck/Data_1_m.RData")
 } else if(Sys.info()['nodename'] == "OEK-TS01") { # Server
     load('D:\\Klenke\\Data_1_m.RData')
