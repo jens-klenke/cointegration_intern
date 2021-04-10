@@ -51,7 +51,13 @@ invBoxCox <- function(x){
 }
 
 # BoxCox + log Transformation
-bc_log_E_J_fun <- function(data, lambda_stat) {
+bc_log_E_J_fun <- function(data) {
+    lambda_stat <- data %>% 
+        dplyr::pull(stat_Fisher_E_J) %>%
+        Rfast::bc()
+    lambda_p <- data %>%
+        dplyr::pull(p_value_Fisher_E_J) %>%
+        Rfast::bc()
     data %>%
         mutate(
             stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat)-1)/lambda_stat,

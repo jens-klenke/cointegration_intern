@@ -17,8 +17,8 @@ if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens
 }
 
 # just for the programming, delete before running final results
-# Data %<>%
-#    dplyr::sample_n(100000)
+ Data %<>%
+    dplyr::sample_n(100000)
 
 # Split Dataset in Cases
 data_case_1 <- Data %>%
@@ -32,18 +32,13 @@ rm('Data')
 #---- Boxcox Transformation ----
 
 # case_1 
-lambda_stat_case_1 <- Rfast::bc(data_case_1$stat_Fisher_E_J)
-lambda_p <- Rfast::bc(data_case_1$p_value_Fisher_E_J)
-
-data_case_1 %<>% bc_log_E_J_fun(lambda_stat_case_1)
+data_case_1 %<>% bc_log_E_J_fun()
 
 # case_2 
-lambda_stat_case_2 <- Rfast::bc(data_case_2$stat_Fisher_E_J)
-data_case_2 %<>% bc_log_E_J_fun(lambda_stat_case_2)
+data_case_2 %<>% bc_log_E_J_fun()
 
 # case_3 
-lambda_stat_case_3 <- Rfast::bc(data_case_3$stat_Fisher_E_J)
-data_case_3 %<>% bc_log_E_J_fun(lambda_stat_case_3)
+data_case_3 %<>% bc_log_E_J_fun()
 
 lambda_bc_EJ <- tibble(
     case = rep(1:3, each = 2), 
