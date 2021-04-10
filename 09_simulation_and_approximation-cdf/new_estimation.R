@@ -17,8 +17,8 @@ if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens
 }
 
 # just for the programming, delete before running final results
-Data %<>%
-    dplyr::sample_n(100000)
+# Data %<>%
+#    dplyr::sample_n(100000)
 
 # Split Dataset in Cases
 data_case_1 <- Data %>%
@@ -40,7 +40,6 @@ data_case_1 %<>% bc_log_E_J_fun(lambda_stat_case_1)
 # case_2 
 lambda_stat_case_2 <- Rfast::bc(data_case_2$stat_Fisher_E_J)
 data_case_2 %<>% bc_log_E_J_fun(lambda_stat_case_2)
-
 
 # case_3 
 lambda_stat_case_3 <- Rfast::bc(data_case_3$stat_Fisher_E_J)
@@ -70,11 +69,14 @@ calls_E_J <- c('p_value_Fisher_E_J ~ poly(stat_Fisher_E_J, power)',
 calls_all <- c('p_value_Fisher_all ~ poly(stat_Fisher_all, power)')
 
 # power
-expo <- 3:10
+expo <- 3:5
 
 #--------------- E_J -----
 #-- E_J case_1 ----
 table_E_J_case_1 <- table_E_J_fun(data_case_1)
+# bei implementierung noch die plot values löschen!
+
+object_size(tab)
 
 #-- E_J case_2 ----
 table_E_J_case_2 <- table_E_J_fun(data_case_2)
@@ -92,3 +94,5 @@ table_all_case_2 <- table_all_fun(data_case_2)
 
 #-- all case_3 ----
 table_all_case_3 <- table_all_fun(data_case_3)
+
+
