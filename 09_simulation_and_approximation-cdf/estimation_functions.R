@@ -3,7 +3,7 @@
 # function automated lm    
 own_lm <- function(call_mod, data){
     # lm fit
-    mod <- lm(paste(call_mod, collapse = ''),  data = data)
+    mod <- lm(call_mod,  data = data)
     # dependent variable 
     dep_var <- colnames(mod$model)[1]
     # fitted values

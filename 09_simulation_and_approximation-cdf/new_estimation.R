@@ -18,7 +18,7 @@ if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens
 
 # just for the programming, delete before running final results
  Data %<>%
-    dplyr::sample_n(100000)
+    dplyr::sample_n(1000000)
 
 # Split Dataset in Cases
 data_case_1 <- Data %>%
