@@ -150,13 +150,6 @@ table_all_fun <- function(data_case) {
 
 
 
-
-dep_var <- table_E_J_case_1$dep_var[1]
-fitted_values <- table_E_J_case_1$fitted_values[[1]]
-data_case_1
-
-AA <- new_metric_fun(fitted_values = fitted_values, dep_var = dep_var, data = data_case_1)
-
 # metric function
 new_metric_fun <- function(fitted_values, dep_var, data, ...){
     
