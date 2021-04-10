@@ -125,33 +125,33 @@ metric_fun <- function(object, data){
 
 # Create tables for models
 table_E_J_fun <- function(data_case) {
+    data <- data_case
     expand_grid(calls_E_J, expo) %>%
         # functional call, merge of power and call
         dplyr::mutate(dplyr::across("calls_E_J", str_replace_all, "power", 
                                     as.character(.$expo), .names = "formula")) %>%
-        # adding data
-        dplyr::mutate(data = list(data_case)) %>%
         # fitting the model 
-        dplyr::mutate(map2_df(formula, data, own_lm)) %>%
+        dplyr::mutate(map_df(formula, ~own_lm(call_mod = ., data = data))) %>%
         # calculating the metrics for model evaluation
-        dplyr::mutate(pmap_df(., new_metric_fun)) %>%
+        dplyr::mutate(pmap_df(list(fitted_values, dep_var), 
+                              ~new_metric_fun(.x, .y, data))) %>%
         # deleting data and other unimportant variables
-        dplyr::select(-c(data, fitted_values))
+        dplyr::select(-fitted_values)
 }
 
 table_all_fun <- function(data_case) {
+    data <- data_case
     expand_grid(calls_all, expo) %>%
         # functional call, merge of power and call
         dplyr::mutate(dplyr::across("calls_all", str_replace_all, "power", 
                                     as.character(.$expo), .names = "formula")) %>%
-        # adding data
-        dplyr::mutate(data = list(data_case)) %>%
         # fitting the model 
-        dplyr::mutate(models = map2(formula, data, own_lm)) %>%
+        dplyr::mutate(map_df(formula, ~own_lm(call_mod = ., data = data))) %>%
         # calculating the metrics for model evaluation
-        dplyr::mutate(map2_df(models, data, metric_fun)) %>%
+        dplyr::mutate(pmap_df(list(fitted_values, dep_var), 
+                              ~new_metric_fun(.x, .y, data))) %>%
         # deleting data and other unimportant variables
-        dplyr::select(-c(data, fitted_values))
+        dplyr::select(-fitted_values)
 }
 
 

@@ -40,11 +40,11 @@ data_case_2 %<>% bc_log_E_J_fun()
 # case_3 
 data_case_3 %<>% bc_log_E_J_fun()
 
-lambda_bc_EJ <- tibble(
-    case = rep(1:3, each = 2), 
-    side = rep(c('stat', 'p'), times = 3),
-    value = c(lambda_stat_case_1, lambda_p, lambda_stat_case_2, lambda_p,  lambda_stat_case_3, lambda_p)   
-)
+#lambda_bc_EJ <- tibble(
+#    case = rep(1:3, each = 2), 
+#    side = rep(c('stat', 'p'), times = 3),
+#    value = c(lambda_stat_case_1, lambda_p, lambda_stat_case_2, lambda_p,  lambda_stat_case_3, lambda_p)   
+#)
 
 #-- calls and range of power ----
 # E_J
@@ -70,8 +70,6 @@ expo <- 3:5
 #-- E_J case_1 ----
 table_E_J_case_1 <- table_E_J_fun(data_case_1)
 # bei implementierung noch die plot values löschen!
-
-object_size(tab)
 
 #-- E_J case_2 ----
 table_E_J_case_2 <- table_E_J_fun(data_case_2)
