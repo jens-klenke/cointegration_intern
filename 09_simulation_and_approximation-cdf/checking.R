@@ -91,7 +91,8 @@ Data %<>%
     dplyr::rename('cdf_Fisher_all' = p_value_Fisher_all,
                   'cdf_Fisher_E_J' = p_value_Fisher_E_J) %>%
     dplyr::mutate(p_value_Fisher_all = 1 - cdf_Fisher_all,
-                  p_value_Fisher_E_J = 1 - cdf_Fisher_E_J)
+                  p_value_Fisher_E_J = 1 - cdf_Fisher_E_J) %>%
+    dplyr::select(-c(cdf_Fisher_all, cdf_Fisher_E_J))
 
 save(Data, file = "/Users/Janine/Desktop/BayerHanck/Data_1_m.RData")
 

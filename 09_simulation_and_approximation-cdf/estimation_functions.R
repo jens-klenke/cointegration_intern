@@ -32,7 +32,6 @@ clean_lm <- function(object) {
     object$prior.weights = c()
     object$data = c()
     
-    
     object$family$variance = c()
     object$family$dev.resids = c()
     object$family$aic = c()
@@ -51,77 +50,29 @@ invBoxCox <- function(x){
 }
 
 # BoxCox + log Transformation
-bc_log_E_J_fun <- function(data) {
-    lambda_stat <- data %>% 
+bc_log_fun <- function(data) {
+    lambda_stat_E_J <- data %>% 
         dplyr::pull(stat_Fisher_E_J) %>%
         Rfast::bc()
     lambda_p <- data %>%
         dplyr::pull(p_value_Fisher_E_J) %>%
         Rfast::bc()
-    data %>%
-        mutate(
-            stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat)-1)/lambda_stat,
-            p_value_Fisher_E_J_bc = ((p_value_Fisher_E_J^lambda_p)-1)/lambda_p, 
-            p_value_Fisher_E_J_lg = log(p_value_Fisher_E_J))
+    lambda_stat_all <- data %>% 
+        dplyr::pull(stat_Fisher_all) %>%
+        Rfast::bc()
+    data %<>%
+        dplyr::mutate(
+            stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat_E_J)-1)/lambda_stat_E_J,
+            stat_Fisher_all_bc = ((stat_Fisher_all^lambda_stat_all)-1)/lambda_stat_all,
+            p_value_Fisher_bc = ((p_value_Fisher_E_J^lambda_p)-1)/lambda_p, 
+            p_value_Fisher_lg = log(p_value_Fisher_E_J)) %>%
+        dplyr::rename(p_value_Fisher = p_value_Fisher_E_J) %>% 
+        dplyr::select(-c(p_value_Fisher_all))
+    assign("lambda_p", lambda_p, envir = .GlobalEnv)
+    return(data)
 }
 
-# metric function
-metric_fun <- function(object, data){
-    
-    # save call and case
- #   mod_call <- paste(colnames(object$model)[1], '~', paste(colnames(object$model)[2:length(colnames(object$model))], collapse =' '))
-    
-#    case <- object$call$data
-    
-    # dependent variable 
-    dep_var <- colnames(object$model)[1]
-    
-    # dataset for prediction
-    values <- tibble(
-        PRED = if(str_detect(dep_var, '_bc')){ 
-            invBoxCox(object$fitted.values)
-        } else if(str_detect(dep_var, '_lg')){
-            exp(object$fitted.values)
-        } else {object$fitted.values}, # y_hat 
-        dependent = if(str_detect(dep_var, 'E_J')){ 
-            data$p_value_Fisher_E_J
-        } else {data$p_value_Fisher_all},
-        k = data$k
-        )
-    
-    
-    # computing corrected predictions
-    values <- values%>%
-        dplyr::mutate(PRED_cor = case_when(
-            PRED <= 0 ~ 1e-12,
-            PRED >= 1 ~ 1 - 1e-12,
-            TRUE ~ PRED))
-    
-    # RMSE and corrected RMSE on the full dataset
-    RMSE <- sqrt((sum((values$PRED - values$dependent)^2)/nrow(values)))
-    RMSE_cor <- sqrt((sum((values$PRED_cor - values$dependent)^2)/nrow(values)))
-    
-    # smaller dataset only the intersting part, correction is at 
-    values_0.2 <- values %>%
-        dplyr::filter(dependent >= 0.2)
-    RMSE_0.2 <- sqrt((sum((values_0.2$PRED - values_0.2$dependent)^2)/nrow(values_0.2)))
-    RMSE_cor_0.2 <- sqrt((sum((values_0.2$PRED_cor - values_0.2$dependent)^2)/nrow(values_0.2)))
-    
-    # values for the plots 
-    values <- values%>%
-        dplyr::filter(dependent %in% seq(0.001, 1, 0.001))
-    
-    mod_sum <- tibble(#model = as.character(mod_call),
-                      RMSE = as.numeric(RMSE),
-                      RMSE_cor = as.numeric(RMSE_cor),
-                      RMSE_0.2 = as.numeric(RMSE_0.2), 
-                      RMSE_cor_0.2 = as.numeric(RMSE_cor_0.2), 
-#                      case = as.character(case),
-                      pred = list(values)
-    )
-    
-    return(mod_sum)
-}
+
 
 # Create tables for models
 table_E_J_fun <- function(data_case) {
@@ -158,7 +109,6 @@ table_all_fun <- function(data_case) {
 
 # metric function
 new_metric_fun <- function(fitted_values, dep_var, data, ...){
-    
     # dataset for prediction
     values <- tibble(
         PRED = if(str_detect(dep_var, '_bc')){ 
@@ -166,9 +116,7 @@ new_metric_fun <- function(fitted_values, dep_var, data, ...){
         } else if(str_detect(dep_var, '_lg')){
             exp(fitted_values)
         } else {fitted_values}, # y_hat 
-        dependent = if(str_detect(dep_var, 'E_J')){ 
-            data$p_value_Fisher_E_J
-        } else {data$p_value_Fisher_all},
+        dependent = data$p_value_Fisher,
         k = data$k
     )
     
