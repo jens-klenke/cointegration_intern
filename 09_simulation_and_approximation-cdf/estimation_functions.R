@@ -84,7 +84,7 @@ table_E_J_fun <- function(data_case) {
         # fitting the model 
         dplyr::mutate(map_df(formula, ~own_lm(call_mod = ., data = data))) %>%
         # calculating the metrics for model evaluation
-        dplyr::mutate(pmap_df(list(fitted_values, dep_var), 
+        dplyr::mutate(furrr::future_pmap_dfr(list(fitted_values, dep_var), 
                               ~new_metric_fun(.x, .y, data))) %>%
         # deleting data and other unimportant variables
         dplyr::select(-fitted_values)
@@ -99,7 +99,7 @@ table_all_fun <- function(data_case) {
         # fitting the model 
         dplyr::mutate(map_df(formula, ~own_lm(call_mod = ., data = data))) %>%
         # calculating the metrics for model evaluation
-        dplyr::mutate(pmap_df(list(fitted_values, dep_var), 
+        dplyr::mutate(furrr::future_pmap_dfr(list(fitted_values, dep_var), 
                               ~new_metric_fun(.x, .y, data))) %>%
         # deleting data and other unimportant variables
         dplyr::select(-fitted_values)

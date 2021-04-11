@@ -39,5 +39,6 @@ pacman::p_load(dplyr,
                formattable,
                tidypredict,
                broom,
-               magrittr)
+               magrittr,
+               furrr)
 

@@ -5,6 +5,9 @@ source(here::here('01_code/packages/packages.R'))
 # load functions 
 source(here::here('09_simulation_and_approximation-cdf/estimation_functions.R'))
 
+# parallel  
+future::plan(multicore, workers = 2)
+
 #-- tibble with models and data ----
 ## Load Simulation Data 
 if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens 
@@ -50,7 +53,7 @@ data_case_3 %<>% bc_log_fun()
 # E_J 
 calls_E_J <- c('p_value_Fisher ~ poly(stat_Fisher_E_J, power)',
                'p_value_Fisher ~ poly(stat_Fisher_E_J, power) + k',
-               'p_value_Fisher ~ poly(stat_Fisher_E_J, power) * k',
+               'p_value_Fisher ~ poly(stat_Fisher_E_J, power) * k' ,
                'p_value_Fisher ~ poly(stat_Fisher_E_J, power) * k * I(1/k)',
                'p_value_Fisher ~ poly(stat_Fisher_E_J, power) * log(k)',
                'p_value_Fisher ~ poly(stat_Fisher_E_J, power) * log(k) * I(1/k)',
@@ -120,7 +123,9 @@ expo <- 3:10
 
 #--------------- E_J -----
 #-- E_J case_1 ----
+tictoc::tic()
 table_E_J_case_1 <- table_E_J_fun(data_case_1)
+tictoc::toc()
 # bei implementierung noch die plot values löschen!
 
 #-- E_J case_2 ----
