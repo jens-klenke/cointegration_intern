@@ -138,17 +138,11 @@ new_metric_fun <- function(fitted_values, dep_var, data, ...){
     RMSE_0.2 <- sqrt((sum((values_0.2$PRED - values_0.2$dependent)^2)/nrow(values_0.2)))
     RMSE_cor_0.2 <- sqrt((sum((values_0.2$PRED_cor - values_0.2$dependent)^2)/nrow(values_0.2)))
     
-    # values for the plots 
-    values <- values%>%
-        dplyr::filter(dependent %in% seq(0.001, 1, 0.001))
-    
     mod_sum <- tibble(#model = as.character(mod_call),
         RMSE = as.numeric(RMSE),
         RMSE_cor = as.numeric(RMSE_cor),
         RMSE_0.2 = as.numeric(RMSE_0.2), 
-        RMSE_cor_0.2 = as.numeric(RMSE_cor_0.2), 
-        #                      case = as.character(case),
-        pred = list(values)
+        RMSE_cor_0.2 = as.numeric(RMSE_cor_0.2) 
     )
     
     return(mod_sum)
