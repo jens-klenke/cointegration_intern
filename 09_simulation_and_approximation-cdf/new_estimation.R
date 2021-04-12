@@ -45,11 +45,19 @@ data_case_2 <- bc_log_fun(data_case_2)
 # case_3 
 data_case_3 <- bc_log_fun(data_case_3)
 
-#lambda_bc_EJ <- tibble(
-#    case = rep(1:3, each = 2), 
-#    side = rep(c('stat', 'p'), times = 3),
-#    value = c(lambda_stat_case_1, lambda_p, lambda_stat_case_2, lambda_p,  lambda_stat_case_3, lambda_p)   
-#)
+lambda_bc_EJ <- tibble(
+    case = rep(1:3, each = 2), 
+    side = rep(c('stat', 'p'), times = 3),
+    value = c(lambda_stat_E_J_1, lambda_p, lambda_stat_E_J_2, lambda_p, 
+              lambda_stat_E_J_3, lambda_p)   
+)
+
+lambda_bc_all <- tibble(
+    case = rep(1:3, each = 2), 
+    side = rep(c('stat', 'p'), times = 3),
+    value = c(lambda_stat_all_1, lambda_p, lambda_stat_all_2, lambda_p, 
+              lambda_stat_all_3, lambda_p)   
+)
 
 #-- calls and range of power ----
 # E_J 
