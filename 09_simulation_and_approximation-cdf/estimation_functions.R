@@ -51,6 +51,8 @@ invBoxCox <- function(x){
 
 # BoxCox + log Transformation
 bc_log_fun <- function(data) {
+    case <- deparse(substitute(data)) %>% 
+        stringr::str_extract("[:digit:]")
     lambda_stat_E_J <- data %>% 
         dplyr::pull(stat_Fisher_E_J) %>%
         Rfast::bc()
@@ -69,6 +71,10 @@ bc_log_fun <- function(data) {
         dplyr::rename(p_value_Fisher = p_value_Fisher_E_J) %>% 
         dplyr::select(-c(p_value_Fisher_all))
     assign("lambda_p", lambda_p, envir = .GlobalEnv)
+    assign(paste0("lambda_stat_E_J_", case), 
+           lambda_stat_E_J, envir = .GlobalEnv)
+    assign(paste0("lambda_stat_all_", case), 
+           lambda_stat_all, envir = .GlobalEnv)
     return(data)
 }
 
