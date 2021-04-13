@@ -80,20 +80,27 @@ compare_all <- Fisher_all_critical_val %>%
 if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens 
     Data <- readRDS('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_100k.rds')
     # load('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_1_m.RData')
-} else if(Sys.info()['nodename'] == "MacBook-Pro.local") { # Janine
+} else if(Sys.info()['user'] == "Janine") { # Janine
     load("/Users/Janine/Desktop/BayerHanck/Data_1_m.RData")
 } else if(Sys.info()['nodename'] == "OEK-TS01") { # Server
     load('D:\\Klenke\\Data_1_m.RData')
 }
 
 
+
 Data %<>%
-    dplyr::rename('cdf_Fisher_all' = p_value_Fisher_all,
-                  'cdf_Fisher_E_J' = p_value_Fisher_E_J) %>%
-    dplyr::mutate(p_value_Fisher_all = 1 - cdf_Fisher_all,
-                  p_value_Fisher_E_J = 1 - cdf_Fisher_E_J) %>%
-    dplyr::select(-c(cdf_Fisher_all, cdf_Fisher_E_J))
+    dplyr::mutate(
+        p_value_Fisher_E_J = dplyr::case_when(
+            p_value_Fisher_E_J == 0 ~ 0+10^(-100), 
+            TRUE ~ p_value_Fisher_E_J
+        ), 
+        p_value_Fisher_all = dplyr::case_when(
+            p_value_Fisher_all == 0 ~ 0+10^(-100),
+            TRUE ~ p_value_Fisher_E_J
+        )
+    )
+
+sum(Data$p_value_Fisher_all == 0)
+sum(Data$p_value_Fisher_E_J == 0)
 
 save(Data, file = "/Users/Janine/Desktop/BayerHanck/Data_1_m.RData")
-
-

@@ -103,11 +103,11 @@ Data <- foreach (k = 1:K, .combine = rbind) %dopar% {
                     
                 # 2 tests
                 NullDistrFisher_E_J <- sort(FisherStat_E_J)
-                Fisher_E_J_PValue <- rankindx(NullDistrFisher_E_J, 1)/rep+10^(-1000)
+                Fisher_E_J_PValue <- rankindx(NullDistrFisher_E_J, 1)/rep+10^(-100)
 
                 #4 tests
                 NullDistrFisher_all <- sort(FisherStat_all)
-                Fisher_all_PValue <- rankindx(NullDistrFisher_all, 1)/rep+10^(-1000)
+                Fisher_all_PValue <- rankindx(NullDistrFisher_all, 1)/rep+10^(-100)
                 
                 # sorting of the p-values of the underlying tests 
                 # check what is testing what (cointegration / non cointegration)
