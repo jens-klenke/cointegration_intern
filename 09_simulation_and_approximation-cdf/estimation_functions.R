@@ -82,19 +82,23 @@ bc_log_fun <- function(data) {
 
 # Create tables for models
 table_E_J_fun <- function(data_case) {
+    
+ #   plan(multisession, workers = 4)
+    
     data <- data_case
     expand_grid(calls_E_J, expo) %>%
         # functional call, merge of power and call
         dplyr::mutate(dplyr::across("calls_E_J", str_replace_all, "power", 
                                     as.character(.$expo), .names = "formula")) %>%
         # fitting the model 
-        dplyr::mutate(map_df(formula, ~own_lm(call_mod = ., data = data))) %>%
+        dplyr::mutate(furrr::future_map_dfr(formula, ~own_lm(call_mod = ., data = data), .progress = TRUE)) %>%
         # calculating the metrics for model evaluation
         dplyr::mutate(furrr::future_pmap_dfr(list(fitted_values, dep_var), 
-                              ~new_metric_fun(.x, .y, data))) %>%
+                              ~new_metric_fun(.x, .y, data), .progress = TRUE)) %>%
         # deleting data and other unimportant variables
         dplyr::select(-fitted_values)
 }
+
 
 table_all_fun <- function(data_case) {
     data <- data_case
@@ -103,15 +107,13 @@ table_all_fun <- function(data_case) {
         dplyr::mutate(dplyr::across("calls_all", str_replace_all, "power", 
                                     as.character(.$expo), .names = "formula")) %>%
         # fitting the model 
-        dplyr::mutate(map_df(formula, ~own_lm(call_mod = ., data = data))) %>%
+        dplyr::mutate(furrr::future_map_dfr(formula, ~own_lm(call_mod = ., data = data), .progress = TRUE)) %>%
         # calculating the metrics for model evaluation
         dplyr::mutate(furrr::future_pmap_dfr(list(fitted_values, dep_var), 
-                              ~new_metric_fun(.x, .y, data))) %>%
+                              ~new_metric_fun(.x, .y, data), .progress = TRUE)) %>%
         # deleting data and other unimportant variables
         dplyr::select(-fitted_values)
 }
-
-
 
 # metric function
 new_metric_fun <- function(fitted_values, dep_var, data, ...){

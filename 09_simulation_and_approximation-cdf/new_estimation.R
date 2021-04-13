@@ -5,8 +5,9 @@ source(here::here('01_code/packages/packages.R'))
 # load functions 
 source(here::here('09_simulation_and_approximation-cdf/estimation_functions.R'))
 
-# parallel  
-future::plan(multicore, workers = 2)
+# parallel
+plan(multisession, workers = 6)
+options(future.globals.maxSize = 2.147e+9)
 
 #-- tibble with models and data ----
 ## Load Simulation Data 
@@ -162,7 +163,6 @@ expo <- 3:10
 tictoc::tic()
 table_E_J_case_1 <- table_E_J_fun(data_case_1)
 tictoc::toc()
-# bei implementierung noch die plot values löschen!
 
 #-- E_J case_2 ----
 table_E_J_case_2 <- table_E_J_fun(data_case_2)
