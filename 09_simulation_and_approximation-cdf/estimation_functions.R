@@ -1,22 +1,4 @@
-# functions
-
-# function automated lm    
-own_lm <- function(call_mod, data){
-    # lm fit
-    mod <- lm(call_mod,  data = data)
-    # dependent variable 
-    dep_var <- colnames(mod$model)[1]
-    # fitted values
-    fitted_values <- mod$fitted.values
-    # cleand model
-    mod <- clean_lm(mod)
-    
-    tib <-tibble(model  = list(mod), 
-                 dep_var = dep_var,
-                 fitted_values = list(fitted_values))
-    
-    return(tib)
-}
+#------ functions
 
 # clean model 
 clean_lm <- function(object) {
@@ -78,12 +60,8 @@ bc_log_fun <- function(data) {
     return(data)
 }
 
-
-
 # Create tables for models
 table_E_J_fun <- function(data_case) {
-    
- #   plan(multisession, workers = 4)
     
     data <- data_case
     expand_grid(calls_E_J, expo) %>%
@@ -91,12 +69,7 @@ table_E_J_fun <- function(data_case) {
         dplyr::mutate(dplyr::across("calls_E_J", str_replace_all, "power", 
                                     as.character(.$expo), .names = "formula")) %>%
         # fitting the model 
-        dplyr::mutate(furrr::future_map_dfr(formula, ~own_lm(call_mod = ., data = data), .progress = TRUE)) %>%
-        # calculating the metrics for model evaluation
-        dplyr::mutate(furrr::future_pmap_dfr(list(fitted_values, dep_var), 
-                              ~new_metric_fun(.x, .y, data), .progress = TRUE)) %>%
-        # deleting data and other unimportant variables
-        dplyr::select(-fitted_values)
+        dplyr::mutate(furrr::future_map_dfr(formula, ~own_lm(call_mod = ., data = data), .progress = TRUE)) 
 }
 
 
@@ -107,17 +80,20 @@ table_all_fun <- function(data_case) {
         dplyr::mutate(dplyr::across("calls_all", str_replace_all, "power", 
                                     as.character(.$expo), .names = "formula")) %>%
         # fitting the model 
-        dplyr::mutate(furrr::future_map_dfr(formula, ~own_lm(call_mod = ., data = data), .progress = TRUE)) %>%
-        # calculating the metrics for model evaluation
-        dplyr::mutate(furrr::future_pmap_dfr(list(fitted_values, dep_var), 
-                              ~new_metric_fun(.x, .y, data), .progress = TRUE)) %>%
-        # deleting data and other unimportant variables
-        dplyr::select(-fitted_values)
+        dplyr::mutate(furrr::future_map_dfr(formula, ~own_lm(call_mod = ., data = data), .progress = TRUE))
 }
 
-# metric function
-new_metric_fun <- function(fitted_values, dep_var, data, ...){
-    # dataset for prediction
+# function automated lm    
+own_lm <- function(call_mod, data){
+    # lm fit
+    mod <- lm(call_mod,  data = data)
+    # dependent variable 
+    dep_var <- colnames(mod$model)[1]
+    # fitted values
+    fitted_values <- mod$fitted.values
+    # cleand model
+    mod <- clean_lm(mod)
+    
     values <- tibble(
         PRED = if(str_detect(dep_var, '_bc')){ 
             invBoxCox(fitted_values)
@@ -127,7 +103,6 @@ new_metric_fun <- function(fitted_values, dep_var, data, ...){
         dependent = data$p_value_Fisher,
         k = data$k
     )
-    
     
     # computing corrected predictions
     values <- values%>%
@@ -146,13 +121,12 @@ new_metric_fun <- function(fitted_values, dep_var, data, ...){
     RMSE_0.2 <- sqrt((sum((values_0.2$PRED - values_0.2$dependent)^2)/nrow(values_0.2)))
     RMSE_cor_0.2 <- sqrt((sum((values_0.2$PRED_cor - values_0.2$dependent)^2)/nrow(values_0.2)))
     
-    mod_sum <- tibble(#model = as.character(mod_call),
-        RMSE = as.numeric(RMSE),
-        RMSE_cor = as.numeric(RMSE_cor),
-        RMSE_0.2 = as.numeric(RMSE_0.2), 
-        RMSE_cor_0.2 = as.numeric(RMSE_cor_0.2) 
+    mod_sum <- tibble(model  = list(mod),
+                      RMSE = as.numeric(RMSE),
+                      RMSE_cor = as.numeric(RMSE_cor),
+                      RMSE_0.2 = as.numeric(RMSE_0.2), 
+                      RMSE_cor_0.2 = as.numeric(RMSE_cor_0.2) 
     )
     
     return(mod_sum)
 }
-

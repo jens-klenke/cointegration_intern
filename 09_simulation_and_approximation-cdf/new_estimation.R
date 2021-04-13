@@ -6,7 +6,7 @@ source(here::here('01_code/packages/packages.R'))
 source(here::here('09_simulation_and_approximation-cdf/estimation_functions.R'))
 
 # parallel
-plan(multisession, workers = 6)
+plan(multisession, workers = 2)
 options(future.globals.maxSize = 2.147e+9)
 
 #-- tibble with models and data ----
