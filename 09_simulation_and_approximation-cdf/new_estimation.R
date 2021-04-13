@@ -35,8 +35,6 @@ data_case_3 <- Data %>%
 rm('Data')
 #---- Boxcox Transformation ----
 
-# Hier bitte kein Piping!
-
 # case_1 
 data_case_1 <- bc_log_fun(data_case_1)
 
