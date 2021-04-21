@@ -179,4 +179,6 @@ table_all_case_2 <- table_all_fun(data_case_2)
 #-- all case_3 ----
 table_all_case_3 <- table_all_fun(data_case_3)
 
-
+save(table_E_J_case_1, table_E_J_case_2, table_E_J_case_3,
+     table_all_case_1, table_all_case_2, table_all_case_3,
+     file = here::here('09_simulation_and_approximation-cdf/server_results.RData'))
