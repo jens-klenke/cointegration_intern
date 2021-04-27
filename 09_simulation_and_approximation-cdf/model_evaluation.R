@@ -13,13 +13,15 @@ load(here::here('09_simulation_and_approximation-cdf/lambda_bc_ALL_server.RData'
 load(here::here('09_simulation_and_approximation-cdf/lambda_bc_EJ_server.RData'))
 load(here::here('09_simulation_and_approximation-cdf/final_models.RData'))
 
-final_models <- tibble(
+models <- tibble(
     test = rep(c('all', 'e_j'), times = c(3, 3)),
     case = rep(1:3, times = 2),
     models = list(clean_mod_all_1, clean_mod_all_2, clean_mod_all_3,
                   clean_mod_E_J_1, clean_mod_E_J_2, clean_mod_E_J_3), 
     response = c('bc', 'bc', 'bc', 'log', 'log', 'log')
 )
+
+save(models, file = here::here('09_simulation_and_approximation-cdf/models_package.RData'))
 
 # Load Simulation Data 
 if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens 
@@ -79,6 +81,7 @@ sum_table_E_J_case_3 <- best_5_table(table_E_J_case_3, 'calls_E_J')
 # all
 own_plot(data_case_1_all)
 
+# anderes modell
 data_case_1_all %>%
     dplyr::filter(p_value_Fisher <= 0.2) %>%
     own_plot(max_graph = 0.2)
@@ -95,6 +98,7 @@ data_case_1_e_j %>%
 # all
 own_plot(data_case_2_all)
 
+# eventuell anderes Modell 
 data_case_2_all %>%
     dplyr::filter(p_value_Fisher <= 0.2) %>%
     own_plot(max_graph = 0.2)
