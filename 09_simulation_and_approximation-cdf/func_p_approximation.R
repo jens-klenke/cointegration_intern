@@ -18,8 +18,8 @@ get_model <- function(case_w, art){
 }
 
 # inverse BoxCox function
-invBoxCox <- function(x){
-    x <- if (lambda_p == 0) exp(as.complex(x)) else (lambda_p*as.complex(x) + 1)^(1/lambda_p)
+invBoxCox <- function(x, lambda = 0.7071139){
+    x <- if (lambda == 0) exp(as.complex(x)) else (lambda*as.complex(x) + 1)^(1/lambda)
     return(Re(x))
 }
 
