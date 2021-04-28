@@ -64,13 +64,13 @@ if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens
 }
 
 crit_val_all <- Data %>%
-    dplyr::group_by(case) %>%
+    dplyr::group_by(case, k) %>%
     dplyr::select(stat_Fisher_all) %>%
     dplyr::slice_max(stat_Fisher_all , n = 100) %>%
     dplyr::filter(stat_Fisher_all == min(stat_Fisher_all))
 
 crit_val_e_j <- Data %>%
-    dplyr::group_by(case) %>%
+    dplyr::group_by(case, k) %>%
     dplyr::select(stat_Fisher_E_J) %>%
     dplyr::slice_max(stat_Fisher_E_J , n = 100) %>%
     dplyr::filter(stat_Fisher_E_J == min(stat_Fisher_E_J))
