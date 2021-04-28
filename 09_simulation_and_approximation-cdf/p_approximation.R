@@ -19,27 +19,21 @@ test.type <- a$test.type
 
 
 get_p_value <- function(bh.test, trendtype, test.type){
-
-#lambda_p <<- get_lambda(trendtype, 'p', 'all')
-
-
-new_data <- tibble(stat_Fisher_all = bh.test, 
+    #lambda_p <<- get_lambda(trendtype, 'p', 'all')
+    
+    new_data <- tibble(stat_Fisher_all = bh.test, 
                    stat_Fisher_E_J = bh.test, 
                    k =  k )
-
-new_data %<>%
+    new_data %<>%
     dplyr::mutate(stat_Fisher_E_J_bc = ((stat_Fisher_E_J^get_lambda(trendtype, 'stat', 'e_j'))-1)/get_lambda(trendtype, 'stat', 'e_j'),
                   stat_Fisher_all_bc = ((stat_Fisher_all^get_lambda(trendtype, 'stat', 'all'))-1)/get_lambda(trendtype, 'stat', 'all'))
+    p.value_raw <- suppressWarnings(predict(get_model(trendtype, test.type), new_data))
 
-    
+    p.value_trans <- if(get_p_trans(trendtype, test.type) == 'log'){exp(p.value_raw)} else{invBoxCox(p.value_raw)}
 
-p.value_raw <- suppressWarnings(predict(get_model(trendtype, test.type), new_data))
+    p.value <- ifelse(p.value_trans >= 1, 9.9999e-1, ifelse(p.value_trans <= 0, 1e-12, p.value_trans))
 
-p.value_trans <- if(get_p_trans(trendtype, test.type) == 'log'){exp(p.value_raw)} else{invBoxCox(p.value_raw)}
-
-p.value <- ifelse(p.value_trans >= 1, 9.9999e-1, ifelse(p.value_trans <= 0, 1e-12, p.value_trans))
-
-return(p.value)
+    return(p.value)
 
 }
 

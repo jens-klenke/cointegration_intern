@@ -71,8 +71,8 @@ own_plot <- function(data, max_graph = 1){
     data %>%
         ggplot(aes(x = p_value_Fisher, y = PRED_cor)) +
         geom_line(color = '#004c93') +
-        geom_segment(aes(x = 0, xend = max_graph, y = 0, yend = max_graph), 
-                     linetype = 'dashed', size = 1, color = 'grey') +
+        #geom_segment(aes(x = 0, xend = max_graph, y = 0, yend = max_graph), 
+        #             linetype = 'dashed', size = 1, color = 'grey') +
         xlim(c(0, max_graph))+
         ylim(c(0, max_graph))+
         labs(x = '\n Simulated p-values', y = 'Approximated p-values \n')+
