@@ -58,6 +58,11 @@ lambda_bc_all <- tibble(
               lambda_stat_all_3, lambda_p)   
 )
 
+lambda_values <- bind_rows(lambda_bc_all, 
+                           lambda_bc_EJ) %>% 
+    dplyr::mutate(test = c(rep("all", 6), 
+                           rep("e_j", 6)))
+
 #-- calls and range of power ----
 # E_J 
 calls_E_J <- c('p_value_Fisher ~ poly(stat_Fisher_E_J, power)',
