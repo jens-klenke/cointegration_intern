@@ -37,8 +37,6 @@ p.value_raw <- suppressWarnings(predict(get_model(trendtype, test.type), new_dat
 
 p.value_trans <- if(get_p_trans(trendtype, test.type) == 'log'){exp(p.value_raw)} else{invBoxCox(p.value_raw)}
 
-
-
 p.value <- ifelse(p.value_trans >= 1, 9.9999e-1, ifelse(p.value_trans <= 0, 1e-12, p.value_trans))
 
 return(p.value)

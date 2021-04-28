@@ -21,7 +21,7 @@ models <- tibble(
     response = c('bc', 'bc', 'bc', 'log', 'log', 'log')
 )
 
-save(models, file = here::here('09_simulation_and_approximation-cdf/models_package.RData'))
+#save(models, file = here::here('09_simulation_and_approximation-cdf/models_package.RData'))
 
 # Load Simulation Data 
 if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens 
@@ -41,7 +41,7 @@ Data %<>%
     dplyr::mutate(p_value_Fisher_bc = ((p_value_Fisher_E_J^lambda_p)-1)/lambda_p, 
                   p_value_Fisher_lg = log(p_value_Fisher_E_J)) %>%
     dplyr::rename(p_value_Fisher = p_value_Fisher_E_J) %>%
-    dplyr::filter(p_value_Fisher %in% c(min(Data$p_value_Fisher_E_J), seq(0, 1, 0.0001))) 
+    dplyr::filter(p_value_Fisher %in% c(min(p_value_Fisher), seq(0, 1, 0.0001))) 
 
 ### 
 
