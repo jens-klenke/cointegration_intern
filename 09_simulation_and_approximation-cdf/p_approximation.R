@@ -20,7 +20,7 @@ test.type <- a$test.type
 
 get_p_value <- function(bh.test, trendtype, test.type){
 
-lambda_p <- get_lambda(trendtype, 'p', 'all')
+#lambda_p <<- get_lambda(trendtype, 'p', 'all')
 
 
 new_data <- tibble(stat_Fisher_all = bh.test, 
@@ -45,7 +45,7 @@ return(p.value)
 
 }
 
-get_p_value(21, 1, 'all')
+get_p_value(20.1, 1, 'all')
 get_p_value(50, 1, 'all')
 get_p_value(55, 1, 'all')
 get_p_value(100, 1, 'all')
