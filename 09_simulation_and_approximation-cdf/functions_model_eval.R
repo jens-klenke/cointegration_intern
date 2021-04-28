@@ -49,8 +49,8 @@ plot_data <- function(data, case_w, art){
         dplyr::filter(case == case_w) %>%
         dplyr::mutate(stat_Fisher_E_J_bc = ((stat_Fisher_E_J^get_lambda(lambda_bc_EJ, case_w, 'stat'))-1)/get_lambda(lambda_bc_EJ, case_w, 'stat'),
                       stat_Fisher_all_bc = ((stat_Fisher_all^get_lambda(lambda_bc_ALL, case_w, 'stat'))-1)/get_lambda(lambda_bc_ALL, case_w, 'stat')) %>%
-        modelr::add_predictions(get_model(final_models, case_w = case_w, art = art)) %>%
-        dplyr::mutate(PRED = if(get_p_trans(final_models, case_w, art) == 'log'){exp(pred)} else{ invBoxCox(pred)}) %>%
+        modelr::add_predictions(get_model(models, case_w = case_w, art = art)) %>%
+        dplyr::mutate(PRED = if(get_p_trans(models, case_w, art) == 'log'){exp(pred)} else{ invBoxCox(pred)}) %>%
         dplyr::mutate(PRED_cor = case_when(
             PRED <= 0 ~ 1e-12,
             PRED >= 1 ~ 1 - 1e-12,
