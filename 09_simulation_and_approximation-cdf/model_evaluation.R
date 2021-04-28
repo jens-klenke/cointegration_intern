@@ -33,10 +33,6 @@ if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens
     load('D:\\Klenke\\Data_1_m.RData')
 }
 
-# just for the programming, delete before running final results
-Data %<>%
-    dplyr::sample_n(100000)
-
 lambda_p <- get_lambda(lambda_bc_ALL, 1, 'p')
 
 # Cut Data 
