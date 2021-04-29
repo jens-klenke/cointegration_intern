@@ -13,9 +13,9 @@ load(here::here('09_simulation_and_approximation-cdf/lambda_package.RData'))
 
 # vom test selbst geliefert 
 k = 2 
-bh.test <- a$bh.test
+bh.test <- 21.1
 trendtype  <- 1
-test.type <- a$test.type
+test.type <- 'all'
 
 
 get_p_value <- function(bh.test, trendtype, test.type){
@@ -42,11 +42,6 @@ get_p_value <- function(bh.test, trendtype, test.type){
 }
 
 #---- Test ----
-get_p_value(20.1, 1, 'all')
-get_p_value(50, 1, 'all')
-get_p_value(55, 1, 'all')
-get_p_value(100, 1, 'all')
-get_p_value(200, 1, 'all')
 
 Test_stat <- 1:400
 p_values_1_all <- tibble(
@@ -100,6 +95,12 @@ test_plot <- function(p_values){
 test_plot(p_values_all)
 test_plot(p_values_e_j)
 
+# Case 1 und 2 für 'all' auffällig
+# Mögliche Lösung: Modell von case 3 für alle cases in 'all' verwenden
+# aber: auch bei case 3 'Hügel' bei Test Statistik von 50 - 150
+
+# Modelle für e_j absolut unauffällig
+# evtl. auch p_value_Fisher_log für 'all verwenden
 
 
 ## Janine ausführen und speichern 
