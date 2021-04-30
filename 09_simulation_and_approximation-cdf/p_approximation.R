@@ -43,7 +43,7 @@ get_p_value <- function(bh.test, trendtype, test.type){
 
 #---- Test ----
 
-Test_stat <- 1:400
+Test_stat <- 1:800
 p_values_1_all <- tibble(
     case = 1,
     p_value = purrr::map_dbl(Test_stat, ~get_p_value(., 1, 'all')), 
@@ -59,8 +59,9 @@ p_values_3_all <- tibble(
 
 p_values_all <- rbind(
     p_values_1_all, p_values_2_all, p_values_3_all
-)
+    )
 
+#----
 p_values_1_e_j <- tibble(
     case = 1,
     p_value = purrr::map_dbl(Test_stat, ~get_p_value(., 1, 'e_j')), 
@@ -77,7 +78,7 @@ p_values_3_e_j <- tibble(
 p_values_e_j <- rbind(
     p_values_1_e_j, p_values_2_e_j, p_values_3_e_j
 )
-
+#----
 test_plot <- function(p_values){
     p_values %>%
         ggplot(aes(x = test_stat, y = p_value)) +
