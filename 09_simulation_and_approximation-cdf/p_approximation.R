@@ -12,18 +12,15 @@ load(here::here('09_simulation_and_approximation-cdf/models_package.RData'))
 load(here::here('09_simulation_and_approximation-cdf/lambda_package.RData'))
 
 # vom test selbst geliefert 
-k = 2 
-bh.test <- 21.1
-trendtype  <- 1
-test.type <- 'all'
+#k = 2 
+#bh.test <- 21.1
+#trendtype  <- 1
+#test.type <- 'all'
 
-
-get_p_value <- function(bh.test, trendtype, test.type){
-    #lambda_p <<- get_lambda(trendtype, 'p', 'all')
-    
+get_p_value <- function(bh.test, trendtype, test.type, k){
     new_data <- tibble(stat_Fisher_all = bh.test, 
                    stat_Fisher_E_J = bh.test, 
-                   k =  k ) %>%
+                   k = k) %>%
         dplyr::mutate(stat_Fisher_E_J_bc = ((stat_Fisher_E_J^get_lambda(trendtype, 'stat', 'e_j'))-1)/get_lambda(trendtype, 'stat', 'e_j'),
                   stat_Fisher_all_bc = ((stat_Fisher_all^get_lambda(trendtype, 'stat', 'all'))-1)/get_lambda(trendtype, 'stat', 'all'))
     p.value_raw <- suppressWarnings(predict(get_model(trendtype, test.type), new_data))
@@ -37,74 +34,57 @@ get_p_value <- function(bh.test, trendtype, test.type){
         }
 
     p.value <- ifelse(p.value_trans >= 1, 9.9999e-1, ifelse(p.value_trans <= 0, 1e-12, p.value_trans))
-
     return(p.value)
 }
 
-#---- Test ----
+#---- Test Plots ----
+p_value_test_fun <- function(test.type){
+    p_value_fun <- function(test_stat = 1:1000, trendtype, test.type, k){
+        tibble(
+            test_stat = test_stat,
+            p_value = purrr::map_dbl(test_stat, ~get_p_value(., trendtype, test.type, k)), 
+            trendtype = trendtype, 
+            test.type = test.type,
+            k = k)
+    }
+    expand_grid(
+        trendtype = 1:3, 
+        test.type = test.type, 
+        k = 1:11
+    ) %>% 
+        pmap_df(p_value_fun)
+}
 
-Test_stat <- 1:800
-p_values_1_all <- tibble(
-    case = 1,
-    p_value = purrr::map_dbl(Test_stat, ~get_p_value(., 1, 'all')), 
-    test_stat = Test_stat)
-p_values_2_all <- tibble(
-    case = 2,
-    p_value = purrr::map_dbl(Test_stat, ~get_p_value(., 2, 'all')), 
-    test_stat = Test_stat)
-p_values_3_all <- tibble(
-    case = 3,
-    p_value = purrr::map_dbl(Test_stat, ~get_p_value(., 3, 'all')), 
-    test_stat = Test_stat)
-
-p_values_all <- rbind(
-    p_values_1_all, p_values_2_all, p_values_3_all
-    )
-
-#----
-p_values_1_e_j <- tibble(
-    case = 1,
-    p_value = purrr::map_dbl(Test_stat, ~get_p_value(., 1, 'e_j')), 
-    test_stat = Test_stat)
-p_values_2_e_j <- tibble(
-    case = 2,
-    p_value = purrr::map_dbl(Test_stat, ~get_p_value(., 2, 'e_j')), 
-    test_stat = Test_stat)
-p_values_3_e_j <- tibble(
-    case = 3,
-    p_value = purrr::map_dbl(Test_stat, ~get_p_value(., 3, 'e_j')), 
-    test_stat = Test_stat)
-
-p_values_e_j <- rbind(
-    p_values_1_e_j, p_values_2_e_j, p_values_3_e_j
-)
-#----
-test_plot <- function(p_values){
+test_plot_fun <- function(p_values){
     p_values %>%
         ggplot(aes(x = test_stat, y = p_value)) +
         geom_line(color = '#004c93') +
-        labs(x = 'Test Statistic', y = 'Approximated p-values \n')+
-        theme_bw()+
-        facet_wrap(~case)+
+        labs(x = 'Test Statistic', y = 'Approximated p-values \n') +
+        theme_bw() +
+        facet_grid(k ~ trendtype) +
+        scale_y_continuous(sec.axis = sec_axis(~.*10, name = "k"), 
+                           breaks = seq(0, 1, 0.5)) +
+        scale_x_continuous(sec.axis = sec_axis(~.*10, name = "Deterministic component")) +
         theme(panel.spacing = unit(1, "lines"),
               strip.background = element_rect(colour = 'black',
                                               fill = '#004c93'),
-              strip.text.x = element_text(size = 12, color = 'white' # , face = "bold.italic"
-              ))
+              strip.text.x = element_text(color = 'white'), 
+              strip.text.y = element_text(color = 'white'), 
+              axis.ticks.y.right = element_line(colour = 'white'), 
+              axis.text.y.right =  element_text(colour = "white"),
+              axis.ticks.x.top = element_line(colour = 'white'), 
+              axis.text.x.top =  element_text(colour = "white")
+        )
 }
 
-test_plot(p_values_all)
-test_plot(p_values_e_j)
+p_value_plots_e_j <- p_value_test_fun('e_j')
+p_value_plots_all <- p_value_test_fun('all')
 
-# Case 1 und 2 für 'all' auffällig
-# Mögliche Lösung: Modell von case 3 für alle cases in 'all' verwenden
-# aber: auch bei case 3 'Hügel' bei Test Statistik von 50 - 150
-
-# Modelle für e_j absolut unauffällig
-# evtl. auch p_value_Fisher_log für 'all verwenden
+test_plot_fun(p_value_plots_e_j)
+test_plot_fun(p_value_plots_all)
 
 
-## Janine ausführen und speichern 
+#---- Janine ausführen und speichern ----
 
 # Load Simulation Data 
 if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens 
