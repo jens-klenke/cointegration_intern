@@ -22,7 +22,7 @@ if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens
 
 # just for the programming, delete before running final results
 Data %<>%
-    dplyr::sample_n(100000)
+    dplyr::sample_n(3300000)
 
 # Split Dataset in Cases
 data_case_1 <- Data %>%
@@ -32,7 +32,7 @@ data_case_2 <- Data %>%
 data_case_3 <- Data %>%
     dplyr::filter(case == 3)
 
-rm('Data')
+# rm('Data')
 #---- Boxcox Transformation ----
 
 # case_1 

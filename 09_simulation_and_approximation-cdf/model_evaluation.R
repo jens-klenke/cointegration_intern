@@ -86,10 +86,12 @@ data_case_1_all %>%
     dplyr::filter(p_value_Fisher <= 0.2) %>%
     own_plot(max_graph = 0.2)
 
+
+
 # e_j
 own_plot(data_case_1_e_j)
 
-data_case_1_e_j %>%
+data_case_2_e_j %>%
     dplyr::filter(p_value_Fisher <= 0.2) %>%
     own_plot(max_graph = 0.2)
 
