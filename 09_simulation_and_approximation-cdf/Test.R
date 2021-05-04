@@ -5,10 +5,6 @@ source(here::here('01_code/packages/packages.R'))
 # load functions 
 source(here::here('09_simulation_and_approximation-cdf/estimation_functions.R'))
 
-# parallel
-plan(multisession, workers = 2)
-options(future.globals.maxSize = 2.147e+9)
-
 #-- tibble with models and data ----
 ## Load Simulation Data 
 if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens 
@@ -110,8 +106,7 @@ own_pred <- function(mod, data){
     return(mod_sum)
 }
 
-mod_neu_clean <- mod_neu
-mod_neu_clean$qr <- NULL
+mod_neu_clean <- clean_lm(mod_neu)
 
 object_size(mod_neu_clean)
 
