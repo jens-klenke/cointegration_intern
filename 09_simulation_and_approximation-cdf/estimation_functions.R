@@ -19,8 +19,8 @@ clean_lm <- function(object) {
     object$family$aic = c()
     object$family$validmu = c()
     object$family$simulate = c()
-    attr(object$terms,".Environment") = c()
-    attr(object$formula,".Environment") = c()
+#    attr(object$terms,".Environment") = c()
+#    attr(object$formula,".Environment") = c()
     
     object
 }
