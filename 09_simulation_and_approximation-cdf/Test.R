@@ -139,7 +139,7 @@ neu_coef <- mod_neu$coefficients
 comp <- tibble(alt = alt_coef, neu = neu_coef)
 
 tictoc::tic()
-mod_neu_fast <- RcppEigen::fastLm(p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, 10) * log(k) * I(1/k) * k * sqrt(k), 
+mod_neu_fast <- RcppEigen::fastLm(p_value_Fisher_bc ~ 1 + poly(stat_Fisher_all_bc, 10) * log(k) * I(1/k) * k * sqrt(k), 
                     data = data_case_1)
 tictoc::toc()
 # 2148.642 sec elapsed

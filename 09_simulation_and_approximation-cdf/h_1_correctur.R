@@ -11,7 +11,7 @@ load(here::here('09_simulation_and_approximation-cdf/models_package.RData'))
 load(here::here('09_simulation_and_approximation-cdf/H_1-values.RData'))
 
 # functions 
-ciritical_fun <- function(case_s, test_s){
+critical_fun <- function(case_s, test_s){
     crit_val %>%
         dplyr::filter(case == case_s, 
                       test == test_s) %>%
@@ -34,7 +34,7 @@ crit_val <- dplyr::bind_rows(
 # adding critical val to tibble
 
 models %<>%
-    dplyr::mutate(critical = purrr::map2(case, test, ciritical_fun))
+    dplyr::mutate(critical = purrr::map2(case, test, critical_fun))
 
 
 
