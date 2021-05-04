@@ -105,12 +105,58 @@ own_pred <- function(mod, data){
     
     return(mod_sum)
 }
+own_pred_2 <- function(mod, data){
+    # lm fit
+    # dependent variable 
+    dep_var <- "p_value_Fisher_bc"
+    # fitted values
+    fitted_values <- mod$fitted.values
+    # clean model
+    fitted_values <- predict(mod, data)
+
+    values <- tibble(
+        PRED = if(str_detect(dep_var, '_bc')){ 
+            invBoxCox(fitted_values)
+        } else if(str_detect(dep_var, '_lg')){
+            exp(fitted_values)
+        } else {fitted_values}, # y_hat 
+        dependent = data$p_value_Fisher,
+        k = data$k
+    )
+    
+    # computing corrected predictions
+    values <- values%>%
+        dplyr::mutate(PRED_cor = case_when(
+            PRED <= 0 ~ 1e-12,
+            PRED >= 1 ~ 1 - 1e-12,
+            TRUE ~ PRED))
+    
+    # RMSE and corrected RMSE on the full dataset
+    RMSE <- sqrt((sum((values$PRED - values$dependent)^2)/nrow(values)))
+    RMSE_cor <- sqrt((sum((values$PRED_cor - values$dependent)^2)/nrow(values)))
+    
+    # smaller dataset only the intersting part, correction is at 
+    values_0.2 <- values %>%
+        dplyr::filter(dependent >= 0.2)
+    RMSE_0.2 <- sqrt((sum((values_0.2$PRED - values_0.2$dependent)^2)/nrow(values_0.2)))
+    RMSE_cor_0.2 <- sqrt((sum((values_0.2$PRED_cor - values_0.2$dependent)^2)/nrow(values_0.2)))
+    
+    mod_sum <- tibble(model  = list(mod),
+                      RMSE = as.numeric(RMSE),
+                      RMSE_cor = as.numeric(RMSE_cor),
+                      RMSE_0.2 = as.numeric(RMSE_0.2), 
+                      RMSE_cor_0.2 = as.numeric(RMSE_cor_0.2) 
+    )
+    
+    return(mod_sum)
+}
+
 
 mod_neu_clean <- clean_lm(mod_neu)
 
-object_size(mod_neu_clean)
+save(mod_neu_clean, file = here::here("mod_1_all_neu.Rdata"))
 
-own_pred(mod_neu, data_case_1)
+own_pred_2(clean_mod_all_1, data_case_1)
 # RMSE_cor_0.2: 0.000466
 
 # Hier habe ich dann alles aus model_evaluation geladen 
@@ -134,7 +180,7 @@ neu_coef <- mod_neu$coefficients
 comp <- tibble(alt = alt_coef, neu = neu_coef)
 
 tictoc::tic()
-mod_neu_fast <- RcppEigen::fastLm(p_value_Fisher_bc ~ 1 + poly(stat_Fisher_all_bc, 10) * log(k) * I(1/k) * k * sqrt(k), 
+mod_neu_fast <- RcppEigen::fastLm(p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, 10) * log(k) * I(1/k) * k * sqrt(k), 
                     data = data_case_1)
 tictoc::toc()
 # 2148.642 sec elapsed
