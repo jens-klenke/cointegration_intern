@@ -63,10 +63,11 @@ lambda_values <- bind_rows(lambda_bc_all,
 mod_neu <- lm(p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, 10) * log(k) * I(1/k) * k * sqrt(k), 
               data = data_case_1)
 
+
 own_pred <- function(mod, data){
     # lm fit
     # dependent variable 
-    dep_var <- colnames(mod$model)[1]
+    dep_var <- "p_value_Fisher_bc"
     # fitted values
     fitted_values <- mod$fitted.values
     # cleand model
@@ -109,9 +110,13 @@ own_pred <- function(mod, data){
     return(mod_sum)
 }
 
+mod_neu_clean <- mod_neu
+mod_neu_clean$qr <- NULL
+
+object_size(mod_neu_clean)
+
 own_pred(mod_neu, data_case_1)
 # RMSE_cor_0.2: 0.000466
-# RMSE_cor_0.2: 0.000462
 
 # Hier habe ich dann alles aus model_evaluation geladen 
 
@@ -128,4 +133,16 @@ data_case_1_all %>%
     dplyr::filter(p_value_Fisher <= 0.2) %>%
     own_plot(max_graph = 0.2)
 
+alt_coef <- clean_mod_all_1$coefficients %>% as.numeric()
+neu_coef <- mod_neu$coefficients
+
+comp <- tibble(alt = alt_coef, neu = neu_coef)
+
+tictoc::tic()
+mod_neu_fast <- RcppEigen::fastLm(p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, 10) * log(k) * I(1/k) * k * sqrt(k), 
+                    data = data_case_1)
+tictoc::toc()
+# 2148.642 sec elapsed
+object_size(mod_neu_fast)
+# 176 MB
 
