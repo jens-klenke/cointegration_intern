@@ -190,3 +190,33 @@ table_all_case_3 <- table_all_fun(data_case_3)
 save(table_E_J_case_1, table_E_J_case_2, table_E_J_case_3,
      table_all_case_1, table_all_case_2, table_all_case_3,
      file = here::here('09_simulation_and_approximation-cdf/server_results.RData'))
+
+
+
+#----- clean model server
+
+#
+# ----- models 
+mod_all_1 <- lm(p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, 10) * log(k) * I(1/k) * k * sqrt(k), data = data_case_1)
+clean_mod_all_1 <- clean_lm(mod_all_1)
+
+mod_all_2 <- lm(p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, 10) * log(k) * I(1/k) * k * sqrt(k), data = data_case_2)
+clean_mod_all_2 <- clean_lm(mod_all_2)
+
+mod_all_3 <- lm(p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, 10) * log(k) * I(1/k) * k * sqrt(k), data = data_case_3)
+clean_mod_all_3 <- clean_lm(mod_all_3)
+
+mod_E_J_1 <- lm(p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, 10) * log(k) * I(1/k) * k, data = data_case_1)
+clean_mod_E_J_1 <- clean_lm(mod_E_J_1)
+
+mod_E_J_2 <- lm(p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, 10) * log(k) * I(1/k) * k, data = data_case_2)
+clean_mod_E_J_2 <- clean_lm(mod_E_J_2)
+
+
+# hier copy and paste Fehler, muss 9 sein 
+mod_E_J_3 <- lm(p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, 10) * log(k) * I(1/k) * k, data = data_case_3)
+clean_mod_E_J_3 <- clean_lm(mod_E_J_3)
+
+save(clean_mod_all_1, clean_mod_all_2, clean_mod_all_3,
+     clean_mod_E_J_1, clean_mod_E_J_2, clean_mod_E_J_3,
+     file = here::here('09_simulation_and_approximation-cdf/final_models.RData'))

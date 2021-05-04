@@ -17,7 +17,8 @@ load(here::here('09_simulation_and_approximation-cdf/lambda_package.RData'))
 #trendtype  <- 1
 #test.type <- 'all'
 
-get_p_value <- function(bh.test, trendtype, test.type, k){
+get_p_value <- function(bh.test, k, trendtype, test.type){
+    
     new_data <- tibble(stat_Fisher_all = bh.test, 
                    stat_Fisher_E_J = bh.test, 
                    k = k) %>%
@@ -36,6 +37,19 @@ get_p_value <- function(bh.test, trendtype, test.type, k){
     p.value <- ifelse(p.value_trans >= 1, 9.9999e-1, ifelse(p.value_trans <= 0, 1e-12, p.value_trans))
     return(p.value)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #---- Test Plots ----
 p_value_test_fun <- function(test.type){
@@ -82,29 +96,4 @@ p_value_plots_all <- p_value_test_fun('all')
 
 test_plot_fun(p_value_plots_e_j)
 test_plot_fun(p_value_plots_all)
-
-
-#---- Janine ausführen und speichern ----
-
-# Load Simulation Data 
-if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens 
-    Data <- readRDS('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_100k.rds')
-    # load('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_1_m.RData')
-} else if(Sys.info()['user'] == "Janine") { # Janine
-    load("/Users/Janine/Desktop/BayerHanck/Data_1_m.RData")
-} else if(Sys.info()['nodename'] == "OEK-TS01") { # Server
-    load('D:\\Klenke\\Data_1_m.RData')
-}
-
-crit_val_all <- Data %>%
-    dplyr::group_by(case, k) %>%
-    dplyr::select(stat_Fisher_all) %>%
-    dplyr::slice_max(stat_Fisher_all , n = 100) %>%
-    dplyr::filter(stat_Fisher_all == min(stat_Fisher_all))
-
-crit_val_e_j <- Data %>%
-    dplyr::group_by(case, k) %>%
-    dplyr::select(stat_Fisher_E_J) %>%
-    dplyr::slice_max(stat_Fisher_E_J , n = 100) %>%
-    dplyr::filter(stat_Fisher_E_J == min(stat_Fisher_E_J))
 
