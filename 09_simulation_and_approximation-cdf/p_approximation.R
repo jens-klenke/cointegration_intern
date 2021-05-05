@@ -17,7 +17,7 @@ load(here::here('09_simulation_and_approximation-cdf/lambda_package.RData'))
 #trendtype  <- 1
 #test.type <- 'all'
 
-get_p_value <- function(bh.test, k, trendtype, test.type){
+get_p_value <- function(bh.test, trendtype, test.type, k){
     
     new_data <- tibble(stat_Fisher_all = bh.test, 
                    stat_Fisher_E_J = bh.test, 
@@ -37,19 +37,6 @@ get_p_value <- function(bh.test, k, trendtype, test.type){
     p.value <- ifelse(p.value_trans >= 1, 9.9999e-1, ifelse(p.value_trans <= 0, 1e-12, p.value_trans))
     return(p.value)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #---- Test Plots ----
 p_value_test_fun <- function(test.type){
