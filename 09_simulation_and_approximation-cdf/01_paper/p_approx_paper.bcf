@@ -2161,6 +2161,9 @@
     <bcf:citekey order="13">Fisher_1932</bcf:citekey>
     <bcf:citekey order="14">Fisher_1932</bcf:citekey>
     <bcf:citekey order="15">Pesavento_2004</bcf:citekey>
+    <bcf:citekey order="16">Boxcox_1964</bcf:citekey>
+    <bcf:citekey order="17">Boxcox_1964</bcf:citekey>
+    <bcf:citekey order="18">Kuhn_2013</bcf:citekey>
   </bcf:section>
   <!-- SECTION 1 -->
   <bcf:bibdata section="1">

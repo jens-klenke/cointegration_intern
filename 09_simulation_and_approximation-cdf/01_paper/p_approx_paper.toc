@@ -16,9 +16,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4}Models}{4}{section.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1}Polynomial Regression}{4}{subsection.4.1}% 
+\contentsline {subsection}{\numberline {4.1}Data Pre-Processing}{4}{subsection.4.1}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Package}{4}{section.5}% 
+\contentsline {subsection}{\numberline {4.2}Polynomial Regression}{5}{subsection.4.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Package}{5}{section.5}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{References}{III}{section.5}% 
 \defcounter {refsection}{1}\relax 

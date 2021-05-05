@@ -39,18 +39,18 @@ classoption: a4paper
 <!-- Git version -->
 
 ```{r , include=FALSE}
-Sys.setlocale(locale = "English_United States.1252") ## English US Windows
-knitr::opts_chunk$set(echo = TRUE)
+#Sys.setlocale(locale = "English_United States.1252") ## English US Windows
+#knitr::opts_chunk$set(echo = TRUE)
 
 #options(kableExtra.latex.load_packages = FALSE)
 
 ## packages
-source(here::here('01_code/packages/packages.R'))
+#source(here::here('01_code/packages/packages.R'))
 
 ## metrics
-load(here::here("09_simulation_and_approximation-cdf/model_metrics_ALL_server.Rdata"))
+#load(here::here("09_simulation_and_approximation-cdf/model_metrics_ALL_server.Rdata"))
 
-load(here::here("09_simulation_and_approximation-cdf/model_metrics_E_J_server.Rdata"))
+#load(here::here("09_simulation_and_approximation-cdf/model_metrics_E_J_server.Rdata"))
 ```
 
 # Introduction
@@ -125,6 +125,33 @@ From the mass of test statistics we build the cumulative distribution function o
 We now use the generated data for training machine learning algorithms on predicting the approximated empirical CDF of the Bayer Hanck test. We work with the values of the test statistic and the number of lags $k$ as predictors. As it is our objective to describe the null distribution with a less memory-intensive model we will only consider linear methods. For the same objective we compare the models according to their in-sample RMSE. The threat of overfitting is thus of no particular relevance here. For this reason, and to reduce computation time, we use no cross-validation.
 
 As the empirical CDF is typically known to be curved in an S-shape we skip the classic linear regression in favor of a more flexible model. We stay with least squares regression, but try various combinations of polynomial functions and interaction terms of the aforementioned regressors. The search for the best model is carried out via brute-force.
+
+## Data Pre-Processing
+One approach for improving a model's predictive ability is the pre-processing of the training data. Some models, like linear regression, react sensitively to certain characteristics of the predictor or response data. Those characteristics include, inter alia, distributional skewness and outliers and there exist several methods to lower their potentially bad impact on the model's performance. 
+
+Since we simulated our training data under the null of non-cointegration we expect the distribution of the test statistic to be rather right skewed. \textcolor{red}{Plot} also reveals it to have a long right tail. If we train our regression model on this raw data it can possibly have difficulties predicting from high values of the test statistic. 
+
+One of the aforementioned methods to deal with such issues are power transforms. One might decide freely which transformation to apply. Alternatively, there exist statistical methods to determine an appropriate transformation. A well-known family of transformations to un-skew data is the Box-Cox transformation [@Boxcox_1964]. They aim at transforming the data so that it closely resembles the normal distribution. The exact transformation depends on the parameter $\lambda$, whose optimal value can be estimated: 
+
+\begin{equation}
+y^{(\lambda)} =
+    \begin{cases}
+    \frac{y^{\lambda} - 1}{\lambda}, & \lambda \neq 0 \\
+    \log{(y)}, & \lambda = 0
+    \end{cases}
+\label{eq:5}
+\end{equation}
+
+It is visible from \eqref{eq:5} that @Boxcox_1964 developed these transformations for the dependent variable. @Kuhn_2013, however, report that it proves as effective for transforming individual regressors. 
+
+\textcolor{red}{Plots hier einfügen, Test Stat all und ej mit und ohne bc}.
+
+We estimate lambda for the values of the test statistics of the Bayer-Hanck test and transform them according to \eqref{eq:5}. This forces their distribution into a more symmetric form. 
+
+\textcolor{red}{Response transformieren}
+
+\textcolor{red}{k als dummy/factor}
+
 
 ## Polynomial Regression
 Polynomial Regression extends the classic linear regression model by fitting a polynomial equation of arbitrary order to the data. It thus takes the form
@@ -207,160 +234,7 @@ We estimate all linear models for each possible combination of the underlying te
 
 # Appendices
 
-\FloatBarrier
 
-\begin{table}
-	\centering
-	\begin{tabular}{rlc}
-		Number & Functional form & Range of $\gamma$ \\
-		\toprule
-		$1$ & $p = \text{poly}(t, \gamma) + \left( 1/k \right)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\ 
-		$2$ & $p = \text{poly}(t, \gamma) + \left( 1/k \right) + \text{poly}(t, \gamma) * 1/k $ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$3$ & $p = \text{poly}(t, \gamma) + \log (k) + \text{poly}(k, \gamma) * \log (k) $ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$4$ & $p = \text{poly}(t, \gamma) + k + \left( 1/k \right)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$5$ & $p = \text{poly}(\log (t), \gamma) + \log (k)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		\midrule
-		$6$ & $p = \text{poly}(\log (t), \gamma) * \log (k)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$7$ & $p = \text{poly}(\log (t), \gamma) + k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\ 
-		$8$ & $p = \text{poly}(\log (t), \gamma) * k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$9$ & $p = \text{poly}(\log (t), \gamma) * k + 1/k $ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\ 	
-		$10$ & $p = \text{poly}(\log (t), \gamma) * \log(k)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\ 
-		\midrule
-		$11$ & $p = \text{poly}(\log (t), \gamma) * \log(k) + 1/k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$12$ & $p = \poly (\bc (t), \gamma) * \log(k) + \poly (\bc (t), \gamma) * 1/k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$13$ & $p = \poly (\bc (t), \gamma) * \log(k) + \poly (\bc (t), \gamma) * \sqrt{k}$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$14$ & $p = \poly (\bc (t), \gamma) * \log(k) + \poly (\bc (t), \gamma) * 1/k +\sqrt{k}$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$15$ & $ \bc (p) = \poly (\bc (t), \gamma) + \log(k)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\		
-		\midrule
-		$16$ & $\bc (p) = \poly (\bc (t), \gamma) * \log(k)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$17$ & $\bc (p) = \poly (\bc (t), \gamma) * \log(k) + 1/k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$18$ & $\bc (p) = \poly (\bc (t), \gamma) * \log(k) + \poly (\bc (t), \gamma) * 1/k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$19$ & $\bc (p) = \poly (\bc (t), \gamma) * \log(k) +  \poly (\bc (t), \gamma) * \sqrt{k}$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$20$ & $\log (p) = \poly (\bc (t), \gamma) * \log(k)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		\midrule
-		$21$ & $\log (p) = \poly (\bc (t), \gamma) * \log(k) + 1/k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$22$ & $\log (p) = \poly (\bc (t), \gamma) * \log(k) + \poly (\bc (t), \gamma) * \sqrt{k}$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$23$ & $\log (p) = \poly (\bc (t), \gamma) * \log(k) + \poly (\bc (t), \gamma) * 1/k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$24$ & $\log (p) = \poly (\bc (t), \gamma) * \log(k) + \poly (\bc (t), \gamma) * 1/k + \sqrt{k}$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		\bottomrule
-	\end{tabular}
-	\caption{Description of all tested models....}
-	\label{tab:func_form}	 
-\end{table}
-
-\begin{table}
-\resizebox{\textwidth}{!}{%
-	\centering
-	\begin{tabular}{llccccc}
-		& &\multicolumn{2}{c}{Full distribution} &  & \multicolumn{2}{c}{Lower tail $(p < 0.2)$} \\ \cline{3-4} \cline{6-7}
-		Functional form & & RMSE & cRMSE & & RMSE & cRMSE\\
-		\toprule
-		$\bc (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * \sqrt{k}$ &  & $4.97 \cdot 10^{-4}$& $4.69 \cdot 10^{-4}$ & & $8.05 \cdot 10^{-4}$ &  $7.16 \cdot 10^{-4}$\\
-		$\bc (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k $&  & $5.39 \cdot 10^{-4}$ & $5.11 \cdot 10^{-4}$ & & $ 8.54 \cdot 10^{-4}$ &  $7.61 \cdot 10^{-4}$\\
-		$p = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * \sqrt{k}$ &  & $7.68 \cdot 10^{-4}$ & $6.91 \cdot 10^{-4}$ & & $1.01 \cdot 10^{-3}$ & $8.97 \cdot 10^{-4}$\\
-		$p = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k + \sqrt{k}$ &  & $7.79 \cdot 10^{-4}$ & $7.04 \cdot 10^{-4}$ & & $1.05 \cdot 10^{-3} $ & $9.31 \cdot 10^{-4}$\\
-		$p = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$&  & $7.82 \cdot 10^{-4}$ & $7.07 \cdot 10^{-4}$ & & $1.06 \cdot 10^{-3}$ & $9.41 \cdot 10^{-4}$\\
-		\bottomrule
-	\end{tabular}
-	}
-	\caption{The 5 best models for the combined Non-Cointegration test of Bayer and Hanck, where \textit{all} underlying test are included and case 1.}
-	\label{tab:ALL_case_1}	 
-\end{table}
-
-\begin{table}
-\resizebox{\textwidth}{!}{%
-	\centering
-	\begin{tabular}{llccccc}
-		& &\multicolumn{2}{c}{Full distribution} &  & \multicolumn{2}{c}{Lower tail $(p < 0.2)$} \\ \cline{3-4} \cline{6-7}
-		Functional form & & RMSE & cRMSE & & RMSE & cRMSE\\
-		\toprule
-		$\log (p) = \poly(\bc (t), 10) * \log(k)$ & & $1.27 \cdot 10^{-3}$& $1.25 \cdot 10^{-3}$ & & $1.05 \cdot 10^{-3}$ &  $9.52 \cdot 10^{-4}$\\
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * \sqrt{k}$&  & $6.82 \cdot 10^{-4}$ & $6.22 \cdot 10^{-4}$& &$ 1.28 \cdot 10^{-3}$ &  $1.12 \cdot 10^{-3}$\\
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$&  & $7.32 \cdot 10^{-4}$ & $6.63 \cdot 10^{-4}$& &$1.39 \cdot 10^{-3}$ & $1.20 \cdot 10^{-3}$\\
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k + \sqrt{k}$&  & $8.38 \cdot 10^{-4}$ & $7.78 \cdot 10^{-4}$& &$1.48 \cdot 10^{-3}$ & $1.31 \cdot 10^{-3}$\\
-		$\bc (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$ & & $9.08 \cdot 10^{-4}$ & $8.42 \cdot 10^{-4}$ & & $1.69 \cdot 10^{-3}$ & $1.50 \cdot 10^{-3}$\\
-		\bottomrule
-	\end{tabular}
-	}
-	\caption{The 5 best models for the combined Non-Cointegration test of Bayer and Hanck, where \textit{all} underlying test are included and case 2.}
-	\label{tab:ALL_case_2}	 
-\end{table}
-
-\begin{table}[h!]
-\resizebox{\textwidth}{!}{%
-	\centering
-	\begin{tabular}{llccccc}
-		& &\multicolumn{2}{c}{Full distribution} &  & \multicolumn{2}{c}{Lower tail $(p < 0.2)$} \\ \cline{3-4} \cline{6-7}
-		Functional form & & RMSE & cRMSE & & RMSE & cRMSE\\
-		\toprule
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * \sqrt{k}$ & & $4.58 \cdot 10^{-4}$& $4.55 \cdot 10^{-4}$ & & $3.37 \cdot 10^{-4}$ & $3.16 \cdot 10^{-4}$\\
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k $ & & $5.17 \cdot 10^{-4}$ & $5.14 \cdot 10^{-4}$ & & $ 3.90 \cdot 10^{-4}$ &  $3.73 \cdot 10^{-4}$\\
-		$\log (p) = \poly(\bc (t), 10) * \log(k)$ & & $1.04 \cdot 10^{-3}$ & $1.04 \cdot 10^{-3}$ & & $6.76 \cdot 10^{-4}$ & $6.50 \cdot 10^{-4}$\\		
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k + \sqrt{k}$ & & $1.18 \cdot 10^{-3}$ & $1.17 \cdot 10^{-3}$ & & $2.06 \cdot 10^{-3}$ & $2.05 \cdot 10^{-3}$\\		
-		$\bc (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$ & & $1.16 \cdot 10^{-3}$ & $1.06 \cdot 10^{-3}$ & & $2.08 \cdot 10^{-3}$ & $1.80 \cdot 10^{-3}$\\
-		\bottomrule
-	\end{tabular}
-	}
-	\caption{The 5 best models for the combined Non-Cointegration test of Bayer and Hanck, where \textit{all} underlying test are included and case 3.}
-	\label{tab:ALL_case_3}	 
-\end{table}
-
-\begin{table}[h!]
-\resizebox{\textwidth}{!}{%
-	\centering
-	\begin{tabular}{llccccc}
-		& &\multicolumn{2}{c}{Full distribution} &  & \multicolumn{2}{c}{Lower tail $(p < 0.2)$} \\ \cline{3-4} \cline{6-7}
-		Functional form & & RMSE & cRMSE & & RMSE & cRMSE\\
-		\toprule
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$ & & $4.75 \cdot 10^{-4}$& $4.44 \cdot 10^{-4}$ & & $7.81 \cdot 10^{-4}$ & $6.84 \cdot 10^{-4}$\\
-		$\log (p) = \poly(\bc (t), 10) * \log(k)$ & & $6.54 \cdot 10^{-4}$ & $5.87 \cdot 10^{-4}$ & & $ 1.01 \cdot 10^{-3}$ &  $7.81 \cdot 10^{-4}$\\
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * \sqrt{k}$ & & $7.60 \cdot 10^{-4}$ & $6.13 \cdot 10^{-4}$ & & $1.46 \cdot 10^{-3}$ & $1.06 \cdot 10^{-3}$\\		
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k + \sqrt{k}$ & & $7.64 \cdot 10^{-4}$ & $7.45 \cdot 10^{-4}$ & & $1.29 \cdot 10^{-3}$ & $1.23 \cdot 10^{-3}$\\		
-		$\bc (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$ & & $1.01 \cdot 10^{-3}$ & $9.17 \cdot 10^{-4}$ & & $1.89 \cdot 10^{-3}$ & $1.65 \cdot 10^{-3}$\\
-		\bottomrule
-	\end{tabular}
-	}
-	\caption{The 5 best models for the combined Non-Cointegration test of Bayer and Hanck, where \textit{EG-J} underlying test are included and case 1.}
-	\label{tab:EG_J_case_1}	 
-\end{table}
-
-\begin{table}[h!]
-\resizebox{\textwidth}{!}{%
-	\centering
-	\begin{tabular}{llccccc}
-		& &\multicolumn{2}{c}{Full distribution} &  & \multicolumn{2}{c}{Lower tail $(p < 0.2)$} \\ \cline{3-4} \cline{6-7}
-		Functional form & & RMSE & cRMSE & & RMSE & cRMSE\\
-		\toprule
-		$\log (p) = \poly(\bc (t), 10) * \log(k)$ & & $7.36 \cdot 10^{-4}$ & $7.25 \cdot 10^{-4}$ & & $7.04 \cdot 10^{-4}$ & $6.45 \cdot 10^{-4}$\\
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$ & & $5.53 \cdot 10^{-4}$ & $5.12 \cdot 10^{-4}$ & & $9.75 \cdot 10^{-4}$ &  $8.56 \cdot 10^{-4}$\\
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * \sqrt{k}$ & & $5.53 \cdot 10^{-4}$ & $5.11 \cdot 10^{-4}$ & & $9.87 \cdot 10^{-4}$ & $8.66 \cdot 10^{-4}$\\		
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k + \sqrt{k}$ & & $6.00 \cdot 10^{-4}$ & $5.62 \cdot 10^{-4}$ & & $1.11 \cdot 10^{-3}$ & $1.01 \cdot 10^{-3}$\\		
-		$\bc (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * \sqrt{k}$ & & $1.05 \cdot 10^{-3}$ & $9.54 \cdot 10^{-4}$ & & $2.00 \cdot 10^{-3}$ & $1.75 \cdot 10^{-3}$\\
-		\bottomrule
-	\end{tabular}
-	}
-	\caption{The 5 best models for the combined Non-Cointegration test of Bayer and Hanck, where \textit{EG-J} underlying test are included and case 2.}
-	\label{tab:EG_J_case_2}	 
-\end{table}
-
-\begin{table}[h!]
-\resizebox{\textwidth}{!}{%
-	\centering
-	\begin{tabular}{llccccc}
-		& &\multicolumn{2}{c}{Full distribution} &  & \multicolumn{2}{c}{Lower tail $(p < 0.2)$} \\ \cline{3-4} \cline{6-7}
-		Functional form & & RMSE & cRMSE & & RMSE & cRMSE\\
-		\toprule
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * \sqrt{k}$ & & $3.85 \cdot 10^{-4}$& $3.73 \cdot 10^{-4}$ & & $5.03 \cdot 10^{-4}$ & $4.58 \cdot 10^{-4}$\\
-		$\log (p) = \poly(\bc (t), 10) * \log(k)$ & & $7.55 \cdot 10^{-4}$ & $7.54 \cdot 10^{-4}$ & & $4.85 \cdot 10^{-4}$ & $4.70 \cdot 10^{-4}$\\
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k$ & & $3.73 \cdot 10^{-4}$ & $3.59 \cdot 10^{-4}$ & & $5.34 \cdot 10^{-4}$ & $4.83 \cdot 10^{-4}$\\		
-		$\log (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * 1/k + \sqrt{k}$ & & $4.87 \cdot 10^{-4}$ & $4.76 \cdot 10^{-4}$ & & $8.52 \cdot 10^{-4}$ & $8.19 \cdot 10^{-4}$\\		
-		$\bc (p) = \poly(\bc (t), 10) * \log(k) + \poly(\bc (t), 10) * \sqrt{k}$ & & $1.02 \cdot 10^{-3}$ & $9.35 \cdot 10^{-4}$ & & $1.94 \cdot 10^{-3}$ & $1.70 \cdot 10^{-3}$\\
-		\bottomrule
-	\end{tabular}
-	}
-	\caption{The 5 best models for the combined Non-Cointegration test of Bayer and Hanck, where \textit{EG-J} underlying test are included and case 3.}
-	\label{tab:EG_J_case_3}	 
-\end{table}
 
 <!-- 
 --------------------------------------------------------------------------------
