@@ -554,9 +554,58 @@ tend to show a wiggly behaviour at the boundaries. This makes
 extrapolation beyond the limits of our simulated data a risky endeavour.
 We will address and fix this issue later on.
 
-\hypertarget{other-linear-regression-models}{%
-\subsection{Other linear regression
-models}\label{other-linear-regression-models}}
+\hypertarget{lasso}{%
+\subsection{Lasso}\label{lasso}}
+
+As mentioned above our polynomial regression models are likely to
+perform best with higher order polynomials. With each added polynomial,
+however, we increase the complexity of our model and potentially add
+redundant regressors. Although, still, overfitting plays no major role
+here, we generally prefer sparser models in case of equal results. One
+way to deal with this is the use of variable selection methods. A
+well-known example of such methods is the least absolute shrinkage and
+selection operator (LASSO).
+
+The lasso estimate is defined as
+
+\begin{equation}
+    \hat{\beta}^{\text{lasso}} = \argmin_{\beta} \sum^N_{i=1} \left( y_i - \beta_0 - \sum^p_{j=1} x_{ij} \beta_j \right)^2
+    \text{s.t.} \sum^p_{j=1} |\beta_j | \leq t, 
+\label{eq:7}
+\end{equation}
+
+where the first term describes the residual sum of squares, subject to a
+term known as L1 penalty. In its Lagrangian form this can be rewritten
+as
+
+\begin{equation}
+    \hat{\beta}^{\text{lasso}} = \argmin_{\beta} \frac{1}{2} \sum^N_{i=1} \left( y_i - \beta_0 - \sum^p_{j=1} x_{ij} \beta_j \right)^2 + 
+    \lambda \sum^p_{j=1} |\beta_j |
+\label{eq:8}
+\end{equation}
+
+\(\lambda\) is a tuning parameter which defines the degree of
+regularisation. The lasso penalty shrinks the coefficients and, for
+\(\lambda\) sufficiently large, can set them to zero. The value of
+\(\lambda\) is data dependent and is usually estimated with
+cross-validation. \textcolor{red}{ausführlicher? Quelle?}
+
+We plan on fitting a LASSO model to polynomials of grade 15. We consider
+the same transformations and interaction terms as in earlier steps. We
+therefore fit a total of \textcolor{red}{Anzahl} models.
+
+\hypertarget{other-regression-models}{%
+\subsection{Other regression models}\label{other-regression-models}}
+
+We also considered various other regression models. For different
+reasons they were not too suitable for our use case. Conventional
+non-linear methods, like Generalized Additive Models or Multivariate
+Adaptive Regression Splines, might have provided a decent prediction.
+However, the fitted models take up more memory space than the
+aforementioned linear methods. For the same reason refrain from using
+tree based methods. In addition, the latter tend to perform poorly with
+such a small amount of regressors. Given these limitations, we decided
+to stick solely with linear regression models.
 
 \hypertarget{model-evaluation}{%
 \section{Model evaluation}\label{model-evaluation}}

@@ -20,11 +20,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.2}Polynomial Regression}{5}{subsection.4.2}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3}Other linear regression models}{6}{subsection.4.3}% 
+\contentsline {subsection}{\numberline {4.3}Lasso}{6}{subsection.4.3}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Model evaluation}{6}{section.5}% 
+\contentsline {subsection}{\numberline {4.4}Other regression models}{7}{subsection.4.4}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Package}{6}{section.6}% 
+\contentsline {section}{\numberline {5}Model evaluation}{7}{section.5}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Package}{7}{section.6}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{References}{III}{section.6}% 
 \defcounter {refsection}{1}\relax 
