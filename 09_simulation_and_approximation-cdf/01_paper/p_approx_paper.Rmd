@@ -131,7 +131,7 @@ One approach for improving a model's predictive ability is the pre-processing of
 
 Since we simulated our training data under the null of non-cointegration we expect the distribution of the test statistic to be rather right skewed. \textcolor{red}{Plot} also reveals it to have a long right tail. If we train our regression model on this raw data it can possibly have difficulties predicting from high values of the test statistic. 
 
-One of the aforementioned methods to deal with such issues are power transforms. One might decide freely which transformation to apply. Alternatively, there exist statistical methods to determine an appropriate transformation. A well-known family of transformations to un-skew data is the Box-Cox transformation [@Boxcox_1964]. They aim at transforming the data so that it closely resembles the normal distribution. The exact transformation depends on the parameter $\lambda$, whose optimal value can be estimated: 
+One of the aforementioned methods to deal with such issues are power transforms. One might decide freely which transformation to apply. Alternatively, there exist statistical methods to determine an appropriate transformation. A well-known family of transformations to un-skew data is the Box-Cox transformation [@Boxcox_1964]. They aim at transforming the data so that it closely resembles the normal distribution. The exact transformation depends on the parameter $\lambda$, whose optimal value can be empirically estimated: 
 
 \begin{equation}
 y^{(\lambda)} =
@@ -152,18 +152,26 @@ We estimate lambda for the values of the test statistics of the Bayer-Hanck test
 
 \textcolor{red}{k als dummy/factor}
 
-
 ## Polynomial Regression
-Polynomial Regression extends the classic linear regression model by fitting a polynomial equation of arbitrary order to the data. It thus takes the form
+Due to the reasons given above we restrict ourselves to linear models. The empirical CDF, which we aim to predict, is known to have a curved shape. For this reason, a simple linear regression model is very unlikely to provide a satisfactory fit to the data. We are in need of a more flexible model to predict the response as accurately as possible.
 
-\textcolor{red}{Gleichung hier einfügen, abstimmen mit Liste von Jens}.
+Polynomial Regression extends the classic linear regression model by fitting a polynomial equation of arbitrary order to the data. A polynomial regression with $n$ degrees thus takes the form
 
-Here, we consider up to 10 degrees. Higher order polynomials produce very non-linear curves, but are prone to wiggly behaviour at the boundaries. This can be problematic, as
+\begin{equation}
+    y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + ... + \beta_n x_i^n + \varepsilon_i,
+\label{eq:6}
+\end{equation}
+
+where $\varepsilon_i$ is the error term. \textcolor{red}{Quelle?}
+
+Here, we calculate orthogonal polynomials of the test statistic of the Bayer-Hanck Test, considering up to 15 degrees. We estimate the parameters with ordinary least squares. To potentially increase the predictive performance of our model we also add interaction terms and different transformations of the regressor $k$. \textcolor{red}{Appendix} lists all calculated models. Since there is no need to prevent overfitting we expect higher order polynomials to perform best, as they are highly flexible. These polynomials, however, tend to show a wiggly behaviour at the boundaries. This makes extrapolation beyond the limits of our simulated data a risky endeavour. We will address and fix this issue later on. 
+
+## Other linear regression models
 
 
 
-We estimate all linear models for each possible combination of the underlying tests and the specifications of the model deterministics. 
-
+# Model evaluation
+We estimate all models for two different combinations of the underlying tests. Namely, these are a combination of the Engle-Granger and Johansen test (EJ) and a combination of all four underlying tests (all). Furthermore, we estimate one model per specification of the model deterministics. Altogether, this results in a total of six different models. 
 
 # Package
 
