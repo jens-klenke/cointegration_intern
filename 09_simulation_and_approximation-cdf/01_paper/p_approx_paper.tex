@@ -272,9 +272,10 @@
 \begin{acronym}[dummyyyy]
  \acro{bagging}{Bootstrap Aggregation}
  \acro{FCLT}{functional central limit theorem}
- \acro{LASSO}{Least Absolute Shrinkage and Selection Operator}
+ \acro{Lasso}{Least Absolute Shrinkage and Selection Operator}
  \acro{OLS}{ordinary least squares}
  \acro{pcr}{Principal Components Regression}
+ \acro{CDF}{cumulative distribution function}
  \acro{pls}{Partial Least Squares}
  \acro{RMSE}{Root Mean Squared Error}
  \acro{MCMC}{Markov chain Monte Carlo} 
@@ -330,18 +331,20 @@ Bayer and Hanck build their paper on previous work from
 \textcite{Pesavento_2004}, who defines the underlying model as
 \(z'_t = [x'_t, y_t]\), with \(x_t\) being an \(n_1 \times 1\) vector
 and \(y_t\) a scalar, which displays the cointegration relation. They
-can be written as \textbackslash begin\{subequations\} \label{eq:1}
+can be written as
+
 \begin{align}
 \Delta x_t &= \tau_1 + v_{1t} \label{eq:11} \\
 y_t &= (\mu_2 - \gamma' \mu_1) + (\tau_2 - \gamma' \tau_1) t + \gamma' x_t + u_t, \label{eq:12} \\
 u_t &= \rho u_{t-1} + v_{2t}. \label{eq:13}
-\end{align} \textbackslash end\{subequation\} \(\Delta x_t\) presents
-the regressor dynamics. \(\mu_1\), \(\mu_2\), \(\tau_1\) and \(\tau_2\)
-are the deterministic parts of the model. They are subject to the
-following restrictions: (i) \(\mu_2 - \gamma' \mu_1\) and \(\tau = 0\)
-which translates to no deterministics, (ii) \(\tau = 0\) which
-corresponds to a constant in the cointegrating vector, (iii)
-\(\tau_2 - \gamma' \tau_1 = 0\), a constant plus trend.
+\end{align}
+
+\(\Delta x_t\) presents the regressor dynamics. \(\mu_1\), \(\mu_2\),
+\(\tau_1\) and \(\tau_2\) are the deterministic parts of the model. They
+are subject to the following restrictions: (i) \(\mu_2 - \gamma' \mu_1\)
+and \(\tau = 0\) which translates to no deterministics, (ii)
+\(\tau = 0\) which corresponds to a constant in the cointegrating
+vector, (iii) \(\tau_2 - \gamma' \tau_1 = 0\), a constant plus trend.
 
 \(v_t = [v'_{1t} v_{2t}]'\) with \(\Omega\) the long-run covariance
 matrix of \(v_t\). For derivation of \(v_t\) see
@@ -447,28 +450,28 @@ the maximum number of lags \(K = 11\) and \(c = 0\)\footnote{Since we
   cointegration we will not consider any further values of \(c\) here.}
 \textcolor{red}{(c mal definieren)}.
 
-From the mass of test statistics we build the cumulative distribution
-function of each underlying test and calculate the respective p-values.
-These are inserted into \eqref{eq:4} to eventually obtain the Bayer
-Hanck test statistics. Analogous to the previous approach, we deduce the
-associated null distribution and the p-values.
+From the mass of test statistics we build the \ac{CDF} of each
+underlying test and calculate the respective p-values. These are
+inserted into \eqref{eq:4} to eventually obtain the Bayer Hanck test
+statistics. Analogous to the previous approach, we deduce the associated
+null distribution and the p-values.
 
 \hypertarget{models}{%
 \section{Models}\label{models}}
 
 We now use the generated data for training machine learning algorithms
-on predicting the approximated empirical CDF of the Bayer Hanck test. We
-work with the values of the test statistic and the number of lags \(k\)
-as predictors. As it is our objective to describe the null distribution
-with a less memory-intensive model we will only consider linear methods.
-For the same objective we compare the models according to their
-in-sample RMSE. The threat of overfitting is thus of no particular
-relevance here. For this reason, and to reduce computation time, we use
-no cross-validation.
+on predicting the approximated empirical \ac{CDF} of the Bayer Hanck
+test. We work with the values of the test statistic and the number of
+lags \(k\) as predictors. As it is our objective to describe the null
+distribution with a less memory-intensive model we will only consider
+linear methods. For the same objective we compare the models according
+to their in-sample \ac{RMSE}. The threat of overfitting is thus of no
+particular relevance here. For this reason, and to reduce computation
+time, we use no cross-validation.
 
-As the empirical CDF is typically known to be curved in an S-shape we
-skip the classic linear regression in favor of a more flexible model. We
-stay with least squares regression, but try various combinations of
+As the empirical \ac{CDF} is typically known to be curved in an S-shape
+we skip the classic linear regression in favor of a more flexible model.
+We stay with least squares regression, but try various combinations of
 polynomial functions and interaction terms of the aforementioned
 regressors. The search for the best model is carried out via
 brute-force.
@@ -526,8 +529,8 @@ forces their distribution into a more symmetric form.
 \subsection{Polynomial Regression}\label{polynomial-regression}}
 
 Due to the reasons given above we restrict ourselves to linear models.
-The empirical CDF, which we aim to predict, is known to have a curved
-shape. For this reason, a simple linear regression model is very
+The empirical \ac{CDF}, which we aim to predict, is known to have a
+curved shape. For this reason, a simple linear regression model is very
 unlikely to provide a satisfactory fit to the data. We are in need of a
 more flexible model to predict the response as accurately as possible.
 
@@ -554,8 +557,8 @@ tend to show a wiggly behaviour at the boundaries. This makes
 extrapolation beyond the limits of our simulated data a risky endeavour.
 We will address and fix this issue later on.
 
-\hypertarget{lasso}{%
-\subsection{Lasso}\label{lasso}}
+\hypertarget{section}{%
+\subsection{\texorpdfstring{\ac{Lasso}}{}}\label{section}}
 
 As mentioned above our polynomial regression models are likely to
 perform best with higher order polynomials. With each added polynomial,
@@ -563,8 +566,7 @@ however, we increase the complexity of our model and potentially add
 redundant regressors. Although, still, overfitting plays no major role
 here, we generally prefer sparser models in case of equal results. One
 way to deal with this is the use of variable selection methods. A
-well-known example of such methods is the least absolute shrinkage and
-selection operator (LASSO).
+well-known example of such methods is the \ac{Lasso}.
 
 The lasso estimate is defined as
 

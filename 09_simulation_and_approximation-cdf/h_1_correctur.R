@@ -22,10 +22,12 @@ critical_fun <- function(case_s, test_s){
 # storing all critical_val in one tibble 
 
 crit_val <- dplyr::bind_rows(
+    # for the all test
     crit_val_all_10 %>%
         dplyr::rename(crit_val = 'stat_Fisher_all') %>%
         dplyr::mutate(test = 'all'),
     
+    # for the e_j test
     crit_val_e_j_10 %>%
         dplyr::mutate(test = 'e_j') %>%
         dplyr::rename(crit_val = 'stat_Fisher_E_J'))
@@ -37,5 +39,8 @@ models %<>%
     dplyr::mutate(critical = purrr::map2(case, test, critical_fun))
 
 
-
-
+p_values %>%
+    ggplot(aes(x = test_stat, y = p_value)) +
+    geom_line(color = '#004c93') +
+    labs(x = 'Test Statistic', y = 'Approximated p-values \n') +
+    
