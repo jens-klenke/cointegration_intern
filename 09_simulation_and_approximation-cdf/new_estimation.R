@@ -20,9 +20,14 @@ if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens
     load('D:\\Klenke\\Data_1_m.RData')
 }
 
-# just for the programming, delete before running final results
-Data %<>%
-    dplyr::sample_n(3300000)
+# k as factor/dummy
+Data %<>% dplyr::mutate(
+    k_dummy = as.factor(k)
+    )
+
+# just for programming, delete before running final results
+# Data %<>%
+#     dplyr::sample_n(330000)
 
 # Split Dataset in Cases
 data_case_1 <- Data %>%
@@ -32,160 +37,100 @@ data_case_2 <- Data %>%
 data_case_3 <- Data %>%
     dplyr::filter(case == 3)
 
-# rm('Data')
+rm('Data')
+
 #---- Boxcox Transformation ----
-
-# case_1 
 data_case_1 <- bc_log_fun(data_case_1)
-
-# case_2 
 data_case_2 <- bc_log_fun(data_case_2)
-
-# case_3 
 data_case_3 <- bc_log_fun(data_case_3)
 
 lambda_bc_EJ <- tibble(
     case = rep(1:3, each = 2), 
     side = rep(c('stat', 'p'), times = 3),
     value = c(lambda_stat_E_J_1, lambda_p, lambda_stat_E_J_2, lambda_p, 
-              lambda_stat_E_J_3, lambda_p)   
-)
+              lambda_stat_E_J_3, lambda_p)
+    )
 
 lambda_bc_all <- tibble(
     case = rep(1:3, each = 2), 
     side = rep(c('stat', 'p'), times = 3),
     value = c(lambda_stat_all_1, lambda_p, lambda_stat_all_2, lambda_p, 
-              lambda_stat_all_3, lambda_p)   
-)
+              lambda_stat_all_3, lambda_p)
+    )
 
 lambda_values <- bind_rows(lambda_bc_all, 
                            lambda_bc_EJ) %>% 
     dplyr::mutate(test = c(rep("all", 6), 
                            rep("e_j", 6)))
 
-#save(lambda_values, file = here::here('09_simulation_and_approximation-cdf/lambda_package.RData'))
+# save(lambda_values, file = here::here('09_simulation_and_approximation-cdf/lambda_package.RData'))
 
 
-#-- calls and range of power ----
+#---- calls and range of power ----
 # E_J 
-calls_E_J <- c('p_value_Fisher ~ poly(stat_Fisher_E_J, power)',
-               'p_value_Fisher ~ poly(stat_Fisher_E_J, power) + k',
-               'p_value_Fisher ~ poly(stat_Fisher_E_J, power) * k' ,
-               'p_value_Fisher ~ poly(stat_Fisher_E_J, power) * k * I(1/k)',
-               'p_value_Fisher ~ poly(stat_Fisher_E_J, power) * log(k)',
-               'p_value_Fisher ~ poly(stat_Fisher_E_J, power) * log(k) * I(1/k)',
-               'p_value_Fisher ~ poly(stat_Fisher_E_J, power) * log(k) * I(1/k) * k',
-               'p_value_Fisher ~ poly(stat_Fisher_E_J, power) * log(k) * I(1/k) * k * sqrt(k)',
-               # bc
-               'p_value_Fisher ~ poly(stat_Fisher_E_J_bc, power)',
+calls_E_J <- c('p_value_Fisher ~ poly(stat_Fisher_E_J_bc, power)',
                'p_value_Fisher ~ poly(stat_Fisher_E_J_bc, power) + k',
                'p_value_Fisher ~ poly(stat_Fisher_E_J_bc, power) * k',
-               'p_value_Fisher ~ poly(stat_Fisher_E_J_bc, power) * k * I(1/k)',
+               'p_value_Fisher ~ poly(stat_Fisher_E_J_bc, power) + log(k)',
                'p_value_Fisher ~ poly(stat_Fisher_E_J_bc, power) * log(k)',
-               'p_value_Fisher ~ poly(stat_Fisher_E_J_bc, power) * log(k) * I(1/k)',
-               'p_value_Fisher ~ poly(stat_Fisher_E_J_bc, power) * log(k) * I(1/k) * k',
-               'p_value_Fisher ~ poly(stat_Fisher_E_J_bc, power) * log(k) * I(1/k) * k * sqrt(k)',
+               'p_value_Fisher ~ poly(stat_Fisher_E_J_bc, power) + k_dummy',
+               'p_value_Fisher ~ poly(stat_Fisher_E_J_bc, power) * k_dummy',
                # lg
-               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J, power)',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J, power) + k',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J, power) * k',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J, power) * k * I(1/k)',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J, power) * log(k)',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J, power) * log(k) * I(1/k)',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J, power) * log(k) * I(1/k) * k',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J, power) * log(k) * I(1/k) * k * sqrt(k)',
-               # lg + bc
                'p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, power)',
                'p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, power) + k',
                'p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, power) * k',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, power) * k * I(1/k)',
+               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, power) + log(k)',
                'p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, power) * log(k)',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, power) * log(k) * I(1/k)',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, power) * log(k) * I(1/k) * k', 
-               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, power) * log(k) * I(1/k) * k * sqrt(k)', 
-               # bc + bc
+               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, power) + k_dummy',
+               'p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, power) * k_dummy',
+               # bc
                'p_value_Fisher_bc ~ poly(stat_Fisher_E_J_bc, power)',
                'p_value_Fisher_bc ~ poly(stat_Fisher_E_J_bc, power) + k',
                'p_value_Fisher_bc ~ poly(stat_Fisher_E_J_bc, power) * k',
-               'p_value_Fisher_bc ~ poly(stat_Fisher_E_J_bc, power) * k * I(1/k)',
+               'p_value_Fisher_bc ~ poly(stat_Fisher_E_J_bc, power) + log(k)',
                'p_value_Fisher_bc ~ poly(stat_Fisher_E_J_bc, power) * log(k)',
-               'p_value_Fisher_bc ~ poly(stat_Fisher_E_J_bc, power) * log(k) * I(1/k)',
-               'p_value_Fisher_bc ~ poly(stat_Fisher_E_J_bc, power) * log(k) * I(1/k) * k', 
-               'p_value_Fisher_bc ~ poly(stat_Fisher_E_J_bc, power) * log(k) * I(1/k) * k * sqrt(k)'
-           )
+               'p_value_Fisher_bc ~ poly(stat_Fisher_E_J_bc, power) + k_dummy',
+               'p_value_Fisher_bc ~ poly(stat_Fisher_E_J_bc, power) * k_dummy'
+               )
 
 # all
-calls_all <- c('p_value_Fisher ~ poly(stat_Fisher_all, power)',
-               'p_value_Fisher ~ poly(stat_Fisher_all, power) + k',
-               'p_value_Fisher ~ poly(stat_Fisher_all, power) * k',
-               'p_value_Fisher ~ poly(stat_Fisher_all, power) * k * I(1/k)',
-               'p_value_Fisher ~ poly(stat_Fisher_all, power) * log(k)',
-               'p_value_Fisher ~ poly(stat_Fisher_all, power) * log(k) * I(1/k)',
-               'p_value_Fisher ~ poly(stat_Fisher_all, power) * log(k) * I(1/k) * k',
-               'p_value_Fisher ~ poly(stat_Fisher_all, power) * log(k) * I(1/k) * k * sqrt(k)',
-               # bc
-               'p_value_Fisher ~ poly(stat_Fisher_all_bc, power)',
+calls_all <- c('p_value_Fisher ~ poly(stat_Fisher_all_bc, power)',
                'p_value_Fisher ~ poly(stat_Fisher_all_bc, power) + k',
                'p_value_Fisher ~ poly(stat_Fisher_all_bc, power) * k',
-               'p_value_Fisher ~ poly(stat_Fisher_all_bc, power) * k * I(1/k)',
+               'p_value_Fisher ~ poly(stat_Fisher_all_bc, power) + log(k)',
                'p_value_Fisher ~ poly(stat_Fisher_all_bc, power) * log(k)',
-               'p_value_Fisher ~ poly(stat_Fisher_all_bc, power) * log(k) * I(1/k)',
-               'p_value_Fisher ~ poly(stat_Fisher_all_bc, power) * log(k) * I(1/k) * k',
-               'p_value_Fisher ~ poly(stat_Fisher_all_bc, power) * log(k) * I(1/k) * k * sqrt(k)',
+               'p_value_Fisher ~ poly(stat_Fisher_all_bc, power) + k_dummy',
+               'p_value_Fisher ~ poly(stat_Fisher_all_bc, power) * k_dummy',
                # lg
-               'p_value_Fisher_lg ~ poly(stat_Fisher_all, power)',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_all, power) + k',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_all, power) * k',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_all, power) * k * I(1/k)',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_all, power) * log(k)',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_all, power) * log(k) * I(1/k)',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_all, power) * log(k) * I(1/k) * k',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_all, power) * log(k) * I(1/k) * k * sqrt(k)',
-               # lg + bc
                'p_value_Fisher_lg ~ poly(stat_Fisher_all_bc, power)',
                'p_value_Fisher_lg ~ poly(stat_Fisher_all_bc, power) + k',
                'p_value_Fisher_lg ~ poly(stat_Fisher_all_bc, power) * k',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_all_bc, power) * k * I(1/k)',
+               'p_value_Fisher_lg ~ poly(stat_Fisher_all_bc, power) + log(k)',
                'p_value_Fisher_lg ~ poly(stat_Fisher_all_bc, power) * log(k)',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_all_bc, power) * log(k) * I(1/k)',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_all_bc, power) * log(k) * I(1/k) * k',
-               'p_value_Fisher_lg ~ poly(stat_Fisher_all_bc, power) * log(k) * I(1/k) * k * sqrt(k)', 
-               # bc + bc
+               'p_value_Fisher_lg ~ poly(stat_Fisher_all_bc, power) + k_dummy',
+               'p_value_Fisher_lg ~ poly(stat_Fisher_all_bc, power) * k_dummy',
+               # bc
                'p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, power)',
                'p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, power) + k',
                'p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, power) * k',
-               'p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, power) * k * I(1/k)',
+               'p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, power) + log(k)',
                'p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, power) * log(k)',
-               'p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, power) * log(k) * I(1/k)',
-               'p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, power) * log(k) * I(1/k) * k', 
-               'p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, power) * log(k) * I(1/k) * k * sqrt(k)'
-)
+               'p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, power) + k_dummy',
+               'p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, power) * k_dummy'
+               )
 
 # power
-expo <- 3:10
+expo <- 3:15
 
-#--------------- E_J -----
-#-- E_J case_1 ----
-tictoc::tic()
-table_E_J_case_1 <- table_E_J_fun(data_case_1)
-tictoc::toc()
+#---- E_J ----
+table_E_J_case_1 <- table_fun(data_case_1, "E_J")
+table_E_J_case_2 <- table_fun(data_case_2, "E_J")
+table_E_J_case_3 <- table_fun(data_case_3, "E_J")
 
-#-- E_J case_2 ----
-table_E_J_case_2 <- table_E_J_fun(data_case_2)
-
-#-- E_J case_3 ----
-table_E_J_case_3 <- table_E_J_fun(data_case_3)
-
-
-#--------------- ALL -----
-#-- all case_1 ----
-table_all_case_1 <- table_all_fun(data_case_1)
-
-#-- all case_2 ----
-table_all_case_2 <- table_all_fun(data_case_2)
-
-#-- all case_3 ----
-table_all_case_3 <- table_all_fun(data_case_3)
+#---- all ----
+table_all_case_1 <- table_fun(data_case_1, "all")
+table_all_case_2 <- table_fun(data_case_2, "all")
+table_all_case_3 <- table_fun(data_case_3, "all")
 
 save(table_E_J_case_1, table_E_J_case_2, table_E_J_case_3,
      table_all_case_1, table_all_case_2, table_all_case_3,
@@ -193,24 +138,10 @@ save(table_E_J_case_1, table_E_J_case_2, table_E_J_case_3,
 
 
 
-#----- clean model server
+#---- clean model server ----
 
-#
-# ----- models 
-mod_all_1 <- lm(p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, 10) * log(k) * I(1/k) * k * sqrt(k), data = data_case_1)
-clean_mod_all_1 <- clean_lm(mod_all_1)
+#---- models ----
 
-mod_all_2 <- lm(p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, 10) * log(k) * I(1/k) * k * sqrt(k), data = data_case_2)
-clean_mod_all_2 <- clean_lm(mod_all_2)
-
-mod_all_3 <- lm(p_value_Fisher_bc ~ poly(stat_Fisher_all_bc, 10) * log(k) * I(1/k) * k * sqrt(k), data = data_case_3)
-clean_mod_all_3 <- clean_lm(mod_all_3)
-
-mod_E_J_1 <- lm(p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, 10) * log(k) * I(1/k) * k, data = data_case_1)
-clean_mod_E_J_1 <- clean_lm(mod_E_J_1)
-
-mod_E_J_2 <- lm(p_value_Fisher_lg ~ poly(stat_Fisher_E_J_bc, 10) * log(k) * I(1/k) * k, data = data_case_2)
-clean_mod_E_J_2 <- clean_lm(mod_E_J_2)
 
 
 # hier copy and paste Fehler, muss 9 sein 
