@@ -75,7 +75,7 @@ own_lm <- function(call_mod, data){
         } else if(str_detect(dep_var, '_lg')){
             exp(fitted_values)
         } else {fitted_values}, # y_hat 
-        dependent = dep_var
+        dependent = data %>% dplyr::pull(dep_var)
     )
     
     # computing corrected predictions
