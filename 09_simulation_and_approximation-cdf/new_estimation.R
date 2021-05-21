@@ -6,8 +6,7 @@ source(here::here('01_code/packages/packages.R'))
 source(here::here('09_simulation_and_approximation-cdf/estimation_functions.R'))
 
 # parallel
-plan(multisession, workers = 2)
-options(future.globals.maxSize = 2.147e+9)
+doParallel::registerDoParallel(cores = 6)
 
 #-- tibble with models and data ----
 ## Load Simulation Data 
@@ -26,8 +25,8 @@ Data %<>% dplyr::mutate(
     )
 
 # just for programming, delete before running final results
-# Data %<>%
-#     dplyr::sample_n(330000)
+Data %<>%
+     dplyr::sample_n(330000)
 
 # Split Dataset in Cases
 data_case_1 <- Data %>%
@@ -120,7 +119,7 @@ calls_all <- c('p_value_Fisher ~ poly(stat_Fisher_all_bc, power)',
                )
 
 # power
-expo <- 3:15
+expo <- 3:13
 
 #---- E_J ----
 table_E_J_case_1 <- table_fun(data_case_1, "E_J")

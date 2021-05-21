@@ -38,12 +38,14 @@ bc_log_fun <- function(data) {
 # Create tables for models
 table_fun <- function(data_case, test.type) {
     call <- paste0("calls_", test.type)
-    expand_grid(calls = get(call), expo) %>%
+    call_grid <- expand_grid(calls = get(call), expo) %>%
         # functional call, merge of power and call
         dplyr::mutate(dplyr::across(calls, str_replace_all, "power", 
-                                    as.character(.$expo), .names = "formula")) %>%
+                                    as.character(.$expo), .names = "formula"))
         # fitting the model 
-        dplyr::mutate(furrr::future_map_dfr(formula, ~own_lm(call_mod = ., data = data_case), .progress = TRUE)) 
+    plyr::alply(call_grid$formula, 1, own_lm, data = data_case, .parallel = T) %>%
+        dplyr::bind_rows() %>%
+        dplyr::bind_cols(call_grid, .)
 }
 
 Rcpp::cppFunction('
@@ -55,7 +57,7 @@ double RMSE_c (NumericVector pred, NumericVector dep) {
 clean_lm <- function(object) {
     object$residuals = c()
     object$fitted.values = c()
-    attr(object$formula,".Environment") = c()
+    attr(object$formula, ".Environment") = new.env(parent = .GlobalEnv)
     object
 }
 
@@ -99,3 +101,4 @@ own_lm <- function(call_mod, data){
            RMSE_cor_0.2 = as.numeric(RMSE_cor_0.2)
     )
 }
+
