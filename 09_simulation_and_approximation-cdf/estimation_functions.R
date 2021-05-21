@@ -54,20 +54,14 @@ double RMSE_c (NumericVector pred, NumericVector dep) {
     return value;
                   }')
 
-clean_lm <- function(object) {
-    object$residuals = c()
-    object$fitted.values = c()
-    attr(object$formula, ".Environment") = new.env(parent = .GlobalEnv)
-    object
-}
-
 # function automated lm    
 own_lm <- function(call_mod, data){
     # fit model
     mod <- RcppEigen::fastLm(formula(call_mod),  data = data)
     dep_var <- mod$formula[[2]]
     fitted_values <- mod$fitted.values
-    mod <- mod %>% clean_lm()
+    mod$residuals <- NULL
+    mod$fitted.values <- NULL
 
     values <- tibble(
         PRED = if(str_detect(dep_var, '_bc')){ 
@@ -93,6 +87,8 @@ own_lm <- function(call_mod, data){
         dplyr::filter(dependent >= 0.2)
     RMSE_0.2 <- RMSE_c(values_0.2$PRED, values_0.2$dependent)
     RMSE_cor_0.2 <- RMSE_c(values_0.2$PRED_cor, values_0.2$dependent)
+    
+    attr(mod$formula, ".Environment") = new.env(parent = .GlobalEnv)
     
     tibble(model  = list(mod),
            RMSE = as.numeric(RMSE),
