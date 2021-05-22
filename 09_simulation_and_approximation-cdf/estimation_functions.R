@@ -45,7 +45,8 @@ table_fun <- function(data_case, test.type) {
         # fitting the model 
     plyr::alply(call_grid$formula, 
                 1, 
-                function(x) RcppEigen::fastLm(formula(x), data = data_case_1) %>% lm_eval(data_case_1)) %>% 
+                function(x) RcppEigen::fastLm(formula(x), data = data_case_1) %>% lm_eval(data_case_1), 
+                .parallel = T) %>% 
         dplyr::bind_rows() %>%
         dplyr::bind_cols(call_grid, .)
 }

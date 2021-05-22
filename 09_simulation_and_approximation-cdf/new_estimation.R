@@ -14,7 +14,7 @@ if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens
     Data <- readRDS('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_100k.rds')
     # load('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_1_m.RData')
 } else if(Sys.info()['user'] == "Janine") { # Janine
-    load("/Users/Janine/Desktop/BayerHanck/Data_1_m.RData")
+    load("/Users/Janine/Desktop/BayerHanck/Data_100k.rds")
 } else if(Sys.info()['nodename'] == "OEK-TS01") { # Server
     load('D:\\Klenke\\Data_1_m.RData')
 }
@@ -25,8 +25,8 @@ Data %<>% dplyr::mutate(
     )
 
 # just for programming, delete before running final results
-Data %<>%
-     dplyr::sample_n(330000)
+#Data %<>%
+#     dplyr::sample_n(330000)
 
 # Split Dataset in Cases
 data_case_1 <- Data %>%
@@ -119,7 +119,7 @@ calls_all <- c('p_value_Fisher ~ poly(stat_Fisher_all_bc, power)',
                )
 
 # power
-expo <- 3:13
+expo <- 10:13
 
 #---- E_J ----
 table_E_J_case_1 <- table_fun(data_case_1, "E_J")
