@@ -43,7 +43,9 @@ table_fun <- function(data_case, test.type) {
         dplyr::mutate(dplyr::across(calls, str_replace_all, "power", 
                                     as.character(.$expo), .names = "formula"))
         # fitting the model 
-    plyr::alply(call_grid$formula, 1, own_lm, data = data_case, .parallel = T) %>%
+    plyr::alply(call_grid$formula, 
+                1, 
+                function(x) RcppEigen::fastLm(formula(x), data = data_case_1) %>% lm_eval(data_case_1)) %>% 
         dplyr::bind_rows() %>%
         dplyr::bind_cols(call_grid, .)
 }
@@ -55,14 +57,12 @@ double RMSE_c (NumericVector pred, NumericVector dep) {
                   }')
 
 # function automated lm    
-own_lm <- function(call_mod, data){
-    # fit model
-    mod <- RcppEigen::fastLm(formula(call_mod),  data = data)
+lm_eval <- function(mod, data) {
     dep_var <- mod$formula[[2]]
     fitted_values <- mod$fitted.values
-    mod$residuals <- NULL
-    mod$fitted.values <- NULL
-
+    mod$residuals <- c()
+    mod$fitted.values <- c()
+    
     values <- tibble(
         PRED = if(str_detect(dep_var, '_bc')){ 
             invBoxCox(fitted_values)
@@ -88,8 +88,6 @@ own_lm <- function(call_mod, data){
     RMSE_0.2 <- RMSE_c(values_0.2$PRED, values_0.2$dependent)
     RMSE_cor_0.2 <- RMSE_c(values_0.2$PRED_cor, values_0.2$dependent)
     
-    attr(mod$formula, ".Environment") = new.env(parent = .GlobalEnv)
-    
     tibble(model  = list(mod),
            RMSE = as.numeric(RMSE),
            RMSE_cor = as.numeric(RMSE_cor),
@@ -97,4 +95,5 @@ own_lm <- function(call_mod, data){
            RMSE_cor_0.2 = as.numeric(RMSE_cor_0.2)
     )
 }
+
 
