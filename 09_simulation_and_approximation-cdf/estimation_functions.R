@@ -65,9 +65,9 @@ lm_eval <- function(mod, data) {
     mod$fitted.values <- c()
     
     values <- tibble(
-        PRED = if(str_detect(dep_var, '_bc')){ 
+        PRED = if(stringr::str_detect(dep_var, '_bc')){ 
             invBoxCox(fitted_values)
-        } else if(str_detect(dep_var, '_lg')){
+        } else if(stringr::str_detect(dep_var, '_lg')){
             exp(fitted_values)
         } else {fitted_values}, # y_hat 
         dependent = data %>% dplyr::pull(dep_var)
@@ -90,11 +90,10 @@ lm_eval <- function(mod, data) {
     RMSE_cor_0.2 <- RMSE_c(values_0.2$PRED_cor, values_0.2$dependent)
     
     tibble(model  = list(mod),
-           RMSE = as.numeric(RMSE),
-           RMSE_cor = as.numeric(RMSE_cor),
-           RMSE_0.2 = as.numeric(RMSE_0.2), 
-           RMSE_cor_0.2 = as.numeric(RMSE_cor_0.2)
+           RMSE = RMSE,
+           RMSE_cor = RMSE_cor,
+           RMSE_0.2 = RMSE_0.2, 
+           RMSE_cor_0.2 = RMSE_cor_0.2
     )
 }
-
 
