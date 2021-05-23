@@ -38,17 +38,12 @@ bc_log_fun <- function(data) {
 # Create tables for models
 table_fun <- function(data_case, test.type) {
     call <- paste0("calls_", test.type)
-    call_grid <- expand_grid(calls = get(call), expo) %>%
+    expand_grid(calls = get(call), expo) %>%
         # functional call, merge of power and call
         dplyr::mutate(dplyr::across(calls, str_replace_all, "power", 
-                                    as.character(.$expo), .names = "formula"))
-        # fitting the model 
-    plyr::alply(call_grid$formula, 
-                1, 
-                function(x) RcppEigen::fastLm(formula(x), data = data_case_1) %>% lm_eval(data_case_1), 
-                .parallel = T) %>% 
-        dplyr::bind_rows() %>%
-        dplyr::bind_cols(call_grid, .)
+                                    as.character(.$expo), .names = "formula")) %>%
+        dplyr::mutate(purrr::map_dfr(formula, 
+                                     function(x) RcppEigen::fastLm(formula(x), data = data_case_1) %>% lm_eval(data_case_1)))
 }
 
 Rcpp::cppFunction('
