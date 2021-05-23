@@ -65,7 +65,7 @@ lm_eval <- function(mod, data) {
         } else if(stringr::str_detect(dep_var, '_lg')){
             exp(fitted_values)
         } else {fitted_values}, # y_hat 
-        dependent = data %>% dplyr::pull(dep_var)
+        dependent = data %>% dplyr::pull(p_value_Fisher)
     )
     
     # computing corrected predictions
