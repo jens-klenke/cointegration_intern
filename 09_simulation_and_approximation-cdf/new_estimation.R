@@ -8,6 +8,9 @@ source(here::here('09_simulation_and_approximation-cdf/estimation_functions.R'))
 # parallel
 #doParallel::registerDoParallel(cores = 6)
 plan(multisession, workers = 3)
+# set off warning for random numbers
+options(future.rng.onMisuse = "ignore")
+
 #-- tibble with models and data ----
 ## Load Simulation Data 
 if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens 
@@ -120,6 +123,7 @@ calls_all <- c('p_value_Fisher ~ poly(stat_Fisher_all_bc, power)',
 
 # power
 expo <- 12:13
+
 
 #---- E_J ----
 table_E_J_case_1 <- table_fun(data_case_1, "E_J")
