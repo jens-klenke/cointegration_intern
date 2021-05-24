@@ -42,7 +42,7 @@ table_fun <- function(data_case, test.type) {
         # functional call, merge of power and call
         dplyr::mutate(dplyr::across(calls, str_replace_all, "power", 
                                     as.character(.$expo), .names = "formula")) %>%
-        dplyr::mutate(purrr::map_dfr(formula, 
+        dplyr::mutate(furrr::future_map_dfr(formula, 
                                      function(x) RcppEigen::fastLm(formula(x), data = data_case_1) %>% lm_eval(data_case_1)))
 }
 
@@ -75,14 +75,14 @@ lm_eval <- function(mod, data) {
         TRUE ~ PRED))
     
     # RMSE and corrected RMSE on full dataset
-    RMSE <- RMSE_c(values$PRED, values$dependent)
-    RMSE_cor <- RMSE_c(values$PRED_cor, values$dependent)
+    RMSE <- caret::RMSE(values$PRED, values$dependent)
+    RMSE_cor <- caret::RMSE(values$PRED_cor, values$dependent)
     
     # subset dataset: only the interesting part
     values_0.2 <- values %>%
         dplyr::filter(dependent >= 0.2)
-    RMSE_0.2 <- RMSE_c(values_0.2$PRED, values_0.2$dependent)
-    RMSE_cor_0.2 <- RMSE_c(values_0.2$PRED_cor, values_0.2$dependent)
+    RMSE_0.2 <- caret::RMSE(values_0.2$PRED, values_0.2$dependent)
+    RMSE_cor_0.2 <- caret::RMSE(values_0.2$PRED_cor, values_0.2$dependent)
     
     tibble(model  = list(mod),
            RMSE = RMSE,

@@ -6,8 +6,8 @@ source(here::here('01_code/packages/packages.R'))
 source(here::here('09_simulation_and_approximation-cdf/estimation_functions.R'))
 
 # parallel
-doParallel::registerDoParallel(cores = 6)
-
+#doParallel::registerDoParallel(cores = 6)
+plan(multisession, workers = 3)
 #-- tibble with models and data ----
 ## Load Simulation Data 
 if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens 
@@ -25,8 +25,8 @@ Data %<>% dplyr::mutate(
     )
 
 # just for programming, delete before running final results
-Data %<>%
-     dplyr::sample_n(3300000)
+# Data %<>%
+#      dplyr::sample_n(3300000)
 
 # Split Dataset in Cases
 data_case_1 <- Data %>%
@@ -119,7 +119,7 @@ calls_all <- c('p_value_Fisher ~ poly(stat_Fisher_all_bc, power)',
                )
 
 # power
-expo <- 10:13
+expo <- 12:13
 
 #---- E_J ----
 table_E_J_case_1 <- table_fun(data_case_1, "E_J")
