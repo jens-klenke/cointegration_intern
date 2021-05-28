@@ -6,10 +6,10 @@ source(here::here('01_code/packages/packages.R'))
 source(here::here('09_simulation_and_approximation-cdf/estimation_functions.R'))
 
 # parallel
-#doParallel::registerDoParallel(cores = 6)
 plan(multisession, workers = 3)
 # set off warning for random numbers
-options(future.rng.onMisuse = "ignore")
+options(future.rng.onMisuse = "ignore", 
+        future.globals.maxSize = 2.147e+9)
 
 #-- tibble with models and data ----
 ## Load Simulation Data 
@@ -122,18 +122,18 @@ calls_all <- c('p_value_Fisher ~ poly(stat_Fisher_all_bc, power)',
                )
 
 # power
-expo <- 12:13
+expo <- 3:13
 
 
 #---- E_J ----
-table_E_J_case_1 <- table_fun(data_case_1, "E_J")
-table_E_J_case_2 <- table_fun(data_case_2, "E_J")
-table_E_J_case_3 <- table_fun(data_case_3, "E_J")
+table_E_J_case_1 <- table_fun_1("E_J")
+table_E_J_case_2 <- table_fun_2("E_J")
+table_E_J_case_3 <- table_fun_3("E_J")
 
 #---- all ----
-table_all_case_1 <- table_fun(data_case_1, "all")
-table_all_case_2 <- table_fun(data_case_2, "all")
-table_all_case_3 <- table_fun(data_case_3, "all")
+table_all_case_1 <- table_fun_1("all")
+table_all_case_2 <- table_fun_2("all")
+table_all_case_3 <- table_fun_3("all")
 
 save(table_E_J_case_1, table_E_J_case_2, table_E_J_case_3,
      table_all_case_1, table_all_case_2, table_all_case_3,

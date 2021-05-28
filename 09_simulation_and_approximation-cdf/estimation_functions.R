@@ -36,7 +36,8 @@ bc_log_fun <- function(data) {
 }
 
 # Create tables for models
-table_fun <- function(data_case, test.type) {
+# Splitting the function for each data_case due to memory reasons
+table_fun_1 <- function(test.type) {
     call <- paste0("calls_", test.type)
     expand_grid(calls = get(call), expo) %>%
         # functional call, merge of power and call
@@ -46,11 +47,26 @@ table_fun <- function(data_case, test.type) {
                                      function(x) RcppEigen::fastLm(formula(x), data = data_case_1) %>% lm_eval(data_case_1)))
 }
 
-Rcpp::cppFunction('
-double RMSE_c (NumericVector pred, NumericVector dep) {
-    double value = sqrt(sum(pow(pred - dep, 2))/pred.size());
-    return value;
-                  }')
+table_fun_2 <- function(test.type) {
+    call <- paste0("calls_", test.type)
+    expand_grid(calls = get(call), expo) %>%
+        # functional call, merge of power and call
+        dplyr::mutate(dplyr::across(calls, str_replace_all, "power", 
+                                    as.character(.$expo), .names = "formula")) %>%
+        dplyr::mutate(furrr::future_map_dfr(formula, 
+                                            function(x) RcppEigen::fastLm(formula(x), data = data_case_2) %>% lm_eval(data_case_2)))
+}
+
+table_fun_3 <- function(test.type) {
+    call <- paste0("calls_", test.type)
+    expand_grid(calls = get(call), expo) %>%
+        # functional call, merge of power and call
+        dplyr::mutate(dplyr::across(calls, str_replace_all, "power", 
+                                    as.character(.$expo), .names = "formula")) %>%
+        dplyr::mutate(furrr::future_map_dfr(formula, 
+                                            function(x) RcppEigen::fastLm(formula(x), data = data_case_3) %>% lm_eval(data_case_3)))
+}
+
 
 # function automated lm    
 lm_eval <- function(mod, data) {
@@ -75,14 +91,14 @@ lm_eval <- function(mod, data) {
         TRUE ~ PRED))
     
     # RMSE and corrected RMSE on full dataset
-    RMSE <- caret::RMSE(values$PRED, values$dependent)
-    RMSE_cor <- caret::RMSE(values$PRED_cor, values$dependent)
+    RMSE <- sqrt(sum((values$PRED - values$dependent)^2)/nrow(values))
+    RMSE_cor <- sqrt(sum((values$PRED_cor - values$dependent)^2)/nrow(values))
     
     # subset dataset: only the interesting part
     values_0.2 <- values %>%
         dplyr::filter(dependent >= 0.2)
-    RMSE_0.2 <- caret::RMSE(values_0.2$PRED, values_0.2$dependent)
-    RMSE_cor_0.2 <- caret::RMSE(values_0.2$PRED_cor, values_0.2$dependent)
+    RMSE_0.2 <- sqrt(sum((values_0.2$PRED - values_0.2$dependent)^2)/nrow(values_0.2))
+    RMSE_cor_0.2 <- sqrt(sum((values_0.2$PRED_cor - values_0.2$dependent)^2)/nrow(values_0.2))
     
     tibble(model  = list(mod),
            RMSE = RMSE,
