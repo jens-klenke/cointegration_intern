@@ -9,17 +9,16 @@ source(here::here('09_simulation_and_approximation-cdf/functions_model_eval.R'))
 load(here::here('09_simulation_and_approximation-cdf/server_results.RData'))
 
 # final models and lambda
-load(here::here('09_simulation_and_approximation-cdf/lambda_bc_ALL_server.RData'))
-load(here::here('09_simulation_and_approximation-cdf/lambda_bc_EJ_server.RData'))
-load(here::here('09_simulation_and_approximation-cdf/final_models.RData'))
+load(here::here('09_simulation_and_approximation-cdf/lambda_package.RData'))
 
-models <- tibble(
-    test = rep(c('all', 'e_j'), times = c(3, 3)),
-    case = rep(1:3, times = 2),
-    models = list(clean_mod_all_1, clean_mod_all_2, clean_mod_all_3,
-                  clean_mod_E_J_1, clean_mod_E_J_2, clean_mod_E_J_3), 
-    response = c('bc', 'bc', 'bc', 'log', 'log', 'log')
-)
+
+#models <- tibble(
+#    test = rep(c('all', 'e_j'), times = c(3, 3)),
+#    case = rep(1:3, times = 2),
+#    models = list(clean_mod_all_1, clean_mod_all_2, clean_mod_all_3,
+#                  clean_mod_E_J_1, clean_mod_E_J_2, clean_mod_E_J_3), 
+#    response = c('bc', 'bc', 'bc', 'log', 'log', 'log')
+#)
 
 #save(models, file = here::here('09_simulation_and_approximation-cdf/models_package.RData'))
 
@@ -33,7 +32,21 @@ if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens
     load('D:\\Klenke\\Data_1_m.RData')
 }
 
-lambda_p <- get_lambda(lambda_bc_ALL, 1, 'p')
+lambda_p <- get_lambda(lambda_values, 1, 'p', 'all')
+
+#-- Analysis  tables ----
+
+sum_table_all_case_1 <- best_5_table(table_all_case_1)
+
+sum_table_all_case_2 <- best_5_table(table_all_case_2)
+
+sum_table_all_case_3 <- best_5_table(table_all_case_3)
+
+sum_table_E_J_case_1 <- best_5_table(table_E_J_case_1)
+
+sum_table_E_J_case_2 <- best_5_table(table_E_J_case_2)
+
+sum_table_E_J_case_3 <- best_5_table(table_E_J_case_3)
 
 # Cut Data 
 Data %<>%
@@ -60,19 +73,6 @@ data_case_3_e_j <- plot_data(Data, 3, 'e_j')
 
 
 
-#-- Analysis  tables ----
-
-sum_table_all_case_1 <- best_5_table(table_all_case_1, 'calls_all')
-
-sum_table_all_case_2 <- best_5_table(table_all_case_2, 'calls_all')
-
-sum_table_all_case_3 <- best_5_table(table_all_case_3, 'calls_all')
-
-sum_table_E_J_case_1 <- best_5_table(table_E_J_case_1, 'calls_E_J')
-
-sum_table_E_J_case_2 <- best_5_table(table_E_J_case_2, 'calls_E_J')
-
-sum_table_E_J_case_3 <- best_5_table(table_E_J_case_3, 'calls_E_J')
 
 #-- Analysis  plots ----
 

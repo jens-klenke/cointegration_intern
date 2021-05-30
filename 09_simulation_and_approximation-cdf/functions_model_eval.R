@@ -1,8 +1,8 @@
 ### functions
-best_5_table <- function(data, col){
+best_5_table <- function(data){
     formattable(data%>%
                     dplyr::slice_min(RMSE_cor_0.2, n = 5)%>%
-                    dplyr::select(-c(all_of(col), expo, model)),
+                    dplyr::select(-c(calls, expo, model)),
                 list(
                     RMSE = color_tile("green", "red"),
                     RMSE_cor = color_tile("green", "red"),
@@ -23,10 +23,11 @@ invBoxCox <- function(x){
 }
 
 # getting lambda
-get_lambda <- function(data, case_w, art){
+get_lambda <- function(data, case_w, art, test_w){
     data %>%
         dplyr::filter(case == case_w, 
-                      side == art) %>%
+                      side == art, 
+                      test == test_w) %>%
         dplyr::select(value) %>%
         dplyr::pull()
 }
