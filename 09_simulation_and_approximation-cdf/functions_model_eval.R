@@ -45,11 +45,10 @@ get_model <- function(data, case_w, art){
 # getting data ready
 # pred function must be changed  
 plot_data <- function(data, case_w, art){
-    
     data %>%
         dplyr::filter(case == case_w) %>%
-        dplyr::mutate(stat_Fisher_E_J_bc = ((stat_Fisher_E_J^get_lambda(lambda_bc_EJ, case_w, 'stat'))-1)/get_lambda(lambda_bc_EJ, case_w, 'stat'),
-                      stat_Fisher_all_bc = ((stat_Fisher_all^get_lambda(lambda_bc_ALL, case_w, 'stat'))-1)/get_lambda(lambda_bc_ALL, case_w, 'stat')) %>%
+        dplyr::mutate(stat_Fisher_E_J_bc = ((stat_Fisher_E_J^get_lambda(lambda_values, case_w, 'stat', "e_j"))-1)/get_lambda(lambda_values, case_w, 'stat', "e_j"),
+                      stat_Fisher_all_bc = ((stat_Fisher_all^get_lambda(lambda_values, case_w, 'stat', "all"))-1)/get_lambda(lambda_values, case_w, 'stat', "all")) %>%
         modelr::add_predictions(get_model(models, case_w = case_w, art = art)) %>%
         dplyr::mutate(PRED = if(get_p_trans(models, case_w, art) == 'log'){exp(pred)} else{ invBoxCox(pred)}) %>%
         dplyr::mutate(PRED_cor = case_when(
