@@ -45,12 +45,25 @@ get_model <- function(data, case_w, art){
 # getting data ready
 # pred function must be changed  
 plot_data <- function(data, case_w, art){
+    
+    # change typping
+    model_art <- ifelse(art == 'e_j', 'E_J', art)
+
+    # getting model 
+    model <- get_model_eval(get(paste0('table_', model_art, '_case_', case_w)))
+    
     data %>%
         dplyr::filter(case == case_w) %>%
         dplyr::mutate(stat_Fisher_E_J_bc = ((stat_Fisher_E_J^get_lambda(lambda_values, case_w, 'stat', "e_j"))-1)/get_lambda(lambda_values, case_w, 'stat', "e_j"),
                       stat_Fisher_all_bc = ((stat_Fisher_all^get_lambda(lambda_values, case_w, 'stat', "all"))-1)/get_lambda(lambda_values, case_w, 'stat', "all")) %>%
-        modelr::add_predictions(get_model(models, case_w = case_w, art = art)) %>%
-        dplyr::mutate(PRED = if(get_p_trans(models, case_w, art) == 'log'){exp(pred)} else{ invBoxCox(pred)}) %>%
+        modelr::add_predictions(model) %>%
+        dplyr::mutate(PRED = if(stringr::str_detect(get_p_trans_eval(model), '_lg')){
+            exp(pred)
+        } else if(stringr::str_detect(get_p_trans_eval(model), '_bc')){
+            invBoxCox(pred)
+        } else {
+            pred
+        }) %>%
         dplyr::mutate(PRED_cor = case_when(
             PRED <= 0 ~ 1e-12,
             PRED >= 1 ~ 1 - 1e-12,
@@ -65,6 +78,19 @@ get_p_trans <- function(data, case_w, art){
         dplyr::pull(response)
 }
 
+get_p_trans_eval <- function(model){
+    model %>%
+        purrr::pluck('formula') %>%
+        purrr::pluck(2)
+}
+
+get_model_eval <- function(data){
+    data %>% 
+        dplyr::slice_min(RMSE_0.2, n = 1) %>%
+        dplyr::select(model) %>%
+        dplyr::pull() %>%
+        purrr::pluck(1)
+}
 
 # plot with facet k 
 own_plot <- function(data, max_graph = 1){

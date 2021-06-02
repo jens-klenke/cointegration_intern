@@ -11,17 +11,6 @@ load(here::here('09_simulation_and_approximation-cdf/server_results.RData'))
 # final models and lambda
 load(here::here('09_simulation_and_approximation-cdf/lambda_package.RData'))
 
-
-#models <- tibble(
-#    test = rep(c('all', 'e_j'), times = c(3, 3)),
-#    case = rep(1:3, times = 2),
-#    models = list(clean_mod_all_1, clean_mod_all_2, clean_mod_all_3,
-#                  clean_mod_E_J_1, clean_mod_E_J_2, clean_mod_E_J_3), 
-#    response = c('bc', 'bc', 'bc', 'log', 'log', 'log')
-#)
-
-#save(models, file = here::here('09_simulation_and_approximation-cdf/models_package.RData'))
-
 # Load Simulation Data 
 if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens 
     Data <- readRDS('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_100k.rds')
@@ -31,6 +20,10 @@ if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens
 } else if(Sys.info()['nodename'] == "OEK-TS01") { # Server
     load('D:\\Klenke\\Data_1_m.RData')
 }
+
+# adding k_dummy
+Data %<>%
+    dplyr::mutate(k_dummy = as.factor(k)) 
 
 lambda_p <- get_lambda(lambda_values, 1, 'p', 'all')
 
@@ -70,9 +63,6 @@ data_case_2_e_j <- plot_data(Data, 2, 'e_j')
 # case = 3
 data_case_3_all <- plot_data(Data, 3, 'all')
 data_case_3_e_j <- plot_data(Data, 3, 'e_j')
-
-
-
 
 #-- Analysis  plots ----
 
