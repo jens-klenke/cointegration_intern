@@ -11,12 +11,6 @@ best_5_table <- function(data){
                 ))
 }
 
-best_model <- function(data){
-    data %<>% 
-        dplyr::filter(RMSE_cor_0.2 == min(RMSE_cor_0.2)) %>%
-        dplyr::select(formula)
-}
-
 invBoxCox <- function(x){
     x <- if (lambda_p == 0) exp(as.complex(x)) else (lambda_p*as.complex(x) + 1)^(1/lambda_p)
     return(Re(x))
@@ -32,37 +26,25 @@ get_lambda <- function(data, case_w, art, test_w){
         dplyr::pull()
 }
 
-# getting model 
-get_model <- function(data, case_w, art){
-    data %>%
-        dplyr::filter(case == case_w,
-                      test == art) %>%
-        dplyr::select(models) %>%
-        dplyr::pull() %>%
-        purrr::pluck(1)
-}
-
 # getting data ready
 # pred function must be changed  
-plot_data <- function(data, case_w, art){
+add_pred <- function(data, art){
     
-    # change typping
-    model_art <- ifelse(art == 'e_j', 'E_J', art)
-
-    # getting model 
-    model <- get_model_eval(get(paste0('table_', model_art, '_case_', case_w)))
+    # extract case
+    case <- deparse(substitute(data)) %>% stringr::str_extract("[0-9]+")
+    
+    # extract model 
+    model <- get_model_eval(get(paste0('table_', art, '_case_', case))) %>%
+        add_predvars(get(paste0("data_case_", case)))
     
     data %>%
-        dplyr::filter(case == case_w) %>%
-        dplyr::mutate(stat_Fisher_E_J_bc = ((stat_Fisher_E_J^get_lambda(lambda_values, case_w, 'stat', "e_j"))-1)/get_lambda(lambda_values, case_w, 'stat', "e_j"),
-                      stat_Fisher_all_bc = ((stat_Fisher_all^get_lambda(lambda_values, case_w, 'stat', "all"))-1)/get_lambda(lambda_values, case_w, 'stat', "all")) %>%
-        modelr::add_predictions(model) %>%
+        dplyr::mutate(PRED =  as.vector(model.matrix(model$terms, data) %*% coef(model))) %>%
         dplyr::mutate(PRED = if(stringr::str_detect(get_p_trans_eval(model), '_lg')){
-            exp(pred)
+            exp(PRED)
         } else if(stringr::str_detect(get_p_trans_eval(model), '_bc')){
-            invBoxCox(pred)
+            invBoxCox(PRED)
         } else {
-            pred
+            PRED
         }) %>%
         dplyr::mutate(PRED_cor = case_when(
             PRED <= 0 ~ 1e-12,
@@ -70,13 +52,6 @@ plot_data <- function(data, case_w, art){
             TRUE ~ PRED))
 }
 
-# getting transformation of the response
-get_p_trans <- function(data, case_w, art){
-    data %>%
-        dplyr::filter(test == art,
-                      case == case_w) %>%
-        dplyr::pull(response)
-}
 
 get_p_trans_eval <- function(model){
     model %>%
@@ -97,8 +72,6 @@ own_plot <- function(data, max_graph = 1){
     data %>%
         ggplot(aes(x = p_value_Fisher, y = PRED_cor)) +
         geom_line(color = '#004c93') +
-        #geom_segment(aes(x = 0, xend = max_graph, y = 0, yend = max_graph), 
-        #             linetype = 'dashed', size = 1, color = 'grey') +
         xlim(c(0, max_graph))+
         ylim(c(0, max_graph))+
         labs(x = '\n Simulated p-values', y = 'Approximated p-values \n')+
@@ -113,3 +86,34 @@ own_plot <- function(data, max_graph = 1){
               axis.title.y = element_text(size = 20))
 }
 
+own_plot_0.2 <- function(data, max_graph = 0.2){
+    data %>%
+        dplyr::filter(p_value_Fisher <= 0.2) %>%
+        ggplot(aes(x = p_value_Fisher, y = PRED_cor)) +
+        geom_line(color = '#004c93') +
+        xlim(c(0, max_graph))+
+        ylim(c(0, max_graph))+
+        labs(x = '\n Simulated p-values', y = 'Approximated p-values \n')+
+        theme_bw()+
+        facet_wrap(~k)+
+        theme(panel.spacing = unit(1, "lines"),
+              strip.background = element_rect(colour = 'black',
+                                              fill = '#004c93'),
+              strip.text.x = element_text(size = 12, color = 'white' # , face = "bold.italic"
+              ),
+              axis.title.x = element_text(size = 20),
+              axis.title.y = element_text(size = 20))
+}
+
+# add terms to models
+add_predvars <- function(object, data) {
+    object$terms <- terms(object$formula)
+    vars <- attr(object$terms, "variables")
+    variables <- eval(vars, data)
+    varnames <- vars %>% length() - 1
+    predvars <- vars
+    
+    for (i in 1:varnames) predvars[[i + 1L]]  <- makepredictcall(variables[[i]], vars[[i + 1L]])
+    attr(object$terms, "predvars") <- predvars
+    object
+}

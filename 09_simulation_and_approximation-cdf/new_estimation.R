@@ -65,6 +65,8 @@ lambda_values <- bind_rows(lambda_bc_all,
     dplyr::mutate(test = c(rep("all", 6), 
                            rep("e_j", 6)))
 
+#save(data_case_1, data_case_2, data_case_3, 
+#     file = here::here('09_simulation_and_approximation-cdf/data_cases.RData'))
 # save(lambda_values, file = here::here('09_simulation_and_approximation-cdf/lambda_package.RData'))
 
 
