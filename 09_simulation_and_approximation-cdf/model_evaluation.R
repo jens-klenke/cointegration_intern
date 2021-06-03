@@ -86,3 +86,11 @@ data_case_2_E_J %>% own_plot_0.2()
 data_case_3_all %>% own_plot_0.2()
 data_case_3_E_J %>% own_plot_0.2()
 
+
+# ---- Extract final models ----
+final_models <- expand_grid(test.type = c("E_J", "all"), 
+                            case = 1:3) %>% 
+    mutate(model = purrr::map2(test.type, case, best_model_fun))
+
+#save(final_models, file = here::here("09_simulation_and_approximation-cdf/final_models.RData"))
+#object_size(final_models)

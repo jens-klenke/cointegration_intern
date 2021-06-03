@@ -117,3 +117,9 @@ add_predvars <- function(object, data) {
     attr(object$terms, "predvars") <- predvars
     object
 }
+
+best_model_fun <- function(art, case){
+    # extract best model and add predvars
+    get_model_eval(get(paste0('table_', art, '_case_', case))) %>%
+        add_predvars(get(paste0("data_case_", case)))
+}
