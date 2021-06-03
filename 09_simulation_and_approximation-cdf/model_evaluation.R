@@ -1,5 +1,5 @@
 #---- Preliminary ---- 
-# packages 
+# packages  
 source(here::here('01_code/packages/packages.R'))
 
 # functions 
@@ -12,7 +12,14 @@ load(here::here('09_simulation_and_approximation-cdf/server_results.RData'))
 load(here::here('09_simulation_and_approximation-cdf/lambda_package.RData'))
 
 # Load Data
-load(here::here('09_simulation_and_approximation-cdf/data_cases.RData'))
+if(Sys.info()['nodename'] != "DELL-ARBEIT") {
+    load(here::here('09_simulation_and_approximation-cdf/data_cases.RData'))
+} else if(Sys.info()['nodename'] == "DELL-ARBEIT") { # Jens 
+    load('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\data_cases.RData')
+}
+
+
+
 
 lambda_p <- get_lambda(lambda_values, 1, 'p', 'all')
 
@@ -39,6 +46,8 @@ data_case_2_small <- data_case_2  %>%
     dplyr::filter(p_value_Fisher %in% c(min(p_value_Fisher), seq(0, 1, 0.0001)))
 data_case_3_small <- data_case_3 %>% 
     dplyr::filter(p_value_Fisher %in% c(min(p_value_Fisher), seq(0, 1, 0.0001)))
+
+rm(data_case_1, data_case_2, data_case_3)
 
 # Add Predictions
 # case = 1
@@ -79,3 +88,4 @@ data_case_2_E_J %>% own_plot_0.2()
 # case = 3
 data_case_3_all %>% own_plot_0.2()
 data_case_3_E_J %>% own_plot_0.2()
+
