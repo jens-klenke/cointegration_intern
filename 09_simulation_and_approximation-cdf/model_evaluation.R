@@ -19,8 +19,6 @@ if(Sys.info()['nodename'] != "DELL-ARBEIT") {
 }
 
 
-
-
 lambda_p <- get_lambda(lambda_values, 1, 'p', 'all')
 
 
@@ -47,7 +45,6 @@ data_case_2_small <- data_case_2  %>%
 data_case_3_small <- data_case_3 %>% 
     dplyr::filter(p_value_Fisher %in% c(min(p_value_Fisher), seq(0, 1, 0.0001)))
 
-rm(data_case_1, data_case_2, data_case_3)
 
 # Add Predictions
 # case = 1
