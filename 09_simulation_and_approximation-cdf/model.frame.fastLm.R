@@ -1,5 +1,4 @@
-model.frame.fastLm <- function (formula, ...) 
-{
+model.frame.fastLm <- function (formula, ...) {
     dots <- list(...)
     nargs <- dots[match(c("data", "na.action", "subset"), names(dots), 
                     0)]

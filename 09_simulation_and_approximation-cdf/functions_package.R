@@ -1,4 +1,24 @@
 #-- functions ----
+# model.frame
+model.frame.fastLm <- function (formula, ...) {
+    dots <- list(...)
+    nargs <- dots[match(c("data", "na.action", "subset"), names(dots), 
+                        0)]
+    fcall <- formula$call
+    m <- match(c("formula", "data", "subset", "weights", 
+                 "na.action", "offset"), names(fcall), 0L)
+    fcall <- fcall[c(1L, m)]
+    fcall$drop.unused.levels <- TRUE
+    fcall[[1L]] <- quote(stats::model.frame)
+    fcall$xlev <- formula$xlevels
+    fcall$formula <- terms(formula)
+    fcall[names(nargs)] <- nargs
+    env <- environment(formula$terms)
+    if (is.null(env)) 
+        env <- parent.frame()
+    eval(fcall, env)
+}
+
 # inverse BoxCox function
 invBoxCox <- function(x){
     x <- if (lambda_p == 0) exp(as.complex(x)) else (lambda_p*as.complex(x) + 1)^(1/lambda_p)
@@ -46,13 +66,12 @@ get_p_value <- function(bh.test, trendtype, test.type, k){
     # generating data set 
     new_data <- tibble(stat_Fisher_all = bh.test, 
                        stat_Fisher_E_J = bh.test, 
-                       k = k,
-                       p_value_Fisher = 0) %>%
+                       k = k) %>%
         dplyr::mutate(k_dummy = as.factor(k),
                       stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat)-1)/lambda_stat,
                       stat_Fisher_all_bc = ((stat_Fisher_all^lambda_stat)-1)/lambda_stat)
     # approximation of the model 
-    p.value_raw <- suppressWarnings(predict(model, new_data))
+    p.value_raw <- as.vector(model.matrix(model, new_data) %*% coef(model))
     
     p.value_trans <- if(stringr::str_detect(dep_var, '_lg')) {
         exp(p.value_raw)
@@ -72,6 +91,8 @@ test.type <- 'all'
 k <- 5
 
 get_p_value(10, 1, 'all', 5)
+
+
 
 
 
