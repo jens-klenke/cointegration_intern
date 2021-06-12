@@ -45,12 +45,18 @@ classoption: a4paper
 #options(kableExtra.latex.load_packages = FALSE)
 
 ## packages
-#source(here::here('01_code/packages/packages.R'))
+source(here::here('01_code/packages/packages.R'))
 
-## metrics
-#load(here::here("09_simulation_and_approximation-cdf/model_metrics_ALL_server.Rdata"))
+# load metrics
+load(here::here('09_simulation_and_approximation-cdf/server_results.RData'))
 
 #load(here::here("09_simulation_and_approximation-cdf/model_metrics_E_J_server.Rdata"))
+
+best_5_table_paper <- function(data){
+    data%>%
+        dplyr::slice_min(RMSE_cor_0.2, n = 5)%>%
+        dplyr::select(-c(formula, expo, model))
+}
 ```
 
 # Introduction
@@ -264,6 +270,59 @@ We estimate all models for two different combinations of the underlying tests. N
 \newgeometry{top = 2.5cm, left = 2.5cm, right = 2cm, bottom = 2cm}
 
 # Appendices
+
+\begin{table}
+	\centering
+	\caption{Description of all tested models....}
+	\label{tab:func_form}	 
+	\begin{tabular}{rlc}
+		Number & Functional form & Range of $\gamma$ \\
+		\toprule
+		$1$ & $p = \poly\left( \bc(t), \gamma \right) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ 
+		$2$ & $p = \poly\left( \bc(t), \gamma \right) + k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$3$ & $p = \poly\left( \bc(t), \gamma \right) * k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$4$ & $p = \poly\left( \bc(t), \gamma \right) + \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$5$ & $p = \poly\left( \bc(t), \gamma \right) * \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$6$ & $p = \poly\left( \bc(t), \gamma \right) + k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$7$ & $p = \poly\left( \bc(t), \gamma \right) * k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ %[0.5em]
+		\midrule
+		$8$ & $\log(p) = \poly\left( \bc(t), \gamma \right) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ 
+		$9$ & $\log(p) = \poly\left( \bc(t), \gamma \right) + k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$10$ & $\log(p) = \poly\left( \bc(t), \gamma \right) * k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$11$ & $\log(p) = \poly\left( \bc(t), \gamma \right) + \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$12$ & $\log(p) = \poly\left( \bc(t), \gamma \right) * \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$13$ & $\log(p) = \poly\left( \bc(t), \gamma \right) + k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$14$ & $\log(p) = \poly\left( \bc(t), \gamma \right) * k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\	
+		\midrule
+		$15$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ 
+		$16$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) + k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$17$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) * k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$18$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) + \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$19$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) * \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$20$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) + k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$21$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) * k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\	
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+
+\FloatBarrier
+```{r structure and lm, echo = FALSE}
+
+
+
+#knitr::kable(best_5_table_paper(table_all_case_1), digits = 4, caption = '\\label{tab:sum_lm} Summary of the linear model', format.args = list(decimal.mark = '.', big.mark = " "),   booktabs = TRUE, linesep = "")%>%
+#  kable_styling(latex_options = c("striped", "hold_position"))
+
+knitr::kable(best_5_table_paper(table_all_case_1), digits = 5, format.args = list(scientific = TRUE), booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
+             row.names = TRUE, escape = FALSE,
+              caption= '\\label{tab:all_1} The 5 best models for the approximation') %>%
+  kable_styling(latex_options = c("striped", "hold_position")) %>%
+  add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+```
+
+
 
 
 

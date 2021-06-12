@@ -115,6 +115,20 @@
   \postdate{\par}
   \date{today}
 
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 
 %% linespread settings
 
@@ -679,6 +693,60 @@ models.
 
 \hypertarget{appendices}{%
 \section{Appendices}\label{appendices}}
+
+\begin{table}
+    \centering
+    \caption{Description of all tested models....}
+    \label{tab:func_form}    
+    \begin{tabular}{rlc}
+        Number & Functional form & Range of $\gamma$ \\
+        \toprule
+        $1$ & $p = \poly\left( \bc(t), \gamma \right) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ 
+        $2$ & $p = \poly\left( \bc(t), \gamma \right) + k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $3$ & $p = \poly\left( \bc(t), \gamma \right) * k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $4$ & $p = \poly\left( \bc(t), \gamma \right) + \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $5$ & $p = \poly\left( \bc(t), \gamma \right) * \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $6$ & $p = \poly\left( \bc(t), \gamma \right) + k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $7$ & $p = \poly\left( \bc(t), \gamma \right) * k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ %[0.5em]
+        \midrule
+        $8$ & $\log(p) = \poly\left( \bc(t), \gamma \right) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ 
+        $9$ & $\log(p) = \poly\left( \bc(t), \gamma \right) + k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $10$ & $\log(p) = \poly\left( \bc(t), \gamma \right) * k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $11$ & $\log(p) = \poly\left( \bc(t), \gamma \right) + \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $12$ & $\log(p) = \poly\left( \bc(t), \gamma \right) * \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $13$ & $\log(p) = \poly\left( \bc(t), \gamma \right) + k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $14$ & $\log(p) = \poly\left( \bc(t), \gamma \right) * k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\   
+        \midrule
+        $15$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ 
+        $16$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) + k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $17$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) * k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $18$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) + \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $19$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) * \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $20$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) + k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+        $21$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) * k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\    
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\FloatBarrier
+\begin{table}[!h]
+
+\caption{\label{tab:structure and lm}\label{tab:all_1} The 5 best models for the approximation}
+\centering
+\begin{tabular}[t]{llrrrr}
+\toprule
+\multicolumn{1}{c}{\textbf{}} & \multicolumn{1}{c}{\textbf{}} & \multicolumn{2}{c}{\textbf{Full Distribution}} & \multicolumn{2}{c}{\textbf{Lower Tail ($p \leq 0.2$)}} \\
+\cmidrule(l{3pt}r{3pt}){3-4} \cmidrule(l{3pt}r{3pt}){5-6}
+  & Model & RMSE & cRMSE & RMSE & cRMSE\\
+\midrule
+\cellcolor{gray!6}{1} & \cellcolor{gray!6}{$p = \poly\left( \bc(t), 13 \right) * k\_d$} & \cellcolor{gray!6}{1.8e-04} & \cellcolor{gray!6}{1.7e-04} & \cellcolor{gray!6}{1.7e-04} & \cellcolor{gray!6}{1.7e-04}\\
+2 & $\bc(p) = \poly\left( \bc(t), 13 \right) * k\_d$ & 1.8e-04 & 1.7e-04 & 1.9e-04 & 1.9e-04\\
+\cellcolor{gray!6}{3} & \cellcolor{gray!6}{$\bc(p) = \poly\left( \bc(t), 12 \right) * k\_d$} & \cellcolor{gray!6}{2.0e-04} & \cellcolor{gray!6}{2.0e-04} & \cellcolor{gray!6}{2.1e-04} & \cellcolor{gray!6}{2.0e-04}\\
+4 & $p = \poly\left( \bc(t), 12 \right) * k\_d$ & 2.4e-04 & 2.3e-04 & 2.3e-04 & 2.2e-04\\
+\cellcolor{gray!6}{5} & \cellcolor{gray!6}{$\bc(p) = \poly\left( \bc(t), 11 \right) * k\_d$} & \cellcolor{gray!6}{2.2e-04} & \cellcolor{gray!6}{2.1e-04} & \cellcolor{gray!6}{2.3e-04} & \cellcolor{gray!6}{2.2e-04}\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \restoregeometry
 
