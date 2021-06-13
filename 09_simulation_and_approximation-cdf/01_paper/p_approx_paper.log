@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.3.30)  12 JUN 2021 23:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.3.30)  13 JUN 2021 15:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -885,7 +885,23 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count471
 \l__pdf_internal_box=\box113
-) (./p_approx_paper.aux)
+) (./p_approx_paper.aux
+
+LaTeX Warning: Label `tab:all_1' multiply defined.
+
+
+LaTeX Warning: Label `tab:all_1' multiply defined.
+
+
+LaTeX Warning: Label `tab:all_1' multiply defined.
+
+
+LaTeX Warning: Label `tab:all_1' multiply defined.
+
+
+LaTeX Warning: Label `tab:all_1' multiply defined.
+
+)
 \openout1 = `p_approx_paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 153.
@@ -1276,10 +1292,18 @@ Package biblatex Info: Reference section=0 on input line 683.
 [7
 
 
-] [8] [9] [10
+] [8]
+Overfull \hbox (7.14732pt too wide) in paragraph at lines 754--767
+ [][] 
+ []
+
+[9] [10] [11] [12] [13] [14
 
 
 ] (./p_approx_paper.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `p_approx_paper.out' has not changed.
 (rerunfilecheck)             Checksum: 44E2F23BFB5A1C7DD2EFA7A31C0DF4DF;1882.
 Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
@@ -1287,11 +1311,11 @@ Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24326 strings out of 479014
- 400983 string characters out of 5863086
- 1344606 words of memory out of 5000000
- 41041 multiletter control sequences out of 15000+600000
- 493255 words of font info for 185 fonts, out of 8000000 for 9000
+ 24360 strings out of 479014
+ 401356 string characters out of 5863086
+ 1438146 words of memory out of 5000000
+ 41049 multiletter control sequences out of 15000+600000
+ 504225 words of font info for 196 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  73i,13n,81p,944b,6863s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exi
@@ -1301,26 +1325,30 @@ pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 , replaced by a fixed one
 
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2020/texmf
--dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2020/texmf-dist/fonts/enc/dv
-ips/lm/lm-mathsy.enc}{c:/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{
+-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2020/texmf-dist/fonts/enc/dvips/
+lm/lm-mathsy.enc}{c:/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{
 c:/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2020/te
 xmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2020/texmf-dist/fonts/typ
-e1/public/lm/lmex10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmmi1
-0.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/
-2020/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2020/texmf-dist/fon
-ts/type1/public/lm/lmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/
-lmr10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texli
-ve/2020/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/texlive/2020/texmf-dist/
-fonts/type1/public/lm/lmr6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/l
-m/lmr7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texli
-ve/2020/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2020/texmf-dist
-/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/publi
-c/lm/lmsy6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/
-texlive/2020/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on p_approx_paper.pdf (18 pages, 300790 bytes).
+e1/public/lm/lmbx5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmex10
+.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2
+020/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2020/texmf-dist/fon
+ts/type1/public/lm/lmmi5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/
+lmmi6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texli
+ve/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2020/texmf-dist/
+fonts/type1/public/lm/lmr12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/
+lm/lmr17.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/tex
+live/2020/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2020/texmf-dist
+/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/
+lm/lmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/te
+xlive/2020/texmf-dist/fonts/type1/public/lm/lmri7.pfb><c:/texlive/2020/texmf-di
+st/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/pub
+lic/lm/lmsy5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c
+:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2020/texm
+f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on p_approx_paper.pdf (22 pages, 389674 bytes).
 PDF statistics:
- 408 PDF objects out of 1000 (max. 8388607)
- 364 compressed objects within 4 object streams
- 94 named destinations out of 1000 (max. 500000)
- 49292 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 455 PDF objects out of 1000 (max. 8388607)
+ 401 compressed objects within 5 object streams
+ 101 named destinations out of 1000 (max. 500000)
+ 55436 words of extra memory for PDF output out of 61914 (max. 10000000)
 

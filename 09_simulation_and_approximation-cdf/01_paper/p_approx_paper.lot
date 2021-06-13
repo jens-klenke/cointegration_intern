@@ -4,4 +4,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {table}{\numberline {A1}{\ignorespaces Description of all tested models....}}{VIII}{table.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A2}{\ignorespaces The 5 best models for the approximation}}{IX}{table.2}%
+\contentsline {table}{\numberline {A2}{\ignorespaces The RMSE and cRMSE for the $5$ best models -- in terms of the cRMSE for the lower tail of the distribution -- for the approximation of the $p$-values for the first case (no constant, no trend) and all underyling test included.}}{IX}{table.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {table}{\numberline {A3}{ Models for the approximation of the p-values of the Bayer and Hanck Test for the first case and all underyling test included.}}{IX}{table.3}%

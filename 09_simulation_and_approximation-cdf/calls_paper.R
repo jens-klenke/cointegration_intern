@@ -1,28 +1,31 @@
-calls <- c('$p = \\poly\\left( \\bc(t), power \\right)$', '$p = \\poly\\left( \\bc(t), power \\right) + k$', 
-  '$p = \\poly\\left( \\bc(t), power \\right) * k$', '$p = \\poly\\left( \\bc(t), power \\right) + \\log(k)$',
-  '$p = \\poly\\left( \\bc(t), power \\right) * \\log(k)$', '$p = \\poly\\left( \\bc(t), power \\right) + k\\_d$',
-  '$p = \\poly\\left( \\bc(t), power \\right) * k\\_d$', '$\\log(p) = \\poly\\left( \\bc(t), power \\right)$',
-  '$\\log(p) = \\poly\\left( \\bc(t), power \\right) + k$', '$\\log(p) = \\poly\\left( \\bc(t), power \\right) * k$', 
-  '$\\log(p) = \\poly\\left( \\bc(t), power \\right) + \\log(k)$', '$\\log(p) = \\poly\\left( \\bc(t), power \\right) * \\log(k)$',
-  '$\\log(p) = \\poly\\left( \\bc(t), power \\right) + k\\_d$', '$\\log(p) = \\poly\\left( \\bc(t), power \\right) * k\\_d$', 
-  '$\\bc(p) = \\poly\\left( \\bc(t), power \\right)$', '$\\bc(p) = \\poly\\left( \\bc(t), power \\right) + k$', 
-  '$\\bc(p) = \\poly\\left( \\bc(t), power \\right) * k$', '$\\bc(p) = \\poly\\left( \\bc(t), power \\right) + \\log(k)$', 
-  '$\\bc(p) = \\poly\\left( \\bc(t), power \\right) * \\log(k)$', '$\\bc(p) = \\poly\\left( \\bc(t), power \\right) + k\\_d$', 
-  '$\\bc(p) = \\poly\\left( \\bc(t), power \\right) * k\\_d$')
+#---- Preliminary ---- 
+# packages
+source(here::here('01_code/packages/packages.R'))
+
+calls <- c('$p = c + \\poly\\left( \\bc(t), power \\right)$', '$p = c + \\poly\\left( \\bc(t), power \\right) + k$', 
+  '$p = c + \\poly\\left( \\bc(t), power \\right) * k$', '$p = c + \\poly\\left( \\bc(t), power \\right) + \\log(k)$',
+  '$p = c + \\poly\\left( \\bc(t), power \\right) * \\log(k)$', '$p = c + \\poly\\left( \\bc(t), power \\right) + k\\_d$',
+  '$p = c + \\poly\\left( \\bc(t), power \\right) * k\\_d$', '$\\log(p) = c + \\poly\\left( \\bc(t), power \\right)$',
+  '$\\log(p) = c + \\poly\\left( \\bc(t), power \\right) + k$', '$\\log(p) = c + \\poly\\left( \\bc(t), power \\right) * k$', 
+  '$\\log(p) = c + \\poly\\left( \\bc(t), power \\right) + \\log(k)$', '$\\log(p) = c + \\poly\\left( \\bc(t), power \\right) * \\log(k)$',
+  '$\\log(p) = c + \\poly\\left( \\bc(t), power \\right) + k\\_d$', '$\\log(p) = c + \\poly\\left( \\bc(t), power \\right) * k\\_d$', 
+  '$\\bc(p) = c + \\poly\\left( \\bc(t), power \\right)$', '$\\bc(p) = c + \\poly\\left( \\bc(t), power \\right) + k$', 
+  '$\\bc(p) = c + \\poly\\left( \\bc(t), power \\right) * k$', '$\\bc(p) = c + \\poly\\left( \\bc(t), power \\right) + \\log(k)$', 
+  '$\\bc(p) = c + \\poly\\left( \\bc(t), power \\right) * \\log(k)$', '$\\bc(p) = c + \\poly\\left( \\bc(t), power \\right) + k\\_d$', 
+  '$\\bc(p) = c + \\poly\\left( \\bc(t), power \\right) * k\\_d$')
 
 expo <- 3:13
 
 A <- expand_grid(calls, expo) %>%
-    # functional call, merge of power and call
-    dplyr::mutate(dplyr::across(calls, str_replace_all, "power", 
-                                as.character(.$expo))) %>%
-    dplyr::select(calls)
+  # functional call, merge of power and call
+  dplyr::mutate(dplyr::across(calls, str_replace_all, "power",
+                              as.character(.$expo))) %>%
+  dplyr::select(calls) %>%
+  dplyr::pull(calls)
 
 # load metrics
 load(here::here('09_simulation_and_approximation-cdf/server_results.RData'))
 
-A %<>%
-    dplyr::pull(calls)
 
 table_all_case_1 %<>%
     dplyr::mutate(calls = A)
