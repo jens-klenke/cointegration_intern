@@ -10,7 +10,7 @@ load(here::here('09_simulation_and_approximation-cdf/models.RData'))
 # H_1 limit 
 load(here::here('09_simulation_and_approximation-cdf/H_1-values.RData'))
 
-x# functions 
+# functions 
 critical_fun <- function(case_s, test_s){
     crit_val %>%
         dplyr::filter(case == case_s, 
@@ -86,12 +86,6 @@ p_value_plots_all <- p_value_test_fun('all')
 
 test_plot_fun(p_value_plots_e_j)
 test_plot_fun(p_value_plots_all)
-
-
-
-
-
-
 
 
 

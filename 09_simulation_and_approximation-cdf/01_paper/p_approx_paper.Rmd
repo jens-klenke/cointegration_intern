@@ -45,12 +45,18 @@ classoption: a4paper
 #options(kableExtra.latex.load_packages = FALSE)
 
 ## packages
-#source(here::here('01_code/packages/packages.R'))
+source(here::here('01_code/packages/packages.R'))
 
-## metrics
-#load(here::here("09_simulation_and_approximation-cdf/model_metrics_ALL_server.Rdata"))
+# load metrics
+load(here::here('09_simulation_and_approximation-cdf/server_results.RData'))
 
 #load(here::here("09_simulation_and_approximation-cdf/model_metrics_E_J_server.Rdata"))
+
+best_5_table_paper <- function(data){
+    data%>%
+        dplyr::slice_min(RMSE_cor_0.2, n = 5)%>%
+        dplyr::select(-c(formula, expo, model))
+}
 ```
 
 # Introduction
@@ -265,6 +271,81 @@ We estimate all models for two different combinations of the underlying tests. N
 
 # Appendices
 
+Table \ref{tab:func_form} list the different functional forms of the polynomial regression we tested. In total we investigated $21$ different forms and for each of these forms we investigated the polynomial in the range from $3$ to $13$. As equations with many polynomials are getting very long we will use a short-hand notation. For example the first equation in Table \ref{tab:func_form} for a polynomial of $3$ is in short-hand notation
+
+\begin{align}
+    p = c + \poly\left( \bc(t), 3 \right)
+\end{align}
+
+and represents
+
+\begin{align}
+    p = c + \gamma_{1,1} t + \gamma_{1,2} t^2 + \gamma_{1,1} t^3 .
+\end{align}
+
+\begin{table}
+	\centering
+	\caption{Description of all tested models....}
+	\label{tab:func_form}	 
+	\begin{tabular}{rlc}
+		Number & Functional form & Range of $\gamma$ \\
+		\toprule
+		$1$ & $p = c + \poly\left( \bc(t), \gamma \right) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ 
+		$2$ & $p = c + \poly\left( \bc(t), \gamma \right) + k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$3$ & $p = c + \poly\left( \bc(t), \gamma \right) * k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$4$ & $p = c + \poly\left( \bc(t), \gamma \right) + \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$5$ & $p = c + \poly\left( \bc(t), \gamma \right) * \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$6$ & $p = c + \poly\left( \bc(t), \gamma \right) + k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$7$ & $p = c + \poly\left( \bc(t), \gamma \right) * k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ %[0.5em]
+		\midrule
+		$8$ & $\log(p) = c + \poly\left( \bc(t), \gamma \right) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ 
+		$9$ & $\log(p) = c + \poly\left( \bc(t), \gamma \right) + k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$10$ & $\log(p) = c + \poly\left( \bc(t), \gamma \right) * k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$11$ & $\log(p) = c + \poly\left( \bc(t), \gamma \right) + \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$12$ & $\log(p) = c + \poly\left( \bc(t), \gamma \right) * \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$13$ & $\log(p) = c + \poly\left( \bc(t), \gamma \right) + k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$14$ & $\log(p) = c + \poly\left( \bc(t), \gamma \right) * k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\	
+		\midrule
+		$15$ & $\bc(p) = c + \poly\left( \bc(t), \gamma \right) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ 
+		$16$ & $\bc(p) = c + \poly\left( \bc(t), \gamma \right) + k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$17$ & $\bc(p) = c + \poly\left( \bc(t), \gamma \right) * k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$18$ & $\bc(p) = c + \poly\left( \bc(t), \gamma \right) + \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$19$ & $\bc(p) = c + \poly\left( \bc(t), \gamma \right) * \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$20$ & $\bc(p) = c + \poly\left( \bc(t), \gamma \right) + k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$21$ & $\bc(p) = c + \poly\left( \bc(t), \gamma \right) * k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\	
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+
+
+\FloatBarrier
+```{r 5 best all_1, echo = FALSE, warning = FALSE, message = FALSE}
+
+table_all_case_1 %>%
+    best_5_table_paper() %>%
+    dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
+    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
+             row.names = TRUE, escape = FALSE,
+              caption= '\\label{tab:best_all_1} The RMSE and cRMSE for the $5$ best models -- in terms of the cRMSE for the lower tail of the distribution -- for the approximation of the $p$-values for the first case (no constant, no trend) and all underyling test included.', align = 'lrrrr') %>%
+    column_spec(3:6, width = "2cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position")) %>%
+  add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+```
+
+
+```{r all_1, echo = FALSE, warning = FALSE, message = FALSE}
+
+table_all_case_1 %>%
+    dplyr::select(-c(formula, expo, model)) %>%
+    dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
+    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
+             row.names = TRUE, escape = FALSE,
+              caption= '\\label{tab:all_1} Models for the approximation of the p-values of the Bayer and Hanck Test for the first case and all underyling test included.', align = 'lrrrr', longtable = TRUE) %>%
+    column_spec(3:6, width = "2cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position", "repeat_header"), font_size = 5) %>%
+  add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+```
 
 
 <!-- 

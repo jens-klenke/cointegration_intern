@@ -26,34 +26,29 @@ Entscheidungstheorie}
 	\begin{tabular}{rlc}
 		Number & Functional form & Range of $\gamma$ \\
 		\toprule
-		$1$ & $p = \text{poly}(t, \gamma) + \left( 1/k \right)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\ 
-		$2$ & $p = \text{poly}(t, \gamma) + \left( 1/k \right) + \text{poly}(t, \gamma) * 1/k $ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$3$ & $p = \text{poly}(t, \gamma) + \log (k) + \text{poly}(k, \gamma) * \log (k) $ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$4$ & $p = \text{poly}(t, \gamma) + k + \left( 1/k \right)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$5$ & $p = \text{poly}(\log (t), \gamma) + \log (k)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
+		$1$ & $p = \poly\left( \bc(t), \gamma \right) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ 
+		$2$ & $p = \poly\left( \bc(t), \gamma \right) + k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$3$ & $p = \poly\left( \bc(t), \gamma \right) * k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$4$ & $p = \poly\left( \bc(t), \gamma \right) + \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$5$ & $p = \poly\left( \bc(t), \gamma \right) * \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$6$ & $p = \poly\left( \bc(t), \gamma \right) + k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$7$ & $p = \poly\left( \bc(t), \gamma \right) * k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ %[0.5em]
 		\midrule
-		$6$ & $p = \text{poly}(\log (t), \gamma) * \log (k)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$7$ & $p = \text{poly}(\log (t), \gamma) + k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\ 
-		$8$ & $p = \text{poly}(\log (t), \gamma) * k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$9$ & $p = \text{poly}(\log (t), \gamma) * k + 1/k $ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\ 	
-		$10$ & $p = \text{poly}(\log (t), \gamma) * \log(k)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\ 
+		$8$ & $\log(p) = \poly\left( \bc(t), \gamma \right) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ 
+		$9$ & $\log(p) = \poly\left( \bc(t), \gamma \right) + k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$10$ & $\log(p) = \poly\left( \bc(t), \gamma \right) * k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$11$ & $\log(p) = \poly\left( \bc(t), \gamma \right) + \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$12$ & $\log(p) = \poly\left( \bc(t), \gamma \right) * \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$13$ & $\log(p) = \poly\left( \bc(t), \gamma \right) + k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$14$ & $\log(p) = \poly\left( \bc(t), \gamma \right) * k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\	
 		\midrule
-		$11$ & $p = \text{poly}(\log (t), \gamma) * \log(k) + 1/k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$12$ & $p = \poly (\bc (t), \gamma) * \log(k) + \poly (\bc (t), \gamma) * 1/k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$13$ & $p = \poly (\bc (t), \gamma) * \log(k) + \poly (\bc (t), \gamma) * \sqrt{k}$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$14$ & $p = \poly (\bc (t), \gamma) * \log(k) + \poly (\bc (t), \gamma) * 1/k +\sqrt{k}$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$15$ & $ \bc (p) = \poly (\bc (t), \gamma) + \log(k)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\		
-		\midrule
-		$16$ & $\bc (p) = \poly (\bc (t), \gamma) * \log(k)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$17$ & $\bc (p) = \poly (\bc (t), \gamma) * \log(k) + 1/k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$18$ & $\bc (p) = \poly (\bc (t), \gamma) * \log(k) + \poly (\bc (t), \gamma) * 1/k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$19$ & $\bc (p) = \poly (\bc (t), \gamma) * \log(k) +  \poly (\bc (t), \gamma) * \sqrt{k}$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$20$ & $\log (p) = \poly (\bc (t), \gamma) * \log(k)$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		\midrule
-		$21$ & $\log (p) = \poly (\bc (t), \gamma) * \log(k) + 1/k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$22$ & $\log (p) = \poly (\bc (t), \gamma) * \log(k) + \poly (\bc (t), \gamma) * \sqrt{k}$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$23$ & $\log (p) = \poly (\bc (t), \gamma) * \log(k) + \poly (\bc (t), \gamma) * 1/k$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
-		$24$ & $\log (p) = \poly (\bc (t), \gamma) * \log(k) + \poly (\bc (t), \gamma) * 1/k + \sqrt{k}$ & $\gamma \in \mathbb{Z} \left[3, 10 \right]$\\
+		$15$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\ 
+		$16$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) + k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$17$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) * k $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$18$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) + \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$19$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) * \log(k) $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$20$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) + k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\
+		$21$ & $\bc(p) = \poly\left( \bc(t), \gamma \right) * k\_d $ & $\gamma \in \mathbb{Z} \left[3, 13 \right]$\\	
 		\bottomrule
 	\end{tabular}
 	\caption{Description of all tested models....}
