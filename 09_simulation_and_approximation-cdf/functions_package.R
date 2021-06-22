@@ -28,11 +28,6 @@ model.matrix.fastLm <- function (object, ...) {
                                       dots))
 }
 
-# inverse BoxCox function
-invBoxCox <- function(x){
-    x <- if (lambda_p == 0) exp(as.complex(x)) else (lambda_p*as.complex(x) + 1)^(1/lambda_p)
-    return(Re(x))
-}
 
 # get lambda 
 get_lambda <- function(data, case_w, art, test_w){
@@ -70,39 +65,33 @@ get_p_value <- function(bh.test, trendtype, test.type, k){
     # saving model 
     model <- get_model(trendtype, test.type) 
     # dependent var 
-    dep_var <- get_p_trans(model)
+    dep_var <- get_p_trans(model) %>% as.character()
     
     # generating data set 
-    new_data <- tibble(p_value_Fisher = 1L, 
+    new_data <- tibble(dep = 1L,
                        stat_Fisher_all = bh.test, 
                        stat_Fisher_E_J = bh.test, 
                        k = k) %>%
         dplyr::mutate(k_dummy = as.factor(k),
                       stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat)-1)/lambda_stat,
                       stat_Fisher_all_bc = ((stat_Fisher_all^lambda_stat)-1)/lambda_stat)
+    colnames(new_data)[1] <- dep_var
     # approximation of the model 
     p.value_raw <- as.vector(model.matrix.fastLm(object = model, data = new_data) %*% coef(model))
     
-    p.value_trans <- if(stringr::str_detect(dep_var, '_lg')) {
-        exp(p.value_raw)
-    } else {
-        if(stringr::str_detect(dep_var, '_bc')){
-            invBoxCox(p.value_raw)
+    p.value_trans <- if(stringr::str_detect(dep_var, '_bc')){
+        Re((lambda_p*as.complex(p.value_raw) + 1)^(1/lambda_p))
         } else {p.value_raw}
-    }
     
     p.value <- ifelse(p.value_trans >= 1, 9.9999e-1, ifelse(p.value_trans <= 0, 1e-12, p.value_trans))
     return(p.value)
 }
 
-bh.test <- 10 
-trendtype <- 1
-test.type <- 'all'
-k <- 5
-
-get_p_value(10, 1, 'all', 5)
 
 
-
-
+load(here::here('09_simulation_and_approximation-cdf/models.RData'))
+bh.test <- 20 
+trendtype <- 3
+test.type <- 'E_J'
+k <- 3
 
