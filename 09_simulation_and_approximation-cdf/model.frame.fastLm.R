@@ -1,10 +1,9 @@
 model.frame.fastLm <- function (formula, ...) {
     dots <- list(...)
-    nargs <- dots[match(c("data", "na.action", "subset"), names(dots), 
-                    0)]
+    nargs <- dots[match(c("data"), names(dots), 
+                        0)]
     fcall <- formula$call
-    m <- match(c("formula", "data", "subset", "weights", 
-                 "na.action", "offset"), names(fcall), 0L)
+    m <- match(c("formula", "data"), names(fcall), 0L)
     fcall <- fcall[c(1L, m)]
     fcall$drop.unused.levels <- TRUE
     fcall[[1L]] <- quote(stats::model.frame)

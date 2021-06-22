@@ -60,31 +60,14 @@ data_case_3_all <- add_pred(data_case_3_small, 'all')
 data_case_3_E_J <- add_pred(data_case_3_small, 'E_J')
 
 # Plot approximated against simulated p-values
-# case = 1
-data_case_1_all %>% own_plot()
-data_case_1_E_J %>% own_plot()
+data_case_all <- rbind(data_case_1_all, data_case_2_all, data_case_3_all)
+data_case_E_J <- rbind(data_case_1_E_J, data_case_2_E_J, data_case_3_E_J)
 
-# case = 2
-data_case_2_all %>% own_plot()
-data_case_2_E_J %>% own_plot()
+data_case_all %>% own_plot()
+data_case_E_J %>% own_plot()
 
-# case = 3
-data_case_3_all %>% own_plot()
-data_case_3_E_J %>% own_plot()
-
-
-# Plot approximated against simulated p-values <= 0.2
-# case = 1
-data_case_1_all %>% own_plot_0.2()
-data_case_1_E_J %>% own_plot_0.2()
-
-# case = 2
-data_case_2_all %>% own_plot_0.2()
-data_case_2_E_J %>% own_plot_0.2()
-
-# case = 3
-data_case_3_all %>% own_plot_0.2()
-data_case_3_E_J %>% own_plot_0.2()
+data_case_all %>% own_plot_0.2()
+data_case_E_J %>% own_plot_0.2()
 
 
 # ---- Extract final models ----

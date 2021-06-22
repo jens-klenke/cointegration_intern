@@ -1,5 +1,5 @@
 #-- functions ----
-# model.frame
+# Design matrices
 model.frame.fastLm <- function (formula, ...) {
     dots <- list(...)
     nargs <- dots[match(c("data", "na.action", "subset"), names(dots), 
@@ -17,6 +17,15 @@ model.frame.fastLm <- function (formula, ...) {
     if (is.null(env)) 
         env <- parent.frame()
     eval(fcall, env)
+}
+
+model.matrix.fastLm <- function (object, ...) {
+    data <- model.frame.fastLm(object, ...)
+    dots <- list(...)
+    dots$data <- dots$contrasts.arg <- NULL
+    do.call("model.matrix.default", c(list(object = object, 
+                                           data = data, contrasts.arg = list(k_dummy = "contr.treatment")), 
+                                      dots))
 }
 
 # inverse BoxCox function
@@ -64,14 +73,15 @@ get_p_value <- function(bh.test, trendtype, test.type, k){
     dep_var <- get_p_trans(model)
     
     # generating data set 
-    new_data <- tibble(stat_Fisher_all = bh.test, 
+    new_data <- tibble(p_value_Fisher = 1L, 
+                       stat_Fisher_all = bh.test, 
                        stat_Fisher_E_J = bh.test, 
                        k = k) %>%
         dplyr::mutate(k_dummy = as.factor(k),
                       stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat)-1)/lambda_stat,
                       stat_Fisher_all_bc = ((stat_Fisher_all^lambda_stat)-1)/lambda_stat)
     # approximation of the model 
-    p.value_raw <- as.vector(model.matrix(model, new_data) %*% coef(model))
+    p.value_raw <- as.vector(model.matrix.fastLm(object = model, data = new_data) %*% coef(model))
     
     p.value_trans <- if(stringr::str_detect(dep_var, '_lg')) {
         exp(p.value_raw)

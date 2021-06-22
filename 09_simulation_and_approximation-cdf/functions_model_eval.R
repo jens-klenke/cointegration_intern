@@ -76,14 +76,19 @@ own_plot <- function(data, max_graph = 1){
         ylim(c(0, max_graph))+
         labs(x = '\n Simulated p-values', y = 'Approximated p-values \n')+
         theme_bw()+
-        facet_wrap(~k)+
+        facet_grid(k ~ case)+
+        scale_y_continuous(sec.axis = sec_axis(~.*10, name = "k"), 
+                           breaks = seq(0, 1, 0.5)) +
         theme(panel.spacing = unit(1, "lines"),
               strip.background = element_rect(colour = 'black',
                                               fill = '#004c93'),
-              strip.text.x = element_text(size = 12, color = 'white' # , face = "bold.italic"
-              ),
-              axis.title.x = element_text(size = 20),
-              axis.title.y = element_text(size = 20))
+              strip.text.x = element_text(color = 'white'), 
+              strip.text.y = element_text(color = 'white'), 
+              axis.ticks.y.right = element_line(colour = 'white'), 
+              axis.text.y.right =  element_text(colour = "white"),
+              axis.ticks.x.top = element_line(colour = 'white'), 
+              axis.text.x.top =  element_text(colour = "white")
+        )
 }
 
 own_plot_0.2 <- function(data, max_graph = 0.2){
@@ -95,15 +100,22 @@ own_plot_0.2 <- function(data, max_graph = 0.2){
         ylim(c(0, max_graph))+
         labs(x = '\n Simulated p-values', y = 'Approximated p-values \n')+
         theme_bw()+
-        facet_wrap(~k)+
+        facet_grid(k ~ case)+
+        scale_y_continuous(sec.axis = sec_axis(~.*10, name = "k"), 
+                           breaks = seq(0, 1, 0.5)) +
         theme(panel.spacing = unit(1, "lines"),
               strip.background = element_rect(colour = 'black',
                                               fill = '#004c93'),
-              strip.text.x = element_text(size = 12, color = 'white' # , face = "bold.italic"
-              ),
-              axis.title.x = element_text(size = 20),
-              axis.title.y = element_text(size = 20))
+              strip.text.x = element_text(color = 'white'), 
+              strip.text.y = element_text(color = 'white'), 
+              axis.ticks.y.right = element_line(colour = 'white'), 
+              axis.text.y.right =  element_text(colour = "white"),
+              axis.ticks.x.top = element_line(colour = 'white'), 
+              axis.text.x.top =  element_text(colour = "white")
+        )
 }
+
+
 
 # add terms to models
 add_predvars <- function(object, data) {
@@ -115,6 +127,9 @@ add_predvars <- function(object, data) {
     
     for (i in 1:varnames) predvars[[i + 1L]]  <- makepredictcall(variables[[i]], vars[[i + 1L]])
     attr(object$terms, "predvars") <- predvars
+    
+    object$xlevels <- list(k_dummy = as.character(1:11))
+    
     object
 }
 
@@ -123,3 +138,6 @@ best_model_fun <- function(art, case){
     get_model_eval(get(paste0('table_', art, '_case_', case))) %>%
         add_predvars(get(paste0("data_case_", case)))
 }
+
+
+
