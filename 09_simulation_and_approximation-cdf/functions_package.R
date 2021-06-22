@@ -69,29 +69,28 @@ get_p_value <- function(bh.test, trendtype, test.type, k){
     
     # generating data set 
     new_data <- tibble(dep = 1L,
-                       stat_Fisher_all = bh.test, 
-                       stat_Fisher_E_J = bh.test, 
-                       k = k) %>%
-        dplyr::mutate(k_dummy = as.factor(k),
-                      stat_Fisher_E_J_bc = ((stat_Fisher_E_J^lambda_stat)-1)/lambda_stat,
-                      stat_Fisher_all_bc = ((stat_Fisher_all^lambda_stat)-1)/lambda_stat)
+                       stat_Fisher_all_bc = ((bh.test^lambda_stat)-1)/lambda_stat, 
+                       stat_Fisher_E_J_bc = ((bh.test^lambda_stat)-1)/lambda_stat, 
+                       k_dummy = as.factor(k))
     colnames(new_data)[1] <- dep_var
     # approximation of the model 
     p.value_raw <- as.vector(model.matrix.fastLm(object = model, data = new_data) %*% coef(model))
     
     p.value_trans <- if(stringr::str_detect(dep_var, '_bc')){
         Re((lambda_p*as.complex(p.value_raw) + 1)^(1/lambda_p))
-        } else {p.value_raw}
+    } else {p.value_raw}
     
     p.value <- ifelse(p.value_trans >= 1, 9.9999e-1, ifelse(p.value_trans <= 0, 1e-12, p.value_trans))
     return(p.value)
 }
-
-
 
 load(here::here('09_simulation_and_approximation-cdf/models.RData'))
 bh.test <- 20 
 trendtype <- 3
 test.type <- 'E_J'
 k <- 3
+
+
+get_p_value(2, 2, "E_J", 4)
+
 
