@@ -22,31 +22,28 @@ critical_fun <- function(case_s, test_s){
 # storing all critical_val in one tibble 
 crit_val <- dplyr::bind_rows(
     # for the all test
-    crit_val_all_10 %>%
+    crit_val_all_100 %>%
         dplyr::rename(crit_val = 'stat_Fisher_all') %>%
         dplyr::mutate(test = 'all'),
     
     # for the e_j test
-    crit_val_e_j_10 %>%
+    crit_val_e_j_100 %>%
         dplyr::mutate(test = 'E_J') %>%
         dplyr::rename(crit_val = 'stat_Fisher_E_J'))
 
 
 # adding critical val to tibble
-
 models %<>%
     dplyr::mutate(critical = purrr::map2(case, test.type, critical_fun))
 
 #-- graphical inspection ----
 
-
-
-
 p_value_test_fun <- function(test.type){
-    p_value_fun <- function(test_stat = 1:100, trendtype, test.type, k){
+    p_value_fun <- function(test_stat = seq(1, 100, 1), trendtype, test.type, k){
         tibble(
             test_stat = test_stat,
-            p_value = purrr::map_dbl(test_stat, ~get_p_value(., trendtype, test.type, k)), 
+            p_value = purrr::map_dbl(test_stat, ~get_p_value(., trendtype, test.type, k)),
+            p_value_2 = purrr::map_dbl(test_stat, ~get_p_value_2(., trendtype, test.type, k)),
             trendtype = trendtype, 
             test.type = test.type,
             k = k)
@@ -81,17 +78,53 @@ test_plot_fun <- function(p_values){
         )
 }
 
-p_value_plots_e_j <- p_value_test_fun('e_j')
+# getting minimum bh.test value bei dem p.vlaue wieder steigt
+
+h_1_cor_min <- bind_rows( p_value_plots_all %>%
+    dplyr::group_by(k, trendtype) %>%
+    dplyr::filter(p_value == min(p_value)) %>%
+    dplyr::filter(test_stat == min(test_stat)) ,
+
+p_value_plots_e_j %>% 
+    dplyr::group_by(k, trendtype) %>%
+    dplyr::filter(p_value == min(p_value)) %>%
+    dplyr::filter(test_stat == min(test_stat)))
+
+
+p_value_plots_e_j <- p_value_test_fun('E_J')
 p_value_plots_all <- p_value_test_fun('all')
+
+
+# plot
+p_value_plots_e_j %>%
+    tidyr::pivot_longer(cols = c(p_value, p_value_2), names_to =  c('variable')) %>%
+    ggplot2::ggplot(aes(x = test_stat, y = value, colour = variable)) +
+    geom_line(size = 1) +
+    theme_bw() +
+    facet_grid(k ~ trendtype) +
+    scale_fill_manual(values = c('#004c93', '#f51137')) +
+    scale_y_continuous(sec.axis = sec_axis(~.*10, name = "k"), 
+                       breaks = seq(0, 1, 0.5)) +
+    scale_x_continuous(sec.axis = sec_axis(~.*10, name = "Deterministic component")) +
+    theme(panel.spacing = unit(1, "lines"),
+          strip.background = element_rect(colour = 'black',
+                                          fill = '#004c93'),
+          strip.text.x = element_text(color = 'white'), 
+          strip.text.y = element_text(color = 'white'), 
+          axis.ticks.y.right = element_line(colour = 'white'), 
+          axis.text.y.right =  element_text(colour = "white"),
+          axis.ticks.x.top = element_line(colour = 'white'), 
+          axis.text.x.top =  element_text(colour = "white")
+    )
+
+
+
+
+
+
 
 test_plot_fun(p_value_plots_e_j)
 test_plot_fun(p_value_plots_all)
 
 
 
-
-p_values %>%
-    ggplot(aes(x = test_stat, y = p_value)) +
-    geom_line(color = '#004c93') +
-    labs(x = 'Test Statistic', y = 'Approximated p-values \n') +
-    
