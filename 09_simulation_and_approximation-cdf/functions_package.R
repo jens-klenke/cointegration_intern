@@ -60,7 +60,7 @@ get_model <- function(trendtype, test){
 }
 
 
-get_ciritcal_val <- function(trendtype, k_s, test){
+get_critical_val <- function(trendtype, k_s, test){
     models %>%
         dplyr::filter(case == trendtype, 
                       test.type == test) %>%
@@ -106,8 +106,8 @@ get_p_value <- function(bh.test, trendtype, test.type, k){
     lambda_p <- get_lambda(models, trendtype, 'p', 'all')
     # getting lambda for stat
     lambda_stat <- get_lambda(models, trendtype, 'stat', test.type)
-    # getting ciritcal val
-    crit_val <- get_ciritcal_val(trendtype, k, test.type)
+    # getting critical val
+    crit_val <- get_critical_val(trendtype, k, test.type)
     
     if (crit_val <= bh.test) {
         p.value <- 1e-12
