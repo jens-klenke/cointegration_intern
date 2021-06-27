@@ -99,7 +99,7 @@ get_p_value_2 <- function(bh.test, trendtype, test.type, k){
     return(p.value)
 }
 
-get_p_value <- function(bh.test, trendtype, test.type, k){
+get_p_value <- function(bh.test, trendtype, test.type, k, ...){
     # trendtype = case
     
     # getting lambda for p_values
