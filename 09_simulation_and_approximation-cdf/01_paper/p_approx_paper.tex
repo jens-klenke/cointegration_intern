@@ -714,7 +714,7 @@ and represents
 
 \begin{table}
     \centering
-    \caption{Description of all tested models....}
+    \caption{Description of all tested functional forms for polynomial regression. All functional forms were tested for a maximum polynomial from 3 up to 13. The shorthand notation was used for the description.}
     \label{tab:func_form}    
     \begin{tabular}{rlc}
         Number & Functional form & Range of $\gamma$ \\
@@ -749,8 +749,9 @@ and represents
 \FloatBarrier
 \begin{table}[!h]
 
-\caption{\label{tab:5 best all_1}\label{tab:best_all_1} The RMSE and cRMSE for the $5$ best models -- in terms of the cRMSE for the lower tail of the distribution -- for the approximation of the $p$-values for the first case (no constant, no trend) and all underyling test included.}
+\caption{\label{tab:5 best all_1}\label{tab:best_all_1} The 5 best appproximation models, based on the cRMSE for the lower tail of the distribution, for the first case (no constant, no trend) and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.}
 \centering
+\fontsize{10}{12}\selectfont
 \begin{tabular}[t]{ll>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}}
 \toprule
 \multicolumn{1}{c}{\textbf{}} & \multicolumn{1}{c}{\textbf{}} & \multicolumn{2}{c}{\textbf{Full Distribution}} & \multicolumn{2}{c}{\textbf{Lower Tail ($p \leq 0.2$)}} \\
@@ -766,17 +767,17 @@ and represents
 \end{tabular}
 \end{table}
 
-\begingroup\fontsize{5}{7}\selectfont
+\begingroup\fontsize{10}{12}\selectfont
 
 \begin{longtable}[t]{ll>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}}
-\caption{\label{tab:all_1}\label{tab:all_1} Models for the approximation of the p-values of the Bayer and Hanck Test for the first case and all underyling test included.}\\
+\caption{\label{tab:all_1}\label{tab:all_1} Performance of the models for the first case and all underyling test included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.}\\
 \toprule
 \multicolumn{1}{c}{\textbf{}} & \multicolumn{1}{c}{\textbf{}} & \multicolumn{2}{c}{\textbf{Full Distribution}} & \multicolumn{2}{c}{\textbf{Lower Tail ($p \leq 0.2$)}} \\
 \cmidrule(l{3pt}r{3pt}){3-4} \cmidrule(l{3pt}r{3pt}){5-6}
   & Model & RMSE & cRMSE & RMSE & cRMSE\\
 \midrule
 \endfirsthead
-\caption[]{\label{tab:all_1} Models for the approximation of the p-values of the Bayer and Hanck Test for the first case and all underyling test included. \textit{(continued)}}\\
+\caption[]{\label{tab:all_1} Performance of the models for the first case and all underyling test included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1. \textit{(continued)}}\\
 \toprule
   & Model & RMSE & cRMSE & RMSE & cRMSE\\
 \midrule
@@ -1018,6 +1019,37 @@ and represents
 \cellcolor{gray!6}{231} & \cellcolor{gray!6}{$\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$} & \cellcolor{gray!6}{1.76e-04} & \cellcolor{gray!6}{1.74e-04} & \cellcolor{gray!6}{1.88e-04} & \cellcolor{gray!6}{1.86e-04}\\*
 \end{longtable}
 \endgroup{}
+
+\begin{figure}
+\centering
+\includegraphics{p_approx_paper_files/figure-latex/approx_sim-all-1.pdf}
+\caption{\label{fig:sim_approx_all} Simulated against approximated
+\(p\)-values over the whole distribution for the first case and all
+underlying tests included.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf}
+\caption{\label{fig:sim_approx_all_0.2} Simulated vs.~approximated
+\(p\)-values for the lower tail of the distribution for the first case
+and all underlying test included.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{p_approx_paper_files/figure-latex/p_stat_all-1.pdf}
+\caption{\label{fig:fig_3} Corrected and uncorrected \(p\)-value
+predictions for case 1 and all underlying tests included.}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf}
+\caption{\label{fig:fig_4} Corrected and uncorrected \(p\)-value
+predictions for the first case using Johansen and Engel-Granger as
+underlying tests.}
+\end{figure}
 
 \restoregeometry
 

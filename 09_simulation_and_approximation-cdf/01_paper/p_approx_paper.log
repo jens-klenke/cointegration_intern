@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.3.30)  13 JUN 2021 15:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.3.30)  2 JUL 2021 23:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -901,6 +901,21 @@ LaTeX Warning: Label `tab:all_1' multiply defined.
 
 LaTeX Warning: Label `tab:all_1' multiply defined.
 
+
+LaTeX Warning: Label `tab:all_1' multiply defined.
+
+
+LaTeX Warning: Label `tab:all_1' multiply defined.
+
+
+LaTeX Warning: Label `tab:all_1' multiply defined.
+
+
+LaTeX Warning: Label `tab:all_1' multiply defined.
+
+
+LaTeX Warning: Label `tab:all_1' multiply defined.
+
 )
 \openout1 = `p_approx_paper.aux'.
 
@@ -1216,7 +1231,22 @@ although it is yet undefined on input line 23.
 
 [1
 
-] (./p_approx_paper.lof)
+] (./p_approx_paper.lof
+Overfull \hbox (3.64272pt too wide) detected at line 5
+ [][][]\T1/lmr/m/n/12 XIX[][]
+ []
+
+
+Overfull \hbox (3.64272pt too wide) detected at line 9
+ [][][]\T1/lmr/m/n/12 XXI[][]
+ []
+
+
+Overfull \hbox (8.20808pt too wide) detected at line 11
+ [][][]\T1/lmr/m/n/12 XXII[][]
+ []
+
+)
 \tf@lof=\write6
 \openout6 = `p_approx_paper.lof'.
 
@@ -1293,11 +1323,123 @@ Package biblatex Info: Reference section=0 on input line 683.
 
 
 ] [8]
-Overfull \hbox (7.14732pt too wide) in paragraph at lines 754--767
- [][] 
+Overfull \hbox (3.70128pt too wide) in alignment at lines 772--779
+ [] [] [] [] [] [] 
  []
 
-[9] [10] [11] [12] [13] [14
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 779--784
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 784--786
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 786--788
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 788--809
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 809--829
+ [] [] [] [] [] [] 
+ []
+
+[9]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 829--849
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 849--869
+ [] [] [] [] [] [] 
+ []
+
+[10]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 869--889
+ [] [] [] [] [] [] 
+ []
+
+[11]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 889--909
+ [] [] [] [] [] [] 
+ []
+
+[12]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 909--929
+ [] [] [] [] [] [] 
+ []
+
+[13]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 929--949
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 949--969
+ [] [] [] [] [] [] 
+ []
+
+[14]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 969--989
+ [] [] [] [] [] [] 
+ []
+
+[15]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 989--1009
+ [] [] [] [] [] [] 
+ []
+
+[16]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1009--1020
+ [] [] [] [] [] [] 
+ []
+
+[17]
+<p_approx_paper_files/figure-latex/approx_sim-all-1.pdf, id=370, 469.755pt x 57
+8.16pt>
+File: p_approx_paper_files/figure-latex/approx_sim-all-1.pdf Graphic file (type
+ pdf)
+<use p_approx_paper_files/figure-latex/approx_sim-all-1.pdf>
+Package pdftex.def Info: p_approx_paper_files/figure-latex/approx_sim-all-1.pdf
+  used on input line 1025.
+(pdftex.def)             Requested size: 469.4743pt x 577.81451pt.
+[18]
+<p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf, id=375, 469.755pt 
+x 578.16pt>
+File: p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf Graphic file (
+type pdf)
+<use p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf>
+Package pdftex.def Info: p_approx_paper_files/figure-latex/approx_sim-all_0.2-1
+.pdf  used on input line 1033.
+(pdftex.def)             Requested size: 469.4743pt x 577.81451pt.
+[19 <./p_approx_paper_files/figure-latex/approx_sim-all-1.pdf>]
+<p_approx_paper_files/figure-latex/p_stat_all-1.pdf, id=385, 469.755pt x 578.16
+pt>
+File: p_approx_paper_files/figure-latex/p_stat_all-1.pdf Graphic file (type pdf
+)
+<use p_approx_paper_files/figure-latex/p_stat_all-1.pdf>
+Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat_all-1.pdf  us
+ed on input line 1041.
+(pdftex.def)             Requested size: 469.4743pt x 577.81451pt.
+[20 <./p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf>]
+<p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf, id=396, 469.755pt x 578.16
+pt>
+File: p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf Graphic file (type pdf
+)
+<use p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf>
+Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf  us
+ed on input line 1048.
+(pdftex.def)             Requested size: 469.4743pt x 577.81451pt.
+[21 <./p_approx_paper_files/figure-latex/p_stat_all-1.pdf>] [22 <./p_approx_pap
+er_files/figure-latex/p_stat_e_j-1.pdf>] [23
 
 
 ] (./p_approx_paper.aux)
@@ -1311,11 +1453,11 @@ Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24360 strings out of 479014
- 401356 string characters out of 5863086
- 1438146 words of memory out of 5000000
- 41049 multiletter control sequences out of 15000+600000
- 504225 words of font info for 196 fonts, out of 8000000 for 9000
+ 24404 strings out of 479014
+ 402913 string characters out of 5863086
+ 1404135 words of memory out of 5000000
+ 41075 multiletter control sequences out of 15000+600000
+ 504254 words of font info for 196 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  73i,13n,81p,944b,6863s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exi
@@ -1326,29 +1468,27 @@ pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 
 {c:/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2020/texmf
 -dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2020/texmf-dist/fonts/enc/dvips/
-lm/lm-mathsy.enc}{c:/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{
+lm/lm-mathit.enc}{c:/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{
 c:/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2020/te
-xmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2020/texmf-dist/fonts/typ
-e1/public/lm/lmbx5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmex10
-.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/2
-020/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2020/texmf-dist/fon
-ts/type1/public/lm/lmmi5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/
-lmmi6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texli
-ve/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2020/texmf-dist/
-fonts/type1/public/lm/lmr12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/
-lm/lmr17.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/tex
-live/2020/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2020/texmf-dist
-/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/
-lm/lmr8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/te
-xlive/2020/texmf-dist/fonts/type1/public/lm/lmri7.pfb><c:/texlive/2020/texmf-di
-st/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/pub
-lic/lm/lmsy5.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c
-:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2020/texm
-f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on p_approx_paper.pdf (22 pages, 389674 bytes).
+xmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2020/texmf-dist/fonts/typ
+e1/public/lm/lmbx12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmex1
+0.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/
+2020/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2020/texmf-dist/fo
+nts/type1/public/lm/lmmi6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm
+/lmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texl
+ive/2020/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2020/texmf-dist
+/fonts/type1/public/lm/lmr17.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public
+/lm/lmr6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/tex
+live/2020/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2020/texmf-dist
+/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/publi
+c/lm/lmri12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c
+:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2020/texm
+f-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/
+public/amsfonts/symbols/msbm10.pfb>
+Output written on p_approx_paper.pdf (31 pages, 993926 bytes).
 PDF statistics:
- 455 PDF objects out of 1000 (max. 8388607)
- 401 compressed objects within 5 object streams
- 101 named destinations out of 1000 (max. 500000)
- 55436 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 516 PDF objects out of 1000 (max. 8388607)
+ 448 compressed objects within 5 object streams
+ 114 named destinations out of 1000 (max. 500000)
+ 55456 words of extra memory for PDF output out of 61914 (max. 10000000)
 

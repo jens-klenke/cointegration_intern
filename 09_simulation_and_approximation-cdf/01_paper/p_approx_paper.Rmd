@@ -50,7 +50,8 @@ source(here::here('01_code/packages/packages.R'))
 # load metrics
 load(here::here('09_simulation_and_approximation-cdf/server_results.RData'))
 
-#load(here::here("09_simulation_and_approximation-cdf/model_metrics_E_J_server.Rdata"))
+# pre rendered plot
+load(file = here::here('09_simulation_and_approximation-cdf/01_paper/paper_plots.RData'))
 
 best_5_table_paper <- function(data){
     data%>%
@@ -285,7 +286,7 @@ and represents
 
 \begin{table}
 	\centering
-	\caption{Description of all tested models....}
+	\caption{Description of all tested functional forms for polynomial regression. All functional forms were tested for a maximum polynomial from 3 up to 13. The shorthand notation was used for the description.}
 	\label{tab:func_form}	 
 	\begin{tabular}{rlc}
 		Number & Functional form & Range of $\gamma$ \\
@@ -327,9 +328,9 @@ table_all_case_1 %>%
     dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
     knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
              row.names = TRUE, escape = FALSE,
-              caption= '\\label{tab:best_all_1} The RMSE and cRMSE for the $5$ best models -- in terms of the cRMSE for the lower tail of the distribution -- for the approximation of the $p$-values for the first case (no constant, no trend) and all underyling test included.', align = 'lrrrr') %>%
+              caption= '\\label{tab:best_all_1} The 5 best appproximation models, based on the cRMSE for the lower tail of the distribution, for the first case (no constant, no trend) and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.', align = 'lrrrr') %>%
     column_spec(3:6, width = "2cm") %>%
-  kable_styling(latex_options = c("striped", "hold_position")) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size = 10) %>%
   add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
 ```
 
@@ -341,11 +342,28 @@ table_all_case_1 %>%
     dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
     knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
              row.names = TRUE, escape = FALSE,
-              caption= '\\label{tab:all_1} Models for the approximation of the p-values of the Bayer and Hanck Test for the first case and all underyling test included.', align = 'lrrrr', longtable = TRUE) %>%
+              caption= '\\label{tab:all_1} Performance of the models for the first case and all underyling test included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.', align = 'lrrrr', longtable = TRUE) %>%
     column_spec(3:6, width = "2cm") %>%
-  kable_styling(latex_options = c("striped", "hold_position", "repeat_header"), font_size = 5) %>%
+  kable_styling(latex_options = c("striped", "hold_position", "repeat_header"), font_size = 10) %>%
   add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
 ```
+
+```{r , approx_sim-all, echo = FALSE, fig.cap = " \\label{fig:sim_approx_all} Simulated against approximated $p$-values over the whole distribution for the first case and all underlying tests included. ", fig.height = 8}
+p.sim_p.aprox_all
+```
+
+```{r , approx_sim-all_0.2, echo = FALSE, fig.cap = " \\label{fig:sim_approx_all_0.2} Simulated vs. approximated $p$-values for the lower tail of the distribution for the first case and all underlying test included.", fig.height = 8}
+p.sim_p.aprox_all_0.2
+```
+
+```{r , p_stat_all, echo = FALSE, fig.cap = " \\label{fig:fig_3} Corrected and uncorrected $p$-value predictions for case 1 and all underlying tests included.", fig.height = 8}
+plot_p_stat_all
+```
+
+```{r , p_stat_e_j, echo = FALSE, fig.cap = " \\label{fig:fig_4} Corrected and uncorrected $p$-value predictions for the first case using Johansen and Engel-Granger as underlying tests.", fig.height = 8}
+plot_p_stat_e_j
+```
+
 
 
 <!-- 
