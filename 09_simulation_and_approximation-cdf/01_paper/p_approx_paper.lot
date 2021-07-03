@@ -1,9 +1,0 @@
-\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
-\babel@toc {english}{}
-\babel@toc {english}{}
-\defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A1}{\ignorespaces Description of all tested functional forms for polynomial regression. All functional forms were tested for a maximum polynomial from 3 up to 13. The shorthand notation was used for the description.}}{VIII}{table.1}%
-\defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A2}{\ignorespaces The 5 best appproximation models, based on the cRMSE for the lower tail of the distribution, for the first case (no constant, no trend) and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.}}{IX}{table.2}%
-\defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {A3}{ Performance of the models for the first case and all underyling test included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.}}{IX}{table.3}%

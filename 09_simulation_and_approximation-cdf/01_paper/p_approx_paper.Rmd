@@ -104,20 +104,25 @@ Johansen's [-@Johansen_1988] maximum eigenvalue test is a system-based test that
 \Delta \mathbf{z}_t = \mathbf{\Pi z}_{t-1} + \sum^{k}_{i = 1} \mathbf{\Gamma}_p \Delta \mathbf{z}_{t-p} + \mathbf{d}_t + \mathbf{\varepsilon}_t.
 \label{eq:3}
 \end{equation}
-\textcolor{red}{blabla Johansen test statistic}
+We base this test on the test statistic $\lambda_{\text{max}} = -T \ln(1 - \hat{\lambda}_t)$. \textcolor{red}{$\pi$-Teil von BH?}
 
-\textcolor{red}{Banerjee and Boswijk}
+The third and fourth test considered are error correction-based. Both estimate the equation
+\begin{equation}
+\Delta y_t = d_t + \pi'_{0x} \Delta x_t + \varphi_0 y_{t-1} + \varphi'_1 x_{t-1} + \sum^P_{p=1} (\pi'_{px} \Delta x_{t-p} + \pi_{py} \Delta y_{t-p})
+\label{eq:4}
+\end{equation}
+by ordinary least squares (OLS). @Banerjee_1998 then test the null of non-cointegration by applying a t-test on $\varphi_0$, i.e. $\mathcal{H}_0 : \varphi_0 = 0$ \textcolor{red}{?}. @Boswijk_1994 uses the Wald statistic for testing $\mathcal{H}_0 : (\varphi_0, \phi'_1)' = 0$.
 
 To combine the results from the underlying tests Bayer and Hanck draw upon Fisher's combined probability test [@Fisher_1932]. It merges the tests using the formula
 
 \begin{equation}
 \tilde{\chi}^2_{\mathcal{I}} := -2 \sum_{i \in \mathcal{I}} \ln{(p_i)}. 
-\label{eq:4}
+\label{eq:5}
 \end{equation}
 
 Let $t_i$ be the $i^{th}$ test statistic. If test $i$ rejects for large values, take $\xi_i := t_i$. If test $i$ rejects for small values, take $-\xi_i := t_i$. With $\Xi_i(x) := \text{Pr}_{\mathcal{H_0}}(\xi_i \geq x)$ the p-value of the $i^{th}$ test is $p_i := \Xi_i(\xi_i)$.
 
-@Fisher_1932 shows that under the assumption of independence the null distribution of $\tilde{\chi}^2_{\mathcal{I}}$ follows a chi-squared distribution with $2\mathcal{I}$ degrees of freedom. If this assumption is violated the null distribution is less evident. Here, the latter case occurs, as the $\xi_i$ are not independent. The $\tilde{\chi}^2_{\mathcal{I}}$, however, have well-defined asymptotic null distributions $F_{\mathcal{F_I}}$, as $\tilde{\chi}^2_{\mathcal{I}} \rightarrow_d \mathcal{F_I}$ under $\mathcal{H}_0$ if $T \rightarrow \infty$, with $\mathcal{F_I}$ some random variable. It is therefore feasible to simulate the joint null distribution of the $\xi_i$ to obtain the distribution $F_{\mathcal{F_I}}$ of \eqref{eq:4}. The $F_{\mathcal{F_I}}$ depend on which and how many tests are combined. The distributions of the $\xi_i$ depend on $K-1$ and the deterministic case.
+@Fisher_1932 shows that under the assumption of independence the null distribution of $\tilde{\chi}^2_{\mathcal{I}}$ follows a chi-squared distribution with $2\mathcal{I}$ degrees of freedom. If this assumption is violated the null distribution is less evident. Here, the latter case occurs, as the $\xi_i$ are not independent. The $\tilde{\chi}^2_{\mathcal{I}}$, however, have well-defined asymptotic null distributions $F_{\mathcal{F_I}}$, as $\tilde{\chi}^2_{\mathcal{I}} \rightarrow_d \mathcal{F_I}$ under $\mathcal{H}_0$ if $T \rightarrow \infty$, with $\mathcal{F_I}$ some random variable. It is therefore feasible to simulate the joint null distribution of the $\xi_i$ to obtain the distribution $F_{\mathcal{F_I}}$ of \eqref{eq:5}. The $F_{\mathcal{F_I}}$ depend on which and how many tests are combined. The distributions of the $\xi_i$ depend on $K-1$ and the deterministic case.
 
 
 # Simulation
@@ -146,10 +151,10 @@ y^{(\lambda)} =
     \frac{y^{\lambda} - 1}{\lambda}, & \lambda \neq 0 \\
     \log{(y)}, & \lambda = 0
     \end{cases}
-\label{eq:5}
+\label{eq:6}
 \end{equation}
 
-It is visible from \eqref{eq:5} that @Boxcox_1964 developed these transformations for the dependent variable. @Kuhn_2013, however, report that it proves as effective for transforming individual regressors. 
+It is visible from \eqref{eq:6} that @Boxcox_1964 developed these transformations for the dependent variable. @Kuhn_2013, however, report that it proves as effective for transforming individual regressors. 
 
 \textcolor{red}{Plots hier einfügen, Test Stat all und ej mit und ohne bc}.
 
@@ -166,12 +171,12 @@ Polynomial Regression extends the classic linear regression model by fitting a p
 
 \begin{equation}
     y_i = \beta_0 + \beta_1 x_i + \beta_2 x_i^2 + ... + \beta_n x_i^n + \varepsilon_i,
-\label{eq:6}
+\label{eq:7}
 \end{equation}
 
 where $\varepsilon_i$ is the error term. \textcolor{red}{Quelle?}
 
-Here, we calculate orthogonal polynomials of the test statistic of the Bayer-Hanck Test, considering up to 15 degrees. We estimate the parameters with ordinary least squares. To potentially increase the predictive performance of our model we also add interaction terms and different transformations of the regressor $k$. \textcolor{red}{Appendix} lists all calculated models. Since there is no need to prevent overfitting we expect higher order polynomials to perform best, as they are highly flexible. These polynomials, however, tend to show a wiggly behaviour at the boundaries. This makes extrapolation beyond the limits of our simulated data a risky endeavour. We will address and fix this issue later on. 
+Here, we calculate orthogonal polynomials of the test statistic of the Bayer-Hanck Test, considering up to 15 degrees. We estimate the parameters with OLS. To potentially increase the predictive performance of our model we also add interaction terms and different transformations of the regressor $k$. \textcolor{red}{Appendix} lists all calculated models. Since there is no need to prevent overfitting we expect higher order polynomials to perform best, as they are highly flexible. These polynomials, however, tend to show a wiggly behaviour at the boundaries. This makes extrapolation beyond the limits of our simulated data a risky endeavour. We will address and fix this issue later on. 
 
 ## \ac{Lasso}  
 As mentioned above our polynomial regression models are likely to perform best with higher order polynomials. With each added polynomial, however, we increase the complexity of our model and potentially add redundant regressors. Although, still, overfitting plays no major role here, we generally prefer sparser models in case of equal results. One way to deal with this is the use of variable selection methods. A well-known example of such methods is the \ac{Lasso}. 
