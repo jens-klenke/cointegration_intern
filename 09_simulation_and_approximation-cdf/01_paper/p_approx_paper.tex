@@ -623,7 +623,7 @@ the same transformations and interaction terms as in earlier steps. We
 therefore fit a total of \textcolor{red}{Anzahl} models.
 
 \hypertarget{other-regression-models}{%
-\subsection{Other regression models}\label{other-regression-models}}
+\subsection{Other Regression Models}\label{other-regression-models}}
 
 We also considered various other regression models. For different
 reasons they were not too suitable for our use case. Conventional
@@ -636,7 +636,7 @@ such a small amount of regressors. Given these limitations, we decided
 to stick solely with linear regression models.
 
 \hypertarget{model-evaluation}{%
-\section{Model evaluation}\label{model-evaluation}}
+\section{Model Evaluation}\label{model-evaluation}}
 
 We estimate all models for two different combinations of the underlying
 tests. Namely, these are a combination of the Engle-Granger and Johansen
@@ -644,6 +644,41 @@ test (EJ) and a combination of all four underlying tests (all).
 Furthermore, we estimate one model per specification of the model
 deterministics. Altogether, this results in a total of six different
 models.
+
+\hypertarget{rmse-comparison}{%
+\subsection{RMSE comparison}\label{rmse-comparison}}
+
+To measure the performance of our regression models we calculate their
+in-sample RMSE. This is an indication of how far the residuals of the
+models are from zero, with lower values preferable. We calculate the
+RMSE for predictions on the full distribution, as well as predictions on
+the lower tail (\(p \leq 0.2\)), as it is more important for the test
+decision of the Bayer-Hanck test. We also add a corrected version of the
+RMSE, cRMSE, where predictions are limited to {[}0, 1{]}.
+
+Table \ref{tab:all_1} lists all variations of the RMSE for the
+calculated polynomial regression models. It becomes apparent that a
+combination of higher order polynomials, dummy variables and interaction
+terms achieves superior results compared to simpler models. For all
+variations of the RMSE the best models require a polynomial of minimum
+grade 12. This can be expected, considering we are optimising an
+in-sample fit. The transformation of the response variable only seems to
+play a minor role in prediction accuracy. Interestingly, there are no
+major differences in model selection depending on the variation of the
+RMSE used. Table \ref{tab:5_best_all_1} lists the five best models for
+each case and test type.
+
+For the above-mentioned reasons we choose the final models according to
+the cRMSE on the left tail of the distribution of the p-values.
+\textcolor{red}{Grafik mit den 6 final models}. It is apparent that the
+functional forms look very similar over all cases, mostly using the
+highest order polynomial available\footnote{We are well aware of the
+  fact that this represents a corner solution. Since we are optimising
+  the models on the in-sample RMSE, however, we could continue adding
+  higher order polynomials forever to improve the fit. As we are already
+  tweaking on the fifth decimal place we decided to not further pursue
+  this procedure}. Furthermore, five out of six models use the Box-Cox
+transformed response variable.
 
 \hypertarget{package}{%
 \section{Package}\label{package}}
@@ -761,7 +796,7 @@ and represents
 \FloatBarrier
 \begin{table}[!h]
 
-\caption{\label{tab:5 best all_1}\label{tab:best_all_1} The 5 best appproximation models, based on the cRMSE for the lower tail of the distribution, for the first case (no constant, no trend) and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.}
+\caption{\label{tab:5_best_all_1}\label{tab:best_all_1} The 5 best appproximation models, based on the cRMSE for the lower tail of the distribution, for the first case (no constant, no trend) and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.}
 \centering
 \fontsize{10}{12}\selectfont
 \begin{tabular}[t]{ll>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}}
@@ -782,14 +817,14 @@ and represents
 \begingroup\fontsize{10}{12}\selectfont
 
 \begin{longtable}[t]{ll>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}}
-\caption{\label{tab:all_1}\label{tab:all_1} Performance of the models for the first case and all underyling test included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.}\\
+\caption{\label{tab:all_1}\label{tab:all_1} Performance of the models for the first case and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.}\\
 \toprule
 \multicolumn{1}{c}{\textbf{}} & \multicolumn{1}{c}{\textbf{}} & \multicolumn{2}{c}{\textbf{Full Distribution}} & \multicolumn{2}{c}{\textbf{Lower Tail ($p \leq 0.2$)}} \\
 \cmidrule(l{3pt}r{3pt}){3-4} \cmidrule(l{3pt}r{3pt}){5-6}
   & Model & RMSE & cRMSE & RMSE & cRMSE\\
 \midrule
 \endfirsthead
-\caption[]{\label{tab:all_1} Performance of the models for the first case and all underyling test included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1. \textit{(continued)}}\\
+\caption[]{\label{tab:all_1} Performance of the models for the first case and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1. \textit{(continued)}}\\
 \toprule
   & Model & RMSE & cRMSE & RMSE & cRMSE\\
 \midrule

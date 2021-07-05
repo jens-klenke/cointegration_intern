@@ -197,12 +197,19 @@ $\lambda$ is a tuning parameter which defines the degree of regularisation. The 
 
 We plan on fitting a LASSO model to polynomials of grade 15. We consider the same transformations and interaction terms as in earlier steps. We therefore fit a total of \textcolor{red}{Anzahl} models.
 
-## Other regression models 
+## Other Regression Models 
 We also considered various other regression models. For different reasons they were not too suitable for our use case. Conventional non-linear methods, like Generalized Additive Models or Multivariate Adaptive Regression Splines, might have provided a decent prediction. However, the fitted models take up more memory space than the aforementioned linear methods. For the same reason refrain from using tree based methods. In addition, the latter tend to perform poorly with such a small amount of regressors. Given these limitations, we decided to stick solely with linear regression models.
 
 
-# Model evaluation
+# Model Evaluation
 We estimate all models for two different combinations of the underlying tests. Namely, these are a combination of the Engle-Granger and Johansen test (EJ) and a combination of all four underlying tests (all). Furthermore, we estimate one model per specification of the model deterministics. Altogether, this results in a total of six different models. 
+
+## RMSE comparison
+To measure the performance of our regression models we calculate their in-sample RMSE. This is an indication of how far the residuals of the models are from zero, with lower values preferable. We calculate the RMSE for predictions on the full distribution, as well as predictions on the lower tail ($p \leq 0.2$), as it is more important for the test decision of the Bayer-Hanck test. We also add a corrected version of the RMSE, cRMSE, where predictions are limited to [0, 1].
+
+Table \ref{tab:all_1} lists all variations of the RMSE for the calculated polynomial regression models. It becomes apparent that a combination of higher order polynomials, dummy variables and interaction terms achieves superior results compared to simpler models. For all variations of the RMSE the best models require a polynomial of minimum grade 12. This can be expected, considering we are optimising an in-sample fit. The transformation of the response variable only seems to play a minor role in prediction accuracy. Interestingly, there are no major differences in model selection depending on the variation of the RMSE used. Table \ref{tab:5_best_all_1} lists the five best models for each case and test type. 
+
+For the above-mentioned reasons we choose the final models according to the cRMSE on the left tail of the distribution of the p-values. \textcolor{red}{Grafik mit den 6 final models}. It is apparent that the functional forms look very similar over all cases, mostly using the highest order polynomial available^[We are well aware of the fact that this represents a corner solution. Since we are optimising the models on the in-sample RMSE, however, we could continue adding higher order polynomials forever to improve the fit. As we are already tweaking on the fifth decimal place we decided to not further pursue this procedure]. Furthermore, five out of six models use the Box-Cox transformed response variable. 
 
 # Package
 
@@ -322,7 +329,7 @@ and represents
 
 
 \FloatBarrier
-```{r 5 best all_1, echo = FALSE, warning = FALSE, message = FALSE}
+```{r 5_best_all_1, echo = FALSE, warning = FALSE, message = FALSE}
 
 table_all_case_1 %>%
     best_5_table_paper() %>%
@@ -343,7 +350,7 @@ table_all_case_1 %>%
     dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
     knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
              row.names = TRUE, escape = FALSE,
-              caption= '\\label{tab:all_1} Performance of the models for the first case and all underyling test included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.', align = 'lrrrr', longtable = TRUE) %>%
+              caption= '\\label{tab:all_1} Performance of the models for the first case and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.', align = 'lrrrr', longtable = TRUE) %>%
     column_spec(3:6, width = "2cm") %>%
   kable_styling(latex_options = c("striped", "hold_position", "repeat_header"), font_size = 10) %>%
   add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
