@@ -154,15 +154,11 @@ y^{(\lambda)} =
 \label{eq:6}
 \end{equation}
 
-It is visible from \eqref{eq:6} that @Boxcox_1964 developed these transformations for the dependent variable. @Kuhn_2013, however, report that it proves as effective for transforming individual regressors. 
+It is visible from \eqref{eq:6} that @Boxcox_1964 developed these transformations for the dependent variable. @Kuhn_2013, however, report that it proves as effective for transforming individual regressors. We estimate lambda for the values of the test statistics of the Bayer-Hanck test and transform them according to \eqref{eq:5}. This forces their distribution into a more symmetric form. 
 
-\textcolor{red}{Plots hier einfügen, Test Stat all und ej mit und ohne bc}.
+Since the response variable consists of our p-values, which were simulated under the null hypothesis, it follows a uniform distribution and is already symmetric. A transformation would therefore not bring any apparent advantage. However, we still add a Box-Cox transformed and a logarithmised version of the response variable to see if it benefits the prediction.
 
-We estimate lambda for the values of the test statistics of the Bayer-Hanck test and transform them according to \eqref{eq:5}. This forces their distribution into a more symmetric form. 
-
-\textcolor{red}{Response transformieren}
-
-\textcolor{red}{k als dummy/factor}
+We also include various variations of the actual categorical variable $k$. It is firstly decomposed into dummy variables and secondly recode as a numeric, so that various transformations can be performed.
 
 ## Polynomial Regression
 Due to the reasons given above we restrict ourselves to linear models. The empirical \ac{CDF}, which we aim to predict, is known to have a curved shape. For this reason, a simple linear regression model is very unlikely to provide a satisfactory fit to the data. We are in need of a more flexible model to predict the response as accurately as possible.
@@ -365,7 +361,7 @@ p.sim_p.aprox_all_0.2
 plot_p_stat_all
 ```
 
-```{r , p_stat_e_j, echo = FALSE, fig.cap = " \\label{fig:fig_4} Corrected and uncorrected $p$-value predictions for the first case using Johansen and Engel-Granger as underlying tests.", fig.height = 8}
+```{r , p_stat_e_j, echo = FALSE, fig.cap = " \\label{fig:fig_4} Corrected and uncorrected $p$-value predictions for the first case using Johansen and Engle-Granger as underlying tests.", fig.height = 8}
 plot_p_stat_e_j
 ```
 

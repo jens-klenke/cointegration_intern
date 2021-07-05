@@ -537,17 +537,20 @@ y^{(\lambda)} =
 It is visible from \eqref{eq:6} that \textcite{Boxcox_1964} developed
 these transformations for the dependent variable. \textcite{Kuhn_2013},
 however, report that it proves as effective for transforming individual
-regressors.
-
-\textcolor{red}{Plots hier einfügen, Test Stat all und ej mit und ohne bc}.
-
-We estimate lambda for the values of the test statistics of the
-Bayer-Hanck test and transform them according to \eqref{eq:5}. This
+regressors. We estimate lambda for the values of the test statistics of
+the Bayer-Hanck test and transform them according to \eqref{eq:5}. This
 forces their distribution into a more symmetric form.
 
-\textcolor{red}{Response transformieren}
+Since the response variable consists of our p-values, which were
+simulated under the null hypothesis, it follows a uniform distribution
+and is already symmetric. A transformation would therefore not bring any
+apparent advantage. However, we still add a Box-Cox transformed and a
+logarithmised version of the response variable to see if it benefits the
+prediction.
 
-\textcolor{red}{k als dummy/factor}
+We also include various variations of the actual categorical variable
+\(k\). It is firstly decomposed into dummy variables and secondly recode
+as a numeric, so that various transformations can be performed.
 
 \hypertarget{polynomial-regression}{%
 \subsection{Polynomial Regression}\label{polynomial-regression}}
@@ -1056,7 +1059,7 @@ predictions for case 1 and all underlying tests included.}
 \centering
 \includegraphics{p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf}
 \caption{\label{fig:fig_4} Corrected and uncorrected \(p\)-value
-predictions for the first case using Johansen and Engel-Granger as
+predictions for the first case using Johansen and Engle-Granger as
 underlying tests.}
 \end{figure}
 

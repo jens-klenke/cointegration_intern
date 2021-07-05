@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.3)  3 JUL 2021 15:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.3)  5 JUL 2021 12:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1293,12 +1293,12 @@ although it is yet undefined on input line 492.
 [4] [5] [6] [7] [3]
 \blx@maxsegment@1=\count479
 \blx@sectionciteorder@1=\count480
-Package biblatex Info: Reference section=1 on input line 656.
-Package biblatex Info: Setting label 'refsection:1' on input line 656.
+Package biblatex Info: Reference section=1 on input line 659.
+Package biblatex Info: Setting label 'refsection:1' on input line 659.
 [4
 
 ] [5]
-Package biblatex Info: Reference section=0 on input line 692.
+Package biblatex Info: Reference section=0 on input line 695.
 [6]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
@@ -1336,82 +1336,82 @@ Package biblatex Info: Reference section=0 on input line 692.
 
 
 ] [8]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 781--788
+Overfull \hbox (3.70128pt too wide) in alignment at lines 784--791
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 788--793
+Overfull \hbox (3.70128pt too wide) in alignment at lines 791--796
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 793--795
+Overfull \hbox (3.70128pt too wide) in alignment at lines 796--798
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 795--797
+Overfull \hbox (3.70128pt too wide) in alignment at lines 798--800
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 797--818
+Overfull \hbox (3.70128pt too wide) in alignment at lines 800--821
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 818--838
+Overfull \hbox (3.70128pt too wide) in alignment at lines 821--841
  [] [] [] [] [] [] 
  []
 
 [9]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 838--858
+Overfull \hbox (3.70128pt too wide) in alignment at lines 841--861
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 858--878
+Overfull \hbox (3.70128pt too wide) in alignment at lines 861--881
  [] [] [] [] [] [] 
  []
 
 [10]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 878--898
+Overfull \hbox (3.70128pt too wide) in alignment at lines 881--901
  [] [] [] [] [] [] 
  []
 
 [11]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 898--918
+Overfull \hbox (3.70128pt too wide) in alignment at lines 901--921
  [] [] [] [] [] [] 
  []
 
 [12]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 918--938
+Overfull \hbox (3.70128pt too wide) in alignment at lines 921--941
  [] [] [] [] [] [] 
  []
 
 [13]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 938--958
+Overfull \hbox (3.70128pt too wide) in alignment at lines 941--961
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 958--978
+Overfull \hbox (3.70128pt too wide) in alignment at lines 961--981
  [] [] [] [] [] [] 
  []
 
 [14]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 978--998
+Overfull \hbox (3.70128pt too wide) in alignment at lines 981--1001
  [] [] [] [] [] [] 
  []
 
 [15]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 998--1018
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1001--1021
  [] [] [] [] [] [] 
  []
 
 [16]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1018--1029
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1021--1032
  [] [] [] [] [] [] 
  []
 
@@ -1422,7 +1422,7 @@ File: p_approx_paper_files/figure-latex/approx_sim-all-1.pdf Graphic file (type
  pdf)
 <use p_approx_paper_files/figure-latex/approx_sim-all-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/approx_sim-all-1.pdf
-  used on input line 1034.
+  used on input line 1037.
 (pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 [18]
 <p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf, id=378, 463.7325pt
@@ -1431,7 +1431,7 @@ File: p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf Graphic file (
 type pdf)
 <use p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/approx_sim-all_0.2-1
-.pdf  used on input line 1042.
+.pdf  used on input line 1045.
 (pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 [19 <./p_approx_paper_files/figure-latex/approx_sim-all-1.pdf>]
 <p_approx_paper_files/figure-latex/p_stat_all-1.pdf, id=391, 463.7325pt x 567.1
@@ -1440,7 +1440,7 @@ File: p_approx_paper_files/figure-latex/p_stat_all-1.pdf Graphic file (type pdf
 )
 <use p_approx_paper_files/figure-latex/p_stat_all-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat_all-1.pdf  us
-ed on input line 1050.
+ed on input line 1053.
 (pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 [20 <./p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf>]
 <p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf, id=403, 463.7325pt x 567.1
@@ -1449,7 +1449,7 @@ File: p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf Graphic file (type pdf
 )
 <use p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf  us
-ed on input line 1057.
+ed on input line 1060.
 (pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 [21 <./p_approx_paper_files/figure-latex/p_stat_all-1.pdf>] [22 <./p_approx_pap
 er_files/figure-latex/p_stat_e_j-1.pdf>] [23
@@ -1500,7 +1500,7 @@ lic/lm/lmri12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lms
 y10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></u
 sr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/te
 xlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on p_approx_paper.pdf (31 pages, 998543 bytes).
+Output written on p_approx_paper.pdf (31 pages, 999215 bytes).
 PDF statistics:
  528 PDF objects out of 1000 (max. 8388607)
  456 compressed objects within 5 object streams
