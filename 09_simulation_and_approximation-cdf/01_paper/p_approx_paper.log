@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.3)  5 JUL 2021 17:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.3)  7 JUL 2021 16:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1171,7 +1171,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-<Includes/duelogo_en.png, id=71, 230.8625pt x 89.33376pt>
+<Includes/duelogo_en.png, id=75, 230.8625pt x 89.33376pt>
 File: Includes/duelogo_en.png Graphic file (type png)
 <use Includes/duelogo_en.png>
 Package pdftex.def Info: Includes/duelogo_en.png  used on input line 172.
@@ -1293,12 +1293,12 @@ although it is yet undefined on input line 492.
 [4] [5] [6] [7] [8] [3]
 \blx@maxsegment@1=\count479
 \blx@sectionciteorder@1=\count480
-Package biblatex Info: Reference section=1 on input line 694.
-Package biblatex Info: Setting label 'refsection:1' on input line 694.
+Package biblatex Info: Reference section=1 on input line 697.
+Package biblatex Info: Setting label 'refsection:1' on input line 697.
 [4
 
 ] [5]
-Package biblatex Info: Reference section=0 on input line 730.
+Package biblatex Info: Reference section=0 on input line 733.
 [6]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
@@ -1336,120 +1336,120 @@ Package biblatex Info: Reference section=0 on input line 730.
 
 
 ] [8]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 819--826
+Overfull \hbox (3.70128pt too wide) in alignment at lines 822--829
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 826--831
+Overfull \hbox (3.70128pt too wide) in alignment at lines 829--834
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 831--833
+Overfull \hbox (3.70128pt too wide) in alignment at lines 834--836
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 833--835
+Overfull \hbox (3.70128pt too wide) in alignment at lines 836--838
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 835--856
+Overfull \hbox (3.70128pt too wide) in alignment at lines 838--859
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 856--876
+Overfull \hbox (3.70128pt too wide) in alignment at lines 859--879
  [] [] [] [] [] [] 
  []
 
 [9]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 876--896
+Overfull \hbox (3.70128pt too wide) in alignment at lines 879--899
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 896--916
+Overfull \hbox (3.70128pt too wide) in alignment at lines 899--919
  [] [] [] [] [] [] 
  []
 
 [10]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 916--936
+Overfull \hbox (3.70128pt too wide) in alignment at lines 919--939
  [] [] [] [] [] [] 
  []
 
 [11]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 936--956
+Overfull \hbox (3.70128pt too wide) in alignment at lines 939--959
  [] [] [] [] [] [] 
  []
 
 [12]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 956--976
+Overfull \hbox (3.70128pt too wide) in alignment at lines 959--979
  [] [] [] [] [] [] 
  []
 
 [13]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 976--996
+Overfull \hbox (3.70128pt too wide) in alignment at lines 979--999
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 996--1016
+Overfull \hbox (3.70128pt too wide) in alignment at lines 999--1019
  [] [] [] [] [] [] 
  []
 
 [14]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1016--1036
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1019--1039
  [] [] [] [] [] [] 
  []
 
 [15]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1036--1056
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1039--1059
  [] [] [] [] [] [] 
  []
 
 [16]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1056--1067
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1059--1070
  [] [] [] [] [] [] 
  []
 
 [17]
-<p_approx_paper_files/figure-latex/approx_sim-all-1.pdf, id=388, 463.7325pt x 5
+<p_approx_paper_files/figure-latex/approx_sim-all-1.pdf, id=394, 463.7325pt x 5
 67.11874pt>
 File: p_approx_paper_files/figure-latex/approx_sim-all-1.pdf Graphic file (type
  pdf)
 <use p_approx_paper_files/figure-latex/approx_sim-all-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/approx_sim-all-1.pdf
-  used on input line 1072.
+  used on input line 1075.
 (pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 [18]
-<p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf, id=393, 463.7325pt
+<p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf, id=399, 463.7325pt
  x 567.11874pt>
 File: p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf Graphic file (
 type pdf)
 <use p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/approx_sim-all_0.2-1
-.pdf  used on input line 1080.
+.pdf  used on input line 1083.
 (pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 [19 <./p_approx_paper_files/figure-latex/approx_sim-all-1.pdf>]
-<p_approx_paper_files/figure-latex/p_stat_all-1.pdf, id=405, 463.7325pt x 567.1
+<p_approx_paper_files/figure-latex/p_stat_all-1.pdf, id=411, 463.7325pt x 567.1
 1874pt>
 File: p_approx_paper_files/figure-latex/p_stat_all-1.pdf Graphic file (type pdf
 )
 <use p_approx_paper_files/figure-latex/p_stat_all-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat_all-1.pdf  us
-ed on input line 1088.
+ed on input line 1091.
 (pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 [20 <./p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf>]
-<p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf, id=417, 463.7325pt x 567.1
+<p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf, id=423, 463.7325pt x 567.1
 1874pt>
 File: p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf Graphic file (type pdf
 )
 <use p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf  us
-ed on input line 1095.
+ed on input line 1098.
 (pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 [21 <./p_approx_paper_files/figure-latex/p_stat_all-1.pdf>] [22 <./p_approx_pap
 er_files/figure-latex/p_stat_e_j-1.pdf>] [23
@@ -1460,17 +1460,17 @@ er_files/figure-latex/p_stat_e_j-1.pdf>] [23
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `p_approx_paper.out' has not changed.
-(rerunfilecheck)             Checksum: AD738388DB7068C454BD68641B289F71;2018.
+(rerunfilecheck)             Checksum: 18CBA137453740C623EB1A2BD09F3C10;2126.
 Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
 \openout1 = `p_approx_paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24428 strings out of 478994
- 406092 string characters out of 5858185
- 1391575 words of memory out of 5000000
- 41092 multiletter control sequences out of 15000+600000
- 504519 words of font info for 199 fonts, out of 8000000 for 9000
+ 24430 strings out of 478994
+ 406120 string characters out of 5858185
+ 1391580 words of memory out of 5000000
+ 41094 multiletter control sequences out of 15000+600000
+ 504428 words of font info for 198 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  73i,13n,81p,944b,6863s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exi
@@ -1503,10 +1503,10 @@ lic/lm/lmri12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lms
 y10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></u
 sr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/te
 xlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on p_approx_paper.pdf (32 pages, 1002354 bytes).
+Output written on p_approx_paper.pdf (32 pages, 1002346 bytes).
 PDF statistics:
- 542 PDF objects out of 1000 (max. 8388607)
- 469 compressed objects within 5 object streams
- 119 named destinations out of 1000 (max. 500000)
- 55464 words of extra memory for PDF output out of 61914 (max. 10000000)
+ 549 PDF objects out of 1000 (max. 8388607)
+ 476 compressed objects within 5 object streams
+ 121 named destinations out of 1000 (max. 500000)
+ 55472 words of extra memory for PDF output out of 61914 (max. 10000000)
 

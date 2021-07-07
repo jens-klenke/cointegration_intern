@@ -659,11 +659,11 @@ RMSE, cRMSE, where predictions are limited to {[}0, 1{]}.
 Table \ref{tab:all_1} lists all variations of the RMSE for the
 calculated polynomial regression models. It becomes apparent that a
 combination of higher order polynomials, dummy variables and interaction
-terms achieves superior results compared to simpler models. For all
-variations of the RMSE the best models require a polynomial of minimum
-grade 12. This can be expected, considering we are optimising an
-in-sample fit. The transformation of the response variable only seems to
-play a minor role in prediction accuracy. Interestingly, there are no
+terms indeed achieves superior results compared to simpler models. For
+all variations of the RMSE the best models require a polynomial of
+minimum grade 12. That was to be expected, considering we are optimising
+an in-sample fit. The transformation of the response variable only seems
+to play a minor role in prediction accuracy. Interestingly, there are no
 major differences in model selection depending on the variation of the
 RMSE used. Table \ref{tab:5_best_all_1} lists the five best models for
 each case and test type.
@@ -677,8 +677,11 @@ highest order polynomial available\footnote{We are well aware of the
   the models on the in-sample RMSE, however, we could continue adding
   higher order polynomials forever to improve the fit. As we are already
   tweaking on the fifth decimal place we decided to not further pursue
-  this procedure}. Furthermore, five out of six models use the Box-Cox
+  this procedure.}. Furthermore, five out of six models use the Box-Cox
 transformed response variable.
+
+\hypertarget{correction}{%
+\subsection{Correction}\label{correction}}
 
 \hypertarget{package}{%
 \section{Package}\label{package}}
@@ -761,7 +764,7 @@ and represents
 
 \begin{table}
     \centering
-    \caption{Description of all tested functional forms for polynomial regression. All functional forms were tested for a maximum polynomial from 3 up to 13. The shorthand notation was used for the description.}
+    \caption{Description of all tested functional forms for polynomial regression. All functional forms were tested for a maximum polynomial degree from 3 to 13. The shorthand notation was used for the description.}
     \label{tab:func_form}    
     \begin{tabular}{rlc}
         Number & Functional form & Range of $\gamma$ \\
@@ -796,7 +799,7 @@ and represents
 \FloatBarrier
 \begin{table}[!h]
 
-\caption{\label{tab:5_best_all_1}\label{tab:best_all_1} The 5 best appproximation models, based on the cRMSE for the lower tail of the distribution, for the first case (no constant, no trend) and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.}
+\caption{\label{tab:5_best_all_1}\label{tab:best_all_1} The five best models, based on the cRMSE for the lower tail of the distribution, for the first case (no constant, no trend) and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.}
 \centering
 \fontsize{10}{12}\selectfont
 \begin{tabular}[t]{ll>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}}
@@ -817,14 +820,14 @@ and represents
 \begingroup\fontsize{10}{12}\selectfont
 
 \begin{longtable}[t]{ll>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}>{\raggedleft\arraybackslash}p{2cm}}
-\caption{\label{tab:all_1}\label{tab:all_1} Performance of the models for the first case and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.}\\
+\caption{\label{tab:all_1}\label{tab:all_1} Performance of the models for the first case and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.}\\
 \toprule
 \multicolumn{1}{c}{\textbf{}} & \multicolumn{1}{c}{\textbf{}} & \multicolumn{2}{c}{\textbf{Full Distribution}} & \multicolumn{2}{c}{\textbf{Lower Tail ($p \leq 0.2$)}} \\
 \cmidrule(l{3pt}r{3pt}){3-4} \cmidrule(l{3pt}r{3pt}){5-6}
   & Model & RMSE & cRMSE & RMSE & cRMSE\\
 \midrule
 \endfirsthead
-\caption[]{\label{tab:all_1} Performance of the models for the first case and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1. \textit{(continued)}}\\
+\caption[]{\label{tab:all_1} Performance of the models for the first case and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1. \textit{(continued)}}\\
 \toprule
   & Model & RMSE & cRMSE & RMSE & cRMSE\\
 \midrule
@@ -1071,31 +1074,31 @@ and represents
 \centering
 \includegraphics{p_approx_paper_files/figure-latex/approx_sim-all-1.pdf}
 \caption{\label{fig:sim_approx_all} Simulated against approximated
-\(p\)-values over the whole distribution for the first case and all
-underlying tests included.}
+\(p\)-values over the whole distribution for all cases and all
+underlying tests.}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics{p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf}
 \caption{\label{fig:sim_approx_all_0.2} Simulated vs.~approximated
-\(p\)-values for the lower tail of the distribution for the first case
-and all underlying test included.}
+\(p\)-values for the lower tail of the distribution for all cases and
+all underlying test.}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics{p_approx_paper_files/figure-latex/p_stat_all-1.pdf}
-\caption{\label{fig:fig_3} Corrected and uncorrected \(p\)-value
-predictions for case 1 and all underlying tests included.}
+\caption{\label{fig:fig_3} Corrected (blue) and uncorrected (red)
+\(p\)-value predictions for all cases and all underlying tests.}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics{p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf}
-\caption{\label{fig:fig_4} Corrected and uncorrected \(p\)-value
-predictions for the first case using Johansen and Engle-Granger as
-underlying tests.}
+\caption{\label{fig:fig_4} Corrected (blue) and uncorrected (red)
+\(p\)-value predictions for all cases using Engle-Granger and Johansen
+as underlying tests.}
 \end{figure}
 
 \restoregeometry

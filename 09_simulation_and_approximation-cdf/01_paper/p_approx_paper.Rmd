@@ -207,9 +207,13 @@ We estimate all models for two different combinations of the underlying tests. N
 ## RMSE comparison
 To measure the performance of our regression models we calculate their in-sample RMSE. This is an indication of how far the residuals of the models are from zero, with lower values preferable. We calculate the RMSE for predictions on the full distribution, as well as predictions on the lower tail ($p \leq 0.2$), as it is more important for the test decision of the Bayer-Hanck test. We also add a corrected version of the RMSE, cRMSE, where predictions are limited to [0, 1].
 
-Table \ref{tab:all_1} lists all variations of the RMSE for the calculated polynomial regression models. It becomes apparent that a combination of higher order polynomials, dummy variables and interaction terms achieves superior results compared to simpler models. For all variations of the RMSE the best models require a polynomial of minimum grade 12. This can be expected, considering we are optimising an in-sample fit. The transformation of the response variable only seems to play a minor role in prediction accuracy. Interestingly, there are no major differences in model selection depending on the variation of the RMSE used. Table \ref{tab:5_best_all_1} lists the five best models for each case and test type. 
+Table \ref{tab:all_1} lists all variations of the RMSE for the calculated polynomial regression models. It becomes apparent that a combination of higher order polynomials, dummy variables and interaction terms indeed achieves superior results compared to simpler models. For all variations of the RMSE the best models require a polynomial of minimum grade 12. That was to be expected, considering we are optimising an in-sample fit. The transformation of the response variable only seems to play a minor role in prediction accuracy. Interestingly, there are no major differences in model selection depending on the variation of the RMSE used. Table \ref{tab:5_best_all_1} lists the five best models for each case and test type. 
 
-For the above-mentioned reasons we choose the final models according to the cRMSE on the left tail of the distribution of the p-values. \textcolor{red}{Grafik mit den 6 final models}. It is apparent that the functional forms look very similar over all cases, mostly using the highest order polynomial available^[We are well aware of the fact that this represents a corner solution. Since we are optimising the models on the in-sample RMSE, however, we could continue adding higher order polynomials forever to improve the fit. As we are already tweaking on the fifth decimal place we decided to not further pursue this procedure]. Furthermore, five out of six models use the Box-Cox transformed response variable. 
+For the above-mentioned reasons we choose the final models according to the cRMSE on the left tail of the distribution of the p-values. \textcolor{red}{Grafik mit den 6 final models}. It is apparent that the functional forms look very similar over all cases, mostly using the highest order polynomial available^[We are well aware of the fact that this represents a corner solution. Since we are optimising the models on the in-sample RMSE, however, we could continue adding higher order polynomials forever to improve the fit. As we are already tweaking on the fifth decimal place we decided to not further pursue this procedure.]. Furthermore, five out of six models use the Box-Cox transformed response variable. 
+
+## Correction
+
+
 
 # Package
 
@@ -294,7 +298,7 @@ and represents
 
 \begin{table}
 	\centering
-	\caption{Description of all tested functional forms for polynomial regression. All functional forms were tested for a maximum polynomial from 3 up to 13. The shorthand notation was used for the description.}
+	\caption{Description of all tested functional forms for polynomial regression. All functional forms were tested for a maximum polynomial degree from 3 to 13. The shorthand notation was used for the description.}
 	\label{tab:func_form}	 
 	\begin{tabular}{rlc}
 		Number & Functional form & Range of $\gamma$ \\
@@ -336,7 +340,7 @@ table_all_case_1 %>%
     dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
     knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
              row.names = TRUE, escape = FALSE,
-              caption= '\\label{tab:best_all_1} The 5 best appproximation models, based on the cRMSE for the lower tail of the distribution, for the first case (no constant, no trend) and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.', align = 'lrrrr') %>%
+              caption= '\\label{tab:best_all_1} The five best models, based on the cRMSE for the lower tail of the distribution, for the first case (no constant, no trend) and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'lrrrr') %>%
     column_spec(3:6, width = "2cm") %>%
   kable_styling(latex_options = c("striped", "hold_position"), font_size = 10) %>%
   add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
@@ -350,25 +354,25 @@ table_all_case_1 %>%
     dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
     knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
              row.names = TRUE, escape = FALSE,
-              caption= '\\label{tab:all_1} Performance of the models for the first case and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting that the values are between 0 and 1.', align = 'lrrrr', longtable = TRUE) %>%
+              caption= '\\label{tab:all_1} Performance of the models for the first case and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'lrrrr', longtable = TRUE) %>%
     column_spec(3:6, width = "2cm") %>%
   kable_styling(latex_options = c("striped", "hold_position", "repeat_header"), font_size = 10) %>%
   add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
 ```
 
-```{r , approx_sim-all, echo = FALSE, fig.cap = " \\label{fig:sim_approx_all} Simulated against approximated $p$-values over the whole distribution for the first case and all underlying tests included. ", fig.height = 8}
+```{r , approx_sim-all, echo = FALSE, fig.cap = " \\label{fig:sim_approx_all} Simulated against approximated $p$-values over the whole distribution for all cases and all underlying tests. ", fig.height = 8}
 p.sim_p.aprox_all
 ```
 
-```{r , approx_sim-all_0.2, echo = FALSE, fig.cap = " \\label{fig:sim_approx_all_0.2} Simulated vs. approximated $p$-values for the lower tail of the distribution for the first case and all underlying test included.", fig.height = 8}
+```{r , approx_sim-all_0.2, echo = FALSE, fig.cap = " \\label{fig:sim_approx_all_0.2} Simulated vs. approximated $p$-values for the lower tail of the distribution for all cases and all underlying test.", fig.height = 8}
 p.sim_p.aprox_all_0.2
 ```
 
-```{r , p_stat_all, echo = FALSE, fig.cap = " \\label{fig:fig_3} Corrected and uncorrected $p$-value predictions for case 1 and all underlying tests included.", fig.height = 8}
+```{r , p_stat_all, echo = FALSE, fig.cap = " \\label{fig:fig_3} Corrected (blue) and uncorrected (red) $p$-value predictions for all cases and all underlying tests.", fig.height = 8}
 plot_p_stat_all
 ```
 
-```{r , p_stat_e_j, echo = FALSE, fig.cap = " \\label{fig:fig_4} Corrected and uncorrected $p$-value predictions for the first case using Johansen and Engle-Granger as underlying tests.", fig.height = 8}
+```{r , p_stat_e_j, echo = FALSE, fig.cap = " \\label{fig:fig_4} Corrected (blue) and uncorrected (red) $p$-value predictions for all cases using Engle-Granger and Johansen as underlying tests.", fig.height = 8}
 plot_p_stat_e_j
 ```
 
