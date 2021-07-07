@@ -329,10 +329,12 @@ and represents
 		\bottomrule
 	\end{tabular}
 \end{table}
-
-
-
 \FloatBarrier
+
+## Results for the $p$-approximation of the Bayer-Hanck Test with all underyling Tests
+
+### Metrics of the 5 Best Models
+
 ```{r 5_best_all_1, echo = FALSE, warning = FALSE, message = FALSE}
 
 table_all_case_1 %>%
@@ -346,9 +348,35 @@ table_all_case_1 %>%
   add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
 ```
 
+```{r 5_best_all_2, echo = FALSE, warning = FALSE, message = FALSE}
 
+table_all_case_2 %>%
+    best_5_table_paper() %>%
+    dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
+    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
+             row.names = TRUE, escape = FALSE,
+              caption= '\\label{tab:best_all_2} The five best models, based on the cRMSE for the lower tail of the distribution, for the second case (with constant, no trend) and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'lrrrr') %>%
+    column_spec(3:6, width = "2cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size = 10) %>%
+  add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+```
+
+```{r 5_best_all_3, echo = FALSE, warning = FALSE, message = FALSE}
+
+table_all_case_3 %>%
+    best_5_table_paper() %>%
+    dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
+    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
+             row.names = TRUE, escape = FALSE,
+              caption= '\\label{tab:best_all_3} The five best models, based on the cRMSE for the lower tail of the distribution, for the third case (with constant and trend) and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'lrrrr') %>%
+    column_spec(3:6, width = "2cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size = 10) %>%
+  add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+```
+
+\FloatBarrier
+### Metrics of all Models
 ```{r all_1, echo = FALSE, warning = FALSE, message = FALSE}
-
 table_all_case_1 %>%
     dplyr::select(-c(formula, expo, model)) %>%
     dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
@@ -359,6 +387,116 @@ table_all_case_1 %>%
   kable_styling(latex_options = c("striped", "hold_position", "repeat_header"), font_size = 10) %>%
   add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
 ```
+
+
+```{r all_2, echo = FALSE, warning = FALSE, message = FALSE}
+table_all_case_2 %>%
+    dplyr::select(-c(formula, expo, model)) %>%
+    dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
+    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
+             row.names = TRUE, escape = FALSE,
+              caption= '\\label{tab:all_2} Performance of the models for the second case and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'lrrrr', longtable = TRUE) %>%
+    column_spec(3:6, width = "2cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position", "repeat_header"), font_size = 10) %>%
+  add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+```
+
+```{r all_3, echo = FALSE, warning = FALSE, message = FALSE}
+table_all_case_3 %>%
+    dplyr::select(-c(formula, expo, model)) %>%
+    dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
+    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
+             row.names = TRUE, escape = FALSE,
+              caption= '\\label{tab:all_3} Performance of the models for the third case and all underlying tests included. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'lrrrr', longtable = TRUE) %>%
+    column_spec(3:6, width = "2cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position", "repeat_header"), font_size = 10) %>%
+  add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+```
+
+## Results for the $p$-approximation of the Bayer-Hanck Test with Engle-Granger and Johansen as underlying tests
+
+### Metrics of the 5 Best Models
+
+```{r 5_best_e_j_1, echo = FALSE, warning = FALSE, message = FALSE}
+table_E_J_case_1 %>%
+    best_5_table_paper() %>%
+    dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
+    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
+             row.names = TRUE, escape = FALSE,
+              caption= '\\label{tab:best_e_j_1} The five best models, based on the cRMSE for the lower tail of the distribution, for the first case (no constant, no trend) with Engle-Granger and Johansen as underlying tests. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'lrrrr') %>%
+    column_spec(3:6, width = "2cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size = 10) %>%
+  add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+```
+
+```{r 5_best_e_j_2, echo = FALSE, warning = FALSE, message = FALSE}
+table_E_J_case_2 %>%
+    best_5_table_paper() %>%
+    dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
+    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
+             row.names = TRUE, escape = FALSE,
+              caption= '\\label{tab:best_e_j_2} The five best models, based on the cRMSE for the lower tail of the distribution, for the second case (with constant, no trend) with Engle-Granger and Johansen as underlying tests. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'lrrrr') %>%
+    column_spec(3:6, width = "2cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size = 10) %>%
+  add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+```
+
+```{r 5_best_e_j_3, echo = FALSE, warning = FALSE, message = FALSE}
+table_E_J_case_3 %>%
+    best_5_table_paper() %>%
+    dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
+    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
+             row.names = TRUE, escape = FALSE,
+              caption= '\\label{tab:best_e_j_3} The five best models, based on the cRMSE for the lower tail of the distribution, for the third case (with constant and trend) with Engle-Granger and Johansen as underlying tests. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'lrrrr') %>%
+    column_spec(3:6, width = "2cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size = 10) %>%
+  add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+```
+
+\FloatBarrier
+
+### Metrics of all Models
+```{r e_j_1, echo = FALSE, warning = FALSE, message = FALSE}
+table_E_J_case_1 %>%
+    dplyr::select(-c(formula, expo, model)) %>%
+    dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
+    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
+             row.names = TRUE, escape = FALSE,
+              caption= '\\label{tab:e_j_1} Performance of the models for the first case with Engle-Granger and Johansen as underlying tests. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'lrrrr', longtable = TRUE) %>%
+    column_spec(3:6, width = "2cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position", "repeat_header"), font_size = 10) %>%
+  add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+```
+
+```{r e_j_2, echo = FALSE, warning = FALSE, message = FALSE}
+table_E_J_case_2 %>%
+    dplyr::select(-c(formula, expo, model)) %>%
+    dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
+    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
+             row.names = TRUE, escape = FALSE,
+              caption= '\\label{tab:e_j_2} Performance of the models for the second case with Engle-Granger and Johansen as underlying tests. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'lrrrr', longtable = TRUE) %>%
+    column_spec(3:6, width = "2cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position", "repeat_header"), font_size = 10) %>%
+  add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+```
+
+```{r e_j_3, echo = FALSE, warning = FALSE, message = FALSE}
+table_E_J_case_3 %>%
+    dplyr::select(-c(formula, expo, model)) %>%
+    dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
+    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
+             row.names = TRUE, escape = FALSE,
+              caption= '\\label{tab:e_j_3} Performance of the models for the second case with Engle-Granger and Johansen as underlying tests. The RMSE and cRMSE were calculated over the whole distribution and over the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'lrrrr', longtable = TRUE) %>%
+    column_spec(3:6, width = "2cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position", "repeat_header"), font_size = 10) %>%
+  add_header_above(c("", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+```
+
+\FloatBarrier
+
+
+
+
 
 ```{r , approx_sim-all, echo = FALSE, fig.cap = " \\label{fig:sim_approx_all} Simulated against approximated $p$-values over the whole distribution for all cases and all underlying tests. ", fig.height = 8}
 p.sim_p.aprox_all
