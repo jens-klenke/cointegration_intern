@@ -182,7 +182,7 @@ The lasso estimate is defined as
 \begin{equation}
     \hat{\beta}^{\text{lasso}} = \argmin_{\beta} \sum^N_{i=1} \left( y_i - \beta_0 - \sum^p_{j=1} x_{ij} \beta_j \right)^2
     \text{s.t.} \sum^p_{j=1} |\beta_j | \leq t, 
-\label{eq:7}
+\label{eq:8}
 \end{equation}
 
 where the first term describes the residual sum of squares, subject to a term known as L1 penalty. In its Lagrangian form this can be rewritten as
@@ -190,7 +190,7 @@ where the first term describes the residual sum of squares, subject to a term kn
 \begin{equation}
     \hat{\beta}^{\text{lasso}} = \argmin_{\beta} \frac{1}{2} \sum^N_{i=1} \left( y_i - \beta_0 - \sum^p_{j=1} x_{ij} \beta_j \right)^2 + 
     \lambda \sum^p_{j=1} |\beta_j |
-\label{eq:8}
+\label{eq:9}
 \end{equation}
 
 $\lambda$ is a tuning parameter which defines the degree of regularisation. The lasso penalty shrinks the coefficients and, for $\lambda$ sufficiently large, can set them to zero. The value of $\lambda$ is data dependent and is usually estimated with cross-validation. \textcolor{red}{ausführlicher? Quelle?}
@@ -211,9 +211,14 @@ Table \ref{tab:all_1} lists all variations of the RMSE for the calculated polyno
 
 For the above-mentioned reasons we choose the final models according to the cRMSE on the left tail of the distribution of the p-values. \textcolor{red}{Grafik mit den 6 final models}. It is apparent that the functional forms look very similar over all cases, mostly using the highest order polynomial available^[We are well aware of the fact that this represents a corner solution. Since we are optimising the models on the in-sample RMSE, however, we could continue adding higher order polynomials forever to improve the fit. As we are already tweaking on the fifth decimal place we decided to not further pursue this procedure.]. Furthermore, five out of six models use the Box-Cox transformed response variable. 
 
-## Correction
+## Correction for high values of the test statistic
+As described in [chapter 3](#Simulation) the data set used for training the models was simulated under the null hypothesis of no cointegration. It should be evident that for this reason most values of the test statistic will be comparatively small. Even after its transformation the distribution of the test statistic has a longer right tail, i.e. there exist few high values. When using the models within a software package, as originally intended, it is likely that they will face input values located on the far right of the central part of the distribution. It cannot be ruled out that the models will fail to make sensible predictions for such values of the test statistic. 
 
+\ref{fig:fig_3} shows the prediction of the final models for all underlying tests on a sequence from 1 to 100, representing possible values of the test statistic. Surprisingly, in the majority of cases the models perform well, with the prediction line taking the expected shape. In two cases, however, the predicted values rise again, taking values not equal to zero. More precisely, this occurs for the model with no deterministics (Case = 1) and $k = 3$ and $k = 4$, respectively.
 
+\ref{fig:fig_4} shows the same behaviour for the data with Engle-Granger and Johansen as underlying tests for all combinations of cases and $k$. Above a certain value of the test statistic the predicted values sharply increase, converging \textcolor{red}{(?)} against 1. It should be noted that this upper boundary is enforced by our build in correction for predicted values outside the interval [0, 1]. Without this intervention the predicted values would probably rise even further. If we predict on an extended sequence with no correction, the prediction line most likely oscillates above a certain value. 
+
+It cannot be clearly established why the models' prediction behaves this way. Oscillation at the edges of an interval is a common problem in polynomial interpolation, especially when using polynomials of high order. Additionally, the distribution of the test statistic in the training data may have made matters worse. It must also be considered that we chose our models according to their predictive performance on the lower tail of the distribution, possibly neglecting the predictive performance on the upper tail. If this incident is not rectified the models will be unable to provide reliable test decisions, as they tend to falsely not reject the null hypothesis at high values of the test statistic. The approach is therefore prone to type II errors.
 
 # Package
 

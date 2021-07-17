@@ -1,14 +1,14 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.3.30)  7 JUL 2021 21:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.3)  17 JUL 2021 22:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **p_approx_paper.tex
 (./p_approx_paper.tex
 LaTeX2e <2020-10-01> patch level 4
-L3 programming layer <2021-02-18> (c:/texlive/2020/texmf-dist/tex/latex/base/ar
-ticle.cls
+L3 programming layer <2021-02-18> (/usr/local/texlive/2021/texmf-dist/tex/latex
+/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
-(c:/texlive/2020/texmf-dist/tex/latex/base/size12.clo
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 )
 \c@part=\count179
@@ -22,8 +22,8 @@ File: size12.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
-) (c:/texlive/2020/texmf-dist/tex/latex/lm/lmodern.sty
-Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/lmodern.sty
+Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
 LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
@@ -56,11 +56,11 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
-) (c:/texlive/2020/texmf-dist/tex/latex/placeins/placeins.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
-) (c:/texlive/2020/texmf-dist/tex/latex/amsfonts/amssymb.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-(c:/texlive/2020/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \@emptytoks=\toks15
 \symAMSa=\mathgroup4
@@ -68,20 +68,20 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (c:/texlive/2020/texmf-dist/tex/latex/amsmath/amsmath.sty
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2020/09/23 v2.17i AMS math features
 \@mathmargin=\skip49
 For additional information on amsmath, use the `?' option.
-(c:/texlive/2020/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
-(c:/texlive/2020/texmf-dist/tex/latex/amsmath/amsgen.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks16
 \ex@=\dimen139
-)) (c:/texlive/2020/texmf-dist/tex/latex/amsmath/amsbsy.sty
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen140
-) (c:/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count187
@@ -121,13 +121,13 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \mathdisplay@stack=\toks20
 LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
-) (c:/texlive/2020/texmf-dist/tex/generic/iftex/ifxetex.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
 Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
-(c:/texlive/2020/texmf-dist/tex/generic/iftex/iftex.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2020/03/06 v1.0d TeX engine tests
-)) (c:/texlive/2020/texmf-dist/tex/generic/iftex/ifluatex.sty
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifluatex.sty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
-) (c:/texlive/2020/texmf-dist/tex/latex/base/fixltx2e.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/fixltx2e.sty
 Package: fixltx2e 2016/12/29 v2.1a fixes to LaTeX (obsolete)
 Applying: [2015/01/01] Old fixltx2e package on input line 46.
 
@@ -136,24 +136,24 @@ Package fixltx2e Warning: fixltx2e is not required with releases after 2015
 (fixltx2e)                See the latexrelease package for details.
 
 Already applied: [0000/00/00] Old fixltx2e package on input line 53.
-) (c:/texlive/2020/texmf-dist/tex/latex/base/fontenc.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 11
 2.
-(c:/texlive/2020/texmf-dist/tex/latex/lm/t1lmr.fd
-File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)) (c:/texlive/2020/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2020/08/01 v1.3d Input encoding file
 \inpenc@prehook=\toks21
 \inpenc@posthook=\toks22
-) (c:/texlive/2020/texmf-dist/tex/latex/upquote/upquote.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
-(c:/texlive/2020/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
-)) (c:/texlive/2020/texmf-dist/tex/latex/microtype/microtype.sty
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2021/03/14 v2.8c Micro-typographical refinements (RS)
-(c:/texlive/2020/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks23
 )
@@ -163,7 +163,7 @@ LaTeX Info: Redefining \textls on input line 790.
 \MT@outer@kern=\dimen148
 LaTeX Info: Redefining \textmicrotypecontext on input line 1374.
 \MT@listname@count=\count266
-(c:/texlive/2020/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+(/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2021/03/14 v2.8c Definitions specific to pdftex (RS)
 
 LaTeX Info: Redefining \lsstyle on input line 915.
@@ -171,11 +171,11 @@ LaTeX Info: Redefining \lslig on input line 915.
 \MT@outer@space=\skip52
 )
 Package microtype Info: Loading configuration file microtype.cfg.
-(c:/texlive/2020/texmf-dist/tex/latex/microtype/microtype.cfg
+(/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2021/03/14 v2.8c microtype main configuration file (RS)
-)) (c:/texlive/2020/texmf-dist/tex/latex/geometry/geometry.sty
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
-(c:/texlive/2020/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
 \Gm@cnth=\count267
@@ -190,28 +190,28 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layouthoffset=\dimen155
 \Gm@layoutvoffset=\dimen156
 \Gm@dimlist=\toks25
-) (c:/texlive/2020/texmf-dist/tex/latex/float/float.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count270
 \float@exts=\toks26
 \float@box=\box49
 \@float@everytoks=\toks27
 \@floatcapt=\box50
-) (c:/texlive/2020/texmf-dist/tex/latex/graphics/lscape.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/lscape.sty
 Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
-(c:/texlive/2020/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
-(c:/texlive/2020/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
-) (c:/texlive/2020/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 105.
-(c:/texlive/2020/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
-))) (c:/texlive/2020/texmf-dist/tex/latex/numprint/numprint.sty
+))) (/usr/local/texlive/2021/texmf-dist/tex/latex/numprint/numprint.sty
 Package: numprint 2012/08/20 v1.39 Print numbers (HH)
-(c:/texlive/2020/texmf-dist/tex/latex/tools/array.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/tools/array.sty
 Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
 \col@sep=\dimen157
 \ar@mcellbox=\box51
@@ -238,10 +238,10 @@ Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
 \c@nprt@digitsfirstblock=\count278
 \c@nprt@blockcnt=\count279
 \c@nprt@cntprint=\count280
-No configuration file `numprint.cfg' found.) (c:/texlive/2020/texmf-dist/tex/la
-tex/csquotes/csquotes.sty
+No configuration file `numprint.cfg' found.) (/usr/local/texlive/2021/texmf-dis
+t/tex/latex/csquotes/csquotes.sty
 Package: csquotes 2021-02-22 v5.2l context-sensitive quotations (JAW)
-(c:/texlive/2020/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count281
 )
@@ -252,38 +252,38 @@ Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \csq@maxlvl=\count286
 \csq@tshold=\count287
 \csq@ltx@everypar=\toks32
-(c:/texlive/2020/texmf-dist/tex/latex/csquotes/csquotes.def
+(/usr/local/texlive/2021/texmf-dist/tex/latex/csquotes/csquotes.def
 File: csquotes.def 2021-02-22 v5.2l csquotes generic definitions (JAW)
 )
 Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
 Package csquotes Info: ... configuration file loaded successfully.
-(c:/texlive/2020/texmf-dist/tex/latex/csquotes/csquotes.cfg
+(/usr/local/texlive/2021/texmf-dist/tex/latex/csquotes/csquotes.cfg
 File: csquotes.cfg 
-)) (c:/texlive/2020/texmf-dist/tex/latex/biblatex/biblatex.sty
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2020/12/31 v3.16 programmable bibliographies (PK/MW)
-(c:/texlive/2020/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
-(c:/texlive/2020/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-) (c:/texlive/2020/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-) (c:/texlive/2020/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
-(c:/texlive/2020/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
-)) (c:/texlive/2020/texmf-dist/tex/latex/logreq/logreq.sty
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
 \lrq@indent=\count288
-(c:/texlive/2020/texmf-dist/tex/latex/logreq/logreq.def
+(/usr/local/texlive/2021/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
-)) (c:/texlive/2020/texmf-dist/tex/latex/base/ifthen.sty
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
-) (c:/texlive/2020/texmf-dist/tex/latex/url/url.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
@@ -339,18 +339,18 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \bibhang=\skip66
 \blx@bcfin=\read2
 \blx@bcfout=\write3
-\blx@langwohyphens=\language86
+\blx@langwohyphens=\language87
 \c@mincomprange=\count331
 \c@maxcomprange=\count332
 \c@mincompwidth=\count333
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex/blx-dm.def
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-dm.def
 File: blx-dm.def 2020/12/31 v3.16 biblatex localization (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'apa.dbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex-apa/apa.dbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/apa.dbx
 File: apa.dbx 2020/08/28 v9.14 APA biblatex style data model
 )
 Package biblatex Info: Trying to load biblatex custom data model...
@@ -451,12 +451,12 @@ Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
 \localshorteditorwidth=\skip80
 Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex/blx-compat.def
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-compat.def
 File: blx-compat.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
 )
 Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex/biblatex.def
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
 \c@textcitecount=\count414
 \c@textcitetotal=\count415
@@ -474,18 +474,18 @@ File: biblatex.def 2020/12/31 v3.16 biblatex compatibility (PK/MW)
 )
 Package biblatex Info: Trying to load bibliography style 'apa'...
 Package biblatex Info: ... file 'apa.bbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex-apa/apa.bbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/apa.bbx
 File: apa.bbx 2020/08/28 v9.14 APA biblatex references style
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2020/12/31 v3.16 biblatex bibliography style (PK/MW)
 \c@bbx:relatedcount=\count423
 \c@bbx:relatedtotal=\count424
 ))
 Package biblatex Info: Trying to load citation style 'apa'...
 Package biblatex Info: ... file 'apa.cbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex-apa/apa.cbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/apa.cbx
 File: apa.cbx 2020/08/28 v9.14 APA biblatex citation style
 Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined,
  overwriting.
@@ -511,42 +511,43 @@ Package biblatex Info: Redefining '\textcites'.
 )
 Package biblatex Info: Trying to load configuration file...
 Package biblatex Info: ... file 'biblatex.cfg' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex/biblatex.cfg
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/biblatex.cfg
 File: biblatex.cfg 
-)) (c:/texlive/2020/texmf-dist/tex/latex/graphics/graphicx.sty
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
 \Gin@req@height=\dimen159
 \Gin@req@width=\dimen160
-) (c:/texlive/2020/texmf-dist/tex/latex/hyperref/hyperref.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2021-02-27 v7.00k Hypertext links for LaTeX
-(c:/texlive/2020/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-) (c:/texlive/2020/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-) (c:/texlive/2020/texmf-dist/tex/latex/hycolor/hycolor.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
-) (c:/texlive/2020/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
-) (c:/texlive/2020/texmf-dist/tex/latex/auxhook/auxhook.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
 \@linkdim=\dimen161
 \Hy@linkcounter=\count425
 \Hy@pagecounter=\count426
-(c:/texlive/2020/texmf-dist/tex/latex/hyperref/pd1enc.def
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2021-02-27 v7.00k Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
-) (c:/texlive/2020/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/hyperref-langpatches.def
 File: hyperref-langpatches.def 2021-02-27 v7.00k Hyperref: patches for babel la
 nguages
-) (c:/texlive/2020/texmf-dist/tex/generic/intcalc/intcalc.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
-) (c:/texlive/2020/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
 \Hy@SavedSpaceFactor=\count427
-(c:/texlive/2020/texmf-dist/tex/latex/hyperref/puenc.def
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2021-02-27 v7.00k Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
@@ -563,9 +564,9 @@ Package hyperref Info: Bookmarks ON on input line 4445.
 \c@Hy@tempcnt=\count428
 LaTeX Info: Redefining \url on input line 4804.
 \XeTeXLinkMargin=\dimen162
-(c:/texlive/2020/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
-(c:/texlive/2020/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+(/usr/local/texlive/2021/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
@@ -581,7 +582,7 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6100.
 Package hyperref Info: PDF/A mode OFF on input line 6105.
 LaTeX Info: Redefining \ref on input line 6145.
 LaTeX Info: Redefining \pageref on input line 6149.
-(c:/texlive/2020/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
 ge
 with kernel methods
@@ -591,18 +592,20 @@ with kernel methods
 \c@Hfootnote=\count432
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
-(c:/texlive/2020/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2021-02-27 v7.00k Hyperref driver for pdfTeX
-(c:/texlive/2020/texmf-dist/tex/latex/base/atveryend-ltx.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
 e
 with kernel methods
 )
 \Fld@listcount=\count433
 \c@bookmark@seq@number=\count434
-(c:/texlive/2020/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
-(c:/texlive/2020/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
@@ -616,12 +619,12 @@ Package hyperref Warning: Option `bookmarks' has already been used,
 (hyperref)                setting the option has no effect on input line 85.
 
 Package hyperref Info: Option `colorlinks' set `true' on input line 85.
-(c:/texlive/2020/texmf-dist/tex/latex/titling/titling.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/titling/titling.sty
 Package: titling 2009/09/04 v2.1d maketitle typesetting
 \thanksmarkwidth=\skip82
 \thanksmargin=\skip83
 \droptitle=\skip84
-) (c:/texlive/2020/texmf-dist/tex/latex/booktabs/booktabs.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen165
 \lightrulewidth=\dimen166
@@ -640,7 +643,7 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisruleclass=\count437
 \@lastruleclass=\count438
 \@thisrulewidth=\dimen177
-) (c:/texlive/2020/texmf-dist/tex/latex/tools/longtable.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
 \LTleft=\skip85
 \LTright=\skip86
@@ -657,36 +660,36 @@ Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
 \c@LT@tables=\count442
 \c@LT@chunks=\count443
 \LT@p@ftn=\toks33
-) (c:/texlive/2020/texmf-dist/tex/latex/multirow/multirow.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip89
 \multirow@cntb=\count444
 \multirow@dima=\skip90
 \bigstrutjot=\dimen179
-) (c:/texlive/2020/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/wrapfig/wrapfig.sty
 \wrapoverhang=\dimen180
 \WF@size=\dimen181
 \c@WF@wrappedlines=\count445
 \WF@box=\box57
 \WF@everypar=\toks34
 Package: wrapfig 2003/01/31  v 3.6
-) (c:/texlive/2020/texmf-dist/tex/latex/colortbl/colortbl.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
-(c:/texlive/2020/texmf-dist/tex/latex/graphics/color.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2020/02/24 v1.2b Standard LaTeX Color (DPC)
-(c:/texlive/2020/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 147.
 )
 \everycr=\toks35
 \minrowclearance=\skip91
-) (c:/texlive/2020/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
-) (c:/texlive/2020/texmf-dist/tex/latex/tabu/tabu.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/tabu/tabu.sty
 Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
-(c:/texlive/2020/texmf-dist/tex/latex/varwidth/varwidth.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box58
 \sift@deathcycles=\count446
@@ -715,18 +718,21 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \tabu@hleads=\box61
 \tabu@vleads=\box62
 \tabu@cellskip=\skip92
-) (c:/texlive/2020/texmf-dist/tex/latex/threeparttable/threeparttable.sty
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/threeparttable/threeparttable.sty
 Package: threeparttable 2003/06/13  v 3.0
 \@tempboxb=\box63
-) (c:/texlive/2020/texmf-dist/tex/latex/threeparttablex/threeparttablex.sty
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/threeparttablex/threeparttablex.s
+ty
 Package: threeparttablex 2013/07/23 v0.3 by daleif
-(c:/texlive/2020/texmf-dist/tex/latex/environ/environ.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/environ/environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
-(c:/texlive/2020/texmf-dist/tex/latex/trimspaces/trimspaces.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
 \TPTL@width=\skip93
-) (c:/texlive/2020/texmf-dist/tex/generic/ulem/ulem.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/ulem/ulem.sty
 \UL@box=\box64
 \UL@hyphenbox=\box65
 \UL@skip=\skip94
@@ -737,14 +743,14 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \ULC@box=\box66
 Package: ulem 2019/11/18
 \ULdepth=\dimen195
-) (c:/texlive/2020/texmf-dist/tex/latex/makecell/makecell.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/makecell/makecell.sty
 Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 \rotheadsize=\dimen196
 \c@nlinenum=\count454
 \TeXr@lab=\toks39
-) (c:/texlive/2020/texmf-dist/tex/latex/xcolor/xcolor.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
-(c:/texlive/2020/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
@@ -758,32 +764,32 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
-) (c:/texlive/2020/texmf-dist/tex/latex/setspace/setspace.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
-) (c:/texlive/2020/texmf-dist/tex/generic/oberdiek/iflang.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/oberdiek/iflang.sty
 Package: iflang 2018/01/21 v1.7 Checks for the current language (HO)
 Package iflang Info: Naming convention for patterns: babel.
-) (c:/texlive/2020/texmf-dist/tex/generic/nth/nth.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/nth/nth.sty
 Package: nth 2002/02/27
-) (c:/texlive/2020/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2021/03/03 3.55 The Babel package
-(c:/texlive/2020/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2021/03/03 3.55 Babel common definitions
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2021/03/24 3.56 The Babel package
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2021/03/24 3.56 Babel common definitions
 \babel@savecnt=\count455
 \U@D=\dimen197
-\l@babelnohyphens=\language87
-(c:/texlive/2020/texmf-dist/tex/generic/babel/txtbabel.def)
+\l@babelnohyphens=\language88
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read3
 )
 \bbl@dirlevel=\count456
-(c:/texlive/2020/texmf-dist/tex/generic/babel-german/ngerman.ldf
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel-german/ngerman.ldf
 Language: ngerman 2021/02/27 v2.13 German support for babel (post-1996 orthogra
 phy)
-(c:/texlive/2020/texmf-dist/tex/generic/babel-german/ngermanb.ldf
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel-german/ngermanb.ldf
 Language: ngermanb 2021/02/27 v2.13 German support for babel (post-1996 orthogr
 aphy)
 Package babel Info: Making " an active character on input line 122.
-)) (c:/texlive/2020/texmf-dist/tex/generic/babel-english/english.ldf
+)) (/usr/local/texlive/2021/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: \l@canadian = using hyphenrules for english
 (babel)             (\language0) on input line 102.
@@ -791,23 +797,23 @@ Package babel Info: \l@australian = using hyphenrules for ukenglish
 (babel)             (\language21) on input line 105.
 Package babel Info: \l@newzealand = using hyphenrules for ukenglish
 (babel)             (\language21) on input line 108.
-)) (c:/texlive/2020/texmf-dist/tex/latex/acronym/acronym.sty
+)) (/usr/local/texlive/2021/texmf-dist/tex/latex/acronym/acronym.sty
 Package: acronym 2020/04/17 v1.47 Support for acronyms (Tobias Oetiker)
-(c:/texlive/2020/texmf-dist/tex/latex/bigfoot/suffix.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/bigfoot/suffix.sty
 Package: suffix 2006/07/15 1.5a Variant command support
-) (c:/texlive/2020/texmf-dist/tex/generic/xstring/xstring.sty (c:/texlive/2020/
-texmf-dist/tex/generic/xstring/xstring.tex
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/xstring/xstring.sty (/usr/loc
+al/texlive/2021/texmf-dist/tex/generic/xstring/xstring.tex
 \integerpart=\count457
 \decimalpart=\count458
 )
 Package: xstring 2019/02/06 v1.83 String manipulations (CT)
 )
 \AC@clearlist=\toks40
-) (c:/texlive/2020/texmf-dist/tex/latex/changepage/changepage.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/changepage/changepage.sty
 Package: changepage 2009/10/20 v1.0c check page and change page layout
 \c@cp@cntr=\count459
 \cp@tempcnt=\count460
-) (c:/texlive/2020/texmf-dist/tex/latex/tools/multicol.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
 \c@tracingmulticols=\count461
 \mult@box=\box67
@@ -881,14 +887,11 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
-(c:/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count471
 \l__pdf_internal_box=\box113
 ) (./p_approx_paper.aux
-
-LaTeX Warning: Label `eq:7' multiply defined.
-
 
 LaTeX Warning: Label `tab:all_1' multiply defined.
 
@@ -1092,7 +1095,7 @@ LaTeX Info: Redefining \showhyphens on input line 153.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
-(c:/texlive/2020/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+(/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
@@ -1130,7 +1133,7 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(c:/texlive/2020/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+(/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count472
 \scratchdimen=\dimen263
@@ -1143,81 +1146,83 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 \MPnumerator=\count476
 \makeMPintoPDFobject=\count477
 \everyMPtoPDFconversion=\toks42
-) (c:/texlive/2020/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
-(c:/texlive/2020/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+(/usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package biblatex Info: Trying to load language 'english' -> 'english-apa'...
 Package biblatex Info: ... file 'english-apa.lbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex-apa/english-apa.lbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/english-apa.lbx
 File: english-apa.lbx 2020/08/28 v9.14 APA biblatex localisation
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
 )
 Package biblatex Info: Trying to load language 'american' -> 'american-apa'...
 Package biblatex Info: ... file 'american-apa.lbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex-apa/american-apa.lbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/american-apa.lbx
 File: american-apa.lbx 2020/08/28 v9.14 APA biblatex localisation
 Package biblatex Info: Trying to load language 'american'...
 Package biblatex Info: ... file 'american.lbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex/lbx/american.lbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/american.lbx
 File: american.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex/lbx/english.lbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
 ))))
 Package biblatex Info: Trying to load language 'ngerman' -> 'ngerman-apa'...
 Package biblatex Info: ... file 'ngerman-apa.lbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex-apa/ngerman-apa.lbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/ngerman-apa.lbx
 File: ngerman-apa.lbx 2020/08/28 v9.14 APA biblatex localisation
 Package biblatex Info: Trying to load language 'ngerman'...
 Package biblatex Info: ... file 'ngerman.lbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex/lbx/ngerman.lbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/ngerman.lbx
 File: ngerman.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
 Package biblatex Info: Trying to load language 'german' -> 'german-apa'...
 Package biblatex Info: ... file 'german-apa.lbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex-apa/german-apa.lbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/german-apa.lbx
 File: german-apa.lbx 2020/08/28 v9.14 APA biblatex localisation
 Package biblatex Info: Trying to load language 'german'...
 Package biblatex Info: ... file 'german.lbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex/lbx/german.lbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/german.lbx
 File: german.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
 )))
 Package biblatex Info: Trying to load language 'ngerman'...
 Package biblatex Info: ... file 'ngerman.lbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex/lbx/ngerman.lbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/ngerman.lbx
 File: ngerman.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
 Package biblatex Info: Trying to load language 'german' -> 'german-apa'...
 Package biblatex Info: ... file 'german-apa.lbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex-apa/german-apa.lbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex-apa/german-apa.lbx
 File: german-apa.lbx 2020/08/28 v9.14 APA biblatex localisation
 Package biblatex Info: Trying to load language 'german'...
 Package biblatex Info: ... file 'german.lbx' found.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex/lbx/german.lbx
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/german.lbx
 File: german.lbx 2020/12/31 v3.16 biblatex localization (PK/MW)
 ))))
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
 Package biblatex Info: Document encoding is UTF8 ....
-(c:/texlive/2020/texmf-dist/tex/latex/l3kernel/expl3.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2021-02-18 L3 programming layer (loader) 
 )
 Package biblatex Info: ... and expl3
 (biblatex)             2021-02-18 L3 programming layer (loader) 
 (biblatex)             is new enough (at least 2020/04/06),
 (biblatex)             setting 'casechanger=expl3'.
-(c:/texlive/2020/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty (c:/texlive/2
-020/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (c:/texlive/2020/texmf-di
-st/tex/latex/l3packages/xparse/xparse-2020-10-01.sty (c:/texlive/2020/texmf-dis
-t/tex/latex/l3packages/xparse/xparse-generic.tex)))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty (/usr
+/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse-2020-10-
+01.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3packages/xparse/xparse-generic.
+tex)))
 Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
 )
 \openout3 = `p_approx_paper.bcf'.
@@ -1236,11 +1241,13 @@ Package biblatex Warning: The following entry could not be found
 Package biblatex Info: Reference section=0 on input line 153.
 Package biblatex Info: Reference segment=0 on input line 153.
 Package hyperref Info: Link coloring ON on input line 153.
-(c:/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
-(c:/texlive/2020/texmf-dist/tex/latex/refcount/refcount.sty
+(/usr/local/texlive/2021/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
-) (c:/texlive/2020/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.s
+ty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count478
@@ -1264,23 +1271,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 165--168
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
 68.
-(c:/texlive/2020/texmf-dist/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+(/usr/local/texlive/2021/texmf-dist/tex/latex/lm/ot1lmr.fd
+File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
 68.
-(c:/texlive/2020/texmf-dist/tex/latex/lm/omllmm.fd
-File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
+(/usr/local/texlive/2021/texmf-dist/tex/latex/lm/omllmm.fd
+File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
 168.
-(c:/texlive/2020/texmf-dist/tex/latex/lm/omslmsy.fd
-File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
+(/usr/local/texlive/2021/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
 168.
-(c:/texlive/2020/texmf-dist/tex/latex/lm/omxlmex.fd
-File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
+(/usr/local/texlive/2021/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <12> on input line 168.
@@ -1290,16 +1297,16 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 168.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 168
 .
-(c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-) (c:/texlive/2020/texmf-dist/tex/latex/microtype/mt-msa.cfg
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 168
 .
-(c:/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (c:/texlive/2020/texmf-dist/tex/latex/microtype/mt-msb.cfg
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 <Includes/duelogo_en.png, id=99, 230.8625pt x 89.33376pt>
@@ -1331,8 +1338,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 246--247
 
 [1
 
-{c:/texlive/2020/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./includes/duel
-ogo_en.png>]
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Inclu
+des/duelogo_en.png>]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -1471,30 +1478,30 @@ although it is yet undefined on input line 477.
 Package acronym Info: Label `acro:RMSE' newly defined as it shall be overridden
 
 although it is yet undefined on input line 492.
-[4] [5] [6] [7] [8]pdfTeX warning (ext4): destination with the same identifier 
-(name{page.III}) has been already used, duplicate ignored
+[4] [5] [6] [7] [8] [9]pdfTeX warning (ext4): destination with the same identif
+ier (name{page.III}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.695 \cleardoublepage
+l.737 \cleardoublepage
                        [3]
 \blx@maxsegment@1=\count479
 \blx@sectionciteorder@1=\count480
-Package biblatex Info: Reference section=1 on input line 697.
-Package biblatex Info: Setting label 'refsection:1' on input line 697.
+Package biblatex Info: Reference section=1 on input line 739.
+Package biblatex Info: Setting label 'refsection:1' on input line 739.
 pdfTeX warning (ext4): destination with the same identifier (name{page.IV}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.731 ...bibliography[title = Software-References]
+l.773 ...bibliography[title = Software-References]
                                                    [4
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.V}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.731 ...bibliography[title = Software-References]
+l.773 ...bibliography[title = Software-References]
                                                    [5]
-Package biblatex Info: Reference section=0 on input line 733.
+Package biblatex Info: Reference section=0 on input line 775.
 [6]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
@@ -1533,247 +1540,247 @@ Package biblatex Info: Reference section=0 on input line 733.
 
 ] [8]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 803.
+(Font)              <14.4> on input line 845.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [9]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 876--883
+Overfull \hbox (3.70128pt too wide) in alignment at lines 918--925
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 883--888
+Overfull \hbox (3.70128pt too wide) in alignment at lines 925--930
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 888--890
+Overfull \hbox (3.70128pt too wide) in alignment at lines 930--932
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 890--892
+Overfull \hbox (3.70128pt too wide) in alignment at lines 932--934
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 892--913
+Overfull \hbox (3.70128pt too wide) in alignment at lines 934--955
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 913--933
+Overfull \hbox (3.70128pt too wide) in alignment at lines 955--975
  [] [] [] [] [] [] 
  []
 
 [10]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 933--953
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 953--973
+Overfull \hbox (3.70128pt too wide) in alignment at lines 975--995
  [] [] [] [] [] [] 
  []
 
 [11]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 973--993
+Overfull \hbox (3.70128pt too wide) in alignment at lines 995--1015
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1015--1035
  [] [] [] [] [] [] 
  []
 
 [12]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 993--1013
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1035--1055
  [] [] [] [] [] [] 
  []
 
 [13]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1013--1033
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1055--1075
  [] [] [] [] [] [] 
  []
 
 [14]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1033--1053
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1075--1095
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1053--1073
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1095--1115
  [] [] [] [] [] [] 
  []
 
 [15]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1073--1093
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1115--1135
  [] [] [] [] [] [] 
  []
 
 [16]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1093--1113
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1135--1155
  [] [] [] [] [] [] 
  []
 
 [17]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1113--1124
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1155--1166
  [] [] [] [] [] [] 
  []
 
 [18]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1129--1136
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1171--1178
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1136--1141
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1178--1183
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1141--1143
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1183--1185
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1143--1145
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1185--1187
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1145--1166
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1187--1208
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1166--1186
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1208--1228
  [] [] [] [] [] [] 
  []
 
 [19]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1186--1206
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1228--1248
  [] [] [] [] [] [] 
  []
 
 [20]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1206--1226
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1248--1268
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1226--1246
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1268--1288
  [] [] [] [] [] [] 
  []
 
 [21]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1246--1266
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1288--1308
  [] [] [] [] [] [] 
  []
 
 [22]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1266--1286
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1308--1328
  [] [] [] [] [] [] 
  []
 
 [23]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1286--1306
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1306--1326
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1328--1348
  [] [] [] [] [] [] 
  []
 
 [24]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1326--1346
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1348--1368
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1368--1388
  [] [] [] [] [] [] 
  []
 
 [25]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1346--1366
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1388--1408
  [] [] [] [] [] [] 
  []
 
 [26]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1366--1377
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1408--1419
  [] [] [] [] [] [] 
  []
 
 [27]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1382--1389
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1424--1431
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1389--1394
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1431--1436
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1394--1396
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1436--1438
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1396--1398
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1438--1440
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1398--1419
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1440--1461
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1419--1439
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1461--1481
  [] [] [] [] [] [] 
  []
 
 [28]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1439--1459
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1481--1501
  [] [] [] [] [] [] 
  []
 
 [29]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1459--1479
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1501--1521
  [] [] [] [] [] [] 
  []
 
 [30]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1479--1499
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1521--1541
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1499--1519
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1541--1561
  [] [] [] [] [] [] 
  []
 
 [31]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1519--1539
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1561--1581
  [] [] [] [] [] [] 
  []
 
 [32]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1539--1559
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1581--1601
  [] [] [] [] [] [] 
  []
 
 [33]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1559--1579
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1579--1599
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1601--1621
  [] [] [] [] [] [] 
  []
 
 [34]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1599--1619
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1621--1641
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1641--1661
  [] [] [] [] [] [] 
  []
 
 [35]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1619--1630
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1661--1672
  [] [] [] [] [] [] 
  []
 
@@ -1788,283 +1795,283 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [37] [38] [39]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1709--1716
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1751--1758
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1716--1721
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1758--1763
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1721--1723
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1763--1765
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1723--1725
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1765--1767
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1725--1746
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1767--1788
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1746--1766
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1788--1808
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1766--1786
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1808--1828
  [] [] [] [] [] [] 
  []
 
 [40
 
 ]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1786--1806
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1828--1848
  [] [] [] [] [] [] 
  []
 
 [41]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1806--1826
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1848--1868
  [] [] [] [] [] [] 
  []
 
 [42]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1826--1846
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1868--1888
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1846--1866
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1888--1908
  [] [] [] [] [] [] 
  []
 
 [43]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1866--1886
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1908--1928
  [] [] [] [] [] [] 
  []
 
 [44]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1886--1906
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1928--1948
  [] [] [] [] [] [] 
  []
 
 [45]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1906--1926
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1948--1968
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1926--1946
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1968--1988
  [] [] [] [] [] [] 
  []
 
 [46]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1946--1957
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1988--1999
  [] [] [] [] [] [] 
  []
 
 [47]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1962--1969
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2004--2011
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1969--1974
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2011--2016
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1974--1976
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2016--2018
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1976--1978
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2018--2020
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1978--1999
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2020--2041
  [] [] [] [] [] [] 
  []
 
 [48]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1999--2019
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2041--2061
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2019--2039
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2061--2081
  [] [] [] [] [] [] 
  []
 
 [49]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2039--2059
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2081--2101
  [] [] [] [] [] [] 
  []
 
 [50]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2059--2079
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2101--2121
  [] [] [] [] [] [] 
  []
 
 [51]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2079--2099
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2121--2141
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2099--2119
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2141--2161
  [] [] [] [] [] [] 
  []
 
 [52]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2119--2139
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2161--2181
  [] [] [] [] [] [] 
  []
 
 [53]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2139--2159
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2181--2201
  [] [] [] [] [] [] 
  []
 
 [54]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2159--2179
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2201--2221
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2179--2199
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2221--2241
  [] [] [] [] [] [] 
  []
 
 [55]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2199--2210
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2241--2252
  [] [] [] [] [] [] 
  []
 
 [56]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2215--2222
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2257--2264
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2222--2227
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2264--2269
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2227--2229
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2269--2271
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2229--2231
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2271--2273
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2231--2252
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2273--2294
  [] [] [] [] [] [] 
  []
 
 [57]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2252--2272
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2294--2314
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2272--2292
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2314--2334
  [] [] [] [] [] [] 
  []
 
 [58]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2292--2312
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2334--2354
  [] [] [] [] [] [] 
  []
 
 [59]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2312--2332
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2354--2374
  [] [] [] [] [] [] 
  []
 
 [60]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2332--2352
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2374--2394
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2352--2372
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2394--2414
  [] [] [] [] [] [] 
  []
 
 [61]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2372--2392
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2414--2434
  [] [] [] [] [] [] 
  []
 
 [62]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2392--2412
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2434--2454
  [] [] [] [] [] [] 
  []
 
 [63]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2412--2432
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2454--2474
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2432--2452
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2474--2494
  [] [] [] [] [] [] 
  []
 
 [64]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2452--2463
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2494--2505
  [] [] [] [] [] [] 
  []
 
 [65]
-<p_approx_paper_files/figure-latex/approx_sim-all-1.pdf, id=661, 469.755pt x 57
-8.16pt>
+<p_approx_paper_files/figure-latex/approx_sim-all-1.pdf, id=669, 463.7325pt x 5
+67.11874pt>
 File: p_approx_paper_files/figure-latex/approx_sim-all-1.pdf Graphic file (type
  pdf)
 <use p_approx_paper_files/figure-latex/approx_sim-all-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/approx_sim-all-1.pdf
-  used on input line 2470.
-(pdftex.def)             Requested size: 469.4743pt x 577.81451pt.
+  used on input line 2512.
+(pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 [66]
-<p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf, id=666, 469.755pt 
-x 578.16pt>
+<p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf, id=675, 463.7325pt
+ x 567.11874pt>
 File: p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf Graphic file (
 type pdf)
 <use p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/approx_sim-all_0.2-1
-.pdf  used on input line 2478.
-(pdftex.def)             Requested size: 469.4743pt x 577.81451pt.
+.pdf  used on input line 2520.
+(pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 [67 <./p_approx_paper_files/figure-latex/approx_sim-all-1.pdf>]
-<p_approx_paper_files/figure-latex/p_stat_all-1.pdf, id=677, 469.755pt x 578.16
-pt>
+<p_approx_paper_files/figure-latex/p_stat_all-1.pdf, id=687, 463.7325pt x 567.1
+1874pt>
 File: p_approx_paper_files/figure-latex/p_stat_all-1.pdf Graphic file (type pdf
 )
 <use p_approx_paper_files/figure-latex/p_stat_all-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat_all-1.pdf  us
-ed on input line 2486.
-(pdftex.def)             Requested size: 469.4743pt x 577.81451pt.
+ed on input line 2528.
+(pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 [68 <./p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf>]
-<p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf, id=687, 469.755pt x 578.16
-pt>
+<p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf, id=699, 463.7325pt x 567.1
+1874pt>
 File: p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf Graphic file (type pdf
 )
 <use p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf  us
-ed on input line 2493.
-(pdftex.def)             Requested size: 469.4743pt x 577.81451pt.
+ed on input line 2535.
+(pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 [69 <./p_approx_paper_files/figure-latex/p_stat_all-1.pdf>] [70 <./p_approx_pap
 er_files/figure-latex/p_stat_e_j-1.pdf>] [71
 
@@ -2074,21 +2081,24 @@ er_files/figure-latex/p_stat_e_j-1.pdf>] [71
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `p_approx_paper.out' has not changed.
-(rerunfilecheck)             Checksum: F014FC746206AC2FB023052B21BD8BBB;4069.
+(rerunfilecheck)             Checksum: 060C793FEDBF2DE55D8C934FC50C5354;4280.
 Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
 \openout1 = `p_approx_paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24553 strings out of 479014
- 405148 string characters out of 5863086
- 1412460 words of memory out of 5000000
- 41127 multiletter control sequences out of 15000+600000
- 512081 words of font info for 212 fonts, out of 8000000 for 9000
+ 24567 strings out of 478994
+ 408268 string characters out of 5858185
+ 1399939 words of memory out of 5000000
+ 41141 multiletter control sequences out of 15000+600000
+ 512168 words of font info for 213 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  73i,13n,81p,944b,6863s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exi
-st, replaced by a fixed one
+pdfTeX warning (dest): name{Simulation} has been referenced but does not exis
+t, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.3} has been referenced but does not exist
+, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
 , replaced by a fixed one
@@ -2096,29 +2106,31 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist
 , replaced by a fixed one
 
-{c:/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2020/texmf
--dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2020/texmf-dist/fonts/enc/dvips/
-lm/lm-mathit.enc}{c:/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{
-c:/texlive/2020/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2020/te
-xmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2020/texmf-dist/fonts/typ
-e1/public/lm/lmbx12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmex1
-0.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/texlive/
-2020/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2020/texmf-dist/fo
-nts/type1/public/lm/lmmi6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm
-/lmmi8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texl
-ive/2020/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2020/texmf-dist
-/fonts/type1/public/lm/lmr17.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public
-/lm/lmr6.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/tex
-live/2020/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2020/texmf-dist
-/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2020/texmf-dist/fonts/type1/publi
-c/lm/lmri12.pfb><c:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c
-:/texlive/2020/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2020/texm
-f-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2020/texmf-dist/fonts/type1/
-public/amsfonts/symbols/msbm10.pfb>
-Output written on p_approx_paper.pdf (83 pages, 1117511 bytes).
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/te
+xlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/tex
+mf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fo
+nts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dv
+ips/lm/lm-mathex.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/
+lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb
+></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/loc
+al/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive
+/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2021/texm
+f-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/font
+s/type1/public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pub
+lic/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr1
+2.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr
+/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texli
+ve/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2021/texm
+f-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts
+/type1/public/lm/lmri10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pub
+lic/lm/lmri12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lms
+y10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></u
+sr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/te
+xlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on p_approx_paper.pdf (84 pages, 1122763 bytes).
 PDF statistics:
- 825 PDF objects out of 1000 (max. 8388607)
- 702 compressed objects within 8 object streams
- 191 named destinations out of 1000 (max. 500000)
+ 842 PDF objects out of 1000 (max. 8388607)
+ 714 compressed objects within 8 object streams
+ 193 named destinations out of 1000 (max. 500000)
  59616 words of extra memory for PDF output out of 61914 (max. 10000000)
 
