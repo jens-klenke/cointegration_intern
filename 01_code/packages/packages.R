@@ -40,5 +40,6 @@ pacman::p_load(dplyr,
                tidypredict,
                broom,
                magrittr,
-               furrr)
+               furrr,
+               tikzDevice)
 
