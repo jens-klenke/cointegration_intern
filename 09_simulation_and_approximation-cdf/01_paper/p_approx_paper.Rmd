@@ -212,6 +212,7 @@ Table \ref{tab:all_1} lists all variations of the RMSE for the calculated polyno
 For the above-mentioned reasons we choose the final models according to the cRMSE on the left tail of the distribution of the p-values. \textcolor{red}{Grafik mit den 6 final models}. It is apparent that the functional forms look very similar over all cases, mostly using the highest order polynomial available^[We are well aware of the fact that this represents a corner solution. Since we are optimising the models on the in-sample RMSE, however, we could continue adding higher order polynomials forever to improve the fit. As we are already tweaking on the fifth decimal place we decided to not further pursue this procedure.]. Furthermore, five out of six models use the Box-Cox transformed response variable. 
 
 ## Correction for high values of the test statistic
+
 As described in [chapter 3](#Simulation) the data set used for training the models was simulated under the null hypothesis of no cointegration. It should be evident that for this reason most values of the test statistic will be comparatively small. Even after its transformation the distribution of the test statistic has a longer right tail, i.e. there exist few high values. When using the models within a software package, as originally intended, it is likely that they will face input values located on the far right of the central part of the distribution. It cannot be ruled out that the models will fail to make sensible predictions for such values of the test statistic. 
 
 \ref{fig:fig_3} shows the prediction of the final models for all underlying tests on a sequence from 1 to 100, representing possible values of the test statistic. Surprisingly, in the majority of cases the models perform well, with the prediction line taking the expected shape. In two cases, however, the predicted values rise again, taking values not equal to zero. More precisely, this occurs for the model with no deterministics (Case = 1) and $k = 3$ and $k = 4$, respectively.
@@ -220,7 +221,23 @@ As described in [chapter 3](#Simulation) the data set used for training the mode
 
 It cannot be clearly established why the models' prediction behaves this way. Oscillation at the edges of an interval is a common problem in polynomial interpolation, especially when using polynomials of high order. Additionally, the distribution of the test statistic in the training data may have made matters worse. It must also be considered that we chose our models according to their predictive performance on the lower tail of the distribution, possibly neglecting the predictive performance on the upper tail. If this incident is not rectified the models will be unable to provide reliable test decisions, as they tend to falsely not reject the null hypothesis at high values of the test statistic. The approach is therefore prone to type II errors.
 
+\textcolor{red}{(Jens)}
+
+Technically, the correction for each model was done as follow. For each test configuration and case, the final model -- 6 models in total -- was used to approximate the $p$-values for the test statistic ranging from $1$ to $100$ in $0.1$ jumps. Subsequently, the smallest test statistic was selected where the lower bound ($1e-12$) for the $p$-value was predicted by the model. Thus, a p-value of $< 1e-12$ is automatically predicted for all test statics greater than this critical value in the package.
+
+
 # Package
+
+## Algorithmic implementation
+
+Not part of this chapter on package implementation will be the calculation of the underlying tests and Bayerhanck statistics, as these are already available. The approximation of the $p$-value is implemented by means of a separate function named `get_p_value`, which takes the arguments `bh.test`, `trendtype`, `test.type`, and `k`. With `bh.test` specifying the test statistic, `trendtype` the case, `test.type` which underlying test were used and `k` the number of regressors. The first step within the function is to check whether the calculated test statistic is greater than the critical value, given the configuration of the test and the parameters. When this is the case, a deterministic $p$-value of $<1e-12$ is always predicted and the rest of the approximation process is skipped. However, if this is not the case -- i.e., the test statistic is less than the critical value -- the actual approximation of the function is now performed. 
+
+All required data and models are organized in the tibble `models`, which contains the `test.type`, the `trendtype`, the `models`, the $\lambda$ value for the box-cox transformation for the test statistic and the $p$-value, and the `critical value`. In order to perform the approximation, we first need the $\lambda$ parameters for the two transformation of the test statistic and the $p$-value for the corresponding configuration of the test performed. In the next step the corresponding model is selected. Before we can perform the estimation we have to merge the passed variables, e.g. `bh.test` and `k`, into a data frame and then additionally include them as a box-cox transformation.
+
+Now we can do the p-value approximation using the appropriate model. If the response variable was box-cox transformed in the model, the variable is transformed back in the next step. The last step in the algorithm is to keep the estimated p-value within the theoretical limits of 0 and 1. If a p-value of 0 or a negative value is predicted, it is transformed to $< 1e-12$ as in the correction before. For values above 1, it is set to $9.9999e-1$.   
+
+
+
 
 
 <!-- end of main part -->

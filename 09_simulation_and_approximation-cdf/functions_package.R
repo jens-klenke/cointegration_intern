@@ -101,17 +101,17 @@ get_p_value_2 <- function(bh.test, trendtype, test.type, k){
 
 get_p_value <- function(bh.test, trendtype, test.type, k, ...){
     # trendtype = case
-    
-    # getting lambda for p_values
-    lambda_p <- get_lambda(models, trendtype, 'p', 'all')
-    # getting lambda for stat
-    lambda_stat <- get_lambda(models, trendtype, 'stat', test.type)
+
     # getting critical val
     crit_val <- get_critical_val(trendtype, k, test.type)
     
     if (crit_val <= bh.test) {
         p.value <- 1e-12
     }else{
+    # getting lambda for p_values
+    lambda_p <- get_lambda(models, trendtype, 'p', 'all')
+    # getting lambda for stat
+    lambda_stat <- get_lambda(models, trendtype, 'stat', test.type)
     # saving model 
     model <- get_model(trendtype, test.type) 
     # dependent var 

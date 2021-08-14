@@ -208,4 +208,42 @@ plot_p_stat_all <- plot_p_stat(p_value_plots_all)
 
 
 
+# quantile check 
+load('C:\\Users\\Jens-\\Dropbox\\jens\\BayerHanck\\Data_1_m.RData')
+
+
+# getting critical calues
+
+E_J_crit <- models %>%
+    dplyr::filter(test.type == "E_J")  %>%
+    tidyr::unnest(critical) %>%
+    dplyr::select(case, k, crit_val)
+
+all_crit <- models %>%
+    dplyr::filter(test.type == "all")  %>%
+    tidyr::unnest(critical) %>%
+    dplyr::select(case, k, crit_val)
+
+E_J_com <- Data %>%
+    dplyr::select(stat_Fisher_E_J, k, case) %>%
+    left_join(E_J_crit, by = c('case', 'k')) %>%
+    dplyr::group_by(case, k) %>%
+    dplyr::mutate(over = case_when(
+        stat_Fisher_E_J <= crit_val ~ 0,
+        TRUE ~ 1
+    )) %>%
+    dplyr::summarise(across(over, sum)) %>%
+    dplyr::mutate(ratio = over/1000000)
+    
+
+E_J_all <- Data %>%
+    dplyr::select(stat_Fisher_all, k, case) %>%
+    left_join(all_crit, by = c('case', 'k')) %>%
+    dplyr::group_by(case, k) %>%
+    dplyr::mutate(over = case_when(
+        stat_Fisher_all <= crit_val ~ 0,
+        TRUE ~ 1
+    )) %>%
+    dplyr::summarise(across(over, sum)) %>%
+    dplyr::mutate(ratio = over/1000000)
 
