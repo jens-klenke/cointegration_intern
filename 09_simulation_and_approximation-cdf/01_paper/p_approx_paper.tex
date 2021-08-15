@@ -389,12 +389,12 @@ there is no long-run correlation between those variables and the errors
 from the cointegration regression, \(\text{R}^2\) equals zero. Secondly,
 the number of lags is approximated by a finite number \(k\).
 
-Bayer and Hanck's \autocite*{Bayerhanck_2012} meta test considers the
-test statistics of up to four stand-alone tests. Namely, these are the
-tests of \textcite{Englegranger_1987}, \textcite{Johansen_1988},
+Bayer and Hanck's meta test enables the combination of up to four
+stand-alone tests. Namely, these are the tests of
+\textcite{Englegranger_1987}, \textcite{Johansen_1988},
 \textcite{Boswijk_1994} and \textcite{Banerjee_1998}. For the sake of
-brevity the detailed derivation of the underlying tests has been
-deliberately omitted here.
+brevity we will not present a detailed derivation of the underlying
+tests.
 
 \textcite{Englegranger_1987} propose a two-step procedure to test the
 null hypothesis of no cointegration against the alternative of at least
@@ -404,31 +404,35 @@ The obtained residuals \(\hat{u}_t\) are then tested for a unit root.
 For this, Engle and Granger suggest the use of the \(t\)-statistic
 \(t^{\text{ADF}}_\gamma\) in the Augmented Dickey-Fuller (ADF)
 regression: \begin{equation}
-\Delta \hat{u}_t = \gamma \hat{u}_{t-1} + \sum^{k}_{i=1} \pi_i \Delta \hat{u}_{t-i} + \varepsilon_t.
+\Delta \hat{u}_t = \gamma \hat{u}_{t-1} + \sum^{P-1}_{p=1} \nu_p \Delta \hat{u}_{t-p} + \varepsilon_t.
 \label{eq:2}
 \end{equation} The rejection of a unit root points to a cointegration
 relationship.
 
 Johansen's \autocite*{Johansen_1988} maximum eigenvalue test is a
-system-based test that allows for several cointegration relationships.
-Take the vector error correction model (VECM)\footnote{Due to practical
-  reasons we omit the derivation of the VECM which is presumed to be
-  known.} \begin{equation}
-\Delta \mathbf{z}_t = \mathbf{\Pi z}_{t-1} + \sum^{k}_{i = 1} \mathbf{\Gamma}_p \Delta \mathbf{z}_{t-p} + \mathbf{d}_t + \mathbf{\varepsilon}_t.
+system-based test that allows testing for several cointegration
+relationships. Take the vector error correction model (VECM)
+\begin{equation}
+\Delta \mathbf{z}_t = \mathbf{\Pi z}_{t-1} + \sum^{P-1}_{p = 1} \mathbf{\Gamma}_p \Delta \mathbf{z}_{t-p} + \mathbf{d}_t + \mathbf{\varepsilon}_t.
 \label{eq:3}
 \end{equation} We base this test on the test statistic
-\(\lambda_{\text{max}} = -T \ln(1 - \hat{\lambda}_t)\).
-\textcolor{red}{$\pi$-Teil von BH?}
+\(\lambda_{\text{max}}(h) = -T \ln(1 - \hat{\pi}_1)\). \(\hat{\pi}_1\)
+is the largest solution to
+\([\pi \mathbf{S}_{11} - \mathbf{S}_{10} \mathbf{S}_{00}^{-1}\mathbf{S}_{01}] = 0\),
+with the \(\mathbf{S}_{ij}\) being moment matrices of reduced rank
+regression residuals.
 
-The third and fourth test considered are error correction-based. Both
+The third and fourth tests considered are error correction-based. Both
 estimate the equation \begin{equation}
-\Delta y_t = d_t + \pi'_{0x} \Delta x_t + \varphi_0 y_{t-1} + \varphi'_1 x_{t-1} + \sum^P_{p=1} (\pi'_{px} \Delta x_{t-p} + \pi_{py} \Delta y_{t-p})
+\Delta y_t = d_t + \pi'_{0x} \Delta x_t + \varphi_0 y_{t-1} + \varphi'_1 x_{t-1} + \sum^P_{p=1} (\pi'_{px} \Delta x_{t-p} + \pi_{py} \Delta y_{t-p}) + \varepsilon_t
 \label{eq:4}
-\end{equation} by ordinary least squares (OLS). \textcite{Banerjee_1998}
-then test the null of non-cointegration by applying a t-test on
-\(\varphi_0\), i.e.~\(\mathcal{H}_0 : \varphi_0 = 0\)
-\textcolor{red}{?}. \textcite{Boswijk_1994} uses the Wald statistic for
-testing \(\mathcal{H}_0 : (\varphi_0, \phi'_1)' = 0\).
+\end{equation} by ordinary least squares (OLS). \(P\) is chosen so that
+the \(\varepsilon_t\) is approximately white noise.
+\textcite{Banerjee_1998} then test the null of non-cointegration by
+applying a t-test on \(\varphi_0\),
+i.e.~\(\mathcal{H}_0 : \varphi_0 = 0\) \textcolor{red}{?}.
+\textcite{Boswijk_1994} uses the Wald statistic for testing
+\(\mathcal{H}_0 : (\varphi_0, \phi'_1)' = 0\).
 
 To combine the results from the underlying tests Bayer and Hanck draw
 upon Fisher's combined probability test \autocite{Fisher_1932}. It

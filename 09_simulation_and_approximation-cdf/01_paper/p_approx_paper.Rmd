@@ -81,28 +81,28 @@ y_t &= (\mu_2 - \theta' \mu_1) + (\tau_2 - \theta' \tau_1) t + \theta' x_t + u_t
 
 Furthermore, Pesavento introduces two other parameters. First, $\text{R}^2$ measures the squared correlation of $v_{1t}$ and $v_{2t}$. It can be interpreted as the influence of the right-hand side variables in \eqref{eq:12}. It ranks between zero and one. When there is no long-run correlation between those variables and the errors from the cointegration regression, $\text{R}^2$ equals zero. Secondly, the number of lags is approximated by a finite number $k$.
 
-Bayer and Hanck's [-@Bayerhanck_2012] meta test considers the test statistics of up to four stand-alone tests. Namely, these are the tests of @Englegranger_1987, @Johansen_1988, @Boswijk_1994 and @Banerjee_1998. For the sake of brevity the detailed derivation of the underlying tests has been deliberately omitted here. 
+Bayer and Hanck's meta test enables the combination of up to four stand-alone tests. Namely, these are the tests of @Englegranger_1987, @Johansen_1988, @Boswijk_1994 and @Banerjee_1998. For the sake of brevity we will not present a detailed derivation of the underlying tests.
 
 @Englegranger_1987 propose a two-step procedure to test the null hypothesis of no cointegration against the alternative of at least one cointegrating vector. First, the long-run relationship between $y_t$ and $\mathbf{x}_t$ is estimated by least squares regression. The obtained residuals $\hat{u}_t$ are then tested for a unit root. For this, Engle and Granger suggest the use of the $t$-statistic $t^{\text{ADF}}_\gamma$ in the Augmented Dickey-Fuller (ADF) regression:
 \begin{equation}
-\Delta \hat{u}_t = \gamma \hat{u}_{t-1} + \sum^{k}_{i=1} \pi_i \Delta \hat{u}_{t-i} + \varepsilon_t.
+\Delta \hat{u}_t = \gamma \hat{u}_{t-1} + \sum^{P-1}_{p=1} \nu_p \Delta \hat{u}_{t-p} + \varepsilon_t.
 \label{eq:2}
 \end{equation}
 The rejection of a unit root points to a cointegration relationship. 
 
-Johansen's [-@Johansen_1988] maximum eigenvalue test is a system-based test that allows for several cointegration relationships. Take the vector error correction model (VECM)^[Due to practical reasons we omit the derivation of the VECM which is presumed to be known.]
+Johansen's [-@Johansen_1988] maximum eigenvalue test is a system-based test that allows testing for several cointegration relationships. Take the vector error correction model (VECM)
 \begin{equation}
-\Delta \mathbf{z}_t = \mathbf{\Pi z}_{t-1} + \sum^{k}_{i = 1} \mathbf{\Gamma}_p \Delta \mathbf{z}_{t-p} + \mathbf{d}_t + \mathbf{\varepsilon}_t.
+\Delta \mathbf{z}_t = \mathbf{\Pi z}_{t-1} + \sum^{P-1}_{p = 1} \mathbf{\Gamma}_p \Delta \mathbf{z}_{t-p} + \mathbf{d}_t + \mathbf{\varepsilon}_t.
 \label{eq:3}
 \end{equation}
-We base this test on the test statistic $\lambda_{\text{max}} = -T \ln(1 - \hat{\lambda}_t)$. \textcolor{red}{$\pi$-Teil von BH?}
+We base this test on the test statistic $\lambda_{\text{max}}(h) = -T \ln(1 - \hat{\pi}_1)$. $\hat{\pi}_1$ is the largest solution to $[\pi \mathbf{S}_{11} - \mathbf{S}_{10} \mathbf{S}_{00}^{-1}\mathbf{S}_{01}] = 0$, with the $\mathbf{S}_{ij}$ being moment matrices of reduced rank regression residuals.
 
-The third and fourth test considered are error correction-based. Both estimate the equation
+The third and fourth tests considered are error correction-based. Both estimate the equation
 \begin{equation}
-\Delta y_t = d_t + \pi'_{0x} \Delta x_t + \varphi_0 y_{t-1} + \varphi'_1 x_{t-1} + \sum^P_{p=1} (\pi'_{px} \Delta x_{t-p} + \pi_{py} \Delta y_{t-p})
+\Delta y_t = d_t + \pi'_{0x} \Delta x_t + \varphi_0 y_{t-1} + \varphi'_1 x_{t-1} + \sum^P_{p=1} (\pi'_{px} \Delta x_{t-p} + \pi_{py} \Delta y_{t-p}) + \varepsilon_t
 \label{eq:4}
 \end{equation}
-by ordinary least squares (OLS). @Banerjee_1998 then test the null of non-cointegration by applying a t-test on $\varphi_0$, i.e. $\mathcal{H}_0 : \varphi_0 = 0$ \textcolor{red}{?}. @Boswijk_1994 uses the Wald statistic for testing $\mathcal{H}_0 : (\varphi_0, \phi'_1)' = 0$.
+by ordinary least squares (OLS). $P$ is chosen so that the $\varepsilon_t$ is approximately white noise. @Banerjee_1998 then test the null of non-cointegration by applying a t-test on $\varphi_0$, i.e. $\mathcal{H}_0 : \varphi_0 = 0$ \textcolor{red}{?}. @Boswijk_1994 uses the Wald statistic for testing $\mathcal{H}_0 : (\varphi_0, \phi'_1)' = 0$.
 
 To combine the results from the underlying tests Bayer and Hanck draw upon Fisher's combined probability test [@Fisher_1932]. It merges the tests using the formula
 
@@ -113,7 +113,7 @@ To combine the results from the underlying tests Bayer and Hanck draw upon Fishe
 
 where $t_i$ is the $i^{th}$ test statistic. If test $i$ rejects for large values, take $\xi_i := t_i$. If test $i$ rejects for small values, take $-\xi_i := t_i$. With $\Xi_i(x) := \text{Pr}_{\mathcal{H_0}}(\xi_i \geq x)$ the p-value of the $i^{th}$ test is $p_i := \Xi_i(\xi_i)$.
 
-@Fisher_1932 shows that under the assumption of independence the null distribution of $\tilde{\chi}^2_{\mathcal{I}}$ follows a chi-squared distribution with $2\mathcal{I}$ degrees of freedom. If this assumption is violated the null distribution is less evident. Here, the latter case occurs, as the $\xi_i$ are not independent. The $\tilde{\chi}^2_{\mathcal{I}}$, however, have well-defined asymptotic null distributions $F_{\mathcal{F_I}}$, as $\tilde{\chi}^2_{\mathcal{I}} \rightarrow_d \mathcal{F_I}$ under $\mathcal{H}_0$ if $T \rightarrow \infty$, with $\mathcal{F_I}$ some random variable. It is therefore feasible to simulate the joint null distribution of the $\xi_i$ to obtain the distribution $F_{\mathcal{F_I}}$ of \eqref{eq:5}. The $F_{\mathcal{F_I}}$ depend on which and how many tests are combined. The distributions of the $\xi_i$ depend on $K-1$ and the deterministic case.
+Fisher shows that under the assumption of independence the null distribution of $\tilde{\chi}^2_{\mathcal{I}}$ follows a chi-squared distribution with $2\mathcal{I}$ degrees of freedom. If this assumption is violated the null distribution is less evident. Here, the latter case occurs, as the $\xi_i$ are not independent. The $\tilde{\chi}^2_{\mathcal{I}}$, however, have well-defined asymptotic null distributions $F_{\mathcal{F_I}}$, as $\tilde{\chi}^2_{\mathcal{I}} \rightarrow_d \mathcal{F_I}$ under $\mathcal{H}_0$ if $T \rightarrow \infty$, with $\mathcal{F_I}$ some random variable. It is therefore feasible to simulate the joint null distribution of the $\xi_i$ to obtain the distribution $F_{\mathcal{F_I}}$ of \eqref{eq:5}. The $F_{\mathcal{F_I}}$ depend on number and type of the combined tests. The distributions of the $\xi_i$ depend on $K-1$ and the deterministic case.
 
 
 # Simulation
