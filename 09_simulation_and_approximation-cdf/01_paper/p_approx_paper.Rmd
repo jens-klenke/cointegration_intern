@@ -69,25 +69,17 @@ In this paper we approximate the p-values of the meta test by @Bayerhanck_2012 w
 
 
 # Bayer Hanck Test
-The choice as to which of the available cointegration tests to use is a recurrent issue in econometric time series analysis. @Bayerhanck_2012 propose powerful meta tests which provide unambiguous test decisions. They combine several residual- and system-based tests in the manner of Fisher's [-@Fisher_1932] Chi-squared test. 
+The choice as to which of the available cointegration tests to use is an issue in econometric time series analysis. @Bayerhanck_2012 propose powerful meta tests which provide unambiguous test decisions. They combine several residual- and system-based tests in the manner of Fisher's [-@Fisher_1932] Chi-squared test. 
 
-Bayer and Hanck build their paper on previous work from @Pesavento_2004, who defines the underlying model as $z'_t = [x'_t, y_t]$, with $x_t$ being an $n_1 \times 1$ vector and $y_t$ a scalar, which displays the cointegration relation. They can be written as
-
+Bayer and Hanck build on previous work from @Pesavento_2004, who considers the model
 \begin{align}
 \Delta x_t &= \tau_1 + v_{1t} \label{eq:11} \\
-y_t &= (\mu_2 - \gamma' \mu_1) + (\tau_2 - \gamma' \tau_1) t + \gamma' x_t + u_t, \label{eq:12} \\
-u_t &= \rho u_{t-1} + v_{2t}. \label{eq:13}
+y_t &= (\mu_2 - \theta' \mu_1) + (\tau_2 - \theta' \tau_1) t + \theta' x_t + u_t, \label{eq:12} \\
+\text{with } u_t &= \rho u_{t-1} + v_{2t}. \label{eq:13}
 \end{align}
+\eqref{eq:11} represents the regressor dynamics, while \eqref{eq:12} describes the cointegrating relation. The observed sample $\mathbf{z}_0,..., \mathbf{z}_T$ can be written as $\mathbf{z}_t = (\mathbf{x}'_t, y_t)'$.  The deterministic part of the model is described by restrictions on $\mu'_1$, $\mu_2$, $\tau_1$ and $\tau_2$. Consider $\tau = [\tau'_1 \tau_2]'$. Then, these restrictions are (1) $\mu_2 - \theta' \mu_1$ and $\tau = 0$ which translates to no deterministics, (2) $\tau = 0$ which corresponds to a constant in the cointegrating vector, (3) $\tau_2 - \theta' \tau_1 = 0$, a constant plus trend. $v_t = [v'_{1t} v_{2t}]'$ with $\Omega$ the long-run covariance matrix of $v_t$. It can be shown that {$v_t$} satisfies an FCLT, i.e. $T^{-1/2} \sum^{[\cdot T]}_{t=1} v_t \Rightarrow \Omega^{1/2} W(\cdot)$. $W(\lambda)$ is a standard $(n_1 + 1) \times 1$ Brownian motion. It is also assumed that the variables in $x_t$ are not cointegrated. It further follows from \eqref{eq:13} that the vector $\mathbf{z}_t$ is cointegrated if $|\rho| < 1$. Hence the null hypothesis of no cointegration can be formulated as $H_0: p = 1$.
 
-
-$\Delta x_t$ presents the regressor dynamics. $\mu_1$, $\mu_2$, $\tau_1$ and $\tau_2$ are the deterministic parts of the model. They are subject to the following restrictions: (i) $\mu_2 - \gamma' \mu_1$ and $\tau = 0$ which translates to no deterministics, (ii) $\tau = 0$ which corresponds to a constant in the cointegrating vector, (iii) $\tau_2 - \gamma' \tau_1 = 0$, a constant plus trend.
-
-$v_t = [v'_{1t} v_{2t}]'$ with $\Omega$ the long-run covariance matrix of $v_t$. For derivation of $v_t$ see @Pesavento_2004. Pesavento shows that {$v_t$} satisfies an FCLT, i.e. $T^{-1/2} \sum^{[T \cdot]}_{t=1} v_t \Rightarrow \Omega^{1/2} W(\cdot)$. It is further assumed that the $x_t$ are not cointegrated.
-
-It clearly follows from \eqref{eq:13} that $z_t$ is cointegrated if $\rho < 1$. Hence the null hypothesis of no cointegration is $H_0: p = 1$. 
 Furthermore, Pesavento introduces two other parameters. First, $\text{R}^2$ measures the squared correlation of $v_{1t}$ and $v_{2t}$. It can be interpreted as the influence of the right-hand side variables in \eqref{eq:12}. It ranks between zero and one. When there is no long-run correlation between those variables and the errors from the cointegration regression, $\text{R}^2$ equals zero. Secondly, the number of lags is approximated by a finite number $k$.
-
-\textcolor{red}{Assumptions (BH S. 84)?}
 
 Bayer and Hanck's [-@Bayerhanck_2012] meta test considers the test statistics of up to four stand-alone tests. Namely, these are the tests of @Englegranger_1987, @Johansen_1988, @Boswijk_1994 and @Banerjee_1998. For the sake of brevity the detailed derivation of the underlying tests has been deliberately omitted here. 
 
@@ -115,11 +107,11 @@ by ordinary least squares (OLS). @Banerjee_1998 then test the null of non-cointe
 To combine the results from the underlying tests Bayer and Hanck draw upon Fisher's combined probability test [@Fisher_1932]. It merges the tests using the formula
 
 \begin{equation}
-\tilde{\chi}^2_{\mathcal{I}} := -2 \sum_{i \in \mathcal{I}} \ln{(p_i)}. 
+\tilde{\chi}^2_{\mathcal{I}} := -2 \sum_{i \in \mathcal{I}} \ln{(p_i)},
 \label{eq:5}
 \end{equation}
 
-Let $t_i$ be the $i^{th}$ test statistic. If test $i$ rejects for large values, take $\xi_i := t_i$. If test $i$ rejects for small values, take $-\xi_i := t_i$. With $\Xi_i(x) := \text{Pr}_{\mathcal{H_0}}(\xi_i \geq x)$ the p-value of the $i^{th}$ test is $p_i := \Xi_i(\xi_i)$.
+where $t_i$ is the $i^{th}$ test statistic. If test $i$ rejects for large values, take $\xi_i := t_i$. If test $i$ rejects for small values, take $-\xi_i := t_i$. With $\Xi_i(x) := \text{Pr}_{\mathcal{H_0}}(\xi_i \geq x)$ the p-value of the $i^{th}$ test is $p_i := \Xi_i(\xi_i)$.
 
 @Fisher_1932 shows that under the assumption of independence the null distribution of $\tilde{\chi}^2_{\mathcal{I}}$ follows a chi-squared distribution with $2\mathcal{I}$ degrees of freedom. If this assumption is violated the null distribution is less evident. Here, the latter case occurs, as the $\xi_i$ are not independent. The $\tilde{\chi}^2_{\mathcal{I}}$, however, have well-defined asymptotic null distributions $F_{\mathcal{F_I}}$, as $\tilde{\chi}^2_{\mathcal{I}} \rightarrow_d \mathcal{F_I}$ under $\mathcal{H}_0$ if $T \rightarrow \infty$, with $\mathcal{F_I}$ some random variable. It is therefore feasible to simulate the joint null distribution of the $\xi_i$ to obtain the distribution $F_{\mathcal{F_I}}$ of \eqref{eq:5}. The $F_{\mathcal{F_I}}$ depend on which and how many tests are combined. The distributions of the $\xi_i$ depend on $K-1$ and the deterministic case.
 
