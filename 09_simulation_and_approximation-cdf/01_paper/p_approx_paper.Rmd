@@ -216,7 +216,10 @@ It cannot be clearly established why the models' prediction behaves this way. Os
 
 \textcolor{red}{(Jens)}
 
-Technically, the correction for each model was done as follow. For each test configuration and case, the final model -- 6 models in total -- was used to approximate the $p$-values for the test statistic ranging from $1$ to $100$ in $0.1$ jumps. Subsequently, the smallest test statistic was selected where the lower bound ($1e-12$) for the $p$-value was predicted by the model. Thus, a p-value of $< 1e-12$ is automatically predicted for all test statics greater than this critical value in the package.
+Technically, the correction for each model was done as follow. For each test configuration and case, the final model -- 6 models in total -- was used to approximate the $p$-values for the test statistic ranging from $1$ to $100$ in $0.1$ jumps.
+
+To determine the critical value for the beginning of the right tail, above which only a $p$-value of $<1e-12$ is predicted, the value of the test statistic at which the smallest possible $p$-value is predicted for the first time is used. 
+The smallest possible $p$-value in this approximation is $1e-12$, since all smaller values (especially negative ones) are normalized to that value. Thus, the problem that the tails of a polynomial regression usually run to (minus) infinity is avoided. 
 
 
 # Package
