@@ -509,35 +509,30 @@ approach, we deduce the associated null distribution and the p-values.
 \hypertarget{models}{%
 \section{Models}\label{models}}
 
-We now use the generated data for training machine learning algorithms
+We now use the simulated data for training machine learning algorithms
 on predicting the approximated empirical \ac{CDF} of the Bayer Hanck
 test. We work with the values of the test statistic and the number of
-lags \(k\) as predictors. As it is our objective to describe the null
-distribution with a less memory-intensive model we will only consider
-linear methods. For the same objective we compare the models according
-to their in-sample \ac{RMSE}. The threat of overfitting is thus of no
-particular relevance here. For this reason, and to reduce computation
-time, we use no cross-validation.
-
-As the empirical \ac{CDF} is typically known to be curved in an S-shape
-we skip the classic linear regression in favor of a more flexible model.
-We stay with least squares regression, but try various combinations of
-polynomial functions and interaction terms of the aforementioned
-regressors. The search for the best model is carried out via
-brute-force.
+lags \(k\) as predictors. As it was said before, it is our objective to
+describe the null distribution with a less memory-intensive model. We
+will therefore only consider linear methods, as non-linear models
+typically take up too much memory to be suitable for this purpose. For
+the same reason we compare the models according to their in-sample
+\ac{RMSE}. The threat of overfitting is thus of no particular relevance
+here. For this reason, and to reduce computation time, we use no
+cross-validation.
 
 \hypertarget{data-pre-processing}{%
 \subsection{Data Pre-Processing}\label{data-pre-processing}}
 
 One approach for improving a model's predictive ability is the
-pre-processing of the training data. Some models, like linear
-regression, react sensitively to certain characteristics of the
-predictor or response data. Those characteristics include, inter alia,
-distributional skewness and outliers and there exist several methods to
-lower their potentially bad impact on the model's performance.
+pre-processing of the training data. Some models react sensitively to
+certain characteristics of the predictor or response data. Those
+characteristics include, inter alia, distributional skewness and
+outliers and there exist several methods to lower their potentially bad
+impact on the model's performance.
 
 Since we simulated our training data under the null of non-cointegration
-we expect the distribution of the test statistic to be rather right
+we expect the distribution of this test statistic to be rather right
 skewed. \textcolor{red}{Plot} also reveals it to have a long right tail.
 If we train our regression model on this raw data it can possibly have
 difficulties predicting from high values of the test statistic.
@@ -565,12 +560,12 @@ these transformations for the dependent variable. \textcite{Kuhn_2013},
 however, report that it proves as effective for transforming individual
 regressors. We estimate lambda for the values of the test statistics of
 the Bayer-Hanck test and transform them according to \eqref{eq:5}. This
-forces their distribution into a more symmetric form.
+forces their distribution into a more symmetric form, albeit still
+right-tailed.
 
-Since the response variable consists of our p-values, which were
-simulated under the null hypothesis, it follows a uniform distribution
-and is already symmetric. A transformation would therefore not bring any
-apparent advantage. However, we still add a Box-Cox transformed and a
+Since the response variable consists of the p-values, simulated under
+the null hypothesis, it follows a uniform distribution. Therefore, it is
+already symmetric. We still include a Box-Cox transformed and a
 logarithmised version of the response variable to see if it benefits the
 prediction.
 
@@ -582,10 +577,13 @@ as a numeric, so that various transformations can be performed.
 \subsection{Polynomial Regression}\label{polynomial-regression}}
 
 Due to the reasons given above we restrict ourselves to linear models.
-The empirical \ac{CDF}, which we aim to predict, is known to have a
-curved shape. For this reason, a simple linear regression model is very
-unlikely to provide a satisfactory fit to the data. We are in need of a
-more flexible model to predict the response as accurately as possible.
+The empirical \ac{CDF}, which we aim to predict, is typically known to
+have a curved shape. For this reason, a simple linear regression model
+is very unlikely to provide a satisfactory fit to the data. We skip this
+in favor of a more flexible model. We stay with least squares
+regression, but try various combinations of polynomial functions and
+interaction terms of the aforementioned regressors. The search for the
+best model is carried out via brute-force.
 
 Polynomial Regression extends the classic linear regression model by
 fitting a polynomial equation of arbitrary order to the data. A
@@ -604,10 +602,10 @@ parameters with OLS. To potentially increase the predictive performance
 of our model we also add interaction terms and different transformations
 of the regressor \(k\). \textcolor{red}{Appendix} lists all calculated
 models. Since there is no need to prevent overfitting we expect higher
-order polynomials to perform best, as they are highly flexible. These
+order polynomials to perform better, as they are highly flexible. These
 polynomials, however, tend to show a wiggly behaviour at the boundaries.
-This makes extrapolation beyond the limits of our simulated data a risky
-endeavour. We will address and fix this issue later on.
+This makes prediction for more extreme values of the test statistic a
+risky endeavour. We will address and fix this issue later on.
 
 \hypertarget{section}{%
 \subsection{\texorpdfstring{\ac{Lasso}}{}}\label{section}}
@@ -652,14 +650,15 @@ therefore fit a total of \textcolor{red}{Anzahl} models.
 \subsection{Other Regression Models}\label{other-regression-models}}
 
 We also considered various other regression models. For different
-reasons they were not too suitable for our use case. Conventional
+reasons they were not too suitable for our particular case. Conventional
 non-linear methods, like Generalized Additive Models or Multivariate
 Adaptive Regression Splines, might have provided a decent prediction.
-However, the fitted models take up more memory space than the
-aforementioned linear methods. For the same reason refrain from using
-tree based methods. In addition, the latter tend to perform poorly with
-such a small amount of regressors. Given these limitations, we decided
-to stick solely with linear regression models.
+However, the fitted models take up far too much memory space compared to
+the aforementioned linear methods. For the same reason we refrain from
+using tree based methods. Add to that the fact that the latter tend to
+perform poorly with such a small amount of regressors. Given these
+limitations, we stick to our decision to solely work with linear
+regression models.
 
 \hypertarget{model-evaluation}{%
 \section{Model Evaluation}\label{model-evaluation}}
@@ -680,7 +679,8 @@ models are from zero, with lower values preferable. We calculate the
 RMSE for predictions on the full distribution, as well as predictions on
 the lower tail (\(p \leq 0.2\)), as it is more important for the test
 decision of the Bayer-Hanck test. We also add a corrected version of the
-RMSE, cRMSE, where predictions are limited to {[}0, 1{]}.
+RMSE, cRMSE, where predictions are corrected to be within the limited
+interval {[}0, 1{]}.
 
 Table \ref{tab:all_1} lists all variations of the RMSE for the
 calculated polynomial regression models. It becomes apparent that a
