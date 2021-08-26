@@ -721,7 +721,7 @@ face input values located on the far right of the central part of the
 distribution. It cannot be ruled out that the models will fail to make
 sensible predictions for such values of the test statistic.
 
-\ref{fig:fig_3} shows the prediction of the final models for all
+Figure \ref{fig:fig_3} shows the prediction of the final models for all
 underlying tests on a sequence from 1 to 100, representing possible
 values of the test statistic. Surprisingly, in the majority of cases the
 models perform well, with the prediction line taking the expected shape.
@@ -732,14 +732,14 @@ deterministics (Case = 1) and \(k = 3\) and \(k = 4\), respectively.
 \ref{fig:fig_4} shows the same behaviour for the data with Engle-Granger
 and Johansen as underlying tests for all combinations of cases and
 \(k\). Above a certain value of the test statistic the predicted values
-sharply increase, converging \textcolor{red}{(?)} against 1. It should
-be noted that this upper boundary is enforced by our build in correction
-for predicted values outside the interval {[}0, 1{]}. Without this
-intervention the predicted values would probably rise even further. If
-we predict on an extended sequence with no correction, the prediction
-line most likely oscillates above a certain value.
+sharply increase, tending towards 1. It should be noted that this upper
+boundary is enforced by our build in correction for predicted values
+outside the interval {[}0, 1{]}. Without this intervention the predicted
+values would probably rise even further. If we predict on an extended
+sequence with no correction, the prediction line most likely oscillates
+above a certain value.
 
-It cannot be clearly established why the models' prediction behaves this
+There can be several reasons why the models' prediction behaves this
 way. Oscillation at the edges of an interval is a common problem in
 polynomial interpolation, especially when using polynomials of high
 order. Additionally, the distribution of the test statistic in the
