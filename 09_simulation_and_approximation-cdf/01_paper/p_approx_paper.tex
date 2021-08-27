@@ -710,7 +710,7 @@ transformed response variable.
 \subsection{Correction for high values of the test
 statistic}\label{correction-for-high-values-of-the-test-statistic}}
 
-As described in \protect\hyperlink{Simulation}{chapter 3} the data set
+As described in \protect\hyperlink{simulation}{chapter 3} the data set
 used for training the models was simulated under the null hypothesis of
 no cointegration. It should be evident that for this reason most values
 of the test statistic will be comparatively small. Even after its
@@ -780,42 +780,56 @@ higher values of the test statistic is avoided.
 \subsection{Algorithmic
 implementation}\label{algorithmic-implementation}}
 
-Not part of this chapter on package implementation will be the
-calculation of the underlying tests and Bayerhanck statistics, as these
-are already available. The approximation of the \(p\)-value is
-implemented by means of a separate function named
-\texttt{get\_p\_value}, which takes the arguments \texttt{bh.test},
-\texttt{trendtype}, \texttt{test.type}, and \texttt{k}. With
-\texttt{bh.test} specifying the test statistic, \texttt{trendtype} the
-case, \texttt{test.type} which underlying test were used and \texttt{k}
-the number of regressors. The first step within the function is to check
-whether the calculated test statistic is greater than the critical
-value, given the configuration of the test and the parameters. When this
-is the case, a deterministic \(p\)-value of \(<1e-12\) is always
-predicted and the rest of the approximation process is skipped. However,
-if this is not the case -- i.e., the test statistic is less than the
-critical value -- the actual approximation of the function is now
-performed.
+Since the corrected models seem to provide a reliable prediction of the
+p-values we will include them in our pre-existing R-package
+\texttt{bayerhanck}. The package is currently hosted on GitHub and can
+be installed directly. Up to now the release on CRAN has not been
+possible as packages must have a maximum size of 5MB. Our package,
+however, has a size of 12.2MB, far exceeding the specified limit. A
+large part of this can be attributed to the attached data, namely the
+critical values and the full null distributions. We plan on replacing
+these with our models to reduce the size of the package significantly.
 
-All required data and models are organized in the tibble
-\texttt{models}, which contains the \texttt{test.type}, the
-\texttt{trendtype}, the \texttt{models}, the \(\lambda\) value for the
-box-cox transformation for the test statistic and the \(p\)-value, and
-the \texttt{critical\ value}. In order to perform the approximation, we
-first need the \(\lambda\) parameters for the two transformation of the
-test statistic and the \(p\)-value for the corresponding configuration
-of the test performed. In the next step the corresponding model is
-selected. Before we can perform the estimation we have to merge the
-passed variables, e.g.~\texttt{bh.test} and \texttt{k}, into a data
-frame and then additionally include them as a box-cox transformation.
+We will not go into detail on the general implementation of the
+\texttt{bayerhanck} package, e.g.~the calculation of the underlying
+tests. First, we created a nested \texttt{tibble}, a more efficient
+version of R's traditional \texttt{data.frame}, called \texttt{models},
+which contains the final (uncorrected) models, the \(\lambda\) for the
+Box-Cox transformation of both the test statistic and the predicted
+p-value, as well as the critical values for the correction of the
+prediction of high values of the test statistic (see
+\protect\hyperlink{correction-for-high-values-of-the-test-statistic}{chapter
+5.2}). All objects and values can be selected according to their test-
+and trendtype.
 
-Now we can do the p-value approximation using the appropriate model. If
-the response variable was box-cox transformed in the model, the variable
-is transformed back in the next step. The last step in the algorithm is
-to keep the estimated p-value within the theoretical limits of 0 and 1.
-If a p-value of 0 or a negative value is predicted, it is transformed to
-\(< 1e-12\) as in the correction before. For values above 1, it is set
-to \(9.9999e-1\).
+In the package the Bayerhanck test is performed by calling the function
+\texttt{bayerhanck()}. First of all, this calculates the test statistic
+of the aforementioned test and it's p-value. Formerly, this relied
+heavily on the attached critical values and null distributions. Now,
+\texttt{bayerhanck()} calls the internal function
+\texttt{get\_p\_value()}, which approximates the p-value with our
+polynomial regression models.
+
+The function \texttt{get\_p\_value()} takes most of its function
+arguments from the outer function \texttt{bayerhanck()}. Firstly, it
+accesses \texttt{models} to obtain the critical value from
+\protect\hyperlink{correction-for-high-values-of-the-test-statistic}{chapter
+5.2}, given the configuration of the test and further parameters in the
+function arguments. It then differentiates if the calculated test
+statistic lies beneath or above this critical value. In the latter case
+it skips the following steps and directly outputs a p-value of
+\(1e-12\). If the test statistic lies beneath the critical value the
+p-value will be predicted with a polynomial regression model. For this,
+the value of the test statistic is transformed according to \ref{eq:6}
+with its associated \(\lambda\) from \texttt{models}. The corresponding
+model is selected to perform the estimation of the p-value, based on the
+transformed test statistic and \(k\) as regressors. If the response
+variable underwent a Box-Cox transformation in the initial fitting of
+the model, the newly predicted response is transformed back as a next
+step. Lastly, the algorithm keeps the estimated p-value within the
+theoretical boundaries of 0 and 1. If a p-value \(\leq 0\) is predicted,
+its is corrected to \(1e-12\). For values \(> 1\), it is set to
+\(9.9999e-1\).
 
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
