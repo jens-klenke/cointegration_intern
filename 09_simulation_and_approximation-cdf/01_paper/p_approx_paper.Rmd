@@ -58,6 +58,24 @@ best_5_table_paper <- function(data){
         dplyr::slice_min(RMSE_cor_0.2, n = 5)%>%
         dplyr::select(-c(formula, expo, model))
 }
+
+final_models_paper <- function() {
+    final_models_min <- function(data){
+        data %>%
+            dplyr::slice_min(RMSE_cor_0.2, n = 1) %>%
+            dplyr::select(-c(formula, expo, model))
+    }
+    bind_rows(
+        final_models_min(table_all_case_1), 
+        final_models_min(table_all_case_2),
+        final_models_min(table_all_case_3),
+        final_models_min(table_E_J_case_1),
+        final_models_min(table_E_J_case_2),
+        final_models_min(table_E_J_case_3)
+    ) %>% dplyr::mutate(`test type` = rep(c("all", "EJ"), each = 3), 
+                        case = rep(1:3, 2), 
+                        .before = calls)
+}
 ```
 
 # Introduction
@@ -201,7 +219,20 @@ To measure the performance of our regression models we calculate their in-sample
 
 Table \ref{tab:all_1} lists all variations of the RMSE for the calculated polynomial regression models. It becomes apparent that a combination of higher order polynomials, dummy variables and interaction terms indeed achieves superior results compared to simpler models. For all variations of the RMSE the best models require a polynomial of minimum grade 12. That was to be expected, considering we are optimising an in-sample fit. The transformation of the response variable only seems to play a minor role in prediction accuracy. Interestingly, there are no major differences in model selection depending on the variation of the RMSE used. Table \ref{tab:5_best_all_1} lists the five best models for each case and test type. 
 
-For the above-mentioned reasons we choose the final models according to the cRMSE on the left tail of the distribution of the p-values. \textcolor{red}{Grafik mit den 6 final models}. It is apparent that the functional forms look very similar over all cases, mostly using the highest order polynomial available^[We are well aware of the fact that this represents a corner solution. Since we are optimising the models on the in-sample RMSE, however, we could continue adding higher order polynomials forever to improve the fit. As we are already tweaking on the fifth decimal place we decided to not further pursue this procedure.]. Furthermore, five out of six models use the Box-Cox transformed response variable. 
+```{r 6_final_models, echo = FALSE, warning = FALSE, message = FALSE}
+
+final_models_paper() %>%
+    dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
+    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Type', 'Case', 'Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
+             row.names = FALSE, escape = FALSE,
+              caption= '\\label{tab:6_final_models} The final models, selected according to the lowest cRMSE for the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'ccrrrrr') %>%
+    column_spec(1:2, width = "0.5cm") %>%
+    column_spec(4:7, width = "1.4cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size = 10) %>%
+  add_header_above(c("", "", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+```
+
+For the above-mentioned reasons we choose the final models according to the cRMSE on the left tail of the distribution of the p-values (see Table \ref{tab:6_final_models}). It is apparent that the functional forms look very similar over all cases, mostly using the highest order polynomial available^[We are well aware of the fact that this represents a corner solution. Since we are optimising the models on the in-sample RMSE, however, we could continue adding higher order polynomials forever to improve the fit. As we are already tweaking on the fifth decimal place we decided to not further pursue this procedure.]. Furthermore, five out of six models use the Box-Cox transformed response variable. 
 
 ## Correction for high values of the test statistic
 As described in [chapter 3](#simulation) the data set used for training the models was simulated under the null hypothesis of no cointegration. It should be evident that for this reason most values of the test statistic will be comparatively small. Even after its transformation the distribution of the test statistic has a longer right tail, i.e. there exist few high values. When using the models within a software package, as originally intended, it is likely that they will face input values located on the far right of the distribution. It cannot be ruled out that the models will fail to make sensible predictions for such values of the test statistic. 

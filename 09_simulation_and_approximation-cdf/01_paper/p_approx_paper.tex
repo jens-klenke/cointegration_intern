@@ -695,16 +695,37 @@ major differences in model selection depending on the variation of the
 RMSE used. Table \ref{tab:5_best_all_1} lists the five best models for
 each case and test type.
 
+\begin{table}[!h]
+
+\caption{\label{tab:6_final_models}\label{tab:6_final_models} The final models, selected according to the lowest cRMSE for the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{>{\centering\arraybackslash}p{0.5cm}>{\centering\arraybackslash}p{0.5cm}r>{\raggedleft\arraybackslash}p{1.4cm}>{\raggedleft\arraybackslash}p{1.4cm}>{\raggedleft\arraybackslash}p{1.4cm}>{\raggedleft\arraybackslash}p{1.4cm}}
+\toprule
+\multicolumn{1}{c}{\textbf{}} & \multicolumn{1}{c}{\textbf{}} & \multicolumn{1}{c}{\textbf{}} & \multicolumn{2}{c}{\textbf{Full Distribution}} & \multicolumn{2}{c}{\textbf{Lower Tail ($p \leq 0.2$)}} \\
+\cmidrule(l{3pt}r{3pt}){4-5} \cmidrule(l{3pt}r{3pt}){6-7}
+Type & Case & Model & RMSE & cRMSE & RMSE & cRMSE\\
+\midrule
+\rowcolor{gray!6}  all & 1 & $p = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 1.79e-04 & 1.73e-04 & 1.73e-04 & 1.71e-04\\
+all & 2 & $\bc(p) = c + \poly\left( \bc(t), 12 \right) * k\_d$ & 2.05e-04 & 2.02e-04 & 2.15e-04 & 2.11e-04\\
+\rowcolor{gray!6}  all & 3 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 1.92e-04 & 1.86e-04 & 2.02e-04 & 1.95e-04\\
+EJ & 1 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 1.40e-04 & 1.40e-04 & 1.48e-04 & 1.48e-04\\
+\rowcolor{gray!6}  EJ & 2 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 1.57e-04 & 1.56e-04 & 1.64e-04 & 1.63e-04\\
+EJ & 3 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 1.45e-04 & 1.45e-04 & 1.53e-04 & 1.52e-04\\
+\bottomrule
+\end{tabular}
+\end{table}
+
 For the above-mentioned reasons we choose the final models according to
-the cRMSE on the left tail of the distribution of the p-values.
-\textcolor{red}{Grafik mit den 6 final models}. It is apparent that the
-functional forms look very similar over all cases, mostly using the
-highest order polynomial available\footnote{We are well aware of the
-  fact that this represents a corner solution. Since we are optimising
-  the models on the in-sample RMSE, however, we could continue adding
-  higher order polynomials forever to improve the fit. As we are already
-  tweaking on the fifth decimal place we decided to not further pursue
-  this procedure.}. Furthermore, five out of six models use the Box-Cox
+the cRMSE on the left tail of the distribution of the p-values (see
+Table \ref{tab:6_final_models}). It is apparent that the functional
+forms look very similar over all cases, mostly using the highest order
+polynomial available\footnote{We are well aware of the fact that this
+  represents a corner solution. Since we are optimising the models on
+  the in-sample RMSE, however, we could continue adding higher order
+  polynomials forever to improve the fit. As we are already tweaking on
+  the fifth decimal place we decided to not further pursue this
+  procedure.}. Furthermore, five out of six models use the Box-Cox
 transformed response variable.
 
 \hypertarget{correction-for-high-values-of-the-test-statistic}{%
