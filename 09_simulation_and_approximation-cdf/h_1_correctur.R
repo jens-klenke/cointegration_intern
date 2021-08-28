@@ -12,7 +12,7 @@ load(here::here('09_simulation_and_approximation-cdf/models.RData'))
 load(here::here('09_simulation_and_approximation-cdf/H_1-values.RData'))
 
 # parallel 
-plan(multisession, workers = 3)
+plan(multisession, workers = 4)
 
 # functions 
 critical_fun <- function(case_s, test_s){
