@@ -247,12 +247,25 @@ There can be several reasons why the models' prediction behaves this way. Oscill
 
 From this it appears that there is a need for either more reliable models or further correction of the prediction from the existing models. One possible solution might be the re-estimation of our models using splines. In theory, those lead to similar results while being less prone to oscillation at the tails. Another approach is to determine a critical value of the test statistic whereby every exceeding value is automatically assigned a low p-value. Due to the former approach being very time-consuming we decided to try the last one. 
 
-```{r , p_stat_e_j_k.1, echo = FALSE, fig.cap = " \\label{fig:e_j_k.1} Corrected (blue) and uncorrected (red) $p$-value predictions for all cases and K = 1, using Engle-Granger and Johansen as underlying tests.", fig.height = 1.75}
-plot_p_stat_e_j_k.1
+```{r , p_stat__k.2, echo = FALSE, fig.cap = " \\label{fig:e_j_k.1} Corrected (blue) and uncorrected (red) $p$-value predictions for all cases and K = 1, using Engle-Granger and Johansen and all as underlying tests.", fig.height = 3.5}
+
+legend <- cowplot::get_legend(
+    # create some space to the left of the legend
+    plot_p_stat_all_k.2 + theme(legend.box.margin = margin(0, 0, 0, 12),
+                                legend.position = "bottom")
+)
+
+
+cowplot::plot_grid(plot_p_stat_all_k.2 + theme(legend.position="none"), 
+                   plot_p_stat_e_j_k.2 + theme(legend.position="none"), 
+                   legend,
+                   ncol = 1, 
+                   labels = c('All', 'E_J'),
+                   label_colour = "#004c93",
+                   rel_heights = c(1, 1, .1))
 ```
 
 To find a suitable value of the test statistic, which we can use as the critical value, we observe \textcolor{red}{(Grafik)}. Regarding the curve of the predicted p-values it could be an attempt at a solution to take the value of the test statistic with the lowest p-value and use this as our critical value. We do this for all combinations of the test type, cases and $k$s. The resulting values range between 36 and 44 for the EJ combination and 55 and 80 for all combinations respectively. It is safe to say that these values lie far from the lower tail of the test statistics where the test decision is taken. Graphically it can also be assumed that our approach suffices for our purposes without any unintended side-effects. Thus, the problem of erratic behaviour for higher values of the test statistic is avoided.
-
 
 # Package
 

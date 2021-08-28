@@ -36,9 +36,10 @@ p_value_plots_all <- p_value_test_fun('all')
 plot_p_stat_e_j <- plot_p_stat(p_value_plots_e_j)
 plot_p_stat_all <- plot_p_stat(p_value_plots_all)
 
-plot_p_stat_e_j_k.1 <- plot_p_stat_k.1(p_value_plots_e_j)
+plot_p_stat_e_j_k.2 <- plot_p_stat_k.2(p_value_plots_e_j)
+plot_p_stat_all_k.2 <- plot_p_stat_k.2(p_value_plots_all)
 
 #-- saving plots ----
 save(p.sim_p.aprox_all, p.sim_p.aprox_all_0.2, p.sim_p.aprox_e_j, p.sim_p.aprox_e_j_0.2,
-     plot_p_stat_e_j, plot_p_stat_all, plot_p_stat_e_j_k.1,
+     plot_p_stat_e_j, plot_p_stat_all, plot_p_stat_e_j_k.2, plot_p_stat_all_k.2,
      file = here::here('09_simulation_and_approximation-cdf/01_paper/paper_plots.RData'))

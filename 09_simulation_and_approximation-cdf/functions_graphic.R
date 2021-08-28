@@ -106,13 +106,13 @@ plot_p_stat <-function(data){
 }
 
 
-plot_p_stat_k.1 <-function(data){
+plot_p_stat_k.2 <-function(data){
     data %>%
         tidyr::pivot_longer(cols = c(p_value, p_value_2), names_to =  c('variable')) %>%
         dplyr::mutate(k = factor(k, labels = c('K = 1', 'K = 2', 'K = 3', 'K = 4', 'K = 5', 'K = 6',
                                                'K = 7', 'K = 8', 'K = 9', 'K = 10', 'K = 11')),
                       case = factor(trendtype, labels = c('Case = 1', 'Case = 2', 'Case = 3'))) %>%
-        dplyr::filter(k == 'K = 1') %>%
+        dplyr::filter(k == 'K = 2') %>%
         ggplot2::ggplot(aes(x = test_stat, y = value, colour = variable)) +
         geom_line(size = 0.5) +
         theme_bw() + 

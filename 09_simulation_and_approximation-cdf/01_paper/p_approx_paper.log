@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.8.28)  28 AUG 2021 21:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.8.28)  28 AUG 2021 23:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **p_approx_paper.tex
 (./p_approx_paper.tex
 LaTeX2e <2021-06-01> patch level 1
-L3 programming layer <2021-07-12> (c:/texlive/2021/texmf-dist/tex/latex/base/ar
+L3 programming layer <2021-08-27> (c:/texlive/2021/texmf-dist/tex/latex/base/ar
 ticle.cls
 Document Class: article 2021/02/12 v1.4n Standard LaTeX document class
 (c:/texlive/2021/texmf-dist/tex/latex/base/size12.clo
@@ -1208,15 +1208,15 @@ Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
 Package biblatex Info: Document encoding is UTF8 ....
 (c:/texlive/2021/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2021-07-12 L3 programming layer (loader) 
+Package: expl3 2021-08-27 L3 programming layer (loader) 
 )
 Package biblatex Info: ... and expl3
-(biblatex)             2021-07-12 L3 programming layer (loader) 
+(biblatex)             2021-08-27 L3 programming layer (loader) 
 (biblatex)             is new enough (at least 2020/04/06),
 (biblatex)             setting 'casechanger=expl3'.
 (c:/texlive/2021/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty (c:/texlive/2
 021/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-Package: xparse 2021-08-04 L3 Experimental document command parser
+Package: xparse 2021-08-27 L3 Experimental document command parser
 )
 Package: blx-case-expl3 2020/12/31 v3.16 expl3 case changing code for biblatex
 )
@@ -1496,17 +1496,17 @@ Overfull \hbox (38.2879pt too wide) in paragraph at lines 703--717
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [8] [9]
-<p_approx_paper_files/figure-latex/p_stat_e_j_k.1-1.pdf, id=325, 469.755pt x 12
-6.4725pt>
-File: p_approx_paper_files/figure-latex/p_stat_e_j_k.1-1.pdf Graphic file (type
- pdf)
-<use p_approx_paper_files/figure-latex/p_stat_e_j_k.1-1.pdf>
-Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat_e_j_k.1-1.pdf
-  used on input line 795.
-(pdftex.def)             Requested size: 384.11208pt x 103.41478pt.
-[10] [11 <./p_approx_paper_files/figure-latex/p_stat_e_j_k.1-1.pdf>] [12]pdfTeX
- warning (ext4): destination with the same identifier (name{page.III}) has been
- already used, duplicate ignored
+<p_approx_paper_files/figure-latex/p_stat__k.2-1.pdf, id=325, 469.755pt x 252.9
+45pt>
+File: p_approx_paper_files/figure-latex/p_stat__k.2-1.pdf Graphic file (type pd
+f)
+<use p_approx_paper_files/figure-latex/p_stat__k.2-1.pdf>
+Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat__k.2-1.pdf  u
+sed on input line 795.
+(pdftex.def)             Requested size: 384.11208pt x 206.82957pt.
+[10] [11 <./p_approx_paper_files/figure-latex/p_stat__k.2-1.pdf>] [12]pdfTeX wa
+rning (ext4): destination with the same identifier (name{page.III}) has been al
+ready used, duplicate ignored
 <to be read again> 
                    \relax 
 l.881 \cleardoublepage
@@ -1775,7 +1775,7 @@ Overfull \hbox (3.70128pt too wide) in alignment at lines 2618--2649
  []
 
 [58] [59] [60] [61] [62] [63] [64] [65]
-<p_approx_paper_files/figure-latex/approx_sim-all-1.pdf, id=702, 469.755pt x 57
+<p_approx_paper_files/figure-latex/approx_sim-all-1.pdf, id=703, 469.755pt x 57
 8.16pt>
 File: p_approx_paper_files/figure-latex/approx_sim-all-1.pdf Graphic file (type
  pdf)
@@ -1794,7 +1794,7 @@ ifier (name{figure.1}) has been already used, duplicate ignored
                    \relax 
 l.2659 underlying tests.}
                           [66]
-<p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf, id=707, 469.755pt 
+<p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf, id=708, 469.755pt 
 x 578.16pt>
 File: p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf Graphic file (
 type pdf)
@@ -1803,7 +1803,7 @@ Package pdftex.def Info: p_approx_paper_files/figure-latex/approx_sim-all_0.2-1
 .pdf  used on input line 2664.
 (pdftex.def)             Requested size: 469.4743pt x 577.81451pt.
 [67 <./p_approx_paper_files/figure-latex/approx_sim-all-1.pdf>]
-<p_approx_paper_files/figure-latex/p_stat_all-1.pdf, id=717, 469.755pt x 578.16
+<p_approx_paper_files/figure-latex/p_stat_all-1.pdf, id=718, 469.755pt x 578.16
 pt>
 File: p_approx_paper_files/figure-latex/p_stat_all-1.pdf Graphic file (type pdf
 )
@@ -1812,7 +1812,7 @@ Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat_all-1.pdf  us
 ed on input line 2672.
 (pdftex.def)             Requested size: 469.4743pt x 577.81451pt.
 [68 <./p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf>]
-<p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf, id=727, 469.755pt x 578.16
+<p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf, id=728, 469.755pt x 578.16
 pt>
 File: p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf Graphic file (type pdf
 )
@@ -1835,10 +1835,10 @@ Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 25029 strings out of 478542
- 417292 string characters out of 5854402
- 1664904 words of memory out of 5000000
- 42043 multiletter control sequences out of 15000+600000
+ 25029 strings out of 478599
+ 417271 string characters out of 5858101
+ 1664815 words of memory out of 5000000
+ 41986 multiletter control sequences out of 15000+600000
  512773 words of font info for 217 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  60i,13n,77p,944b,6863s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1865,10 +1865,10 @@ c/lm/lmri12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c
 f-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/
 public/lm/lmtt12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/sy
 mbols/msbm10.pfb>
-Output written on p_approx_paper.pdf (87 pages, 1180005 bytes).
+Output written on p_approx_paper.pdf (87 pages, 1182827 bytes).
 PDF statistics:
- 894 PDF objects out of 1000 (max. 8388607)
- 740 compressed objects within 8 object streams
+ 895 PDF objects out of 1000 (max. 8388607)
+ 741 compressed objects within 8 object streams
  197 named destinations out of 1000 (max. 500000)
  59637 words of extra memory for PDF output out of 61914 (max. 10000000)
 
