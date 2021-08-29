@@ -50,8 +50,10 @@ source(here::here('01_code/packages/packages.R'))
 # load metrics
 load(here::here('09_simulation_and_approximation-cdf/server_results.RData'))
 
-# pre rendered plot
+# pre rendered plots
 load(file = here::here('09_simulation_and_approximation-cdf/01_paper/paper_plots.RData'))
+load(file = here::here('09_simulation_and_approximation-cdf/01_paper/density_plots.RData'))
+
 
 best_5_table_paper <- function(data){
     data%>%
@@ -166,6 +168,16 @@ y^{(\lambda)} =
 
 It is visible from \eqref{eq:6} that @Boxcox_1964 developed these transformations for the dependent variable. @Kuhn_2013, however, report that it proves as effective for transforming individual regressors. We estimate lambda for the values of the test statistics of the Bayer-Hanck test and transform them according to \eqref{eq:5}. This forces their distribution into a more symmetric form, albeit still right-tailed. 
 
+```{r , density_plots, echo = FALSE, fig.cap = " \\label{fig:density} Untransformed and Box-Cox-transformed density of the test statistic for test types all and EJ.", fig.height = 3.5}
+
+cowplot::plot_grid(dense_all, 
+                   dense_EJ, 
+                   ncol = 1, 
+                   labels = c('All', 'EJ'),
+                   label_colour = "#004c93",
+                   rel_heights = c(1, 1, .1))
+```
+
 Since the response variable consists of the p-values, simulated under the null hypothesis, it follows a uniform distribution. Therefore, it is already symmetric. We still include a Box-Cox transformed and a logarithmised version of the response variable to see if it benefits the prediction. 
 
 We also include various variations of the actual categorical variable $k$. It is firstly decomposed into dummy variables and secondly recode as a numeric, so that various transformations can be performed.
@@ -260,7 +272,7 @@ cowplot::plot_grid(plot_p_stat_all_k.2 + theme(legend.position="none"),
                    plot_p_stat_e_j_k.2 + theme(legend.position="none"), 
                    legend,
                    ncol = 1, 
-                   labels = c('All', 'E_J'),
+                   labels = c('All', 'EJ'),
                    label_colour = "#004c93",
                    rel_heights = c(1, 1, .1))
 ```
