@@ -471,20 +471,18 @@ As described in the previous section we can simulate the joint null
 distribution of the \(\xi_i\) and by this allow conclusions on the null
 distribution of the Bayer Hanck test. In this section, we describe our
 simulation approach, which generates a large number of values of the
-test statistic of the Bayer Hanck test. As mentioned earlier it is a
-further objective to obtain sufficient data for subsequently training
-machine learning algorithms on approximating the p-values of the
-aforementioned test.
+test statistic of said test. We want to obtain a sufficient amount of
+data to train machine learning algorithms on approximating the p-values
+of the test.
 
-In the later implementation phase of the package we plan on allowing to
-choose between two different combinations of the underlying tests.
-Namely, these will be a combination of the tests of Engle-Granger and
-Johansen and a combination of all possible underlying tests. We
-therefore calculate two different variables of the test statistic of the
-meta test. We also account for the above-mentioned restrictions on the
-deterministic parts of the model by generating three different data
-sets, each being based on the different associated data generating
-process.
+In the implementation phase of the package we plan on allowing the user
+to choose between two different combinations of the underlying tests.
+These will be a combination of the tests of Engle-Granger and Johansen
+(EJ) and a combination of all possible underlying tests (all). Thus, we
+calculate \eqref{eq:5} twice, with a different selection of \(\xi_i\).
+We account for the above-mentioned restrictions on the deterministic
+part of the model by slightly adjusting the underlying process in each
+case. Hence, we generate three different data sets.
 
 The following approach relies largely on previous work by
 \textcite{Pesavento_2004}. It can be shown that the asymptotic null
@@ -492,19 +490,19 @@ distributions of the underlying tests are functions of standard Brownian
 motions. We construct this by step functions using Gaussian random walk
 of size \(N = 1000\). The number of repetitions is set to 1,000,000.
 Moreover, we consider \(\text{R}^2 \in \{0, 0.05, 0.1, ..., 0.95\}\) and
-the maximum number of lags \(K = 11\). Pesavento further introduces the
-local-to-unity parameter \(c:= T(\rho-1)\). Clearly, for negative values
-of \(c\) the variables are cointegrated, while for \(c = 0\) there is no
-cointegration. Since we solely aim at simulating the distribution under
-the null hypothesis of no cointegration we will not consider other
-values different from \(c = 0\) here.
+the number of lags \(\{k \in \mathbb{Z}: 1 \leq k \leq 11\}\). Pesavento
+further introduces the local-to-unity parameter \(c:= T(\rho-1)\). For
+negative values of \(c\) the variables are cointegrated, while for
+\(c = 0\) there is no cointegration. Since we solely aim at simulating
+the distribution under the null hypothesis of no cointegration we will
+not consider other values different from \(c = 0\).
 
 To calculate the \(\tilde{\chi}^2_{\mathcal{I}}\) we require the
 p-values of the underlying tests. For this, we build the \ac{CDF} of
 each underlying test for the three different data sets and calculate the
-respective p-values. These are inserted into \eqref{eq:5} to eventually
-obtain the Bayer Hanck test statistic. Analogous to the previous
-approach, we deduce the associated null distribution and the p-values.
+respective p-values. These are inserted into \eqref{eq:5} to obtain the
+Bayer Hanck test statistic. Analogous to the previous approach, we
+deduce the associated null distribution and the p-values.
 
 \hypertarget{models}{%
 \section{Models}\label{models}}
