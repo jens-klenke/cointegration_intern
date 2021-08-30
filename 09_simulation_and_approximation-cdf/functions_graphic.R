@@ -6,12 +6,38 @@ own_plot <- function(data, max_graph = 1){
                                                'K = 7', 'K = 8', 'K = 9', 'K = 10', 'K = 11')),
                       case = factor(trendtype, labels = c('Case = 1', 'Case = 2', 'Case = 3'))) %>%
         ggplot(aes(x = p_value_Fisher, y = PRED)) +
-        geom_line(color = '#004c93') +
+        geom_point(color = '#004c93', size = 0.5, alpha = 0.8) +
         xlim(c(0, max_graph))+
         ylim(c(0, max_graph))+
         labs(x = '\n Simulated p-values', y = 'Approximated p-values \n')+
         theme_bw()+
         facet_grid(k ~ case)+
+        scale_x_continuous(sec.axis = sec_axis(~.*10)) +
+        scale_y_continuous(sec.axis = sec_axis(~.*10), 
+                           breaks = seq(0, 1, 0.5)) +
+        theme(panel.spacing = unit(1, "lines"),
+              strip.background = element_rect(colour = 'black',
+                                              fill = '#004c93'),
+              strip.text.x = element_text(color = 'white'), 
+              strip.text.y = element_text(color = 'white'), 
+              axis.ticks.y.right = element_line(colour = 'white'), 
+              axis.text.y.right =  element_text(colour = "white"),
+              axis.ticks.x.top = element_line(colour = 'white'), 
+              axis.text.x.top =  element_text(colour = "white")
+        )
+}
+
+own_plot_k1 <- function(data, max_graph = 1){
+    data %>% 
+        dplyr::filter(k == 1) %>%
+        dplyr::mutate(case = factor(trendtype, labels = c('Case = 1', 'Case = 2', 'Case = 3'))) %>%
+        ggplot(aes(x = p_value_Fisher, y = PRED)) +
+        geom_point(color = '#004c93', size = 0.5, alpha = 0.8) +
+        xlim(c(0, max_graph))+
+        ylim(c(0, max_graph))+
+        labs(x = '\n Simulated p-values', y = 'Approximated p-values \n')+
+        theme_bw()+
+        facet_grid(~ case)+
         scale_x_continuous(sec.axis = sec_axis(~.*10)) +
         scale_y_continuous(sec.axis = sec_axis(~.*10), 
                            breaks = seq(0, 1, 0.5)) +
@@ -34,12 +60,40 @@ own_plot_0.2 <- function(data, max_graph = 0.2){
                       case = factor(trendtype, labels = c('Case = 1', 'Case = 2', 'Case = 3'))) %>%
         dplyr::filter(p_value_Fisher <= 0.2) %>%
         ggplot(aes(x = p_value_Fisher, y = PRED)) +
-        geom_line(color = '#004c93') +
+        geom_point(color = '#004c93', size = 0.5, alpha = 0.8) +
         xlim(c(0, max_graph))+
         ylim(c(0, max_graph))+
         labs(x = '\n Simulated p-values', y = 'Approximated p-values \n')+
         theme_bw()+
         facet_grid(k ~ case) +
+        scale_x_continuous(sec.axis = sec_axis(~.*10),
+                           breaks = seq(0, 1, 0.1)) +
+        scale_y_continuous(sec.axis = sec_axis(~.*10), 
+                           breaks = seq(0, 1, 0.1)) +
+        theme(panel.spacing = unit(1, "lines"),
+              strip.background = element_rect(colour = 'black',
+                                              fill = '#004c93'),
+              strip.text.x = element_text(color = 'white'), 
+              strip.text.y = element_text(color = 'white'), 
+              axis.ticks.y.right = element_line(colour = 'white'), 
+              axis.text.y.right =  element_text(colour = "white"),
+              axis.ticks.x.top = element_line(colour = 'white'), 
+              axis.text.x.top =  element_text(colour = "white")
+        )
+}
+
+own_plot_0.2_k1 <- function(data, max_graph = 0.2){
+    data %>% 
+        dplyr::filter(k == 1) %>%
+        dplyr::mutate(case = factor(trendtype, labels = c('Case = 1', 'Case = 2', 'Case = 3'))) %>%
+        dplyr::filter(p_value_Fisher <= 0.2) %>%
+        ggplot(aes(x = p_value_Fisher, y = PRED)) +
+        geom_point(color = '#004c93', size = 0.5, alpha = 0.8) +
+        xlim(c(0, max_graph))+
+        ylim(c(0, max_graph))+
+        labs(x = '\n Simulated p-values', y = 'Approximated p-values \n')+
+        theme_bw()+
+        facet_grid(~ case) +
         scale_x_continuous(sec.axis = sec_axis(~.*10),
                            breaks = seq(0, 1, 0.1)) +
         scale_y_continuous(sec.axis = sec_axis(~.*10), 
@@ -137,3 +191,4 @@ plot_p_stat_k.2 <-function(data){
               axis.text.x.top =  element_text(colour = "white")
         )
 }
+

@@ -137,9 +137,9 @@ Fisher shows that under the assumption of independence the null distribution of 
 
 
 # Simulation
-As described in the previous section we can simulate the joint null distribution of the $\xi_i$ and by this allow conclusions on the null distribution of the Bayer Hanck test. In this section, we describe our simulation approach, which generates a large number of values of the test statistic of said test. We want to obtain a sufficient amount of data to train machine learning algorithms on approximating the p-values of the test. 
+As described in the previous section we can simulate the joint null distribution of the $\xi_i$ and by this allow conclusions on the null distribution of the Bayer Hanck test. In this section, we describe our simulation approach, which generates a large number of test statistics of said test. We want to obtain a sufficient amount of data to train machine learning algorithms on approximating the p-values of the test. 
 
-In the implementation phase of the package we plan on allowing the user to choose between two different combinations of the underlying tests. These will be a combination of the tests of Engle-Granger and Johansen (EJ) and a combination of all possible underlying tests (all). Thus, we calculate \eqref{eq:5} twice, with a different selection of $\xi_i$. We account for the above-mentioned restrictions on the deterministic part of the model by slightly adjusting the underlying process in each case. Hence, we generate three different data sets.
+In the implementation phase of the package we plan on allowing the user to choose between two different combinations of the underlying tests. These will be a combination of the tests of Engle-Granger and Johansen (EJ) and a combination of all possible underlying tests (all). Thus, we calculate \eqref{eq:5} twice, with a different selection of $\xi_i$. We account for the above-mentioned restrictions on the deterministic part of the model by slightly adjusting the underlying process in each case. In total, we generate three different data sets, each containing two different variables for the test statistic.
 
 The following approach relies largely on previous work by @Pesavento_2004. It can be shown that the asymptotic null distributions of the underlying tests are functions of standard Brownian motions. We construct this by step functions using Gaussian random walk of size $N = 1000$. The number of repetitions is set to 1,000,000. Moreover, we consider $\text{R}^2 \in \{0, 0.05, 0.1, ..., 0.95\}$ and the number of lags $\{k \in \mathbb{Z}: 1 \leq k \leq 11\}$. Pesavento further introduces the local-to-unity parameter $c:= T(\rho-1)$. For negative values of $c$ the variables are cointegrated, while for $c = 0$ there is no cointegration. Since we solely aim at simulating the distribution under the null hypothesis of no cointegration we will not consider other values different from $c = 0$. 
 
@@ -147,15 +147,14 @@ To calculate the $\tilde{\chi}^2_{\mathcal{I}}$ we require the p-values of the u
 
 
 # Models
-We now use the simulated data for training machine learning algorithms on predicting the approximated empirical \ac{CDF} of the Bayer Hanck test. We work with the values of the test statistic and the number of lags $k$ as predictors. As it was said before, it is our objective to describe the null distribution with a less memory-intensive model. We will therefore only consider linear methods, as non-linear models typically take up too much memory to be suitable for this purpose. For the same reason we compare the models according to their in-sample \ac{RMSE}. The threat of overfitting is thus of no particular relevance here. For this reason, and to reduce computation time, we use no cross-validation.
-
+We use the simulated data for training machine learning algorithms on predicting the approximated empirical \ac{CDF} of the Bayer Hanck test. We want to approximate the \ac{CDF} as a function of the test statistic $\xi_i$ and the number of lags $k$. As we seek solutions for describing the null distribution with a less memory-intensive model, we only consider linear models. Non-linear models typically take up too much memory to be suitable here. Moreover, we compare the models according to their in-sample \ac{RMSE}. This seems appropriate as we want to predict already known data. Overfitting therefore does not pose a threat. For this reason, and to reduce computation time, we use no cross-validation.
 
 ## Data Pre-Processing
-One approach for improving a model's predictive ability is the pre-processing of the training data. Some models react sensitively to certain characteristics of the predictor or response data. Those characteristics include, inter alia, distributional skewness and outliers and there exist several methods to lower their potentially bad impact on the model's performance. 
+One approach for improving a model's predictive ability is to pre-process the training data. Some models react sensitively to certain characteristics of the predictor or response data. Those characteristics include, inter alia, distributional skewness and outliers. There exist several methods to lower their potentially bad impact on the model's performance. 
 
-Since we simulated our training data under the null of non-cointegration we expect the distribution of this test statistic to be rather right skewed. \textcolor{red}{Plot} also reveals it to have a long right tail. If we train our regression model on this raw data it can possibly have difficulties predicting from high values of the test statistic. 
+Since we simulated the training data under the null of non-cointegration we expect the distribution of the test statistic to be right skewed. Figure \ref{fig:density} shows that it is also (right) long-tailed. If we train the regression model on this data there can be difficulties when predicting from high values of the test statistic.
 
-One of the aforementioned methods to deal with such issues are power transforms. One might decide freely which transformation to apply. Alternatively, there exist statistical methods to determine an appropriate transformation. A well-known family of transformations to un-skew data is the Box-Cox transformation [@Boxcox_1964]. They aim at transforming the data so that it closely resembles the normal distribution. The exact transformation depends on the parameter $\lambda$, whose optimal value can be empirically estimated: 
+A way to deal with these issues are power transforms. A well-known family of these transformations to un-skew data is the Box-Cox transformation [@Boxcox_1964]. They aim at transforming the data so that it closely resembles the normal distribution. The exact transformation depends on the parameter $\lambda$, whose optimal value can be empirically estimated: 
 
 \begin{equation}
 y^{(\lambda)} =
@@ -166,9 +165,9 @@ y^{(\lambda)} =
 \label{eq:6}
 \end{equation}
 
-It is visible from \eqref{eq:6} that @Boxcox_1964 developed these transformations for the dependent variable. @Kuhn_2013, however, report that it proves as effective for transforming individual regressors. We estimate lambda for the values of the test statistics of the Bayer-Hanck test and transform them according to \eqref{eq:5}. This forces their distribution into a more symmetric form, albeit still right-tailed. 
+It is visible from \eqref{eq:6} that @Boxcox_1964 developed these transformations for the dependent variable. @Kuhn_2013, however, report that it proves as effective for transforming individual regressors. We estimate lambda for the values of the test statistics of the Bayer Hanck test and transform them according to \eqref{eq:5}. This forces their distribution into a more symmetric form, albeit still right-tailed (again, see Figure \ref{fig:density}). 
 
-```{r , density_plots, echo = FALSE, fig.cap = " \\label{fig:density} Untransformed and Box-Cox-transformed density of the test statistic for test types all and EJ.", fig.height = 3.5}
+```{r , density_plots, echo = FALSE, warning=FALSE, fig.cap = " \\label{fig:density} Densities of the untransformed and Box-Cox-transformed test statistic for test types all and EJ, shown for case = 1 and $k = 1$.", fig.height = 4}
 
 cowplot::plot_grid(dense_all, 
                    dense_EJ, 
@@ -178,12 +177,10 @@ cowplot::plot_grid(dense_all,
                    rel_heights = c(1, 1, .1))
 ```
 
-Since the response variable consists of the p-values, simulated under the null hypothesis, it follows a uniform distribution. Therefore, it is already symmetric. We still include a Box-Cox transformed and a logarithmised version of the response variable to see if it benefits the prediction. 
-
-We also include various variations of the actual categorical variable $k$. It is firstly decomposed into dummy variables and secondly recode as a numeric, so that various transformations can be performed.
+Since the response variable consists of the p-values, simulated under the null hypothesis, it follows a uniform distribution. Therefore, it is already symmetric. We still include a Box-Cox transformed and a logarithmised version of the response variable to see if it benefits the prediction. We also decompose the categorical variable $k$ into dummy variables. Additionally, we add the same variable as a numeric. Thus, transformations such as the logarithm can be performed.
 
 ## Polynomial Regression
-Due to the reasons given above we restrict ourselves to linear models. The empirical \ac{CDF}, which we aim to predict, is typically known to have a curved shape. For this reason, a simple linear regression model is very unlikely to provide a satisfactory fit to the data. We skip this in favor of a more flexible model. We stay with least squares regression, but try various combinations of polynomial functions and interaction terms of the aforementioned regressors. The search for the best model is carried out via brute-force.
+As mentioned, we restrict ourselves to linear models. The empirical \ac{CDF}, which we aim to predict, is typically known to have a curved shape. Thus, we skip the simple linear regression model in favor of more flexible alternatives. We stay with least squares regression, but try various combinations of polynomial functions and interaction terms of the aforementioned regressors. The search for the best model is carried out via brute-force.
 
 Polynomial Regression extends the classic linear regression model by fitting a polynomial equation of arbitrary order to the data. A polynomial regression with $n$ degrees thus takes the form
 
@@ -192,9 +189,11 @@ Polynomial Regression extends the classic linear regression model by fitting a p
 \label{eq:7}
 \end{equation}
 
-where $\varepsilon_i$ is the error term. \textcolor{red}{Quelle?}
+where $\varepsilon_i$ is the error term [@James2013].
 
-Here, we calculate orthogonal polynomials of the test statistic of the Bayer-Hanck Test, considering up to 15 degrees. We estimate the parameters with OLS. To potentially increase the predictive performance of our model we also add interaction terms and different transformations of the regressor $k$. \textcolor{red}{Appendix} lists all calculated models. Since there is no need to prevent overfitting we expect higher order polynomials to perform better, as they are highly flexible. These polynomials, however, tend to show a wiggly behaviour at the boundaries. This makes prediction for more extreme values of the test statistic a risky endeavour. We will address and fix this issue later on. 
+We calculate orthogonal polynomials of the test statistic of the Bayer Hanck Test, considering up to 13 degrees. Due to the \ac{CDF}'s characteristic form, the minimum grade of the polynomials is 3. We also add different interaction terms with different forms of the regressor $k$, to better capture the curvilinear relationship between predictors and the response. Table \ref{tab:func_form} in Appendix A displays the forms of all considered polynomial regression models. 
+
+Since there is no need to prevent overfitting we expect higher order polynomials to perform better, as they are more flexible. These polynomials, however, tend to show oscillation at the boundaries. This makes prediction for more extreme values of the test statistic a risky endeavour. We will address this issue in a later chapter. 
 
 ## \ac{Lasso}  
 As mentioned above our polynomial regression models are likely to perform best with higher order polynomials. With each added polynomial, however, we increase the complexity of our model and potentially add redundant regressors. Although, still, overfitting plays no major role here, we generally prefer sparser models in case of equal results. One way to deal with this is the use of variable selection methods. A well-known example of such methods is the \ac{Lasso}. 
@@ -220,7 +219,13 @@ $\lambda$ is a tuning parameter which defines the degree of regularisation. The 
 We plan on fitting a LASSO model to polynomials of grade 15. We consider the same transformations and interaction terms as in earlier steps. We therefore fit a total of \textcolor{red}{Anzahl} models.
 
 ## Other Regression Models 
-We also considered various other regression models. For different reasons they were not too suitable for our particular case. Conventional non-linear methods, like Generalized Additive Models or Multivariate Adaptive Regression Splines, might have provided a decent prediction. However, the fitted models take up far too much memory space compared to the aforementioned linear methods. For the same reason we refrain from using tree based methods. Add to that the fact that the latter tend to perform poorly with such a small amount of regressors. Given these limitations, we stick to our decision to solely work with linear regression models.
+We considered various other regression models. For different reasons they were not too suitable for our particular case. 
+
+Especially non-linear methods should provide a good prediction. Generalized Additive Models (GAM) are another extension of simple linear regression. They replace each linear component in the latter with a (smooth) non-linear function. These basis functions are then added together. This allows for a very flexible fit to the data. [@James2013]
+
+Tree-based models, especially used as base learners in ensemble methods, are also known to be very flexible. However, they tend to perform worse with a small amount of regressors. Thus, we directly discarded this approach in an early stage of the model estimation.
+
+Eventually, these models have the major disadvantage that they take up far too much memory space compared to the polynomial regression models. A Random Forest built with `ranger`, for example, requires 350 MB. A simple GAM needs up to 800 MB. In comparison, a polynomial regression model only consumes 71.4 kB of memory. Given these limitations, we stick to our decision to solely work with linear regression models.
 
 
 # Model Evaluation
@@ -244,7 +249,33 @@ final_models_paper() %>%
   add_header_above(c("", "", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
 ```
 
-For the above-mentioned reasons we choose the final models according to the cRMSE on the left tail of the distribution of the p-values (see Table \ref{tab:6_final_models}). It is apparent that the functional forms look very similar over all cases, mostly using the highest order polynomial available^[We are well aware of the fact that this represents a corner solution. Since we are optimising the models on the in-sample RMSE, however, we could continue adding higher order polynomials forever to improve the fit. As we are already tweaking on the fifth decimal place we decided to not further pursue this procedure.]. Furthermore, five out of six models use the Box-Cox transformed response variable. 
+For the above-mentioned reasons we choose the final models according to the cRMSE on the left tail of the distribution of the p-values (see Table \ref{tab:6_final_models}). It is apparent that the functional forms look very similar over all cases, mostly using the highest order polynomial availableWe are well aware of the fact that this represents a corner solution. Since we are optimising the models on the in-sample RMSE, however, we could continue adding higher order polynomials forever to improve the fit. As we are already tweaking on the fifth decimal place we decided to not further pursue this procedure. Furthermore, five out of six models use the Box-Cox transformed response variable. 
+
+To assess model performance graphically, we plot the simulated p-values from [chapter 3](#simulation) against the (corrected) p-values approximated by the final models. If these values are highly correlated, they are scattered symmetrically around a 45 degree diagonal passing through the zero point. The vertical distance between any point and the diagonal is the prediction error for that point. Figure \ref{fig:p.sim_approx.1} shows this plot for all cases and $k = 1$. The models appear very accurate, there seems to be a high correlation between the predicted and the actual values. Figure {fig:sim_approx_all} and {fig:sim_approx_e_j} in Appendix A show these plots for all $k$.
+
+```{r , p.sim_aprox.k1, echo = FALSE, warning=FALSE, fig.cap = "\\label{fig:p.sim_approx.1} Simulated p-values plotted against p-values approximated by final (corrected) models, exemplary for $k = 1$.", fig.height = 4.5}
+
+cowplot::plot_grid(p.sim_p.aprox_all.k1 + ylab("Approximated \n p-values"), 
+                   p.sim_p.aprox_e_j.k1 + ylab("Approximated \n p-values"), 
+                   legend,
+                   ncol = 1, 
+                   labels = c('All', 'EJ'),
+                   label_colour = "#004c93",
+                   rel_heights = c(1, 1, .1))
+```
+
+Looking at the same plot for the lower tail of the distribution (with $p \leq 0.2$), the models show high reliability even in the crucial share of the p-values (see Figure \ref{fig:p.sim_approx_0.2.1}). Figure {fig:sim_approx_all_0.2} and {fig:sim_approx_e_j_0.2} in Appendix A show these plots for all $k$.
+
+```{r , p.sim_aprox_0.2.k1, echo = FALSE, warning=FALSE, fig.cap = "\\label{fig:p.sim_approx_0.2.1} Simulated p-values plotted against p-values approximated by final (corrected) models, exemplary for $k = 1$, for the lower tail of the distribution.", fig.height = 4.5}
+
+cowplot::plot_grid(p.sim_p.aprox_all_0.2.k1 + ylab("Approximated \n p-values"), 
+                   p.sim_p.aprox_e_j_0.2.k1 + ylab("Approximated \n p-values"), 
+                   legend,
+                   ncol = 1, 
+                   labels = c('All', 'EJ'),
+                   label_colour = "#004c93",
+                   rel_heights = c(1, 1, .1))
+```
 
 ## Correction for high values of the test statistic
 As described in [chapter 3](#simulation) the data set used for training the models was simulated under the null hypothesis of no cointegration. It should be evident that for this reason most values of the test statistic will be comparatively small. Even after its transformation the distribution of the test statistic has a longer right tail, i.e. there exist few high values. When using the models within a software package, as originally intended, it is likely that they will face input values located on the far right of the distribution. It cannot be ruled out that the models will fail to make sensible predictions for such values of the test statistic. 
@@ -257,9 +288,9 @@ Figure \ref{fig:fig_4} shows the same behaviour for the data with Engle-Granger 
 
 There can be several reasons why the models' prediction behaves this way. Oscillation at the edges of an interval is a common problem in polynomial interpolation, especially when using polynomials of high order. Additionally, the distribution of the test statistic in the training data may have made matters worse. It must also be considered that we chose our models according to their predictive performance on the lower tail of the distribution of the test statistic, possibly neglecting the predictive performance on the upper tail. If this incident is not rectified the models will be unable to provide reliable test decisions, as they tend to falsely not reject the null hypothesis at high values of the test statistic. The approach is therefore prone to type II errors.
 
-From this it appears that there is a need for either more reliable models or further correction of the prediction from the existing models. One possible solution might be the re-estimation of our models using splines. In theory, those lead to similar results while being less prone to oscillation at the tails. Another approach is to determine a critical value of the test statistic whereby every exceeding value is automatically assigned a low p-value. Due to the former approach being very time-consuming we decided to try the last one. 
+From this it appears that there is a need for either more reliable models or further correction of the prediction from the existing models. One possible solution can be the re-estimation of the models using regression splines. In theory, those lead to similar results while being less prone to oscillation at the tails. However, with regression splines there is still no guarantee they will show the desired behaviour at said tails. Another approach is to determine a critical value of the test statistic whereby every exceeding value is automatically assigned a low p-value. Due to the former approach being very time-consuming we decide to try the last one. 
 
-```{r , p_stat__k.2, echo = FALSE, fig.cap = " \\label{fig:e_j_k.1} Corrected (blue) and uncorrected (red) $p$-value predictions for all cases and K = 1, using Engle-Granger and Johansen and all as underlying tests.", fig.height = 3.5}
+```{r , p_stat__k.2, echo = FALSE, warning = FALSE, fig.cap = " \\label{fig:e_j_k.1} Simulted p-values plotted against p-values approximated by final corrected models, exemplary for $k = 1$.Corrected (blue) and uncorrected (red) $p$-value predictions for all cases and $k = 2$, using EJ and all as underlying tests.", fig.height = 4.5}
 
 legend <- cowplot::get_legend(
     # create some space to the left of the legend
@@ -274,7 +305,7 @@ cowplot::plot_grid(plot_p_stat_all_k.2 + theme(legend.position="none"),
                    ncol = 1, 
                    labels = c('All', 'EJ'),
                    label_colour = "#004c93",
-                   rel_heights = c(1, 1, .1))
+                   rel_heights = c(1, 1, 0.2))
 ```
 
 To find a suitable value of the test statistic, which we can use as the critical value, we observe \textcolor{red}{(Grafik)}. Regarding the curve of the predicted p-values it could be an attempt at a solution to take the value of the test statistic with the lowest p-value and use this as our critical value. We do this for all combinations of the test type, cases and $k$s. The resulting values range between 36 and 44 for the EJ combination and 55 and 80 for all combinations respectively. It is safe to say that these values lie far from the lower tail of the test statistics where the test decision is taken. Graphically it can also be assumed that our approach suffices for our purposes without any unintended side-effects. Thus, the problem of erratic behaviour for higher values of the test statistic is avoided.
@@ -573,19 +604,27 @@ table_E_J_case_3 %>%
 
 
 
-```{r , approx_sim-all, echo = FALSE, fig.cap = " \\label{fig:sim_approx_all} Simulated against approximated $p$-values over the whole distribution for all cases and all underlying tests. ", fig.height = 8}
+```{r , approx_sim-all, echo = FALSE, warning = FALSE, message = FALSE, fig.cap = " \\label{fig:sim_approx_all} Simulated against approximated $p$-values over the whole distribution for all cases and all underlying tests. ", fig.height = 8}
 p.sim_p.aprox_all
 ```
 
-```{r , approx_sim-all_0.2, echo = FALSE, fig.cap = " \\label{fig:sim_approx_all_0.2} Simulated vs. approximated $p$-values for the lower tail of the distribution for all cases and all underlying test.", fig.height = 8}
+```{r , approx_sim-all_0.2, echo = FALSE, warning = FALSE, message = FALSE, fig.cap = " \\label{fig:sim_approx_all_0.2} Simulated vs. approximated $p$-values for the lower tail of the distribution for all cases and all underlying test.", fig.height = 8}
 p.sim_p.aprox_all_0.2
 ```
 
-```{r , p_stat_all, echo = FALSE, fig.cap = " \\label{fig:fig_3} Corrected (blue) and uncorrected (red) $p$-value predictions for all cases and all underlying tests.", fig.height = 8}
+```{r , approx_sim-ej, echo = FALSE, warning = FALSE, message = FALSE, fig.cap = " \\label{fig:sim_approx_e_j} Simulated against approximated $p$-values over the whole distribution for all cases and EJ test type. ", fig.height = 8}
+p.sim_p.aprox_e_j
+```
+
+```{r , approx_sim-ej_0.2, echo = FALSE, warning = FALSE, message = FALSE, fig.cap = " \\label{fig:sim_approx_e_j_0.2} Simulated vs. approximated $p$-values for the lower tail of the distribution for all cases and EJ test type.", fig.height = 8}
+p.sim_p.aprox_e_j_0.2
+```
+
+```{r , p_stat_all, echo = FALSE, warning = FALSE, message = FALSE, fig.cap = " \\label{fig:fig_3} Corrected (blue) and uncorrected (red) $p$-value predictions for all cases and all underlying tests.", fig.height = 8}
 plot_p_stat_all
 ```
 
-```{r , p_stat_e_j, echo = FALSE, fig.cap = " \\label{fig:fig_4} Corrected (blue) and uncorrected (red) $p$-value predictions for all cases using Engle-Granger and Johansen as underlying tests.", fig.height = 8}
+```{r , p_stat_e_j, echo = FALSE, warning = FALSE, message = FALSE, fig.cap = " \\label{fig:fig_4} Corrected (blue) and uncorrected (red) $p$-value predictions for all cases using Engle-Granger and Johansen as underlying tests.", fig.height = 8}
 plot_p_stat_e_j
 ```
 
