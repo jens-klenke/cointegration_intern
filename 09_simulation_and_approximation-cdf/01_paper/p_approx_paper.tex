@@ -603,7 +603,7 @@ characteristic form, the minimum grade of the polynomials is 3. We also
 add different interaction terms with different forms of the regressor
 \(k\), to better capture the curvilinear relationship between predictors
 and the response. Table \ref{tab:func_form} in Appendix A displays the
-forms of all considered polynomial regression models.
+forms of all considered regression models.
 
 Since there is no need to prevent overfitting we expect higher order
 polynomials to perform better, as they are more flexible. These
@@ -693,23 +693,30 @@ To measure the performance of our regression models we calculate their
 in-sample RMSE. This is an indication of how far the residuals of the
 models are from zero, with lower values preferable. We calculate the
 RMSE for predictions on the full distribution, as well as predictions on
-the lower tail (\(p \leq 0.2\)), as it is more important for the test
-decision of the Bayer-Hanck test. We also add a ``corrected'' version of
-the RMSE, cRMSE. Here, we limited the predictions to lie within the
-interval \([0, 1]\), i.e.~if the prediction lies outside the interval it
-is automatically set to its nearest interval boundary.
+the lower tail (\(p \leq 0.2\)). We pay specific attention to the
+latter, as it is crucial for the test decision of the Bayer Hanck test.
+We also add a ``corrected'' version of the RMSE, cRMSE. Here, we limited
+the predictions to lie within the interval \([0, 1]\), i.e.~if the
+prediction lies outside the interval it is automatically set to its
+nearest interval boundary.
 
-Table \ref{tab:all_1} lists all variations of the RMSE for the
-calculated polynomial regression models. It becomes apparent that a
-combination of higher order polynomials, dummy variables and interaction
-terms indeed achieves superior results compared to simpler models. For
-all variations of the RMSE the best models require a polynomial of
-minimum grade 12. That was to be expected, considering we are optimising
-an in-sample fit. The transformation of the response variable only seems
-to play a minor role in prediction accuracy. Interestingly, there are no
-major differences in model selection depending on the variation of the
-RMSE used. Table \ref{tab:5_best_all_1} lists the five best models for
-each case and test type.
+Table \ref{tab:all_1} - \ref{tab:all_3} in Appendix A list all
+variations of the RMSE for the calculated regression models for all
+underlying tests. Table \ref{tab:e_j_1} - \ref{tab:e_j_3} list all
+variations of the RMSE for EJ as underlying tests. We select the best
+models according to the cRMSE. This seems to be the most appropriate
+metric, as we plan on incorporating aforesaid correction of the
+prediction in the final models. Furthermore, a good prediction on the
+lower tail of the distribution is of higher relevance. Table
+\ref{tab:5_best_all_1} - \ref{tab:5_best_all_3} list the five best
+models, as measured by the cRMSE, for each case and all underlying
+tests. Table \ref{tab:5_best_e_j_1} - \ref{tab:5_best_e_j_3} list the
+same, but for EJ as underlying tests. For both test types and all cases
+it shows that a combination of high order polynomials, dummy variables
+and the associated interaction terms achieves superior predictive
+performance compared to simpler models. For all considered types of the
+RMSE the best models require a polynomial of minimum grade 12. This is
+no surprise, considering we are optimising an in-sample fit.
 
 \begin{table}[!h]
 
@@ -732,16 +739,14 @@ EJ & 3 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 1.45e-04 & 1.45e
 \end{tabular}
 \end{table}
 
-For the above-mentioned reasons we choose the final models according to
-the cRMSE on the left tail of the distribution of the p-values (see
-Table \ref{tab:6_final_models}). It is apparent that the functional
-forms look very similar over all cases, mostly using the highest order
-polynomial availableWe are well aware of the fact that this represents a
-corner solution. Since we are optimising the models on the in-sample
-RMSE, however, we could continue adding higher order polynomials forever
-to improve the fit. As we are already tweaking on the fifth decimal
-place we decided to not further pursue this procedure. Furthermore, five
-out of six models use the Box-Cox transformed response variable.
+Table \ref{tab:6_final_models} lists the final models for each case and
+test type. The forms of the models share many common features, mostly
+using the maximum degree polynomial available. One might say this
+represents a corner solution. However, since we are optimising the
+models on the in-sample RMSE, we could increase the degree of the
+polynomials endlessly, to improve the fit. Since it can be shown that we
+are already tweaking on the fifth decimal place, we will no further
+pursue this procedure.
 
 To assess model performance graphically, we plot the simulated p-values
 from \protect\hyperlink{simulation}{chapter 3} against the (corrected)
@@ -752,8 +757,8 @@ and the diagonal is the prediction error for that point. Figure
 \ref{fig:p.sim_approx.1} shows this plot for all cases and \(k = 1\).
 The models appear very accurate, there seems to be a high correlation
 between the predicted and the actual values. Figure
-\{fig:sim\_approx\_all\} and \{fig:sim\_approx\_e\_j\} in Appendix A
-show these plots for all \(k\).
+\ref{fig:sim_approx_all} and \ref{fig:sim_approx_e_j} in Appendix A show
+these plots for all \(k\).
 
 \begin{figure}
 \centering
@@ -766,7 +771,7 @@ p-values approximated by final (corrected) models, exemplary for
 Looking at the same plot for the lower tail of the distribution (with
 \(p \leq 0.2\)), the models show high reliability even in the crucial
 share of the p-values (see Figure \ref{fig:p.sim_approx_0.2.1}). Figure
-\{fig:sim\_approx\_all\_0.2\} and \{fig:sim\_approx\_e\_j\_0.2\} in
+\ref{fig:sim_approx_all_0.2} and \ref{fig:sim_approx_e_j_0.2} in
 Appendix A show these plots for all \(k\).
 
 \begin{figure}
@@ -783,13 +788,12 @@ statistic}\label{correction-for-high-values-of-the-test-statistic}}
 
 As described in \protect\hyperlink{simulation}{chapter 3} the data set
 used for training the models was simulated under the null hypothesis of
-no cointegration. It should be evident that for this reason most values
-of the test statistic will be comparatively small. Even after its
-transformation the distribution of the test statistic has a longer right
-tail, i.e.~there exist few high values. When using the models within a
-software package, as originally intended, it is likely that they will
+no cointegration. For this reason most values of the test statistic are
+comparatively small. Even after its transformation the distribution of
+the test statistic has a longer right tail. When using the models within
+a software package, as originally intended, it is likely that they will
 face input values located on the far right of the distribution. It
-cannot be ruled out that the models will fail to make sensible
+cannot be ruled out that the models might fail to make sensible
 predictions for such values of the test statistic.
 
 In order to test this, we generate a sequence from 1 to 100 in single
@@ -799,23 +803,24 @@ basis, we predict p-values with all six final models for all
 the interval \([0, 1]\), as described in
 \protect\hyperlink{rmse-comparison}{chapter 5.1}.
 
-Figure \ref{fig:fig_3} shows the prediction of the models for all
-underlying tests on a sequence from 1 to 100, representing possible
-values of the test statistic. In the majority of cases the corrected
-models perform well, with the prediction curve taking the expected
-shape. In two cases, when \(k = 3\) and \(k = 4\) in the model with no
-deterministics (Case = 1), the predicted values rise again, taking
-values not equal to zero.
+Figure \ref{fig:fig_3} in Appendix A shows the prediction of the models
+for all underlying tests on a sequence from 1 to 100, representing
+possible values of the test statistic. In the majority of cases the
+corrected models perform well, with the prediction curve taking the
+expected shape. In two cases, when \(k = 2\) and \(k = 3\) in the model
+with no deterministics (Case = 1), the predicted values rise again,
+taking values not equal to zero.
 
-Figure \ref{fig:fig_4} shows the same behaviour for the data with
-Engle-Granger and Johansen as underlying tests for all combinations of
-cases and \(k\). Above a certain value of the test statistic the
-predicted values sharply increase, tending towards 1. It should be noted
-that this upper boundary is enforced by our build in correction for
-predicted values outside the interval {[}0, 1{]}. Without this
-intervention the predicted values would probably rise even further. If
-we predict on an extended sequence with no correction, the prediction
-line most likely oscillates above a certain value.
+Figure \ref{fig:fig_4} in the Appendix shows the same behaviour for the
+data with Engle-Granger and Johansen as underlying tests for all
+combinations of cases and \(k\). Above a certain value of the test
+statistic the predicted values sharply increase, tending towards 1. It
+should be noted that this upper boundary is enforced by our build in
+correction for predicted values outside the interval {[}0, 1{]}. Without
+this intervention the predicted values would probably rise even further.
+If we predict on an extended sequence with no correction, the prediction
+line most likely oscillates above a certain value. The graphic for all
+\(k\) can be seen in Table \ref{fig:fig_4} in the Appendix.
 
 There can be several reasons why the models' prediction behaves this
 way. Oscillation at the edges of an interval is a common problem in
@@ -850,18 +855,15 @@ approximated by final corrected models, exemplary for
 for all cases and \(k = 2\), using EJ and all as underlying tests.}
 \end{figure}
 
-To find a suitable value of the test statistic, which we can use as the
-critical value, we observe \textcolor{red}{(Grafik)}. Regarding the
-curve of the predicted p-values it could be an attempt at a solution to
-take the value of the test statistic with the lowest p-value and use
-this as our critical value. We do this for all combinations of the test
+We define the critical value by taking the value of the test statistic
+with the lowest p\_value. We do this for all combinations of the test
 type, cases and \(k\)s. The resulting values range between 36 and 44 for
-the EJ combination and 55 and 80 for all combinations respectively. It
-is safe to say that these values lie far from the lower tail of the test
-statistics where the test decision is taken. Graphically it can also be
-assumed that our approach suffices for our purposes without any
-unintended side-effects. Thus, the problem of erratic behaviour for
-higher values of the test statistic is avoided.
+the EJ combination and 55 and 80 for all combinations respectively.
+Graphically, it should be obvious that these values are supposed to have
+rather low p-values. Thus, we can be confident that our approach
+suffices for our purposes without any unintended side-effects.
+Therefore, the problem of erratic behaviour for higher values of the
+test statistic is avoided.
 
 \hypertarget{package}{%
 \section{Package}\label{package}}
