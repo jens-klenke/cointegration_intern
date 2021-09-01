@@ -595,7 +595,7 @@ polynomial regression with \(n\) degrees thus takes the form
 \label{eq:7}
 \end{equation}
 
-where \(\varepsilon_i\) is the error term \autocite{James2013}.
+where \(\varepsilon_i\) is the error term \autocite{James_2013}.
 
 We calculate orthogonal polynomials of the test statistic of the Bayer
 Hanck Test, considering up to 13 degrees. Due to the \ac{CDF}'s
@@ -603,52 +603,45 @@ characteristic form, the minimum grade of the polynomials is 3. We also
 add different interaction terms with different forms of the regressor
 \(k\), to better capture the curvilinear relationship between predictors
 and the response. Table \ref{tab:func_form} in Appendix A displays the
-forms of all considered regression models.
-
-Since there is no need to prevent overfitting we expect higher order
-polynomials to perform better, as they are more flexible. These
-polynomials, however, tend to show oscillation at the boundaries. This
-makes prediction for more extreme values of the test statistic a risky
-endeavour. We will address this issue in a later chapter.
+forms of all considered regression models. Since there is no need to
+prevent overfitting we expect higher order polynomials to perform
+better, as they are more flexible. These polynomials, however, tend to
+show oscillation at the boundaries. This makes prediction for more
+extreme values of the test statistic a risky endeavour. We will address
+this issue in a later chapter.
 
 \hypertarget{section}{%
 \subsection{\texorpdfstring{\ac{Lasso}}{}}\label{section}}
 
-As mentioned above our polynomial regression models are likely to
-perform best with higher order polynomials. With each added polynomial,
-however, we increase the complexity of our model and potentially add
-redundant regressors. Although, still, overfitting plays no major role
-here, we generally prefer sparser models in case of equal results. One
-way to deal with this is the use of variable selection methods. A
-well-known example of such methods is the \ac{Lasso}.
+As mentioned, we expect the polynomial regression models to perform best
+with high order polynomials. Every polynomial added increases the
+complexity of the model. Table \ref{tab:func_form} shows that in some
+instances for each polynomial added we also add a number of interaction
+terms. It is possible that some regressors (including the interaction
+terms) benefit the prediction, while others are redundant. Yet, it would
+be too cumbersome to manually add and remove different regressors.
+Still, we do not want the models to be bigger than necessary. It may
+therefore be necessary to perform variable selection and regularisation.
+An approach for this is the \ac{Lasso}.
 
-The lasso estimate is defined as
-
-\begin{equation}
-    \hat{\beta}^{\text{lasso}} = \argmin_{\beta} \sum^N_{i=1} \left( y_i - \beta_0 - \sum^p_{j=1} x_{ij} \beta_j \right)^2
-    \text{s.t.} \sum^p_{j=1} |\beta_j | \leq t, 
-\label{eq:8}
-\end{equation}
-
-where the first term describes the residual sum of squares, subject to a
-term known as L1 penalty. In its Lagrangian form this can be rewritten
-as
+The \ac{Lasso} coefficients minimize
 
 \begin{equation}
     \hat{\beta}^{\text{lasso}} = \argmin_{\beta} \frac{1}{2} \sum^N_{i=1} \left( y_i - \beta_0 - \sum^p_{j=1} x_{ij} \beta_j \right)^2 + 
-    \lambda \sum^p_{j=1} |\beta_j |
+    \lambda \sum^p_{j=1} |\beta_j |,
 \label{eq:9}
 \end{equation}
 
-\(\lambda\) is a tuning parameter which defines the degree of
-regularisation. The lasso penalty shrinks the coefficients and, for
-\(\lambda\) sufficiently large, can set them to zero. The value of
-\(\lambda\) is data dependent and is usually estimated with
-cross-validation. \textcolor{red}{ausführlicher? Quelle?}
+where the first term describes the residual sum of squares, subject to a
+term known as L1 penalty. \(\lambda\) is a tuning parameter which
+defines the degree of regularisation. The L1 penalty shrinks the
+coefficients and, for \(\lambda\) sufficiently large, can set them to
+zero. The value of \(\lambda\) is data dependent and is usually
+estimated with cross-validation. \autocite{James_2013}
 
-We plan on fitting a LASSO model to polynomials of grade 15. We consider
-the same transformations and interaction terms as in earlier steps. We
-therefore fit a total of \textcolor{red}{Anzahl} models.
+We plan on using the \ac{Lasso} on the best models from
+\protect\hyperlink{polynomial-regression}{chapter 4.2}. Thus, we can
+assess if said models include redundant regressors.
 
 \hypertarget{other-regression-models}{%
 \subsection{Other Regression Models}\label{other-regression-models}}
@@ -661,7 +654,7 @@ Generalized Additive Models (GAM) are another extension of simple linear
 regression. They replace each linear component in the latter with a
 (smooth) non-linear function. These basis functions are then added
 together. This allows for a very flexible fit to the data.
-\autocite{James2013}
+\autocite{James_2013}
 
 Tree-based models, especially used as base learners in ensemble methods,
 are also known to be very flexible. However, they tend to perform worse
@@ -747,6 +740,34 @@ models on the in-sample RMSE, we could increase the degree of the
 polynomials endlessly, to improve the fit. Since it can be shown that we
 are already tweaking on the fifth decimal place, we will no further
 pursue this procedure.
+
+As announced, we use the \ac{Lasso} to check if the final models contain
+any redundancy. As before, we skip cross-validation and use an
+automatically generated sequence for \(\lambda\). The default are 100
+values for \(\lambda\). The program, however, stops early if the percent
+(of null) deviance explained does not change sufficiently for the next
+\(\lambda\). \autocite{Friedman_2010}
+
+\begin{table}[!h]
+
+\caption{\label{tab:6_lasso_models}\label{tab:6_final_models} The final models, selected according to the lowest cRMSE for the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.}
+\centering
+\fontsize{10}{12}\selectfont
+\begin{tabular}[t]{>{\centering\arraybackslash}p{0.5cm}>{\centering\arraybackslash}p{0.5cm}r>{\raggedleft\arraybackslash}p{1.4cm}>{\raggedleft\arraybackslash}p{1.4cm}>{\raggedleft\arraybackslash}p{1.4cm}>{\raggedleft\arraybackslash}p{1.4cm}}
+\toprule
+\multicolumn{1}{c}{\textbf{}} & \multicolumn{1}{c}{\textbf{}} & \multicolumn{1}{c}{\textbf{}} & \multicolumn{2}{c}{\textbf{Full Distribution}} & \multicolumn{2}{c}{\textbf{Lower Tail ($p \leq 0.2$)}} \\
+\cmidrule(l{3pt}r{3pt}){4-5} \cmidrule(l{3pt}r{3pt}){6-7}
+Type & Case & Model & RMSE & cRMSE & RMSE & cRMSE\\
+\midrule
+\rowcolor{gray!6}  all & 1 & $p = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 8.76e-03 & 8.74e-03 & 9.39e-03 & 9.38e-03\\
+all & 2 & $\bc(p) = c + \poly\left( \bc(t), 12 \right) * k\_d$ & 9.72e-03 & 9.69e-03 & 1.07e-02 & 1.06e-02\\
+\rowcolor{gray!6}  all & 3 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 9.78e-03 & 9.72e-03 & 1.07e-02 & 1.07e-02\\
+E_J & 1 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 9.59e-03 & 9.56e-03 & 1.04e-02 & 1.04e-02\\
+\rowcolor{gray!6}  E_J & 2 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 9.76e-03 & 9.73e-03 & 1.06e-02 & 1.06e-02\\
+E_J & 3 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 9.84e-03 & 9.81e-03 & 1.07e-02 & 1.07e-02\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 To assess model performance graphically, we plot the simulated p-values
 from \protect\hyperlink{simulation}{chapter 3} against the (corrected)

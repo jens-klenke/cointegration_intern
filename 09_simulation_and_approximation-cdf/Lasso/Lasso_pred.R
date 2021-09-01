@@ -1,4 +1,4 @@
-load(here::here("09_simulation_and_approximation-cdf/Lasso/models.RData"))
+load(here::here("09_simulation_and_approximation-cdf/Lasso/lasso_models.RData"))
 load("~/Desktop/Lasso/model_matrix.RData")
 load(here::here("09_simulation_and_approximation-cdf/Lasso/lambda_p.RData"))
 
@@ -62,10 +62,21 @@ pred_EJ_2 <- lasso_eval(mod = lasso_EJ_2, x_matrix = x_EJ_2, y = y)
 pred_EJ_3 <- lasso_eval(mod = lasso_EJ_3, x_matrix = x_EJ_3, y = y)
 
 
+calls <- c(
+  "$p = c + \\poly\\left( \\bc(t), 13 \\right) * k\\_d$", 
+  "$\\bc(p) = c + \\poly\\left( \\bc(t), 12 \\right) * k\\_d$",
+  "$\\bc(p) = c + \\poly\\left( \\bc(t), 13 \\right) * k\\_d$",
+  "$\\bc(p) = c + \\poly\\left( \\bc(t), 13 \\right) * k\\_d$",
+  "$\\bc(p) = c + \\poly\\left( \\bc(t), 13 \\right) * k\\_d$",
+  "$\\bc(p) = c + \\poly\\left( \\bc(t), 13 \\right) * k\\_d$"
+)
 
-lasso <- dplyr::bind_rows(pred_EJ_1, pred_EJ_2, pred_EJ_3, 
-                 pred_all_1, pred_all_2, pred_all_3) %>%
-  dplyr::bind_cols(test.type = rep(c("E_J", "all"), each = 3), 
-                   case = rep(1:3, 2), .)
+lasso <- dplyr::bind_rows(pred_all_1, pred_all_2, pred_all_3,
+                          pred_EJ_1, pred_EJ_2, pred_EJ_3) %>%
+  dplyr::bind_cols(test.type = rep(c("all", "E_J"), each = 3), 
+                   case = rep(1:3, 2), calls = calls, .)
 
 save(lasso, file = here::here("09_simulation_and_approximation-cdf/Lasso/lasso_table.RData"))
+
+
+

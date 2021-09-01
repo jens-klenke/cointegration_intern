@@ -48,7 +48,7 @@ lasso_all_3 <- glmnet::glmnet(x = x_all_3, y = y_bc, alpha = 1)
 # ---- save ----
 
 save(lasso_EJ_1, lasso_EJ_2, lasso_EJ_3, lasso_all_1, lasso_all_2, lasso_all_3,
-     file = here::here("09_simulation_and_approximation-cdf/Lasso/models.RData"))
+     file = here::here("09_simulation_and_approximation-cdf/Lasso/lasso_models.RData"))
 
 save(y_bc, y, x_EJ_1, x_EJ_2, x_EJ_3, x_all_1, x_all_2, x_all_3,
      file = here::here("09_simulation_and_approximation-cdf/Lasso/model_matrix.RData"))
