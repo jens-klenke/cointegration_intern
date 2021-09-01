@@ -1,5 +1,5 @@
 load(here::here("09_simulation_and_approximation-cdf/Lasso/models.RData"))
-load(here::here("09_simulation_and_approximation-cdf/Lasso/model_matrix.RData"))
+load("~/Desktop/Lasso/model_matrix.RData")
 load(here::here("09_simulation_and_approximation-cdf/Lasso/lambda_p.RData"))
 
 library(glmnet)
