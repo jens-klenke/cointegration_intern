@@ -750,7 +750,7 @@ values for \(\lambda\). The program, however, stops early if the percent
 
 \begin{table}[!h]
 
-\caption{\label{tab:6_lasso_models}\label{tab:6_final_models} The final models, selected according to the lowest cRMSE for the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.}
+\caption{\label{tab:lasso_models}\label{tab:lasso_models} The Lasso models, to check the final polynomial regression models for any redundancy. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.}
 \centering
 \fontsize{10}{12}\selectfont
 \begin{tabular}[t]{>{\centering\arraybackslash}p{0.5cm}>{\centering\arraybackslash}p{0.5cm}r>{\raggedleft\arraybackslash}p{1.4cm}>{\raggedleft\arraybackslash}p{1.4cm}>{\raggedleft\arraybackslash}p{1.4cm}>{\raggedleft\arraybackslash}p{1.4cm}}
@@ -762,9 +762,9 @@ Type & Case & Model & RMSE & cRMSE & RMSE & cRMSE\\
 \rowcolor{gray!6}  all & 1 & $p = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 8.76e-03 & 8.74e-03 & 9.39e-03 & 9.38e-03\\
 all & 2 & $\bc(p) = c + \poly\left( \bc(t), 12 \right) * k\_d$ & 9.72e-03 & 9.69e-03 & 1.07e-02 & 1.06e-02\\
 \rowcolor{gray!6}  all & 3 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 9.78e-03 & 9.72e-03 & 1.07e-02 & 1.07e-02\\
-E_J & 1 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 9.59e-03 & 9.56e-03 & 1.04e-02 & 1.04e-02\\
-\rowcolor{gray!6}  E_J & 2 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 9.76e-03 & 9.73e-03 & 1.06e-02 & 1.06e-02\\
-E_J & 3 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 9.84e-03 & 9.81e-03 & 1.07e-02 & 1.07e-02\\
+EJ & 1 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 9.59e-03 & 9.56e-03 & 1.04e-02 & 1.04e-02\\
+\rowcolor{gray!6}  EJ & 2 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 9.76e-03 & 9.73e-03 & 1.06e-02 & 1.06e-02\\
+EJ & 3 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 9.84e-03 & 9.81e-03 & 1.07e-02 & 1.07e-02\\
 \bottomrule
 \end{tabular}
 \end{table}

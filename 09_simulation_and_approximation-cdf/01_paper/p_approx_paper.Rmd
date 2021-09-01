@@ -229,7 +229,7 @@ To measure the performance of our regression models we calculate their in-sample
 
 Table \ref{tab:all_1} - \ref{tab:all_3} in Appendix A list all variations of the RMSE for the calculated regression models for all underlying tests. Table \ref{tab:e_j_1} - \ref{tab:e_j_3} list all variations of the RMSE for EJ as underlying tests. We select the best models according to the cRMSE. This seems to be the most appropriate metric, as we plan on incorporating aforesaid correction of the prediction in the final models. Furthermore, a good prediction on the lower tail of the distribution is of higher relevance. Table \ref{tab:5_best_all_1} - \ref{tab:5_best_all_3} list the five best models, as measured by the cRMSE, for each case and all underlying tests. Table \ref{tab:5_best_e_j_1} - \ref{tab:5_best_e_j_3} list the same, but for EJ as underlying tests. For both test types and all cases it shows that a combination of high order polynomials, dummy variables and the associated interaction terms achieves superior predictive performance compared to simpler models. For all considered types of the RMSE the best models require a polynomial of minimum grade 12. This is no surprise, considering we are optimising an in-sample fit. 
 
-```{r 6_final_models, echo = FALSE, warning = FALSE, message = FALSE}
+```{r 6_final_models, echo=FALSE, message=FALSE, warning=FALSE}
 
 final_models_paper() %>%
     dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
@@ -246,17 +246,18 @@ Table \ref{tab:6_final_models} lists the final models for each case and test typ
 
 As announced, we use the \ac{Lasso} to check if the final models contain any redundancy. As before, we skip cross-validation and use an automatically generated sequence for $\lambda$. The default are 100 values for $\lambda$. The program, however, stops early if the percent (of null) deviance explained does not change sufficiently for the next $\lambda$. [@Friedman_2010]
 
-```{r 6_lasso_models, echo = FALSE, warning = FALSE, message = FALSE}
+```{r lasso_models, echo=FALSE, message=FALSE, warning=FALSE}
+
 lasso %>% 
-    dplyr::select(-model) %>%
     dplyr::mutate_if(is.numeric, funs(as.character(format(., scientific = TRUE, digits = 3)))) %>%
-    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Type', 'Case', 'Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ), 
-             row.names = FALSE, escape = FALSE,
-              caption= '\\label{tab:6_final_models} The final models, selected according to the lowest cRMSE for the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'ccrrrrr') %>%
+    knitr::kable(booktabs = TRUE, linesep = "", col.names = c('Type', 'Case', 'Model', 'RMSE', 'cRMSE', 'RMSE', 'cRMSE' ),
+                 row.names = FALSE, escape = F,
+                 caption= '\\label{tab:lasso_models} The Lasso models, to check the final polynomial regression models for any redundancy. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'ccrrrrr') %>%
     column_spec(1:2, width = "0.5cm") %>%
     column_spec(4:7, width = "1.4cm") %>%
-  kable_styling(latex_options = c("striped", "hold_position"), font_size = 10) %>%
-  add_header_above(c("", "", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
+    kable_styling(latex_options = c("striped", "hold_position"), font_size = 10) %>%
+    add_header_above(c("", "", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = F)
+
 ```
 
 To assess model performance graphically, we plot the simulated p-values from [chapter 3](#simulation) against the (corrected) p-values approximated by the final models. If these values are highly correlated, they are scattered symmetrically around a 45 degree diagonal passing through the zero point. The vertical distance between any point and the diagonal is the prediction error for that point. Figure \ref{fig:p.sim_approx.1} shows this plot for all cases and $k = 1$. The models appear very accurate, there seems to be a high correlation between the predicted and the actual values. Figure \ref{fig:sim_approx_all} and \ref{fig:sim_approx_e_j} in Appendix A show these plots for all $k$.
