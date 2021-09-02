@@ -348,8 +348,8 @@ Furthermore, we discuss problems which have arisen and how to fix them.
 Finally, Section 6 outlines the implementation of the models in the
 aforementioned software package. Section 7 concludes.
 
-\hypertarget{bayer-hanck-test}{%
-\section{Bayer Hanck Test}\label{bayer-hanck-test}}
+\hypertarget{the-bayer-hanck-test}{%
+\section{The Bayer Hanck Test}\label{the-bayer-hanck-test}}
 
 The choice as to which of the available cointegration tests to use is an
 issue in econometric time series analysis. \textcite{Bayerhanck_2012}
@@ -899,66 +899,110 @@ suffices for our purposes without any unintended side-effects.
 Therefore, the problem of erratic behaviour for higher values of the
 test statistic is avoided.
 
-\hypertarget{package}{%
-\section{Package}\label{package}}
-
 \hypertarget{algorithmic-implementation}{%
-\subsection{Algorithmic
-implementation}\label{algorithmic-implementation}}
+\section{Algorithmic implementation}\label{algorithmic-implementation}}
 
-Since the corrected models seem to provide a reliable prediction of the
-p-values we will include them in our pre-existing R-package
+Since the corrected models seem to provide a reliable prediction for the
+p-values we will include them in the pre-existing R-package
 \texttt{bayerhanck}. The package is currently hosted on GitHub and can
 be installed directly. Up to now the release on CRAN has not been
-possible as packages must have a maximum size of 5MB. Our package,
-however, has a size of 12.2MB, far exceeding the specified limit. A
-large part of this can be attributed to the attached data, namely the
-critical values and the full null distributions. We plan on replacing
-these with our models to reduce the size of the package significantly.
+possible as packages must not exceed a maximum size of 5 MB. The
+package, however, has a size of 12.2 MB, far exceeding the specified
+limit. A large part of this can be attributed to the attached data,
+namely the critical values and the full null distributions. We plan on
+replacing these with our models to reduce the size of the package
+significantly.
 
-We will not go into detail on the general implementation of the
+We will not go into further detail on the general implementation of the
 \texttt{bayerhanck} package, e.g.~the calculation of the underlying
-tests. First, we created a nested \texttt{tibble}, a more efficient
-version of R's traditional \texttt{data.frame}, called \texttt{models},
-which contains the final (uncorrected) models, the \(\lambda\) for the
-Box-Cox transformation of both the test statistic and the predicted
-p-value, as well as the critical values for the correction of the
-prediction of high values of the test statistic (see
+tests. Instead, we solely focus on the implementation of the polynomial
+regression models and their corrections. First, we create a nested
+\texttt{tibble}, a more efficient version of R's traditional
+\texttt{data.frame}, called \texttt{models}. It contains the final
+(uncorrected) models, the \(\lambda\) for the Box-Cox transformation of
+both the test statistic and the predicted p-value, as well as the
+critical values for the correction of the prediction of high values of
+the test statistic (see
 \protect\hyperlink{correction-for-high-values-of-the-test-statistic}{chapter
 5.2}). All objects and values can be selected according to their test-
 and trendtype.
 
-In the package the Bayerhanck test is performed by calling the function
-\texttt{bayerhanck()}. First of all, this calculates the test statistic
-of the aforementioned test and it's p-value. Formerly, this relied
-heavily on the attached critical values and null distributions. Now,
-\texttt{bayerhanck()} calls the internal function
+In the package the Bayer Hanck test is performed by calling the function
+\texttt{bayerhanck()}. Here, the user may specify the test type, the
+number of lags \(k\) and the deterministic component. The function then
+calculates the test statistics of the underlying tests, EJ or all, and
+their p-values. These are then aggregated according to \eqref{eq:5}.
+Based on the test statistic of the Bayer Hanck test a decision is taken
+whether to reject or accept the null hypothesis. Formerly, this relied
+heavily on the attached critical values and null distributions. As of
+now, \texttt{bayerhanck()} calls the internal function
 \texttt{get\_p\_value()}, which approximates the p-value with our
-polynomial regression models.
-
-The function \texttt{get\_p\_value()} takes most of its function
-arguments from the outer function \texttt{bayerhanck()}. Firstly, it
-accesses \texttt{models} to obtain the critical value from
+polynomial regression models. Firstly, it accesses \texttt{models} to
+obtain the critical value from
 \protect\hyperlink{correction-for-high-values-of-the-test-statistic}{chapter
-5.2}, given the configuration of the test and further parameters in the
-function arguments. It then differentiates if the calculated test
+5.2}, given the configuration in the function arguments of
+\texttt{bayerhanck()}. It then differentiates if the calculated test
 statistic lies beneath or above this critical value. In the latter case
 it skips the following steps and directly outputs a p-value of
 \(1e-12\). If the test statistic lies beneath the critical value the
 p-value will be predicted with a polynomial regression model. For this,
 the value of the test statistic is transformed according to \ref{eq:6}
-with its associated \(\lambda\) from \texttt{models}. The corresponding
-model is selected to perform the estimation of the p-value, based on the
-transformed test statistic and \(k\) as regressors. If the response
-variable underwent a Box-Cox transformation in the initial fitting of
-the model, the newly predicted response is transformed back as a next
-step. Lastly, the algorithm keeps the estimated p-value within the
-theoretical boundaries of 0 and 1. If a p-value \(\leq 0\) is predicted,
-its is corrected to \(1e-12\). For values \(> 1\), it is set to
-\(9.9999e-1\).
+with its associated \(\lambda\) stored in \texttt{models}. The
+corresponding model is selected to perform the estimation of the
+p-value, based on the transformed test statistic and \(k\) as
+regressors. If the response variable underwent a Box-Cox transformation
+in the initial fitting of the model, the newly predicted response is
+transformed back as a next step. Lastly, the algorithm forces the
+estimated p-value within the theoretical boundaries of 0 and 1. If a
+p-value \(\leq 0\) is predicted, it is corrected to \(1e-12\). For
+values \(> 1\), it is set to \(9.9999e-1\). The function
+\texttt{bayerhanck()} then outputs the value of the test statistic of
+the Bayer Hanck test, accompanied by it's p-value.
+
+Eventually, this approach succeeded in reducing the package size
+significantly. The implementation of the polynomial regression models
+for predicting the p-values reduced the memory space required by the
+package to less than 5 MB.
 
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
+
+In this paper we fit machine learning models to predict the p-values of
+the Bayer Hanck Test, which tests for the null of non-cointegration.
+This was motivated by the fact that the test statistic of said test is
+not available in closed form. Therefore, one has to rely on simulation
+to obtain the distribution of the test statistic to eventually calculate
+the p-values. For these reasons, the prior implementation of the Bayer
+Hanck test into a software package widely exceeded the given size
+limitations. It was our objective to reduce the size of this software
+package by including the machine learning models instead of the full
+null distributions for each combination of the underlying tests.
+
+First, we gave a brief introduction into the theoretical background of
+the Bayer Hanck test, as well as it's underlying tests. We further
+described our simulation approach to simulate the distribution of the
+test statistic, which is later used as the training data. Due to the
+distribution being right-skewed, we used a Box-Cox transformation prior
+to fitting the models. We also used various transformations on the
+response variable, creating multiple versions of it.
+
+After creating the data we used it to train the machine learning
+algorithms. Since we aim at describing the null distribution with a less
+memory-intensive approach, we only considered linear models. Still, the
+\ac{CDF} is known to have a curved shape. To make the models more
+flexible we included various interaction terms and used polynomials with
+up to 13 degrees. For evaluating the models we calculated several
+in-sample metrics. Eventually, we decided to choose the models that
+minimize the RMSE over the lower tail of the distribution, corrected for
+values ranging between 0 and 1. As expected, the most complex models
+performed best. To check for redundancy in those final models, we used a
+\ac{Lasso} on them. Additionally, we (again) corrected the final models
+to suppress oscillation at the boundaries. Finally, these models were
+included in the pre-existing software package \texttt{bayerhanck} for
+the statistical programming language R.
+
+Our approach successfully reduced the size of the aforementioned package
+significantly.
 
 \pagebreak
 
