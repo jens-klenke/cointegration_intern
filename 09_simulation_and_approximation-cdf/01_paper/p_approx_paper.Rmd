@@ -201,7 +201,7 @@ As mentioned, we expect the polynomial regression models to perform best with hi
 The \ac{Lasso} coefficients minimize 
 
 \begin{equation}
-    \hat{\beta}^{\text{lasso}} = \argmin_{\beta} \frac{1}{2} \sum^N_{i=1} \left( y_i - \beta_0 - \sum^p_{j=1} x_{ij} \beta_j \right)^2 + 
+    \hat{\beta}^{\text{lasso}} = \argmin_{\beta} \sum^n_{i=1} \left( y_i - \beta_0 - \sum^p_{j=1} x_{ij} \beta_j \right)^2 + 
     \lambda \sum^p_{j=1} |\beta_j |,
 \label{eq:9}
 \end{equation}
@@ -259,6 +259,8 @@ lasso %>%
     add_header_above(c("", "", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = F)
 
 ```
+
+Here, for all models the actual number of $\lambda$ is less than 100. For our purposes it is sufficient to choose the lowest $\lambda$ out of that sequence, ergo the model with the least shrinkage. The number of nonzero coefficients ranges between 47 to 60 for the models with the test type all and between 27 to 34 for the models with test type EJ. In both instances more than half of all regressors of the final polynomial regression models were not considered. Table \ref{tab:lasso_models} lists the predictive performance of the \ac{Lasso} models. Clearly all variations of the RMSE are much higher than for the polynomial regression models. This supports the idea that more complex models are indeed more appropriate in this case. We therefore drop the \ac{Lasso} models and continue to use our final polynomial regression models. 
 
 To assess model performance graphically, we plot the simulated p-values from [chapter 3](#simulation) against the (corrected) p-values approximated by the final models. If these values are highly correlated, they are scattered symmetrically around a 45 degree diagonal passing through the zero point. The vertical distance between any point and the diagonal is the prediction error for that point. Figure \ref{fig:p.sim_approx.1} shows this plot for all cases and $k = 1$. The models appear very accurate, there seems to be a high correlation between the predicted and the actual values. Figure \ref{fig:sim_approx_all} and \ref{fig:sim_approx_e_j} in Appendix A show these plots for all $k$.
 
