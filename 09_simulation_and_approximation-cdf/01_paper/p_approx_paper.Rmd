@@ -175,7 +175,7 @@ cowplot::plot_grid(dense_all,
                    ncol = 1, 
                    labels = c('All', 'EJ'),
                    label_colour = "#004c93",
-                   rel_heights = c(1, 1, .1))
+                   rel_heights = c(1, 1))
 ```
 
 Since the response variable consists of the p-values, simulated under the null hypothesis, it follows a uniform distribution. Therefore, it is already symmetric. We still include a Box-Cox transformed and a logarithmised version of the response variable to see if it benefits the prediction. We also decompose the categorical variable $k$ into dummy variables. Additionally, we add the same variable as a numeric. Thus, transformations such as the logarithm can be performed.
@@ -237,8 +237,8 @@ final_models_paper() %>%
              row.names = FALSE, escape = FALSE,
               caption= '\\label{tab:6_final_models} The final models, selected according to the lowest cRMSE for the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'ccrrrrr') %>%
     column_spec(1:2, width = "0.5cm") %>%
-    column_spec(4:7, width = "1.4cm") %>%
-  kable_styling(latex_options = c("striped", "hold_position"), font_size = 10) %>%
+    column_spec(4:7, width = "1.1cm") %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size = 8) %>%
   add_header_above(c("", "", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
 ```
 
@@ -254,8 +254,8 @@ lasso %>%
                  row.names = FALSE, escape = F,
                  caption= '\\label{tab:lasso_models} The Lasso models, to check the final polynomial regression models for any redundancy. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.', align = 'ccrrrrr') %>%
     column_spec(1:2, width = "0.5cm") %>%
-    column_spec(4:7, width = "1.4cm") %>%
-    kable_styling(latex_options = c("striped", "hold_position"), font_size = 10) %>%
+    column_spec(4:7, width = "1.1cm") %>%
+    kable_styling(latex_options = c("striped", "hold_position"), font_size = 8) %>%
     add_header_above(c("", "", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = F)
 
 ```
@@ -322,7 +322,7 @@ cowplot::plot_grid(plot_p_stat_all_k.2 + theme(legend.position="none"),
 We define the critical value by taking the value of the test statistic with the lowest p_value. We do this for all combinations of the test type, cases and $k$s. The resulting values range between 36 and 44 for the EJ combination and 55 and 80 for all combinations respectively. Graphically, it should be obvious that these values are supposed to have rather low p-values. Thus, we can be confident that our approach suffices for our purposes without any unintended side-effects. Therefore, the problem of erratic behaviour for higher values of the test statistic is avoided.
 
 # Algorithmic implementation
-Since the corrected models seem to provide a reliable prediction for the p-values we will include them in the pre-existing R-package `bayerhanck`. The package is currently hosted on GitHub and can be installed directly. Up to now the release on CRAN has not been possible as packages must not exceed a maximum size of 5 MB. The package, however, has a size of 12.2 MB, far exceeding the specified limit. A large part of this can be attributed to the attached data, namely the critical values and the full null distributions. We plan on replacing these with our models to reduce the size of the package significantly.
+Since the corrected models seem to provide a reliable prediction for the $p$-values we will include them in the pre-existing R-package `bayerhanck`. The package is currently hosted on GitHub and can be installed directly. Up to now the release on CRAN has not been possible as packages must not exceed a maximum size of 5 MB. The package, however, has a size of 12.2 MB, far exceeding the specified limit. A large part of this can be attributed to the attached data, namely the critical values and the full null distributions. We plan on replacing these with our models to reduce the size of the package significantly.
 
 We will not go into further detail on the general implementation of the `bayerhanck` package, e.g. the calculation of the underlying tests. Instead, we solely focus on the implementation of the polynomial regression models and their corrections. First, we create a nested `tibble`, a more efficient version of R's traditional `data.frame`, called `models`. It contains the final (uncorrected) models, the $\lambda$ for the Box-Cox transformation of both the test statistic and the predicted p-value, as well as the critical values for the correction of the prediction of high values of the test statistic (see [chapter 5.2](#correction-for-high-values-of-the-test-statistic)). All objects and values can be selected according to their test- and trendtype. 
 
