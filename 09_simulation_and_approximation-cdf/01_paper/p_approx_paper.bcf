@@ -2859,27 +2859,11 @@
     <bcf:citekey order="4" nocite="1">R-tidyr</bcf:citekey>
     <bcf:citekey order="5" nocite="1">R-dplyr</bcf:citekey>
     <bcf:citekey order="6" nocite="1">R-glmnet</bcf:citekey>
-    <bcf:citekey order="7" nocite="1">R-class</bcf:citekey>
-    <bcf:citekey order="8" nocite="1">R-MASS</bcf:citekey>
-    <bcf:citekey order="9" nocite="1">R-plm</bcf:citekey>
-    <bcf:citekey order="10" nocite="1">R-leaps</bcf:citekey>
-    <bcf:citekey order="11" nocite="1">R-caret</bcf:citekey>
-    <bcf:citekey order="12" nocite="1">R-tree</bcf:citekey>
-    <bcf:citekey order="13" nocite="1">R-gbm</bcf:citekey>
-    <bcf:citekey order="14" nocite="1">R-plotmo</bcf:citekey>
-    <bcf:citekey order="15" nocite="1">R-pls</bcf:citekey>
-    <bcf:citekey order="16" nocite="1">R-splines</bcf:citekey>
-    <bcf:citekey order="17" nocite="1">R-tictoc</bcf:citekey>
-    <bcf:citekey order="18" nocite="1">R-plotly</bcf:citekey>
-    <bcf:citekey order="19" nocite="1">R-inspectdf</bcf:citekey>
-    <bcf:citekey order="20" nocite="1">R-rpart</bcf:citekey>
-    <bcf:citekey order="21" nocite="1">R-rpart.plot</bcf:citekey>
-    <bcf:citekey order="22" nocite="1">R-stargazer</bcf:citekey>
-    <bcf:citekey order="23" nocite="1">R-knitr</bcf:citekey>
-    <bcf:citekey order="24" nocite="1">R-purrr</bcf:citekey>
-    <bcf:citekey order="25" nocite="1">R-randomForest</bcf:citekey>
-    <bcf:citekey order="26" nocite="1">R-rstudioapi</bcf:citekey>
-    <bcf:citekey order="27" nocite="1">R-Studio</bcf:citekey>
+    <bcf:citekey order="7" nocite="1">R-tictoc</bcf:citekey>
+    <bcf:citekey order="8" nocite="1">R-knitr</bcf:citekey>
+    <bcf:citekey order="9" nocite="1">R-purrr</bcf:citekey>
+    <bcf:citekey order="10" nocite="1">R-rstudioapi</bcf:citekey>
+    <bcf:citekey order="11" nocite="1">R-Studio</bcf:citekey>
   </bcf:section>
   <!-- SECTION 0 (cont.) -->
   <bcf:section number="0">

@@ -1,7 +1,7 @@
 ---
-title: 'Methods for Approximating Non Standard Distributions'
+title: 'Methods for Approximating Non-Standard Distributions'
 author: 'Jens Klenke and Janine Langerbein'
-subtitle: 'An Implementation for the Combined Non-Cointegration Test of Bayer and Hanck'
+subtitle: 'An Implementation of the Combined Non-Cointegration Test of Bayer and Hanck'
 type: "Term Paper"
 discipline: "VWL M.Sc."
 date: "today"
