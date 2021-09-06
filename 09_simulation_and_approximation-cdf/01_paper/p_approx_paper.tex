@@ -320,8 +320,8 @@ procedure, as one has to simulate sufficient values of the test
 statistic under the null hypothesis to approximate their distribution.
 When implementing those meta tests in econometric software packages, one
 therefore has to include the full null distribution for each combination
-of the underlying tests. Software package size limitations are therefore
-quickly exceeded.
+of the underlying tests. Many software package size limitations are
+therefore quickly exceeded.
 
 One possible approach to this problem is to model the relationship
 between the p-values and the test statistic with a regression model.
@@ -331,7 +331,7 @@ the size of the software package considerably.
 
 In this paper we approximate the p-values of the meta test by
 \textcite{Bayerhanck_2012} which tests for the null of non-cointegration
-with supervised Machine Learning Algorithms. We train our models on
+with supervised machine learning algorithms. We train our models on
 simulated values of the test statistic and the corresponding p-values
 for various specifications of the aforementioned test. Subsequently,
 these models will be included in the software package
@@ -344,8 +344,9 @@ values of the test statistic and the calculation of the p-values. In
 Section 4 we describe the pre-processing of the data and the regression
 models used. Section 5 evaluates those models. For this, we compare
 their predictive performance by calculating several in-sample metrics.
-Furthermore, we discuss problems which have arisen and how to fix them.
-Finally, Section 6 outlines the implementation of the models in the
+Furthermore, we discuss problems which arise when approximating
+distributions under certain assumptions and how to fix them. Finally,
+Section 6 outlines the implementation of the models in the
 aforementioned software package. Section 7 concludes.
 
 \hypertarget{the-bayer-hanck-test}{%
@@ -430,13 +431,13 @@ estimate the equation \begin{equation}
 the \(\varepsilon_t\) is approximately white noise.
 \textcite{Banerjee_1998} then test the null of non-cointegration by
 applying a t-test on \(\varphi_0\),
-i.e.~\(\mathcal{H}_0 : \varphi_0 = 0\) \textcolor{red}{?}.
-\textcite{Boswijk_1994} uses the Wald statistic for testing
+i.e.~\(\mathcal{H}_0 : \varphi_0 = 0\). \textcite{Boswijk_1994} uses the
+Wald statistic for testing
 \(\mathcal{H}_0 : (\varphi_0, \phi'_1)' = 0\).
 
 To combine the results from the underlying tests Bayer and Hanck draw
 upon Fisher's combined probability test \autocite{Fisher_1932}. It
-merges the tests using the formula
+merges the test decisions using the formula
 
 \begin{equation}
 \tilde{\chi}^2_{\mathcal{I}} := -2 \sum_{i \in \mathcal{I}} \ln{(p_i)},
@@ -490,12 +491,14 @@ distributions of the underlying tests are functions of standard Brownian
 motions. We construct this by step functions using Gaussian random walk.
 For this, we sum up \(N = 1000\) independent, standard
 normally-distributed random numbers. We further simulate an
-Ornstein-Uhlenbeck-Process. As stated before, we correct these processes
-according to the three different restrictions on the model
-deterministics. For the first case, no trend type, the process needs no
-correction. For the second case, a constant trend, both processes need
-to be demeaned. For the last case, a constant trend and drift,both
-processes are adjusted for the mean and trend.
+Ornstein-Uhlenbeck-Process.
+
+As stated before, we correct the processes according to the three
+different restrictions on the model deterministics. For the first case,
+no trend type, the process needs no correction. For the second case, a
+constant trend, both processes need to be demeaned. For the last case, a
+constant trend and drift,both processes are adjusted for the mean and
+trend.
 
 The number of repetitions is set to 1,000,000. Moreover, we consider
 \(\text{R}^2 \in \{0, 0.05, 0.1, ..., 0.95\}\) and the number of lags
@@ -560,13 +563,13 @@ y^{(\lambda)} =
 \label{eq:6}
 \end{equation}
 
-It is visible from \eqref{eq:6} that \textcite{Boxcox_1964} developed
-these transformations for the dependent variable. \textcite{Kuhn_2013},
-however, report that it proves as effective for transforming individual
-regressors. We estimate lambda for the values of the test statistics of
-the Bayer Hanck test and transform them according to \eqref{eq:5}. This
-forces their distribution into a more symmetric form, albeit still
-right-tailed (again, see Figure \ref{fig:density}).
+\textcite{Boxcox_1964} developed these transformations for the dependent
+variable. \textcite{Kuhn_2013}, however, report that it proves as
+effective for transforming individual regressors. We estimate lambda for
+the values of the test statistics of the Bayer Hanck test and transform
+them according to \eqref{eq:6}. This forces their distribution into a
+more symmetric form, albeit still right-tailed (again, see Figure
+\ref{fig:density}).
 
 \begin{figure}
 \centering
@@ -697,10 +700,11 @@ models are from zero, with lower values preferable. We calculate the
 RMSE for predictions on the full distribution, as well as predictions on
 the lower tail (\(p \leq 0.2\)). We pay specific attention to the
 latter, as it is crucial for the test decision of the Bayer Hanck test.
-We also add a ``corrected'' version of the RMSE, cRMSE. Here, we limited
-the predictions to lie within the interval \([0, 1]\), i.e.~if the
-prediction lies outside the interval it is automatically set to its
-nearest interval boundary.
+We also add a ``corrected'' version of the RMSE, cRMSE, for both the
+full distribution and the lower tail. Here, we limited the predictions
+to lie within the interval \([0, 1]\), i.e.~if the prediction lies
+outside the interval it is automatically set to its nearest interval
+boundary.
 
 Table \ref{tab:all_1} - \ref{tab:all_3} in Appendix A list all
 variations of the RMSE for the calculated regression models for all
@@ -743,7 +747,7 @@ EJ & 3 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 1.45e-04 & 1.45e
 
 Table \ref{tab:6_final_models} lists the final models for each case and
 test type. The forms of the models share many common features, mostly
-using the maximum degree polynomial available. One might say this
+using the maximum polynomial degree available. One might say this
 represents a corner solution. However, since we are optimising the
 models on the in-sample RMSE, we could increase the degree of the
 polynomials endlessly, to improve the fit. Since it can be shown that we
@@ -847,8 +851,7 @@ the interval \([0, 1]\), as described in
 \protect\hyperlink{rmse-comparison}{chapter 5.1}.
 
 Figure \ref{fig:fig_3} in Appendix A shows the prediction of the models
-for all underlying tests on a sequence from 1 to 100, representing
-possible values of the test statistic. In the majority of cases the
+for all underlying tests on said sequence. In the majority of cases the
 corrected models perform well, with the prediction curve taking the
 expected shape. In two cases, when \(k = 2\) and \(k = 3\) in the model
 with no deterministics (Case = 1), the predicted values rise again,
@@ -863,7 +866,7 @@ correction for predicted values outside the interval {[}0, 1{]}. Without
 this intervention the predicted values would probably rise even further.
 If we predict on an extended sequence with no correction, the prediction
 line most likely oscillates above a certain value. The graphic for all
-\(k\) can be seen in Table \ref{fig:fig_4} in the Appendix.
+\(k\) can be seen in Figure \ref{fig:fig_4} in the Appendix.
 
 There can be several reasons why the models' prediction behaves this
 way. Oscillation at the edges of an interval is a common problem in
@@ -899,7 +902,7 @@ for all cases and \(k = 2\), using EJ and all as underlying tests.}
 \end{figure}
 
 We define the critical value by taking the value of the test statistic
-with the lowest p\_value. We do this for all combinations of the test
+with the lowest p-value. We do this for all combinations of the test
 type, cases and \(k\)s. The resulting values range between 36 and 44 for
 the EJ combination and 55 and 80 for all combinations respectively.
 Graphically, it should be obvious that these values are supposed to have
@@ -936,18 +939,18 @@ the test statistic (see
 5.2}). All objects and values can be selected according to their test-
 and trendtype.
 
-In the package the Bayer Hanck test is performed by calling the function
-\texttt{bayerhanck()}. Here, the user may specify the test type, the
-number of lags \(k\) and the deterministic component. The function then
-calculates the test statistics of the underlying tests, EJ or all, and
-their p-values. These are then aggregated according to \eqref{eq:5}.
-Based on the test statistic of the Bayer Hanck test a decision is taken
-whether to reject or accept the null hypothesis. Formerly, this relied
-heavily on the attached critical values and null distributions. As of
-now, \texttt{bayerhanck()} calls the internal function
-\texttt{get\_p\_value()}, which approximates the p-value with our
-polynomial regression models. Firstly, it accesses \texttt{models} to
-obtain the critical value from
+In the package the meta test by Bayer and Hanck is performed by calling
+the function \texttt{bayerhanck()}. Here, the user may specify the test
+type, the number of lags \(k\) and the deterministic component. The
+function then calculates the test statistics of the underlying tests, EJ
+or all, and their p-values. These are then aggregated according to
+\eqref{eq:5}. Based on the test statistic of the Bayer Hanck test a
+decision is taken whether to reject or accept the null hypothesis.
+Formerly, this relied heavily on the attached critical values and null
+distributions. As of now, \texttt{bayerhanck()} calls the internal
+function \texttt{get\_p\_value()}, which approximates the p-value with
+our polynomial regression models. Firstly, it accesses \texttt{models}
+to obtain the critical value from
 \protect\hyperlink{correction-for-high-values-of-the-test-statistic}{chapter
 5.2}, given the configuration in the function arguments of
 \texttt{bayerhanck()}. It then differentiates if the calculated test
