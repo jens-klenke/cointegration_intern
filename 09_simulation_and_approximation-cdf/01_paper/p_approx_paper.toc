@@ -1,0 +1,53 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {english}{}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{List of Figures}{III}{section*.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{List of Tables}{V}{section*.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{List of Abbreviations}{VI}{section*.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}The meta test by Bayer and Hanck}{2}{section.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Simulation}{4}{section.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Models}{5}{section.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1}Data Pre-Processing}{5}{subsection.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.2}Polynomial Regression}{6}{subsection.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3}\ac {Lasso}}{7}{subsection.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.4}Other Regression Models}{8}{subsection.4.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5}Model Evaluation}{8}{section.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.1}RMSE comparison}{8}{subsection.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2}Correction for high values of the test statistic}{12}{subsection.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Algorithmic implementation}{14}{section.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7}Conclusion}{15}{section.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{References}{III}{section.7}%
+\defcounter {refsection}{1}\relax 
+\contentsline {section}{Software-References}{VI}{section*.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A}Appendices}{VII}{appendix.A}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.1}Results for the \(p\)-approximation of the Bayer-Hanck Test with all underyling Tests}{IX}{subsection.A.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {A.1.1}Metrics of the 5 Best Models}{IX}{subsubsection.A.1.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {A.1.2}Metrics of all Models}{X}{subsubsection.A.1.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {A.2}Results for the \(p\)-approximation of the Bayer-Hanck Test with Engle-Granger and Johansen as underlying tests}{XXXVII}{subsection.A.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {A.2.1}Metrics of the 5 Best Models}{XXXVII}{subsubsection.A.2.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {A.2.2}Metrics of all Models}{XL}{subsubsection.A.2.2}%

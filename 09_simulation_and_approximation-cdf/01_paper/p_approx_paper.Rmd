@@ -1,7 +1,7 @@
 ---
-title: 'P-Approximation'
+title: 'Methods for Approximating Non Standard Distributions'
 author: 'Jens Klenke and Janine Langerbein'
-subtitle: 'Seminar in Econometrics'
+subtitle: 'An Implementation for the Combined Non-Cointegration Test of Bayer and Hanck'
 type: "Term Paper"
 discipline: "VWL M.Sc."
 date: "today"
@@ -9,8 +9,8 @@ studid: "3071594"
 supervisor: "Christoph Hanck"
 secondsupervisor: "NA"
 semester: "6"
-estdegree_emester: "Winter Term 2020"
-deadline: "Jan. 17th 2020"
+estdegree_emester: "Winter Term 2021"
+deadline: "Sep. 30th 2021"
 output:
   pdf_document:
     keep_tex: yes
@@ -82,14 +82,14 @@ final_models_paper <- function() {
 ```
 
 # Introduction
-Meta tests have been shown to be a powerful tool when testing for the null of non-cointegration. The distribution of their test statistic, however, is mostly not available in closed form. The calculation of the critical values, let alone p-values, is therefore a cumbersome procedure, as one has to simulate sufficient values of the test statistic under the null hypothesis to approximate their distribution. When implementing those meta tests in econometric software packages, one therefore has to include the full null distribution for each combination of the underlying tests. Many software package size limitations are therefore quickly exceeded. 
+Meta tests have been shown to be a powerful tool when testing for the null of non-cointegration. The distribution of their test statistic, however, is mostly not available in closed form. The calculation of the critical values, let alone $p$-values, is therefore a cumbersome procedure, as one has to simulate sufficient values of the test statistic under the null hypothesis to approximate their distribution. When implementing those meta tests in econometric software packages, one therefore has to include the full null distribution for each combination of the underlying tests. Many software package size limitations are therefore quickly exceeded. 
 
-One possible approach to this problem is to model the relationship between the p-values and the test statistic with a regression model. Instead of including the full null distribution in an econometric software package one only has to include this model. This might reduce the size of the software package considerably.
+One possible approach to this problem is to model the relationship between the $p$-values and the test statistic with a regression model. Instead of including the full null distribution in an econometric software package one only has to include this model. This might reduce the size of the software package considerably.
 
-In this paper we approximate the p-values of the meta test by @Bayerhanck_2012 which tests for the null of non-cointegration with supervised machine learning algorithms. We train our models on simulated values of the test statistic and the corresponding p-values for various specifications of the aforementioned test. Subsequently, these models will be included in the software package `bayerhanck` for the statistical programming language R. We find that this approach indeed reduces the size of the package significantly. Section 2 explains the theoretical background of the Bayer Hanck Test. We briefly introduce the underlying tests and describe the combination procedure of the meta test. Section 3 explains the simulation of the values of the test statistic and the calculation of the p-values. In Section 4 we describe the pre-processing of the data and the regression models used. Section 5 evaluates those models. For this, we compare their predictive performance by calculating several in-sample metrics. Furthermore, we discuss problems which arise when approximating distributions under certain assumptions and how to fix them. Finally, Section 6 outlines the implementation of the models in the aforementioned software package. Section 7 concludes.
+In this paper we approximate the $p$-values of the meta test by @Bayerhanck_2012 which tests for the null of non-cointegration with supervised machine learning algorithms. We train our models on simulated values of the test statistic and the corresponding $p$-values for various specifications of the aforementioned test. Subsequently, these models will be included in the software package `bayerhanck` for the statistical programming language R. We find that this approach indeed reduces the size of the package significantly. Section 2 explains the theoretical background of the meta test by Bayer and Hanck. We briefly introduce the underlying tests and describe the combination procedure of the meta test. Section 3 explains the simulation of the values of the test statistic and the calculation of the $p$-values. In Section 4 we describe the pre-processing of the data and the regression models used. Section 5 evaluates those models. For this, we compare their predictive performance by calculating several in-sample metrics. Furthermore, we discuss problems which arise when approximating distributions under certain assumptions and how to fix them. Finally, Section 6 outlines the implementation of the models in the aforementioned software package. Section 7 concludes.
 
 
-# The Bayer Hanck Test
+# The meta test by Bayer and Hanck
 The choice as to which of the available cointegration tests to use is an issue in econometric time series analysis. @Bayerhanck_2012 propose powerful meta tests which provide unambiguous test decisions. They combine several residual- and system-based tests in the manner of Fisher's [-@Fisher_1932] Chi-squared test. 
 
 Bayer and Hanck build on previous work from @Pesavento_2004, who considers the model
@@ -132,27 +132,27 @@ To combine the results from the underlying tests Bayer and Hanck draw upon Fishe
 \label{eq:5}
 \end{equation}
 
-where $t_i$ is the $i^{th}$ test statistic. If test $i$ rejects for large values, take $\xi_i := t_i$. If test $i$ rejects for small values, take $-\xi_i := t_i$. With $\Xi_i(x) := \text{Pr}_{\mathcal{H_0}}(\xi_i \geq x)$ the p-value of the $i^{th}$ test is $p_i := \Xi_i(\xi_i)$.
+where $t_i$ is the $i^{th}$ test statistic. If test $i$ rejects for large values, take $\xi_i := t_i$. If test $i$ rejects for small values, take $-\xi_i := t_i$. With $\Xi_i(x) := \text{Pr}_{\mathcal{H_0}}(\xi_i \geq x)$ the $p$-value of the $i^{th}$ test is $p_i := \Xi_i(\xi_i)$.
 
 Fisher shows that under the assumption of independence the null distribution of $\tilde{\chi}^2_{\mathcal{I}}$ follows a chi-squared distribution with $2\mathcal{I}$ degrees of freedom. If this assumption is violated the null distribution is less evident. Here, the latter case occurs, as the $\xi_i$ are not independent. The $\tilde{\chi}^2_{\mathcal{I}}$, however, have well-defined asymptotic null distributions $F_{\mathcal{F_I}}$, as $\tilde{\chi}^2_{\mathcal{I}} \rightarrow_d \mathcal{F_I}$ under $\mathcal{H}_0$ if $T \rightarrow \infty$, with $\mathcal{F_I}$ some random variable. It is therefore feasible to simulate the joint null distribution of the $\xi_i$ to obtain the distribution $F_{\mathcal{F_I}}$ of \eqref{eq:5}. The $F_{\mathcal{F_I}}$ depend on number and type of the combined tests. The distributions of the $\xi_i$ depend on $K-1$ and the deterministic case.
 
 
 # Simulation
-As described in the previous section we can simulate the joint null distribution of the $\xi_i$ and by this allow conclusions on the null distribution of the Bayer Hanck test. In this section, we describe our simulation approach, which generates a large number of test statistics of said test. We want to obtain a sufficient amount of data to train machine learning algorithms on approximating the p-values of the test. 
+We can simulate the null distributions of the underlying tests and compute their $p$-values. We use these results to derive the null distribution of the meta test by Bayer and Hanck. In this section, we describe our simulation approach, which generates a large number of test statistics of said test. We want to obtain a sufficient amount of data to train machine learning algorithms on approximating the $p$-values of the test. 
 
 In the implementation phase of the package we plan on allowing the user to choose between two different combinations of the underlying tests. These will be a combination of the tests of Engle-Granger and Johansen (EJ) and a combination of all possible underlying tests (all). Thus, we calculate \eqref{eq:5} twice, with a different selection of $\xi_i$. We account for the above-mentioned restrictions on the deterministic part of the model by slightly adjusting the underlying process in each case. In total, we generate three different data sets, each containing two different variables for the test statistic.
 
-The following approach relies largely on previous work by @Pesavento_2004. It can be shown that the asymptotic null distributions of the underlying tests are functions of standard Brownian motions. We construct this by step functions using Gaussian random walk. For this, we sum up $N = 1000$ independent, standard normally-distributed random numbers. We further simulate an Ornstein-Uhlenbeck-Process. 
-
-As stated before, we correct the processes according to the three different restrictions on the model deterministics. For the first case, no trend type, the process needs no correction. For the second case, a constant trend, both processes need to be demeaned. For the last case, a constant trend and drift,both processes are adjusted for the mean and trend.
+The following approach relies largely on previous work by @Pesavento_2004. It can be shown that the asymptotic null distributions of the underlying tests are functions of standard Brownian motions. We construct this by step functions using Gaussian random walk. For this, we sum up $N = 1000$ independent, standard normally-distributed random numbers. We further simulate an Ornstein-Uhlenbeck-Process. From these processes we calculate different terms to construct the null distributions of the underlying tests. 
+As stated before, we correct the processes according to the three different restrictions on the model deterministics. For the first case, no trend type, the process needs no correction. For the second case, a constant trend, both processes need to be demeaned. For the last case, a constant trend and drift, both processes are adjusted for the mean and trend.
 
 The number of repetitions is set to 1,000,000. Moreover, we consider $\text{R}^2 \in \{0, 0.05, 0.1, ..., 0.95\}$ and the number of lags $\{k \in \mathbb{Z}: 1 \leq k \leq 11\}$. Pesavento further introduces the local-to-unity parameter $c:= T(\rho-1)$. For negative values of $c$ the variables are cointegrated, while for $c = 0$ there is no cointegration. Since we solely aim at simulating the distribution under the null hypothesis of no cointegration we will not consider other values different from $c = 0$. 
 
-To calculate the $\tilde{\chi}^2_{\mathcal{I}}$ we require the p-values of the underlying tests. For this, we build the \ac{CDF} of each underlying test for the three different data sets and calculate the respective p-values. These are inserted into \eqref{eq:5} to obtain the Bayer Hanck test statistic. Analogous to the previous approach, we deduce the associated null distribution and the p-values. 
+To calculate the $\tilde{\chi}^2_{\mathcal{I}}$ we require the $p$-values of the underlying tests. For this, we build the \ac{CDF} of each underlying test for the three different data sets and calculate the respective $p$-values. These are inserted into \eqref{eq:5} to obtain the meta test statistic. Analogous to the previous approach, we deduce the associated null distribution and the $p$-values. 
 
 
 # Models
-We use the simulated data for training machine learning algorithms on predicting the approximated empirical \ac{CDF} of the Bayer Hanck test. We want to approximate the \ac{CDF} as a function of the test statistic $\xi_i$ and the number of lags $k$. As we seek solutions for describing the null distribution with a less memory-intensive model, we only consider linear models. Non-linear models typically take up too much memory to be suitable here. Moreover, we compare the models according to their in-sample \ac{RMSE}. This seems appropriate as we want to predict already known data. Overfitting therefore does not pose a threat. For this reason, and to reduce computation time, we use no cross-validation.
+We use the simulated data for training machine learning algorithms on predicting the approximated empirical \ac{CDF} of the combined
+non-cointegration test. We want to approximate the \ac{CDF} as a function of the test statistic $\tilde{\chi}^2_{\mathcal{I}}$ and the number of regressors $k$. As we seek solutions for describing the null distribution with a less memory-intensive model, we only consider linear models. Non-linear models typically take up too much memory to be suitable here. Moreover, we compare the models according to their in-sample \ac{RMSE}. This seems appropriate as we want to predict already known data. Overfitting therefore does not pose a threat. For this reason, and to reduce computation time, we use no cross-validation.
 
 ## Data Pre-Processing
 One approach for improving a model's predictive ability is to pre-process the training data. Some models react sensitively to certain characteristics of the predictor or response data. Those characteristics include, inter alia, distributional skewness and outliers. There exist several methods to lower their potentially bad impact on the model's performance. 
@@ -170,7 +170,7 @@ y^{(\lambda)} =
 \label{eq:6}
 \end{equation}
 
-@Boxcox_1964 developed these transformations for the dependent variable. @Kuhn_2013, however, report that it proves as effective for transforming individual regressors. We estimate lambda for the values of the test statistics of the Bayer Hanck test and transform them according to \eqref{eq:6}. This forces their distribution into a more symmetric form, albeit still right-tailed (again, see Figure \ref{fig:density}). 
+@Boxcox_1964 developed these transformations for the dependent variable. @Kuhn_2013, however, report that it proves as effective for transforming individual regressors. We estimate lambda for the values of the test statistics of the meta test and transform them according to \eqref{eq:6}. This forces their distribution into a more symmetric form, albeit still right-tailed (again, see Figure \ref{fig:density}). 
 
 ```{r , density_plots, echo = FALSE, warning=FALSE, fig.cap = " \\label{fig:density} Densities of the untransformed and Box-Cox-transformed test statistic for test types all and EJ, shown for case = 1 and $k = 1$.", fig.height = 4}
 
@@ -182,7 +182,7 @@ cowplot::plot_grid(dense_all,
                    rel_heights = c(1, 1))
 ```
 
-Since the response variable consists of the p-values, simulated under the null hypothesis, it follows a uniform distribution. Therefore, it is already symmetric. We still include a Box-Cox transformed and a logarithmised version of the response variable to see if it benefits the prediction. We also decompose the categorical variable $k$ into dummy variables. Additionally, we add the same variable as a numeric. Thus, transformations such as the logarithm can be performed.
+Since the response variable consists of the $p$-values, simulated under the null hypothesis, it follows a uniform distribution. Therefore, it is already symmetric. We still include a Box-Cox transformed and a logarithmised version of the response variable to see if it benefits the prediction. We also decompose the categorical variable $k$ into dummy variables. Additionally, we add the same variable as a numeric. Thus, transformations such as the logarithm can be performed.
 
 ## Polynomial Regression
 As mentioned, we restrict ourselves to linear models. The empirical \ac{CDF}, which we aim to predict, is typically known to have a curved shape. Thus, we skip the simple linear regression model in favor of more flexible alternatives. We stay with least squares regression, but try various combinations of polynomial functions and interaction terms of the aforementioned regressors. The search for the best model is carried out via brute-force.
@@ -196,7 +196,8 @@ Polynomial Regression extends the classic linear regression model by fitting a p
 
 where $\varepsilon_i$ is the error term [@James_2013].
 
-We calculate orthogonal polynomials of the test statistic of the Bayer Hanck Test, considering up to 13 degrees. Due to the \ac{CDF}'s characteristic form, the minimum grade of the polynomials is 3. We also add different interaction terms with different forms of the regressor $k$, to better capture the curvilinear relationship between predictors and the response. Table \ref{tab:func_form} in Appendix A displays the forms of all considered regression models. 
+We calculate orthogonal polynomials of the test statistic of the combined
+non-cointegration test, considering up to 13 degrees. Due to the \ac{CDF}'s characteristic form, the minimum grade of the polynomials is 3. We also add different interaction terms with different forms of the regressor $k$, to better capture the curvilinear relationship between predictors and the response. Table \ref{tab:func_form} in Appendix A displays the forms of all considered regression models. 
 Since there is no need to prevent overfitting we expect higher order polynomials to perform better, as they are more flexible. These polynomials, however, tend to show oscillation at the boundaries. This makes prediction for more extreme values of the test statistic a risky endeavour. We will address this issue in a later chapter. 
 
 ## \ac{Lasso}  
@@ -229,7 +230,7 @@ Eventually, these models have the major disadvantage that they take up far too m
 We estimate all models for two different combinations of the underlying tests. Namely, these are a combination of the Engle-Granger and Johansen test (EJ) and a combination of all four underlying tests (all). Furthermore, we estimate one model per specification of the model deterministics. Altogether, this results in a total of six different models. 
 
 ## RMSE comparison
-To measure the performance of our regression models we calculate their in-sample RMSE. This is an indication of how far the residuals of the models are from zero, with lower values preferable. We calculate the RMSE for predictions on the full distribution, as well as predictions on the lower tail ($p \leq 0.2$). We pay specific attention to the latter, as it is crucial for the test decision of the Bayer Hanck test. We also add a "corrected" version of the RMSE, cRMSE, for both the full distribution and the lower tail. Here, we limited the predictions to lie within the interval $[0, 1]$, i.e. if the prediction lies outside the interval it is automatically set to its nearest interval boundary.
+To measure the performance of our regression models we calculate their in-sample RMSE. This is an indication of how far the residuals of the models are from zero, with lower values preferable. We calculate the RMSE for predictions on the full distribution, as well as predictions on the lower tail ($p \leq 0.2$). We pay specific attention to the latter, as it is crucial for the test decision of the meta test. We also add a "corrected" version of the RMSE, cRMSE, for both the full distribution and the lower tail. Here, we limited the predictions to lie within the interval $[0, 1]$, i.e. if the prediction lies outside the interval it is automatically set to its nearest interval boundary.
 
 Table \ref{tab:all_1} - \ref{tab:all_3} in Appendix A list all variations of the RMSE for the calculated regression models for all underlying tests. Table \ref{tab:e_j_1} - \ref{tab:e_j_3} list all variations of the RMSE for EJ as underlying tests. We select the best models according to the cRMSE. This seems to be the most appropriate metric, as we plan on incorporating aforesaid correction of the prediction in the final models. Furthermore, a good prediction on the lower tail of the distribution is of higher relevance. Table \ref{tab:5_best_all_1} - \ref{tab:5_best_all_3} list the five best models, as measured by the cRMSE, for each case and all underlying tests. Table \ref{tab:5_best_e_j_1} - \ref{tab:5_best_e_j_3} list the same, but for EJ as underlying tests. For both test types and all cases it shows that a combination of high order polynomials, dummy variables and the associated interaction terms achieves superior predictive performance compared to simpler models. For all considered types of the RMSE the best models require a polynomial of minimum grade 12. This is no surprise, considering we are optimising an in-sample fit. 
 
@@ -266,9 +267,9 @@ lasso %>%
 
 Here, for all models the actual number of $\lambda$ is less than 100. For our purposes it is sufficient to choose the lowest $\lambda$ out of that sequence, ergo the model with the least shrinkage. The number of nonzero coefficients ranges between 47 to 60 for the models with the test type all and between 27 to 34 for the models with test type EJ. In both instances more than half of all regressors of the final polynomial regression models were not considered. Table \ref{tab:lasso_models} lists the predictive performance of the \ac{Lasso} models. Clearly all variations of the RMSE are much higher than for the polynomial regression models. This supports the idea that more complex models are indeed more appropriate in this case. We therefore drop the \ac{Lasso} models and continue to use our final polynomial regression models. 
 
-To assess model performance graphically, we plot the simulated p-values from [chapter 3](#simulation) against the (corrected) p-values approximated by the final models. If these values are highly correlated, they are scattered symmetrically around a 45 degree diagonal passing through the zero point. The vertical distance between any point and the diagonal is the prediction error for that point. Figure \ref{fig:p.sim_approx.1} shows this plot for all cases and $k = 1$. The models appear very accurate, there seems to be a high correlation between the predicted and the actual values. Figure \ref{fig:sim_approx_all} and \ref{fig:sim_approx_e_j} in Appendix A show these plots for all $k$.
+To assess model performance graphically, we plot the simulated $p$-values from [chapter 3](#simulation) against the (corrected) $p$-values approximated by the final models. If these values are highly correlated, they are scattered symmetrically around a 45 degree diagonal passing through the zero point. The vertical distance between any point and the diagonal is the prediction error for that point. Figure \ref{fig:p.sim_approx.1} shows this plot for all cases and $k = 1$. The models appear very accurate, there seems to be a high correlation between the predicted and the actual values. Figure \ref{fig:sim_approx_all} and \ref{fig:sim_approx_e_j} in Appendix A show these plots for all $k$.
 
-```{r , p.sim_aprox.k1, echo = FALSE, warning=FALSE, fig.cap = "\\label{fig:p.sim_approx.1} Simulated p-values plotted against p-values approximated by final (corrected) models, exemplary for $k = 1$.", fig.height = 4.5}
+```{r , p.sim_aprox.k1, echo = FALSE, warning=FALSE, fig.cap = "\\label{fig:p.sim_approx.1} Simulated $p$-values plotted against $p$-values approximated by final (corrected) models, exemplary for $k = 1$.", fig.height = 4.5}
 
 cowplot::plot_grid(p.sim_p.aprox_all.k1 + ylab("Approximated \n p-values"), 
                    p.sim_p.aprox_e_j.k1 + ylab("Approximated \n p-values"), 
@@ -279,9 +280,9 @@ cowplot::plot_grid(p.sim_p.aprox_all.k1 + ylab("Approximated \n p-values"),
                    rel_heights = c(1, 1, .1))
 ```
 
-Looking at the same plot for the lower tail of the distribution (with $p \leq 0.2$), the models show high reliability even in the crucial share of the p-values (see Figure \ref{fig:p.sim_approx_0.2.1}). Figure \ref{fig:sim_approx_all_0.2} and \ref{fig:sim_approx_e_j_0.2} in Appendix A show these plots for all $k$.
+Looking at the same plot for the lower tail of the distribution (with $p \leq 0.2$), the models show high reliability even in the crucial share of the $p$-values (see Figure \ref{fig:p.sim_approx_0.2.1}). Figure \ref{fig:sim_approx_all_0.2} and \ref{fig:sim_approx_e_j_0.2} in Appendix A show these plots for all $k$.
 
-```{r , p.sim_aprox_0.2.k1, echo = FALSE, warning=FALSE, fig.cap = "\\label{fig:p.sim_approx_0.2.1} Simulated p-values plotted against p-values approximated by final (corrected) models, exemplary for $k = 1$, for the lower tail of the distribution.", fig.height = 4.5}
+```{r , p.sim_aprox_0.2.k1, echo = FALSE, warning=FALSE, fig.cap = "\\label{fig:p.sim_approx_0.2.1} Simulated $p$-values plotted against $p$-values approximated by final (corrected) models, exemplary for $k = 1$, for the lower tail of the distribution.", fig.height = 4.5}
 
 cowplot::plot_grid(p.sim_p.aprox_all_0.2.k1 + ylab("Approximated \n p-values"), 
                    p.sim_p.aprox_e_j_0.2.k1 + ylab("Approximated \n p-values"), 
@@ -293,9 +294,9 @@ cowplot::plot_grid(p.sim_p.aprox_all_0.2.k1 + ylab("Approximated \n p-values"),
 ```
 
 ## Correction for high values of the test statistic
-As described in [chapter 3](#simulation) the data set used for training the models was simulated under the null hypothesis of no cointegration. For this reason most values of the test statistic are comparatively small. Even after its transformation the distribution of the test statistic has a longer right tail. When using the models within a software package, as originally intended, it is likely that they will face input values located on the far right of the distribution. It cannot be ruled out that the models might fail to make sensible predictions for such values of the test statistic. 
+As described in [chapter 3](#simulation) the data set used for training the models was simulated under the null hypothesis of no cointegration. For this reason most values of the test statistic are comparatively small. Even after its transformation the distribution of the test statistic has a longer right tail. When using the models within a software package, as originally intended, it is likely that they will also face input values located on the far right of the distribution. It cannot be ruled out that the models might fail to make sensible predictions for such values of the test statistic. 
 
-In order to test this, we generate a sequence from 1 to 100 in single steps, representing possible values of the test statistic. On this basis, we predict p-values with all six final models for all $k \in [1, 11]$. We include the correction to limit the predictions on the interval $[0, 1]$, as described in [chapter 5.1](#rmse-comparison).
+In order to test this, we generate a sequence from 1 to 100 in single steps, representing possible values of the test statistic. On this basis, we predict $p$-values with all six final models for all $k \in [1, 11]$. We include the correction to limit the predictions on the interval $[0, 1]$, as described in [chapter 5.1](#rmse-comparison).
 
 Figure \ref{fig:fig_3} in Appendix A shows the prediction of the models for all underlying tests on said sequence. In the majority of cases the corrected models perform well, with the prediction curve taking the expected shape. In two cases, when $k = 2$ and $k = 3$ in the model with no deterministics (Case = 1), the predicted values rise again, taking values not equal to zero. 
 
@@ -303,9 +304,9 @@ Figure \ref{fig:fig_4} in the Appendix shows the same behaviour for the data wit
 
 There can be several reasons why the models' prediction behaves this way. Oscillation at the edges of an interval is a common problem in polynomial interpolation, especially when using polynomials of high order. Additionally, the distribution of the test statistic in the training data may have made matters worse. It must also be considered that we chose our models according to their predictive performance on the lower tail of the distribution of the test statistic, possibly neglecting the predictive performance on the upper tail. If this incident is not rectified the models will be unable to provide reliable test decisions, as they tend to falsely not reject the null hypothesis at high values of the test statistic. The approach is therefore prone to type II errors.
 
-From this it appears that there is a need for either more reliable models or further correction of the prediction from the existing models. One possible solution can be the re-estimation of the models using regression splines. In theory, those lead to similar results while being less prone to oscillation at the tails. However, with regression splines there is still no guarantee they will show the desired behaviour at said tails. Another approach is to determine a critical value of the test statistic whereby every exceeding value is automatically assigned a low p-value. Due to the former approach being very time-consuming we decide to try the last one. 
+From this it appears that there is a need for either more reliable models or further correction of the prediction from the existing models. One possible solution can be the re-estimation of the models using regression splines. In theory, those lead to similar results while being less prone to oscillation at the tails. However, with regression splines there is still no guarantee they will show the desired behaviour at said tails. Another approach is to determine a critical value of the test statistic whereby every exceeding value is automatically assigned a low $p$-value. Due to the former approach being very time-consuming we decide to try the last one. 
 
-```{r , p_stat__k.2, echo = FALSE, warning = FALSE, fig.cap = " \\label{fig:e_j_k.1} Simulted p-values plotted against p-values approximated by final corrected models, exemplary for $k = 1$.Corrected (blue) and uncorrected (red) $p$-value predictions for all cases and $k = 2$, using EJ and all as underlying tests.", fig.height = 4.5}
+```{r , p_stat__k.2, echo = FALSE, warning = FALSE, fig.cap = " \\label{fig:e_j_k.1} Simulted $p$-values plotted against $p$-values approximated by final corrected models, exemplary for $k = 1$.Corrected (blue) and uncorrected (red) $p$-value predictions for all cases and $k = 2$, using EJ and all as underlying tests.", fig.height = 4.5}
 
 legend <- cowplot::get_legend(
     # create some space to the left of the legend
@@ -323,26 +324,25 @@ cowplot::plot_grid(plot_p_stat_all_k.2 + theme(legend.position="none"),
                    rel_heights = c(1, 1, 0.2))
 ```
 
-We define the critical value by taking the value of the test statistic with the lowest p-value. We do this for all combinations of the test type, cases and $k$s. The resulting values range between 36 and 44 for the EJ combination and 55 and 80 for all combinations respectively. Graphically, it should be obvious that these values are supposed to have rather low p-values. Thus, we can be confident that our approach suffices for our purposes without any unintended side-effects. Therefore, the problem of erratic behaviour for higher values of the test statistic is avoided.
+We define the critical value by taking the value of the test statistic with the lowest $p$-value. We do this for all combinations of the test type, cases and $k$s. The resulting values range between 36 and 44 for the EJ combination and 55 and 80 for all combinations respectively. Graphically, it should be obvious that these values are supposed to have rather low $p$-values. Thus, we can be confident that our approach suffices for our purposes without any unintended side-effects. Therefore, the problem of erratic behaviour for higher values of the test statistic is avoided.
 
 # Algorithmic implementation
-Since the corrected models seem to provide a reliable prediction for the $p$-values we will include them in the pre-existing R-package `bayerhanck`. The package is currently hosted on GitHub and can be installed directly. Up to now the release on CRAN has not been possible as packages must not exceed a maximum size of 5 MB. The package, however, has a size of 12.2 MB, far exceeding the specified limit. A large part of this can be attributed to the attached data, namely the critical values and the full null distributions. We plan on replacing these with our models to reduce the size of the package significantly.
+Since the corrected models seem to provide a reliable prediction for the $p$-values we will include them in the pre-existing R-package `bayerhanck`. The package is currently hosted on GitHub and can be installed directly. Up to now the release on \ac{CRAN} has not been possible as packages must not exceed a maximum size of 5 MB. The package, however, has a size of 12.2 MB, far exceeding the specified limit. A large part of this can be attributed to the attached data, namely the critical values and the full null distributions. We plan on replacing these with our models to reduce the size of the package significantly.
 
-We will not go into further detail on the general implementation of the `bayerhanck` package, e.g. the calculation of the underlying tests. Instead, we solely focus on the implementation of the polynomial regression models and their corrections. First, we create a nested `tibble`, a more efficient version of R's traditional `data.frame`, called `models`. It contains the final (uncorrected) models, the $\lambda$ for the Box-Cox transformation of both the test statistic and the predicted p-value, as well as the critical values for the correction of the prediction of high values of the test statistic (see [chapter 5.2](#correction-for-high-values-of-the-test-statistic)). All objects and values can be selected according to their test- and trendtype. 
+We will not go into further detail on the general implementation of the `bayerhanck` package, e.g. the calculation of the underlying tests. Instead, we solely focus on the implementation of the polynomial regression models and their corrections. First, we create a nested `tibble`, a more efficient version of R's traditional `data.frame`, called `models`. It contains the final (uncorrected) models, the $\lambda$ for the Box-Cox transformation of both the test statistic and the predicted $p$-value, as well as the critical values for the correction of the prediction of high values of the test statistic (see [chapter 5.2](#correction-for-high-values-of-the-test-statistic)). All objects and values can be selected according to their test- and trendtype. 
 
-In the package the meta test by Bayer and Hanck is performed by calling the function `bayerhanck()`. Here, the user may specify the test type, the number of lags $k$ and the deterministic component. The function then calculates the test statistics of the underlying tests, EJ or all, and their p-values. These are then aggregated according to \eqref{eq:5}. Based on the test statistic of the Bayer Hanck test a decision is taken whether to reject or accept the null hypothesis. Formerly, this relied heavily on the attached critical values and null distributions. As of now, `bayerhanck()` calls the internal function `get_p_value()`, which approximates the p-value with our polynomial regression models. Firstly, it accesses `models` to obtain the critical value from [chapter 5.2](#correction-for-high-values-of-the-test-statistic), given the configuration in the function arguments of `bayerhanck()`. It then differentiates if the calculated test statistic lies beneath or above this critical value. In the latter case it skips the following steps and directly outputs a p-value of $1e-12$. If the test statistic lies beneath the critical value the p-value will be predicted with a polynomial regression model. For this, the value of the test statistic is transformed according to \ref{eq:6} with its associated $\lambda$ stored in `models`. The corresponding model is selected to perform the estimation of the p-value, based on the transformed test statistic and $k$ as regressors. If the response variable underwent a Box-Cox transformation in the initial fitting of the model, the newly predicted response is transformed back as a next step. Lastly, the algorithm forces the estimated p-value within the theoretical boundaries of 0 and 1. If a p-value $\leq 0$ is predicted, it is corrected to $1e-12$. For values $> 1$, it is set to $9.9999e-1$. The function `bayerhanck()` then outputs the value of the test statistic of the Bayer Hanck test, accompanied by it's p-value.
+In the package the meta test by Bayer and Hanck is performed by calling the function `bayerhanck()`. Here, the user may specify the test type, the number of lags $p$ and the deterministic component. The function then calculates the test statistics of the underlying tests, EJ or all, and their $p$-values. These are then aggregated according to \eqref{eq:5}. Based on the test statistic a decision is taken whether to reject or accept the null hypothesis. Formerly, this relied heavily on the attached critical values and null distributions. As of now, `bayerhanck()` calls the internal function `get_p_value()`, which approximates the $p$-value with our polynomial regression models. Firstly, it accesses `models` to obtain the critical value from [chapter 5.2](#correction-for-high-values-of-the-test-statistic), given the configuration in the function arguments of `bayerhanck()`. It then differentiates if the calculated test statistic lies beneath or above this critical value. In the latter case it skips the following steps and directly outputs a $p$-value of $1e-12$. If the test statistic lies beneath the critical value the $p$-value will be predicted with a polynomial regression model. For this, the value of the test statistic is transformed according to \ref{eq:6} with its associated $\lambda$ stored in `models`. The corresponding model is selected to perform the estimation of the $p$-value, based on the transformed test statistic and $k$ as regressors. If the response variable underwent a Box-Cox transformation in the initial fitting of the model, the newly predicted response is transformed back as a next step. Lastly, the algorithm forces the estimated $p$-value within the theoretical boundaries of 0 and 1. If a $p$-value $\leq 0$ is predicted, it is corrected to $1e-12$. For values $> 1$, it is set to $9.9999e-1$. The function `bayerhanck()` then outputs the value of the test statistic of the meta test by Bayer and Hanck, accompanied by it's $p$-value.
 
-Eventually, this approach succeeded in reducing the package size significantly. The implementation of the polynomial regression models for predicting the p-values reduced the memory space required by the package to less than 5 MB.
-
+Eventually, this approach succeeded in reducing the package size significantly. The implementation of the polynomial regression models for predicting the $p$-values reduced the memory space required by the package to less than 5 MB.
 
 # Conclusion
-In this paper we fit machine learning models to predict the p-values of the Bayer Hanck Test, which tests for the null of non-cointegration. This was motivated by the fact that the test statistic of said test is not available in closed form. Therefore, one has to rely on simulation to obtain the distribution of the test statistic to eventually calculate the p-values. For these reasons, the prior implementation of the Bayer Hanck test into a software package widely exceeded the given size limitations. It was our objective to reduce the size of this software package by including the machine learning models instead of the full null distributions for each combination of the underlying tests. 
+In this paper we fit machine learning models to predict the $p$-values of the meta tests of Bayer and Hanck, which tests for the null of non-cointegration. This was motivated by the fact that the test statistic of said test is not available in closed form. Therefore, one has to rely on simulation to obtain the distribution of the test statistic to eventually calculate the $p$-values. For these reasons, the prior implementation of the said test into a software package widely exceeded the given size limitations. It was our objective to reduce the size of this software package by including the machine learning models instead of the full null distributions for each combination of the underlying tests and deterministic case. 
 
-First, we gave a brief introduction into the theoretical background of the Bayer Hanck test, as well as it's underlying tests. We further described our simulation approach to simulate the distribution of the test statistic, which is later used as the training data. Due to the distribution being right-skewed, we used a Box-Cox transformation prior to fitting the models. We also used various transformations on the response variable, creating multiple versions of it. 
+First, we gave a brief introduction into the theoretical background of the meta test, as well as it's underlying tests. We further described our simulation approach to simulate the distribution of the test statistic, which is later used as the training data. Due to the distribution being right-skewed, we used a Box-Cox transformation prior to fitting the models. We also used various transformations on the response variable, creating multiple versions of it. 
 
-After creating the data we used it to train the machine learning algorithms. Since we aim at describing the null distribution with a less memory-intensive approach, we only considered linear models. Still, the \ac{CDF} is known to have a curved shape. To make the models more flexible we included various interaction terms and used polynomials with up to 13 degrees. For evaluating the models we calculated several in-sample metrics. Eventually, we decided to choose the models that minimize the RMSE over the lower tail of the distribution, corrected for values ranging between 0 and 1. As expected, the most complex models performed best. To check for redundancy in those final models, we used a \ac{Lasso} on them. Additionally, we (again) corrected the final models to suppress oscillation at the boundaries. Finally, these models were included in the pre-existing software package `bayerhanck` for the statistical programming language R. 
+After creating the data we used it to train the machine learning algorithms. Since we aim at describing the null distribution with a less memory-intensive approach, we only considered linear models. Still, the \ac{CDF} is known to have a curved shape. To make the models more flexible we included various interaction terms and polynomials with up to $13$ degrees. For evaluating the models we calculated several in-sample metrics. Eventually, we decided to choose the models that minimize the \ac{cRMSE} over the lower tail of the distribution, corrected for values ranging between 0 and 1. As expected, the most complex models performed best. To check for redundancy in those final models, we used a \ac{Lasso} on them. Additionally, we (again) corrected the final models to suppress oscillation at the boundaries. Finally, these models were included in the pre-existing software package `bayerhanck` for the statistical programming language R. 
 
-Our approach successfully reduced the size of the aforementioned package significantly.
+Our approach successfully reduced the size of the aforementioned package significantly and therefore it is possible to submit the package to \ac{CRAN}, which is going to be the next step. 
 
 
 <!-- end of main part -->
@@ -362,25 +362,9 @@ Our approach successfully reduced the size of the aforementioned package signifi
 \nocite{R-tidyr}
 \nocite{R-dplyr}
 \nocite{R-glmnet}
-\nocite{R-class}
-\nocite{R-MASS}
-\nocite{R-plm}
-\nocite{R-leaps}
-\nocite{R-caret}
-\nocite{R-tree}
-\nocite{R-gbm}
-\nocite{R-plotmo}
-\nocite{R-pls}
-\nocite{R-splines}
 \nocite{R-tictoc}
-\nocite{R-plotly}
-\nocite{R-inspectdf}
-\nocite{R-rpart}
-\nocite{R-rpart.plot}
-\nocite{R-stargazer}
 \nocite{R-knitr}
 \nocite{R-purrr}
-\nocite{R-randomForest}
 \nocite{R-rstudioapi}
 
 
