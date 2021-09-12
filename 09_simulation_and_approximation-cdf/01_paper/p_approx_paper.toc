@@ -1,6 +1,6 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
-\babel@toc {english}{}
-\babel@toc {english}{}
+\babel@toc {english}{}\relax 
+\babel@toc {english}{}\relax 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{List of Figures}{III}{section*.2}%
 \defcounter {refsection}{0}\relax 
@@ -18,36 +18,36 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.1}Data Pre-Processing}{5}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2}Polynomial Regression}{7}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.2}Polynomial Regression}{6}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.3}\ac {Lasso}}{7}{subsection.4.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.4}Other Regression Models}{8}{subsection.4.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Model Evaluation}{9}{section.5}%
+\contentsline {section}{\numberline {5}Model Evaluation}{8}{section.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}RMSE comparison}{9}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.1}RMSE comparison}{8}{subsection.5.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.2}Correction for high values of the test statistic}{12}{subsection.5.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6}Algorithmic implementation}{14}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Conclusion}{16}{section.7}%
+\contentsline {section}{\numberline {7}Conclusion}{15}{section.7}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{References}{III}{section.7}%
 \defcounter {refsection}{1}\relax 
-\contentsline {section}{Software-References}{IV}{section*.6}%
+\contentsline {section}{Software-References}{VI}{section*.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A}Appendices}{V}{appendix.A}%
+\contentsline {section}{\numberline {A}Appendices}{VII}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.1}Results for the \(p\)-approximation of the Bayer-Hanck Test with all underyling Tests}{VII}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.1}Results for the \(p\)-approximation of the Bayer-Hanck Test with all underyling Tests}{IX}{subsection.A.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {A.1.1}Metrics of the 5 Best Models}{VII}{subsubsection.A.1.1}%
+\contentsline {subsubsection}{\numberline {A.1.1}Metrics of the 5 Best Models}{IX}{subsubsection.A.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {A.1.2}Metrics of all Models}{VIII}{subsubsection.A.1.2}%
+\contentsline {subsubsection}{\numberline {A.1.2}Metrics of all Models}{X}{subsubsection.A.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.2}Results for the \(p\)-approximation of the Bayer-Hanck Test with Engle-Granger and Johansen as underlying tests}{XXXV}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.2}Results for the \(p\)-approximation of the Bayer-Hanck Test with Engle-Granger and Johansen as underlying tests}{XXXVII}{subsection.A.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {A.2.1}Metrics of the 5 Best Models}{XXXV}{subsubsection.A.2.1}%
+\contentsline {subsubsection}{\numberline {A.2.1}Metrics of the 5 Best Models}{XXXVII}{subsubsection.A.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {A.2.2}Metrics of all Models}{XXXVIII}{subsubsection.A.2.2}%
+\contentsline {subsubsection}{\numberline {A.2.2}Metrics of all Models}{XL}{subsubsection.A.2.2}%

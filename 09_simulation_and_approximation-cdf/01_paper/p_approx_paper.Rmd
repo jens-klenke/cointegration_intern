@@ -356,22 +356,34 @@ Our approach successfully reduced the size of the aforementioned package signifi
 \cleardoublepage
 
 \begin{refsection}
+
 \nocite{R-base}
-\nocite{R-stargazer}
-\nocite{R-stringr}
-\nocite{R-tidyr}
+\nocite{R-knitr}
+\nocite{R-class}
 \nocite{R-dplyr}
 \nocite{R-glmnet}
-\nocite{R-tictoc}
-\nocite{R-knitr}
 \nocite{R-purrr}
 \nocite{R-rstudioapi}
-
-
-
-
-
+\nocite{R-stringr}
+\nocite{R-tictoc}
+\nocite{R-tidyr}
 \nocite{R-Studio}
+\nocite{wickham_readr_2021}
+\nocite{wickham_ggplot2_2021}
+\nocite{simpson_permute_2019}
+\nocite{cetinkaya-rundel_openintro_2021}
+\nocite{zhu_kableextra_2021}
+\nocite{auguie_gridextra_2017}
+\nocite{wilke_cowplot_2020}
+\nocite{moritz_imputets_2021}
+\nocite{narzo_tsdyn_2020}
+\nocite{wallig_doparallel_2020}
+\nocite{wallig_foreach_2020}
+\nocite{muller_tibble_2021}
+\nocite{wickham_pryr_2021}
+\nocite{bache_magrittr_2020}
+\nocite{vaughan_furrr_2021}
+
 
 \printbibliography[title = Software-References]
 \addcontentsline{toc}{section}{Software-References}
