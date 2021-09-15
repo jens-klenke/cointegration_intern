@@ -1,14 +1,12 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
-\babel@toc {english}{}
-\babel@toc {english}{}
+\babel@toc {english}{}\relax 
+\babel@toc {english}{}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Densities of the untransformed and Box-Cox-transformed test statistic for test types all and EJ, shown for case = 1 and \(k = 1\).}}{6}{figure.1}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Simulated \(p\)-values plotted against \(p\)-values approximated by final (corrected) models, exemplary for \(k = 1\).}}{11}{figure.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {2}{\ignorespaces Simulated \(p\)-values plotted against \(p\)-values approximated by final (corrected) models, exemplary for \(k = 1\).}}{11}{figure.2}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Simulated \(p\)-values plotted against \(p\)-values approximated by final (corrected) models, exemplary for \(k = 1\), for the lower tail of the distribution.}}{11}{figure.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3}{\ignorespaces Simulated \(p\)-values plotted against \(p\)-values approximated by final (corrected) models, exemplary for \(k = 1\), for the lower tail of the distribution.}}{12}{figure.3}%
-\defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4}{\ignorespaces Simulated \(p\)-values plotted against \(p\)-values approximated by final corrected models, exemplary for \(k = 1\). Corrected (blue) and uncorrected (red) \(p\)-value predictions for all cases and \(k = 2\), using EJ and all as underlying tests.}}{14}{figure.4}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Simulated \(p\)-values plotted against \(p\)-values approximated by final corrected models, exemplary for \(k = 1\). Corrected (blue) and uncorrected (red) \(p\)-value predictions for all cases and \(k = 2\), using EJ and all as underlying tests.}}{13}{figure.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {A1}{\ignorespaces Simulated against approximated \(p\)-values over the whole distribution for all cases and all underlying tests.}}{LXVII}{figure.1}%
 \defcounter {refsection}{0}\relax 

@@ -1,8 +1,8 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
-\babel@toc {english}{}
-\babel@toc {english}{}
+\babel@toc {english}{}\relax 
+\babel@toc {english}{}\relax 
 \defcounter {refsection}{0}\relax 
-\contentsline {table}{\numberline {1}{\ignorespaces The final models, selected according to the lowest cRMSE for the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.}}{10}{table.1}%
+\contentsline {table}{\numberline {1}{\ignorespaces The final models, selected according to the lowest cRMSE for the lower tail of the distribution. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.}}{9}{table.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {table}{\numberline {2}{\ignorespaces The Lasso models, to check the final polynomial regression models for any redundancy. The cRMSE reflects the RMSE after correcting for values ranging between 0 and 1.}}{10}{table.2}%
 \defcounter {refsection}{0}\relax 
