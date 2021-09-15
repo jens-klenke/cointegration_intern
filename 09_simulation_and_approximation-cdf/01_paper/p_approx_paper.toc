@@ -1,6 +1,6 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
-\babel@toc {english}{}\relax 
-\babel@toc {english}{}\relax 
+\babel@toc {english}{}
+\babel@toc {english}{}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{List of Figures}{III}{section*.2}%
 \defcounter {refsection}{0}\relax 
@@ -18,21 +18,21 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.1}Data Pre-Processing}{5}{subsection.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2}Polynomial Regression}{6}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.2}Polynomial Regression}{7}{subsection.4.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.3}\ac {Lasso}}{7}{subsection.4.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.4}Other Regression Models}{8}{subsection.4.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}Model Evaluation}{8}{section.5}%
+\contentsline {section}{\numberline {5}Model Evaluation}{9}{section.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}RMSE comparison}{8}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.1}RMSE comparison}{9}{subsection.5.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.2}Correction for high values of the test statistic}{12}{subsection.5.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6}Algorithmic implementation}{14}{section.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Conclusion}{15}{section.7}%
+\contentsline {section}{\numberline {7}Conclusion}{16}{section.7}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{References}{III}{section.7}%
 \defcounter {refsection}{1}\relax 
