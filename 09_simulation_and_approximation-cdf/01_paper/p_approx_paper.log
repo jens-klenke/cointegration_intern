@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.3)  22 NOV 2021 17:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.3)  22 NOV 2021 19:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1370,15 +1370,35 @@ Package acronym Info: Label `acro:Lasso' newly defined as it shall be overridde
 n
 although it is yet undefined on input line 23.
 
-Overfull \hbox (25.82408pt too wide) detected at line 49
- [][][]\T1/lmr/m/n/12 XXXVII[][]
+Overfull \hbox (3.96545pt too wide) detected at line 43
+ [][][]\T1/lmr/m/n/12 XIII[][]
+ []
+
+
+Overfull \hbox (3.96545pt too wide) detected at line 45
+ [][][]\T1/lmr/m/n/12 XIII[][]
+ []
+
+
+Overfull \hbox (3.64272pt too wide) detected at line 47
+ [][][]\T1/lmr/m/n/12 XIV[][]
+ []
+
+
+Overfull \hbox (2.17622pt too wide) detected at line 49
+ [][][]\T1/lmr/m/n/12 XLI[][]
  []
 
 [1
 
 ]
-Overfull \hbox (25.82408pt too wide) detected at line 51
- [][][]\T1/lmr/m/n/12 XXXVII[][]
+Overfull \hbox (2.17622pt too wide) detected at line 51
+ [][][]\T1/lmr/m/n/12 XLI[][]
+ []
+
+
+Overfull \hbox (10.98422pt too wide) detected at line 53
+ [][][]\T1/lmr/m/n/12 XLIV[][]
  []
 
 )
@@ -1386,77 +1406,97 @@ Overfull \hbox (25.82408pt too wide) detected at line 51
 \openout5 = `p_approx_paper.toc'.
 
 [2] (./p_approx_paper.lof
-Overfull \hbox (15.54959pt too wide) detected at line 13
- [][][]\T1/lmr/m/n/12 LXVII[][]
- []
-
-
-Overfull \hbox (20.11496pt too wide) detected at line 15
- [][][]\T1/lmr/m/n/12 LXVIII[][]
- []
-
-
-Overfull \hbox (10.98422pt too wide) detected at line 17
- [][][]\T1/lmr/m/n/12 LXIX[][]
- []
-
-
-Overfull \hbox (6.74524pt too wide) detected at line 19
- [][][]\T1/lmr/m/n/12 LXX[][]
- []
-
-
-Overfull \hbox (10.98422pt too wide) detected at line 21
+Overfull \hbox (10.98422pt too wide) detected at line 13
  [][][]\T1/lmr/m/n/12 LXXI[][]
  []
 
 
-Overfull \hbox (15.54959pt too wide) detected at line 23
+Overfull \hbox (15.54959pt too wide) detected at line 15
  [][][]\T1/lmr/m/n/12 LXXII[][]
+ []
+
+
+Overfull \hbox (20.11496pt too wide) detected at line 17
+ [][][]\T1/lmr/m/n/12 LXXIII[][]
+ []
+
+
+Overfull \hbox (19.79222pt too wide) detected at line 19
+ [][][]\T1/lmr/m/n/12 LXXIV[][]
+ []
+
+
+Overfull \hbox (15.55324pt too wide) detected at line 21
+ [][][]\T1/lmr/m/n/12 LXXV[][]
+ []
+
+
+Overfull \hbox (19.79222pt too wide) detected at line 23
+ [][][]\T1/lmr/m/n/12 LXXVI[][]
  []
 
 )
 \tf@lof=\write6
 \openout6 = `p_approx_paper.lof'.
 
-(./p_approx_paper.lot
-Overfull \hbox (3.96545pt too wide) detected at line 9
- [][][]\T1/lmr/m/n/12 VIII[][]
- []
-
-[3]
-Overfull \hbox (3.64272pt too wide) detected at line 19
- [][][]\T1/lmr/m/n/12 XIX[][]
+(./p_approx_paper.lot [3]
+Overfull \hbox (3.96545pt too wide) detected at line 11
+ [][][]\T1/lmr/m/n/12 XIII[][]
  []
 
 
-Overfull \hbox (21.58145pt too wide) detected at line 21
- [][][]\T1/lmr/m/n/12 XXVIII[][]
+Overfull \hbox (3.96545pt too wide) detected at line 13
+ [][][]\T1/lmr/m/n/12 XIII[][]
  []
 
 
-Overfull \hbox (30.38945pt too wide) detected at line 23
- [][][]\T1/lmr/m/n/12 XXXVIII[][]
+Overfull \hbox (3.64272pt too wide) detected at line 15
+ [][][]\T1/lmr/m/n/12 XIV[][]
+ []
+
+
+Overfull \hbox (3.64272pt too wide) detected at line 17
+ [][][]\T1/lmr/m/n/12 XIV[][]
+ []
+
+
+Overfull \hbox (12.77345pt too wide) detected at line 19
+ [][][]\T1/lmr/m/n/12 XXIII[][]
+ []
+
+
+Overfull \hbox (17.01608pt too wide) detected at line 21
+ [][][]\T1/lmr/m/n/12 XXXII[][]
+ []
+
+
+Overfull \hbox (6.7416pt too wide) detected at line 23
+ [][][]\T1/lmr/m/n/12 XLII[][]
  []
 
 [4]
-Overfull \hbox (30.38945pt too wide) detected at line 25
- [][][]\T1/lmr/m/n/12 XXXVIII[][]
+Overfull \hbox (6.7416pt too wide) detected at line 25
+ [][][]\T1/lmr/m/n/12 XLII[][]
  []
 
 
-Overfull \hbox (21.25871pt too wide) detected at line 27
- [][][]\T1/lmr/m/n/12 XXXIX[][]
+Overfull \hbox (11.30696pt too wide) detected at line 27
+ [][][]\T1/lmr/m/n/12 XLIII[][]
  []
 
 
-Overfull \hbox (10.98422pt too wide) detected at line 31
- [][][]\T1/lmr/m/n/12 XLIX[][]
+Overfull \hbox (10.98422pt too wide) detected at line 29
+ [][][]\T1/lmr/m/n/12 XLIV[][]
  []
 
 
-Overfull \hbox (10.00136pt too wide) detected at line 33
- [][][]\T1/lmr/m/n/12 LVIII[][]
+Overfull \hbox (2.49896pt too wide) detected at line 31
+ [][][]\T1/lmr/m/n/12 LIII[][]
+ []
+
+
+Overfull \hbox (6.7416pt too wide) detected at line 33
+ [][][]\T1/lmr/m/n/12 LXII[][]
  []
 
 )
@@ -1465,22 +1505,32 @@ Overfull \hbox (10.00136pt too wide) detected at line 33
 
 [5] [6]
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3
-42.
+37.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.365 
+l.360 
        [1
 
-] [2] [3] [4]
+]
+Package acronym Info: Label `acro:FCLT' newly defined as it shall be overridden
+
+although it is yet undefined on input line 378.
+[2]
+Package acronym Info: Label `acro:VECM' newly defined as it shall be overridden
+
+although it is yet undefined on input line 416.
+Package acronym Info: Label `acro:OLS' newly defined as it shall be overridden
+although it is yet undefined on input line 430.
+[3] [4]
 Package acronym Info: Label `acro:CDF' newly defined as it shall be overridden
-although it is yet undefined on input line 518.
+although it is yet undefined on input line 512.
 Package acronym Info: Label `acro:RMSE' newly defined as it shall be overridden
 
-although it is yet undefined on input line 535.
+although it is yet undefined on input line 529.
 [5]
 <p_approx_paper_files/figure-latex/density_plots-1.pdf, id=290, 464.73625pt x 2
 81.05pt>
@@ -1488,19 +1538,22 @@ File: p_approx_paper_files/figure-latex/density_plots-1.pdf Graphic file (type
 pdf)
 <use p_approx_paper_files/figure-latex/density_plots-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/density_plots-1.pdf 
- used on input line 581.
+ used on input line 575.
 (pdftex.def)             Requested size: 384.12126pt x 232.29794pt.
-[6 <./p_approx_paper_files/figure-latex/density_plots-1.pdf>] [7] [8]
+[6 <./p_approx_paper_files/figure-latex/density_plots-1.pdf>] [7]
+Package acronym Info: Label `acro:GAM' newly defined as it shall be overridden
+although it is yet undefined on input line 664.
+[8]
 Package acronym Info: Label `acro:cRMSE' newly defined as it shall be overridde
 n
-although it is yet undefined on input line 710.
+although it is yet undefined on input line 703.
 
-Overfull \hbox (4.51645pt too wide) in paragraph at lines 742--742
+Overfull \hbox (4.51645pt too wide) in paragraph at lines 735--735
  []|\T1/lmr/m/n/8 (-20) Type| 
  []
 
 
-Overfull \hbox (2.94322pt too wide) in paragraph at lines 742--742
+Overfull \hbox (2.94322pt too wide) in paragraph at lines 735--735
  []|\T1/lmr/m/n/8 (-20) Case| 
  []
 
@@ -1508,12 +1561,12 @@ Overfull \hbox (2.94322pt too wide) in paragraph at lines 742--742
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [9]
-Overfull \hbox (4.51645pt too wide) in paragraph at lines 779--779
+Overfull \hbox (4.51645pt too wide) in paragraph at lines 772--772
  []|\T1/lmr/m/n/8 (-20) Type| 
  []
 
 
-Overfull \hbox (2.94322pt too wide) in paragraph at lines 779--779
+Overfull \hbox (2.94322pt too wide) in paragraph at lines 772--772
  []|\T1/lmr/m/n/8 (-20) Case| 
  []
 
@@ -1524,7 +1577,7 @@ File: p_approx_paper_files/figure-latex/p.sim_aprox.k1-1.pdf Graphic file (type
  pdf)
 <use p_approx_paper_files/figure-latex/p.sim_aprox.k1-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/p.sim_aprox.k1-1.pdf
-  used on input line 818.
+  used on input line 811.
 (pdftex.def)             Requested size: 384.1195pt x 262.73108pt.
 <p_approx_paper_files/figure-latex/p.sim_aprox_0.2.k1-1.pdf, id=360, 463.7325pt
  x 317.185pt>
@@ -1532,7 +1585,7 @@ File: p_approx_paper_files/figure-latex/p.sim_aprox_0.2.k1-1.pdf Graphic file (
 type pdf)
 <use p_approx_paper_files/figure-latex/p.sim_aprox_0.2.k1-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/p.sim_aprox_0.2.k1-1
-.pdf  used on input line 832.
+.pdf  used on input line 825.
 (pdftex.def)             Requested size: 384.1195pt x 262.73108pt.
 [11 <./p_approx_paper_files/figure-latex/p.sim_aprox.k1-1.pdf>] [12 <./p_approx
 _paper_files/figure-latex/p.sim_aprox_0.2.k1-1.pdf>]
@@ -1542,43 +1595,22 @@ File: p_approx_paper_files/figure-latex/p_stat__k.2-1.pdf Graphic file (type pd
 f)
 <use p_approx_paper_files/figure-latex/p_stat__k.2-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat__k.2-1.pdf  u
-sed on input line 903.
+sed on input line 896.
 (pdftex.def)             Requested size: 384.1195pt x 259.40538pt.
 [13]
 Package acronym Info: Label `acro:CRAN' newly defined as it shall be overridden
 
-although it is yet undefined on input line 927.
-[14 <./p_approx_paper_files/figure-latex/p_stat__k.2-1.pdf>] [15] [16] [17]pdfT
-eX warning (ext4): destination with the same identifier (name{page.III}) has be
-en already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1034 \cleardoublepage
-                        [3]
+although it is yet undefined on input line 920.
+[14 <./p_approx_paper_files/figure-latex/p_stat__k.2-1.pdf>] [15] [16] [17] [7]
 \blx@maxsegment@1=\count479
 \blx@sectionciteorder@1=\count480
-Package biblatex Info: Reference section=1 on input line 1036.
-Package biblatex Info: Setting label 'refsection:1' on input line 1036.
-pdfTeX warning (ext4): destination with the same identifier (name{page.IV}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1066 ...ibliography[title = Software-References]
-                                                   [4
+Package biblatex Info: Reference section=1 on input line 1029.
+Package biblatex Info: Setting label 'refsection:1' on input line 1029.
+[8
 
-]pdfTeX warning (ext4): destination with the same identifier (name{page.V}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1066 ...ibliography[title = Software-References]
-                                                   [5]
-Package biblatex Info: Reference section=0 on input line 1068.
-pdfTeX warning (ext4): destination with the same identifier (name{page.VI}) has
- been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1070 \cleardoublepage
-                        [6]
+] [9]
+Package biblatex Info: Reference section=0 on input line 1061.
+[10]
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -1615,279 +1647,279 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1102 ... notation was used for the description.}
+l.1095 ... notation was used for the description.}
                                                   pdfTeX warning (ext4): destin
 ation with the same identifier (name{table.1}) has been already used, duplicate
  ignored
 <to be read again> 
                    \relax 
-l.1102 ... notation was used for the description.}
-                                                   [7
+l.1095 ... notation was used for the description.}
+                                                   [11
 
 
-] [8]
+] [12]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 1138.
+(Font)              <14.4> on input line 1131.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 1138.
+(Font)              <10> on input line 1131.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 1138.
+(Font)              <7> on input line 1131.
 pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1146 ...ing for values ranging between 0 and 1.}
+l.1139 ...ing for values ranging between 0 and 1.}
                                                   pdfTeX warning (ext4): destin
 ation with the same identifier (name{table.2}) has been already used, duplicate
  ignored
 <to be read again> 
                    \relax 
-l.1146 ...ing for values ranging between 0 and 1.}
+l.1139 ...ing for values ranging between 0 and 1.}
                                                   
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[9]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1211--1218
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1218--1223
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1223--1225
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1225--1227
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1227--1248
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1248--1268
- [] [] [] [] [] [] 
- []
-
-[10]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1268--1288
- [] [] [] [] [] [] 
- []
-
-[11]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1288--1308
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1308--1328
- [] [] [] [] [] [] 
- []
-
-[12]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1328--1348
- [] [] [] [] [] [] 
- []
-
 [13]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1348--1368
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1204--1211
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1211--1216
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1216--1218
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1218--1220
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1220--1241
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1241--1261
  [] [] [] [] [] [] 
  []
 
 [14]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1368--1388
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1388--1408
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1261--1281
  [] [] [] [] [] [] 
  []
 
 [15]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1408--1428
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1281--1301
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1301--1321
  [] [] [] [] [] [] 
  []
 
 [16]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1428--1448
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1321--1341
  [] [] [] [] [] [] 
  []
 
 [17]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1448--1459
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1341--1361
  [] [] [] [] [] [] 
  []
 
 [18]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1464--1471
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1361--1381
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1471--1476
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1476--1478
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1478--1480
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1480--1501
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1501--1521
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1381--1401
  [] [] [] [] [] [] 
  []
 
 [19]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1521--1541
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1401--1421
  [] [] [] [] [] [] 
  []
 
 [20]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1541--1561
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1561--1581
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1421--1441
  [] [] [] [] [] [] 
  []
 
 [21]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1581--1601
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1441--1452
  [] [] [] [] [] [] 
  []
 
 [22]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1601--1621
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1457--1464
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1464--1469
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1469--1471
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1471--1473
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1473--1494
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1494--1514
  [] [] [] [] [] [] 
  []
 
 [23]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1621--1641
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1514--1534
  [] [] [] [] [] [] 
  []
 
 [24]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1641--1661
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1534--1554
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1661--1681
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1554--1574
  [] [] [] [] [] [] 
  []
 
 [25]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1681--1701
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1574--1594
  [] [] [] [] [] [] 
  []
 
 [26]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1701--1712
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1594--1614
  [] [] [] [] [] [] 
  []
 
 [27]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1717--1724
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1724--1729
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1729--1731
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1731--1733
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1733--1754
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1754--1774
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1614--1634
  [] [] [] [] [] [] 
  []
 
 [28]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1774--1794
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1634--1654
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1654--1674
  [] [] [] [] [] [] 
  []
 
 [29]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1794--1814
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1674--1694
  [] [] [] [] [] [] 
  []
 
 [30]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1814--1834
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1834--1854
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1694--1705
  [] [] [] [] [] [] 
  []
 
 [31]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1854--1874
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1710--1717
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1717--1722
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1722--1724
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1724--1726
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1726--1747
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1747--1767
  [] [] [] [] [] [] 
  []
 
 [32]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1874--1894
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1767--1787
  [] [] [] [] [] [] 
  []
 
 [33]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1894--1914
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1787--1807
  [] [] [] [] [] [] 
  []
 
 [34]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1914--1934
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1807--1827
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1934--1954
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1827--1847
  [] [] [] [] [] [] 
  []
 
 [35]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 1954--1965
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1847--1867
  [] [] [] [] [] [] 
  []
 
 [36]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1867--1887
+ [] [] [] [] [] [] 
+ []
+
+[37]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1887--1907
+ [] [] [] [] [] [] 
+ []
+
+[38]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1907--1927
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1927--1947
+ [] [] [] [] [] [] 
+ []
+
+[39]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 1947--1958
+ [] [] [] [] [] [] 
+ []
+
+[40]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -1897,347 +1929,347 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[37] [38] [39]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2044--2051
+[41] [42] [43]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2037--2044
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2051--2056
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2044--2049
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2056--2058
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2049--2051
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2058--2060
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2051--2053
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2060--2081
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2053--2074
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2081--2101
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2074--2094
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2101--2121
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2094--2114
  [] [] [] [] [] [] 
  []
 
-[40
+[44
 
 ]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2121--2141
- [] [] [] [] [] [] 
- []
-
-[41]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2141--2161
- [] [] [] [] [] [] 
- []
-
-[42]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2161--2181
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2181--2201
- [] [] [] [] [] [] 
- []
-
-[43]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2201--2221
- [] [] [] [] [] [] 
- []
-
-[44]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2221--2241
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2114--2134
  [] [] [] [] [] [] 
  []
 
 [45]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2241--2261
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2261--2281
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2134--2154
  [] [] [] [] [] [] 
  []
 
 [46]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2281--2292
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2154--2174
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2174--2194
  [] [] [] [] [] [] 
  []
 
 [47]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2297--2304
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2304--2309
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2309--2311
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2311--2313
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2313--2334
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2194--2214
  [] [] [] [] [] [] 
  []
 
 [48]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2334--2354
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2354--2374
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2214--2234
  [] [] [] [] [] [] 
  []
 
 [49]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2374--2394
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2234--2254
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2254--2274
  [] [] [] [] [] [] 
  []
 
 [50]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2394--2414
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2274--2285
  [] [] [] [] [] [] 
  []
 
 [51]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2414--2434
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2290--2297
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2434--2454
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2297--2302
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2302--2304
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2304--2306
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2306--2327
  [] [] [] [] [] [] 
  []
 
 [52]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2454--2474
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2327--2347
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2347--2367
  [] [] [] [] [] [] 
  []
 
 [53]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2474--2494
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2367--2387
  [] [] [] [] [] [] 
  []
 
 [54]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2494--2514
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2514--2534
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2387--2407
  [] [] [] [] [] [] 
  []
 
 [55]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2534--2545
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2407--2427
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2427--2447
  [] [] [] [] [] [] 
  []
 
 [56]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2550--2557
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2557--2562
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2562--2564
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2564--2566
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2566--2587
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2447--2467
  [] [] [] [] [] [] 
  []
 
 [57]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2587--2607
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2607--2627
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2467--2487
  [] [] [] [] [] [] 
  []
 
 [58]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2627--2647
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2487--2507
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2507--2527
  [] [] [] [] [] [] 
  []
 
 [59]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2647--2667
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2527--2538
  [] [] [] [] [] [] 
  []
 
 [60]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2667--2687
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2543--2550
  [] [] [] [] [] [] 
  []
 
 
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2687--2707
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2550--2555
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2555--2557
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2557--2559
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2559--2580
  [] [] [] [] [] [] 
  []
 
 [61]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2707--2727
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2580--2600
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2600--2620
  [] [] [] [] [] [] 
  []
 
 [62]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2727--2747
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2620--2640
  [] [] [] [] [] [] 
  []
 
 [63]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2747--2767
- [] [] [] [] [] [] 
- []
-
-
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2767--2787
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2640--2660
  [] [] [] [] [] [] 
  []
 
 [64]
-Overfull \hbox (3.70128pt too wide) in alignment at lines 2787--2798
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2660--2680
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2680--2700
  [] [] [] [] [] [] 
  []
 
 [65]
-<p_approx_paper_files/figure-latex/approx_sim-all-1.pdf, id=793, 463.7325pt x 5
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2700--2720
+ [] [] [] [] [] [] 
+ []
+
+[66]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2720--2740
+ [] [] [] [] [] [] 
+ []
+
+[67]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2740--2760
+ [] [] [] [] [] [] 
+ []
+
+
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2760--2780
+ [] [] [] [] [] [] 
+ []
+
+[68]
+Overfull \hbox (3.70128pt too wide) in alignment at lines 2780--2791
+ [] [] [] [] [] [] 
+ []
+
+[69]
+<p_approx_paper_files/figure-latex/approx_sim-all-1.pdf, id=797, 463.7325pt x 5
 67.11874pt>
 File: p_approx_paper_files/figure-latex/approx_sim-all-1.pdf Graphic file (type
  pdf)
 <use p_approx_paper_files/figure-latex/approx_sim-all-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/approx_sim-all-1.pdf
-  used on input line 2805.
+  used on input line 2798.
 (pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2808 underlying tests.}
+l.2801 underlying tests.}
                          pdfTeX warning (ext4): destination with the same ident
 ifier (name{figure.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2808 underlying tests.}
-                          [66]
-<p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf, id=798, 463.7325pt
+l.2801 underlying tests.}
+                          [70]
+<p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf, id=802, 463.7325pt
  x 567.11874pt>
 File: p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf Graphic file (
 type pdf)
 <use p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/approx_sim-all_0.2-1
-.pdf  used on input line 2813.
+.pdf  used on input line 2806.
 (pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2816 all underlying test.}
+l.2809 all underlying test.}
                             pdfTeX warning (ext4): destination with the same id
 entifier (name{figure.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2816 all underlying test.}
-                             [67 <./p_approx_paper_files/figure-latex/approx_si
+l.2809 all underlying test.}
+                             [71 <./p_approx_paper_files/figure-latex/approx_si
 m-all-1.pdf>]
-<p_approx_paper_files/figure-latex/approx_sim-ej-1.pdf, id=814, 463.7325pt x 56
+<p_approx_paper_files/figure-latex/approx_sim-ej-1.pdf, id=818, 463.7325pt x 56
 7.11874pt>
 File: p_approx_paper_files/figure-latex/approx_sim-ej-1.pdf Graphic file (type 
 pdf)
 <use p_approx_paper_files/figure-latex/approx_sim-ej-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/approx_sim-ej-1.pdf 
- used on input line 2821.
+ used on input line 2814.
 (pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2824 type.}
+l.2817 type.}
              pdfTeX warning (ext4): destination with the same identifier (name{
 figure.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2824 type.}
-              [68 <./p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf
+l.2817 type.}
+              [72 <./p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf
 >]
-<p_approx_paper_files/figure-latex/approx_sim-ej_0.2-1.pdf, id=830, 463.7325pt 
+<p_approx_paper_files/figure-latex/approx_sim-ej_0.2-1.pdf, id=834, 463.7325pt 
 x 567.11874pt>
 File: p_approx_paper_files/figure-latex/approx_sim-ej_0.2-1.pdf Graphic file (t
 ype pdf)
 <use p_approx_paper_files/figure-latex/approx_sim-ej_0.2-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/approx_sim-ej_0.2-1.
-pdf  used on input line 2829.
+pdf  used on input line 2822.
 (pdftex.def)             Requested size: 463.73842pt x 567.126pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2832 test type.}
+l.2825 test type.}
                   pdfTeX warning (ext4): destination with the same identifier (
 name{figure.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2832 test type.}
-                   [69 <./p_approx_paper_files/figure-latex/approx_sim-ej-1.pdf
+l.2825 test type.}
+                   [73 <./p_approx_paper_files/figure-latex/approx_sim-ej-1.pdf
 >]
-<p_approx_paper_files/figure-latex/p_stat_all-1.pdf, id=847, 457.71pt x 567.118
+<p_approx_paper_files/figure-latex/p_stat_all-1.pdf, id=851, 457.71pt x 567.118
 74pt>
 File: p_approx_paper_files/figure-latex/p_stat_all-1.pdf Graphic file (type pdf
 )
 <use p_approx_paper_files/figure-latex/p_stat_all-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat_all-1.pdf  us
-ed on input line 2837.
+ed on input line 2830.
 (pdftex.def)             Requested size: 457.72984pt x 567.14331pt.
-[70 <./p_approx_paper_files/figure-latex/approx_sim-ej_0.2-1.pdf>]
-<p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf, id=863, 457.71pt x 567.118
+[74 <./p_approx_paper_files/figure-latex/approx_sim-ej_0.2-1.pdf>]
+<p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf, id=867, 457.71pt x 567.118
 74pt>
 File: p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf Graphic file (type pdf
 )
 <use p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf>
 Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf  us
-ed on input line 2844.
+ed on input line 2837.
 (pdftex.def)             Requested size: 457.72984pt x 567.14331pt.
-[71 <./p_approx_paper_files/figure-latex/p_stat_all-1.pdf>] [72 <./p_approx_pap
-er_files/figure-latex/p_stat_e_j-1.pdf>] [73
+[75 <./p_approx_paper_files/figure-latex/p_stat_all-1.pdf>] [76 <./p_approx_pap
+er_files/figure-latex/p_stat_e_j-1.pdf>] [77
 
 
 ] (./p_approx_paper.aux)
@@ -2251,11 +2283,11 @@ Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24725 strings out of 478994
- 412849 string characters out of 5858185
- 1401464 words of memory out of 5000000
- 41253 multiletter control sequences out of 15000+600000
- 516492 words of font info for 226 fonts, out of 8000000 for 9000
+ 24737 strings out of 478994
+ 413000 string characters out of 5858185
+ 1402495 words of memory out of 5000000
+ 41261 multiletter control sequences out of 15000+600000
+ 516487 words of font info for 226 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  73i,13n,81p,944b,6863s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
@@ -2280,10 +2312,10 @@ lmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb>
 </usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local
 /texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2
 021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on p_approx_paper.pdf (95 pages, 15998445 bytes).
+Output written on p_approx_paper.pdf (95 pages, 15998994 bytes).
 PDF statistics:
- 1011 PDF objects out of 1200 (max. 8388607)
- 852 compressed objects within 9 object streams
- 205 named destinations out of 1000 (max. 500000)
+ 1015 PDF objects out of 1200 (max. 8388607)
+ 856 compressed objects within 9 object streams
+ 209 named destinations out of 1000 (max. 500000)
  61702 words of extra memory for PDF output out of 61914 (max. 10000000)
 

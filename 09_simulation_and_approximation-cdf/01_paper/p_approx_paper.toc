@@ -34,20 +34,20 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {7}Conclusion}{16}{section.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{References}{III}{section.7}%
+\contentsline {section}{References}{VII}{section.7}%
 \defcounter {refsection}{1}\relax 
-\contentsline {section}{Software-References}{VI}{section*.6}%
+\contentsline {section}{Software-References}{X}{section*.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A}Appendices}{VII}{appendix.A}%
+\contentsline {section}{\numberline {A}Appendices}{XI}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.1}Results for the \(p\)-approximation of the Bayer-Hanck Test with all underyling Tests}{IX}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.1}Results for the \(p\)-approximation of the Bayer-Hanck Test with all underyling Tests}{XIII}{subsection.A.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {A.1.1}Metrics of the 5 Best Models}{IX}{subsubsection.A.1.1}%
+\contentsline {subsubsection}{\numberline {A.1.1}Metrics of the 5 Best Models}{XIII}{subsubsection.A.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {A.1.2}Metrics of all Models}{X}{subsubsection.A.1.2}%
+\contentsline {subsubsection}{\numberline {A.1.2}Metrics of all Models}{XIV}{subsubsection.A.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {A.2}Results for the \(p\)-approximation of the Bayer-Hanck Test with Engle-Granger and Johansen as underlying tests}{XXXVII}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.2}Results for the \(p\)-approximation of the Bayer-Hanck Test with Engle-Granger and Johansen as underlying tests}{XLI}{subsection.A.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {A.2.1}Metrics of the 5 Best Models}{XXXVII}{subsubsection.A.2.1}%
+\contentsline {subsubsection}{\numberline {A.2.1}Metrics of the 5 Best Models}{XLI}{subsubsection.A.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {A.2.2}Metrics of all Models}{XL}{subsubsection.A.2.2}%
+\contentsline {subsubsection}{\numberline {A.2.2}Metrics of all Models}{XLIV}{subsubsection.A.2.2}%

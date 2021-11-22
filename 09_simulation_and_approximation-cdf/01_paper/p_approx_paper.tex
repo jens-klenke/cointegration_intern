@@ -286,20 +286,15 @@ Bayer and Hanck}\\
 \begin{adjustwidth}{1.5em}{0pt}
 
 \begin{acronym}[dummyyyy]
- \acro{bagging}{Bootstrap Aggregation}
+ \acro{CDF}{cumulative distribution function}
+ \acro{CRAN}{Comprehensive R Archive Network}
  \acro{cRMSE}{corrected Root Mean Squared Error}
  \acro{FCLT}{functional central limit theorem}
+ \acro{GAM}{Generalized Additive Models}
  \acro{Lasso}{Least Absolute Shrinkage and Selection Operator}
  \acro{OLS}{ordinary least squares}
- \acro{pcr}{Principal Components Regression}
- \acro{CDF}{cumulative distribution function}
- \acro{pls}{Partial Least Squares}
  \acro{RMSE}{Root Mean Squared Error}
- \acro{MCMC}{Markov chain Monte Carlo} 
- \acro{CRAN}{Comprehensive R Archive Network}
- \acro{i.i.d.}{independent and identically distributed}
- \acroplural{LRG}[LRG]{längefristige Refinanzierungsgeschäfte}
-
+ \acro{VECM}{vector error correction model}
 %Falls eine Abkürzung in der Mehrzahl nicht einfach auf "s" endet muss das speziell eingestellt werden.
 % \acro{slmtA}{super lange mega tolle Abkürzung} %Einzahl
  %\acroplural{slmtA}[slmtAs]{super lange mega tolle Abkürzungen} %Mehrzahl
@@ -379,7 +374,8 @@ translates to no deterministics, (2) \(\tau = 0\) which corresponds to a
 constant in the cointegrating vector, (3)
 \(\tau_2 - \theta' \tau_1 = 0\), a constant plus trend.
 \(v_t = [v'_{1t} v_{2t}]'\) with \(\Omega\) the long-run covariance
-matrix of \(v_t\). It can be shown that \{\(v_t\)\} satisfies an FCLT,
+matrix of \(v_t\). It can be shown that \{\(v_t\)\} satisfies an
+\ac{FCLT},
 i.e.~\(T^{-1/2} \sum^{[\cdot T]}_{t=1} v_t \Rightarrow \Omega^{1/2} W(\cdot)\).
 \(W(\lambda)\) is a standard \((n_1 + 1) \times 1\) Brownian motion. It
 is also assumed that the variables in \(x_t\) are not cointegrated. It
@@ -417,8 +413,7 @@ relationship.
 
 Johansen's \autocite*{Johansen_1988} maximum eigenvalue test is a
 system-based test that allows testing for several cointegration
-relationships. Take the vector error correction model (VECM)
-\begin{equation}
+relationships. Take the \ac{VECM} \begin{equation}
 \Delta \mathbf{z}_t = \mathbf{\Pi z}_{t-1} + \sum^{P-1}_{p = 1} \mathbf{\Gamma}_p \Delta \mathbf{z}_{t-p} + \mathbf{d}_t + \mathbf{\varepsilon}_t.
 \label{eq:3}
 \end{equation} We base this test on the test statistic
@@ -432,12 +427,11 @@ The third and fourth tests considered are error correction-based. Both
 estimate the equation \begin{equation}
 \Delta y_t = d_t + \pi'_{0x} \Delta x_t + \varphi_0 y_{t-1} + \varphi'_1 x_{t-1} + \sum^P_{p=1} (\pi'_{px} \Delta x_{t-p} + \pi_{py} \Delta y_{t-p}) + \varepsilon_t
 \label{eq:4}
-\end{equation} by ordinary least squares (OLS). \(P\) is chosen so that
-the \(\varepsilon_t\) is approximately white noise.
-\textcite{Banerjee_1998} then test the null of non-cointegration by
-applying a t-test on \(\varphi_0\),
-i.e.~\(\mathcal{H}_0 : \varphi_0 = 0\). \textcite{Boswijk_1994} uses the
-Wald statistic for testing
+\end{equation} by \ac{OLS}. \(P\) is chosen so that the
+\(\varepsilon_t\) is approximately white noise. \textcite{Banerjee_1998}
+then test the null of non-cointegration by applying a t-test on
+\(\varphi_0\), i.e.~\(\mathcal{H}_0 : \varphi_0 = 0\).
+\textcite{Boswijk_1994} uses the Wald statistic for testing
 \(\mathcal{H}_0 : (\varphi_0, \phi'_1)' = 0\).
 
 To combine the results from the underlying tests Bayer and Hanck draw
@@ -667,12 +661,11 @@ assess if said models include redundant regressors.
 We considered various other regression models. For different reasons
 they were not too suitable for our particular case.
 
-Especially non-linear methods should provide a good prediction.
-Generalized Additive Models (GAM) are another extension of simple linear
-regression. They replace each linear component in the latter with a
-(smooth) non-linear function. These basis functions are then summed
-together. This allows for a very flexible fit to the data.
-\autocite{James_2013}
+Especially non-linear methods should provide a good prediction. \ac{GAM}
+are another extension of simple linear regression. They replace each
+linear component in the latter with a (smooth) non-linear function.
+These basis functions are then summed together. This allows for a very
+flexible fit to the data. \autocite{James_2013}
 
 Tree-based models, especially used as base learners in ensemble methods,
 are also known to be very flexible. However, they tend to perform worse
@@ -681,10 +674,10 @@ approach in an early stage of the model estimation.
 
 Eventually, these models have the major disadvantage that they take up
 far too much memory space compared to the polynomial regression models.
-A Random Forest built with \texttt{ranger}, for example, requires 350
-MB. A simple GAM needs up to 800 MB. In comparison, a polynomial
-regression model only consumes 71.4 kB of memory. Given these
-limitations, we stick to our decision to solely work with linear
+A Random Forest built with \texttt{ranger}, for example, requires
+\(350\) MB. A simple GAM needs up to \(800\) MB. In comparison, a
+polynomial regression model only consumes \(71.4\) kB of memory. Given
+these limitations, we stick to our decision to solely work with linear
 regression models.
 
 \hypertarget{model-evaluation}{%
@@ -1028,7 +1021,7 @@ significantly and therefore it is possible to submit the package to
 \pagebreak
 
 \pagenumbering{Roman}
-\setcounter{page}{3}
+\setcounter{page}{7}
 \addcontentsline{toc}{section}{References}
 \printbibliography[title = References]
 \cleardoublepage
