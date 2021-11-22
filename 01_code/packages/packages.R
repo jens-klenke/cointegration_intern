@@ -41,5 +41,6 @@ pacman::p_load(dplyr,
                broom,
                magrittr,
                furrr,
-               tikzDevice)
+               tikzDevice, 
+               gridGraphics)
 

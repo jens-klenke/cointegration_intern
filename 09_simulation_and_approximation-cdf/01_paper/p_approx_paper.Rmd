@@ -8,9 +8,9 @@ date: "today"
 studid: "3071594"
 supervisor: "Christoph Hanck"
 secondsupervisor: "NA"
-semester: "6"
+semester: "8"
 estdegree_emester: "Winter Term 2021"
-deadline: "Sep. 30th 2021"
+deadline: "Nov. 24th 2021"
 output:
   pdf_document:
     keep_tex: yes
@@ -173,13 +173,7 @@ y^{(\lambda)} =
 @Boxcox_1964 developed these transformations for the dependent variable. @Kuhn_2013, however, report that it proves as effective for transforming individual regressors. We estimate lambda for the values of the test statistics of the meta test and transform them according to \eqref{eq:6}. This forces their distribution into a more symmetric form, albeit still right-tailed (again, see Figure \ref{fig:density}). 
 
 ```{r , density_plots, echo = FALSE, warning=FALSE, fig.cap = " \\label{fig:density} Densities of the untransformed and Box-Cox-transformed test statistic for test types all and EJ, shown for case = 1 and $k = 1$.", fig.height = 4}
-
-cowplot::plot_grid(dense_all, 
-                   dense_EJ, 
-                   ncol = 1, 
-                   labels = c('All', 'EJ'),
-                   label_colour = "#004c93",
-                   rel_heights = c(1, 1))
+dense_cow
 ```
 
 Since the response variable consists of the $p$-values, simulated under the null hypothesis, it follows a uniform distribution. Therefore, it is already symmetric. We still include a Box-Cox transformed and a logarithmised version of the response variable to see if it benefits the prediction. We also decompose the categorical variable $k$ into dummy variables. Additionally, we add the same variable as a numeric. Thus, transformations such as the logarithm can be performed.
@@ -271,26 +265,14 @@ To assess model performance graphically, we plot the simulated $p$-values from [
 
 ```{r , p.sim_aprox.k1, echo = FALSE, warning=FALSE, fig.cap = "\\label{fig:p.sim_approx.1} Simulated $p$-values plotted against $p$-values approximated by final (corrected) models, exemplary for $k = 1$.", fig.height = 4.5}
 
-cowplot::plot_grid(p.sim_p.aprox_all.k1 + ylab("Approximated \n p-values"), 
-                   p.sim_p.aprox_e_j.k1 + ylab("Approximated \n p-values"), 
-                   legend,
-                   ncol = 1, 
-                   labels = c('All', 'EJ'),
-                   label_colour = "#004c93",
-                   rel_heights = c(1, 1, .1))
+cowplot_p.sim_aprox.k1
 ```
 
 Looking at the same plot for the lower tail of the distribution (with $p \leq 0.2$), the models show high reliability even in the crucial share of the $p$-values (see Figure \ref{fig:p.sim_approx_0.2.1}). Figure \ref{fig:sim_approx_all_0.2} and \ref{fig:sim_approx_e_j_0.2} in Appendix A show these plots for all $k$.
 
 ```{r , p.sim_aprox_0.2.k1, echo = FALSE, warning=FALSE, fig.cap = "\\label{fig:p.sim_approx_0.2.1} Simulated $p$-values plotted against $p$-values approximated by final (corrected) models, exemplary for $k = 1$, for the lower tail of the distribution.", fig.height = 4.5}
 
-cowplot::plot_grid(p.sim_p.aprox_all_0.2.k1 + ylab("Approximated \n p-values"), 
-                   p.sim_p.aprox_e_j_0.2.k1 + ylab("Approximated \n p-values"), 
-                   legend,
-                   ncol = 1, 
-                   labels = c('All', 'EJ'),
-                   label_colour = "#004c93",
-                   rel_heights = c(1, 1, .1))
+cowplot_p.sim_aprox_0.2.k1
 ```
 
 ## Correction for high values of the test statistic
@@ -308,20 +290,7 @@ From this it appears that there is a need for either more reliable models or fur
 
 ```{r , p_stat__k.2, echo = FALSE, warning = FALSE, fig.cap = " \\label{fig:e_j_k.1} Simulated $p$-values plotted against $p$-values approximated by final corrected models, exemplary for $k = 1$. Corrected (blue) and uncorrected (red) $p$-value predictions for all cases and $k = 2$, using EJ and all as underlying tests.", fig.height = 4.5}
 
-legend <- cowplot::get_legend(
-    # create some space to the left of the legend
-    plot_p_stat_all_k.2 + theme(legend.box.margin = margin(0, 0, 0, 12),
-                                legend.position = "bottom")
-)
-
-
-cowplot::plot_grid(plot_p_stat_all_k.2 + theme(legend.position="none"), 
-                   plot_p_stat_e_j_k.2 + theme(legend.position="none"), 
-                   legend,
-                   ncol = 1, 
-                   labels = c('All', 'EJ'),
-                   label_colour = "#004c93",
-                   rel_heights = c(1, 1, 0.2))
+cowplot_p_stat__k.2
 ```
 
 We define the critical value by taking the value of the test statistic with the lowest $p$-value. We do this for all combinations of the test type, cases and $k$s. The resulting values range between 36 and 44 for the EJ combination and 55 and 80 for all combinations respectively. Graphically, it should be obvious that these values are supposed to have rather low $p$-values. Thus, we can be confident that our approach suffices for our purposes without any unintended side-effects. Therefore, the problem of erratic behaviour for higher values of the test statistic is avoided.

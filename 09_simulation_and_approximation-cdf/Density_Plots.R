@@ -40,9 +40,15 @@ dense_EJ <- gridExtra::grid.arrange(ts_dens_EJ +
                                     ts_dens_bc_EJ + ggtitle("Box-Cox transformation"), 
                                     ncol = 2)
 
-save(dense_all, dense_EJ, 
-     file = here::here('09_simulation_and_approximation-cdf/01_paper/density_plots.RData'))
+dense_cow <- cowplot::plot_grid(dense_all, 
+                   dense_EJ, 
+                   ncol = 1, 
+                   labels = c('All', 'EJ'),
+                   label_colour = "#004c93",
+                   rel_heights = c(1, 1))
 
+save(dense_cow, 
+     file = here::here('09_simulation_and_approximation-cdf/01_paper/density_plots.Rdata'))
 
 
 
