@@ -194,10 +194,10 @@ We calculate orthogonal polynomials of the test statistic of the combined
 non-cointegration test, considering up to 13 degrees. Due to the \ac{CDF}'s characteristic form, the minimum grade of the polynomials is 3. We also add different interaction terms with different forms of the regressor $k$, to better capture the curvilinear relationship between predictors and the response. Table \ref{tab:func_form} in Appendix A displays the forms of all considered regression models. 
 Since there is no need to prevent overfitting we expect higher order polynomials to perform better, as they are more flexible. These polynomials, however, tend to show oscillation at the boundaries. This makes prediction for more extreme values of the test statistic a risky endeavour. We will address this issue in a later chapter. 
 
-## \ac{Lasso}  
-As mentioned, we expect the polynomial regression models to perform best with high order polynomials. Every polynomial added increases the complexity of the model. Table \ref{tab:func_form} shows that in some instances for each additional polynomial another set of interaction terms is also included. It is possible that some regressors (including the interaction terms) benefit the prediction, while others are redundant. Yet, it would be too cumbersome to manually add and remove different regressors. Nevertheless, we do not want the models to be larger than necessary. Therefore, it may be necessary to perform variable selection and regularization. An approach for this is the \ac{Lasso}.
+## \ac{LASSO}  
+As mentioned, we expect the polynomial regression models to perform best with high order polynomials. Every polynomial added increases the complexity of the model. Table \ref{tab:func_form} shows that in some instances for each additional polynomial another set of interaction terms is also included. It is possible that some regressors (including the interaction terms) benefit the prediction, while others are redundant. Yet, it would be too cumbersome to manually add and remove different regressors. Nevertheless, we do not want the models to be larger than necessary. Therefore, it may be necessary to perform variable selection and regularization. An approach for this is the \ac{LASSO}.
 
-The \ac{Lasso} coefficients minimize 
+The \ac{LASSO} coefficients minimize 
 
 \begin{equation}
     \hat{\beta}^{\text{lasso}} = \argmin_{\beta} \sum^n_{i=1} \left( y_i - \beta_0 - \sum^p_{j=1} x_{ij} \beta_j \right)^2 + 
@@ -207,7 +207,7 @@ The \ac{Lasso} coefficients minimize
 
 where the first term describes the residual sum of squares, subject to a term known as L1 penalty. $\lambda$ is a tuning parameter which defines the degree of regularisation. The L1 penalty shrinks the coefficients and, for $\lambda$ sufficiently large, can set them to zero. The value of $\lambda$ is data dependent and is usually estimated with cross-validation. [@James_2013]
 
-We plan on using the \ac{Lasso} on the best models from [chapter 4.2](#polynomial-regression). Thus, we can assess if said models include redundant regressors.
+We plan on using the \ac{LASSO} on the best models from [chapter 4.2](#polynomial-regression). Thus, we can assess if said models include redundant regressors.
 
 
 ## Other Regression Models 
@@ -243,7 +243,7 @@ final_models_paper() %>%
 
 Table \ref{tab:6_final_models} lists the final models for each case and test type. The forms of the models share many common features, mostly using the maximum polynomial degree available. One might say this represents a corner solution. However, since we are optimising the models on the in-sample \ac{RMSE}, we could increase the degree of the polynomials endlessly, to improve the fit. Since it can be shown that we are already tweaking on the fifth decimal place, we will no further pursue this procedure.
 
-As announced, we use the \ac{Lasso} to check if the final models contain any redundancy. As before, we skip cross-validation and use an automatically generated sequence for $\lambda$. The default are 100 values for $\lambda$. The program, however, stops early if the percent (of null) deviance explained does not change sufficiently for the next $\lambda$. [@Friedman_2010]
+As announced, we use the \ac{LASSO} to check if the final models contain any redundancy. As before, we skip cross-validation and use an automatically generated sequence for $\lambda$. The default are 100 values for $\lambda$. The program, however, stops early if the percent (of null) deviance explained does not change sufficiently for the next $\lambda$. [@Friedman_2010]
 
 ```{r lasso_models, echo=FALSE, message=FALSE, warning=FALSE}
 
@@ -259,7 +259,7 @@ lasso %>%
 
 ```
 
-Here, for all models the actual number of $\lambda$ is less than 100. For our purposes it is sufficient to choose the lowest $\lambda$ out of that sequence, ergo the model with the least shrinkage. The number of nonzero coefficients ranges between 47 to 60 for the models with the test type all and between 27 to 34 for the models with test type EJ. In both instances more than half of all regressors of the final polynomial regression models were not considered. Table \ref{tab:lasso_models} lists the predictive performance of the \ac{Lasso} models. Clearly all variations of the \ac{RMSE} are much higher than for the polynomial regression models. This supports the idea that more complex models are indeed more appropriate in this case. We therefore drop the \ac{Lasso} models and continue to use our final polynomial regression models. 
+Here, for all models the actual number of $\lambda$ is less than 100. For our purposes it is sufficient to choose the lowest $\lambda$ out of that sequence, ergo the model with the least shrinkage. The number of nonzero coefficients ranges between 47 to 60 for the models with the test type all and between 27 to 34 for the models with test type EJ. In both instances more than half of all regressors of the final polynomial regression models were not considered. Table \ref{tab:lasso_models} lists the predictive performance of the \ac{LASSO} models. Clearly all variations of the \ac{RMSE} are much higher than for the polynomial regression models. This supports the idea that more complex models are indeed more appropriate in this case. We therefore drop the \ac{LASSO} models and continue to use our final polynomial regression models. 
 
 To assess model performance graphically, we plot the simulated $p$-values from [chapter 3](#simulation) against the (corrected) $p$-values approximated by the final models. If these values are highly correlated, they are scattered symmetrically around a 45 degree diagonal passing through the zero point. The vertical distance between any point and the diagonal is the prediction error for that point. Figure \ref{fig:p.sim_approx.1} shows this plot for all cases and $k = 1$. The models appear very accurate, there seems to be a high correlation between the predicted and the actual values. Figure \ref{fig:sim_approx_all} and \ref{fig:sim_approx_e_j} in Appendix A show these plots for all $k$.
 
@@ -309,7 +309,7 @@ In this paper we fit machine learning models to predict the $p$-values of the me
 
 First, we gave a brief introduction into the theoretical background of the meta test, as well as it's underlying tests. We further described our simulation approach to simulate the distribution of the test statistic, which is later used as the training data. Due to the distribution being right-skewed, we used a Box-Cox transformation prior to fitting the models. We also used various transformations on the response variable, creating multiple versions of it. 
 
-After creating the data we used it to train the machine learning algorithms. Since we aim at describing the null distribution with a less memory-intensive approach, we only considered linear models. Still, the \ac{CDF} is known to have a curved shape. To make the models more flexible we included various interaction terms and polynomials with up to $13$ degrees. For evaluating the models we calculated several in-sample metrics. Eventually, we decided to choose the models that minimize the \ac{cRMSE} over the lower tail of the distribution, corrected for values ranging between 0 and 1. As expected, the most complex models performed best. To check for redundancy in those final models, we used a \ac{Lasso} on them. Additionally, we (again) corrected the final models to suppress oscillation at the boundaries. Finally, these models were included in the pre-existing software package `bayerhanck` for the statistical programming language R. 
+After creating the data we used it to train the machine learning algorithms. Since we aim at describing the null distribution with a less memory-intensive approach, we only considered linear models. Still, the \ac{CDF} is known to have a curved shape. To make the models more flexible we included various interaction terms and polynomials with up to $13$ degrees. For evaluating the models we calculated several in-sample metrics. Eventually, we decided to choose the models that minimize the \ac{cRMSE} over the lower tail of the distribution, corrected for values ranging between 0 and 1. As expected, the most complex models performed best. To check for redundancy in those final models, we used a \ac{LASSO} on them. Additionally, we (again) corrected the final models to suppress oscillation at the boundaries. Finally, these models were included in the pre-existing software package `bayerhanck` for the statistical programming language R. 
 
 Our approach successfully reduced the size of the aforementioned package significantly and therefore it is possible to submit the package to \ac{CRAN}, which is a future objective.
 
