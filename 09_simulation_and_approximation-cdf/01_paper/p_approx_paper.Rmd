@@ -82,6 +82,7 @@ final_models_paper <- function() {
 ```
 
 # Introduction
+
 Meta tests have been shown to be a powerful tool when testing for the null of non-cointegration. The distribution of their test statistic, however, is mostly not available in closed form. The calculation of the critical values, let alone $p$-values, is therefore a cumbersome procedure, as one has to simulate sufficient values of the test statistic under the null hypothesis to approximate their distribution. When implementing those meta tests in econometric software packages, it is therefore necessary to include the full null distribution for each combination of the underlying tests. Many software package size limitations are therefore quickly exceeded. 
 
 One possible approach to this problem is to model the relationship between the $p$-values and the test statistic with a regression model. Instead of including the full null distribution in an econometric software package this model will be stored. This might reduce the size of the software package considerably.
@@ -90,6 +91,7 @@ In this paper we approximate the $p$-values of the meta test by @Bayerhanck_2012
 
 
 # The meta test by Bayer and Hanck
+
 The choice as to which of the available cointegration tests to use is an issue in econometric time series analysis. @Bayerhanck_2012 propose powerful meta tests which provide unambiguous test decisions. They combine several residual- and system-based tests in the manner of Fisher's [-@Fisher_1932] Chi-squared test. 
 
 Bayer and Hanck build on previous work from @Pesavento_2004, who considers the model
@@ -98,9 +100,9 @@ Bayer and Hanck build on previous work from @Pesavento_2004, who considers the m
 y_t &= (\mu_2 - \theta' \mu_1) + (\tau_2 - \theta' \tau_1) t + \theta' x_t + u_t, \label{eq:12} \\
 \text{with } u_t &= \rho u_{t-1} + v_{2t}. \label{eq:13}
 \end{align}
-\eqref{eq:11} represents the regressor dynamics, while \eqref{eq:12} describes the cointegrating relation. The observed sample $\mathbf{z}_0,..., \mathbf{z}_T$ can be written as $\mathbf{z}_t = (\mathbf{x}'_t, y_t)'$.  The deterministic part of the model is described by restrictions on $\mu'_1$, $\mu_2$, $\tau_1$ and $\tau_2$. Consider $\tau = [\tau'_1 \tau_2]'$. Then, these restrictions are (1) $\mu_2 - \theta' \mu_1$ and $\tau = 0$ which translates to no deterministics, (2) $\tau = 0$ which corresponds to a constant in the cointegrating vector, (3) $\tau_2 - \theta' \tau_1 = 0$, a constant plus trend. $v_t = [v'_{1t} v_{2t}]'$ with $\Omega$ the long-run covariance matrix of $v_t$. It can be shown that {$v_t$} satisfies an \ac{FCLT}, i.e. $T^{-1/2} \sum^{[\cdot T]}_{t=1} v_t \Rightarrow \Omega^{1/2} W(\cdot)$. $W(\lambda)$ is a standard $(n_1 + 1) \times 1$ Brownian motion. It is also assumed that the variables in $x_t$ are not cointegrated. It further follows from \eqref{eq:13} that the vector $\mathbf{z}_t$ is cointegrated if $|\rho| < 1$. Hence the null hypothesis of no cointegration can be formulated as $H_0: p = 1$.
+\eqref{eq:11} represents the regressor dynamics, while \eqref{eq:12} describes the cointegrating relation. The observed sample $\mathbf{z}_0,..., \mathbf{z}_T$ can be written as $\mathbf{z}_t = (\mathbf{x}'_t, y_t)'$.  The deterministic part of the model is described by restrictions on $\mu'_1$, $\mu_2$, $\tau_1$ and $\tau_2$. Consider $\tau = [\tau'_1 \tau_2]'$. Then, these restrictions are (1) $\mu_2 - \theta' \mu_1$ and $\tau = 0$ which translates to no deterministics, (2) $\tau = 0$ which corresponds to a constant in the cointegrating vector, (3) $\tau_2 - \theta' \tau_1 = 0$, a constant plus trend. $v_t = [v'_{1t} v_{2t}]'$ with $\Omega$ the long-run covariance matrix of $v_t$. It can be shown that {$v_t$} satisfies an \ac{FCLT}, i.e. $T^{-1/2} \sum^{[\cdot T]}_{t=1} v_t \Rightarrow \Omega^{1/2} W(\cdot)$. $W(\lambda)$ is a standard $(n_1 + 1) \times 1$ Brownian motion. It is also assumed that the variables in $x_t$ are not cointegrated. It further follows from \eqref{eq:13} that the vector $\mathbf{z}_t$ is cointegrated if $|\rho| < 1$. Hence the null hypothesis of no cointegration can be formulated as $H_0: \rho = 1$.
 
-Furthermore, Pesavento introduces two other parameters. First, $\text{R}^2$ measures the squared correlation of $v_{1t}$ and $v_{2t}$. It can be interpreted as the influence of the right-hand side variables in \eqref{eq:12}. It ranks between zero and one. When there is no long-run correlation between those variables and the errors from the cointegration regression, $\text{R}^2$ equals zero. Secondly, the number of lags is approximated by a finite number $k$.
+Furthermore, Pesavento introduces two other parameters. First, $\text{R}^2$ measures the squared correlation of $v_{1t}$ and $v_{2t}$. It can be interpreted as the influence of the right-hand side variables in \eqref{eq:12}. It ranks between zero and one. When there is no long-run correlation between those variables and the errors from the cointegration regression, $\text{R}^2$ equals zero. Secondly, the number of lags is approximated by a finite number $p$.
 
 Bayer and Hanck's meta test enables the combination of up to four stand-alone tests. Namely, these are the tests of @Englegranger_1987, @Johansen_1988, @Boswijk_1994 and @Banerjee_1998. For the sake of brevity we will not present a detailed derivation of the underlying tests.
 
@@ -120,10 +122,10 @@ We base this test on the test statistic $\lambda_{\text{max}}(h) = -T \ln(1 - \h
 
 The third and fourth tests considered are error correction-based. Both estimate the equation
 \begin{equation}
-\Delta y_t = d_t + \pi'_{0x} \Delta x_t + \varphi_0 y_{t-1} + \varphi'_1 x_{t-1} + \sum^P_{p=1} (\pi'_{px} \Delta x_{t-p} + \pi_{py} \Delta y_{t-p}) + \varepsilon_t
+\Delta y_t = d_t + \pi'_{0x} \Delta x_t + \varphi_0 y_{t-1} +\bm{\varphi'_1 x_{t-1} }+ \sum^P_{p=1} (\pi'_{px} \Delta \bm{x}_{t-p} + \pi_{py} \Delta y_{t-p}) + \varepsilon_t
 \label{eq:4}
 \end{equation}
-by \ac{OLS}. $P$ is chosen so that the $\varepsilon_t$ is approximately white noise. @Banerjee_1998 then test the null of non-cointegration by applying a t-test on $\varphi_0$, i.e. $\mathcal{H}_0 : \varphi_0 = 0$. @Boswijk_1994 uses the Wald statistic for testing $\mathcal{H}_0 : (\varphi_0, \phi'_1)' = 0$.
+by \ac{OLS}. $P$ is chosen so that the $\varepsilon_t$ is approximately white noise. @Banerjee_1998 then test the null of non-cointegration by applying a t-test on $\varphi_0$, i.e. $\mathcal{H}_0 : \varphi_0 = 0$. @Boswijk_1994 uses the Wald statistic for testing $\mathcal{H}_0 : (\varphi_0, \bm{\phi}^{'}_1)' = 0$.
 
 To combine the results from the underlying tests Bayer and Hanck draw upon Fisher's combined probability test [@Fisher_1932]. It merges the test decisions using the formula
 
@@ -136,8 +138,8 @@ where $t_i$ is the $i^{th}$ test statistic. If test $i$ rejects for large values
 
 Fisher shows that under the assumption of independence the null distribution of $\tilde{\chi}^2_{\mathcal{I}}$ follows a chi-squared distribution with $2\mathcal{I}$ degrees of freedom. If this assumption is violated the null distribution is less evident. Here, the latter case occurs, as the $\xi_i$ are not independent. The $\tilde{\chi}^2_{\mathcal{I}}$, however, have well-defined asymptotic null distributions $F_{\mathcal{F_I}}$, as $\tilde{\chi}^2_{\mathcal{I}} \rightarrow_d \mathcal{F_I}$ under $\mathcal{H}_0$ if $T \rightarrow \infty$, with $\mathcal{F_I}$ some random variable. It is therefore feasible to simulate the joint null distribution of the $\xi_i$ to obtain the distribution $F_{\mathcal{F_I}}$ of \eqref{eq:5}. The $F_{\mathcal{F_I}}$ depend on number and type of the combined tests. The distributions of the $\xi_i$ depend on $K-1$ and the deterministic case.
 
-
 # Simulation
+
 We can simulate the null distributions of the underlying tests and compute their $p$-values. These results are used to derive the null distribution of the meta test by Bayer and Hanck. In this section, the simulation approach is explained, which generates a large number of test statistics of said test. A sufficient amount of data ought to be obtained to train machine learning algorithms on approximating the $p$-values of the test. 
 
 In the implementation phase of the package we plan on allowing the user to choose between two different combinations of the underlying tests. These will be a combination of the tests of Engle-Granger and Johansen (EJ) and a combination of all possible underlying tests (all). Thus, we calculate \eqref{eq:5} twice, with a different selection of $\xi_i$. We account for the above-mentioned restrictions on the deterministic part of the model by slightly adjusting the underlying process in each case. In total, we generate three different data sets, each containing two different variables for the test statistic.
@@ -145,12 +147,13 @@ In the implementation phase of the package we plan on allowing the user to choos
 The following approach relies largely on previous work by @Pesavento_2004. It can be shown that the asymptotic null distributions of the underlying tests are functions of standard Brownian motions. We construct this by step functions using Gaussian random walk. For this, we sum up $N = 1000$ independent, standard normally-distributed random numbers. We further simulate an Ornstein-Uhlenbeck-Process. From these processes we calculate different terms to construct the null distributions of the underlying tests. 
 As stated before, we correct the processes according to the three different restrictions on the model deterministics. For the first case, no trend type, the process needs no correction. For the second case, a constant trend, both processes need to be demeaned. For the last case, a constant trend and drift, both processes are adjusted for the mean and trend.
 
-The number of repetitions is set to 1,000,000. Moreover, we consider $\text{R}^2 \in \{0, 0.05, 0.1, ..., 0.95\}$ and the number of lags $\{k \in \mathbb{Z}: 1 \leq k \leq 11\}$. Pesavento further introduces the local-to-unity parameter $c:= T(\rho-1)$. For negative values of $c$ the variables are cointegrated, while for $c = 0$ there is no cointegration. Since we solely aim at simulating the distribution under the null hypothesis of no cointegration we will not consider other values different from $c = 0$. 
+The number of repetitions is set to 1,000,000. Moreover, we consider $\text{R}^2 \in \{0, 0.05, 0.1, ..., 0.95\}$ and the number of regressors $\{k \in \mathbb{Z}: 1 \leq k \leq 11\}$. Pesavento further introduces the local-to-unity parameter $c:= T(\rho-1)$. For negative values of $c$ the variables are cointegrated, while for $c = 0$ there is no cointegration. Since we solely aim at simulating the distribution under the null hypothesis of no cointegration we will not consider other values different from $c = 0$. 
 
 To calculate the $\tilde{\chi}^2_{\mathcal{I}}$ we require the $p$-values of the underlying tests. For this, we build the \ac{CDF} of each underlying test for the three different data sets and calculate the respective $p$-values. These are inserted into \eqref{eq:5} to obtain the meta test statistic. Analogous to the previous approach, we deduce the associated null distribution and the $p$-values. 
 
 
 # Models
+
 We use the simulated data for training machine learning algorithms on predicting the approximated empirical \ac{CDF} of the combined
 non-cointegration test. We want to approximate the \ac{CDF} as a function of the test statistic $\tilde{\chi}^2_{\mathcal{I}}$ and the number of regressors $k$. As we seek solutions for describing the null distribution with a less memory-intensive model, we only consider linear models. Non-linear models typically take up too much memory to be suitable here. Moreover, we compare the models according to their in-sample \ac{RMSE}. This seems appropriate as we want to predict already known data. Overfitting therefore does not pose a threat. For this reason, and to reduce computation time, we use no cross-validation.
 
@@ -170,7 +173,7 @@ y^{(\lambda)} =
 \label{eq:6}
 \end{equation}
 
-@Boxcox_1964 developed these transformations for the dependent variable. @Kuhn_2013, however, report that it proves as effective for transforming individual regressors. We estimate lambda for the values of the test statistics of the meta test and transform them according to \eqref{eq:6}. This forces their distribution into a more symmetric form, albeit still right-tailed (again, see Figure \ref{fig:density}). 
+@Boxcox_1964 developed these transformations for the dependent variable. @Kuhn_2013, however, report that it proves as effective for transforming individual regressors. We estimate $\lambda$ for the values of the test statistics of the meta test and transform them according to \eqref{eq:6}. This forces their distribution into a more symmetric form, albeit still right-tailed (again, see Figure \ref{fig:density}). 
 
 ```{r , density_plots, echo = FALSE, warning=FALSE, fig.cap = " \\label{fig:density} Densities of the untransformed and Box-Cox-transformed test statistic for test types all and EJ, shown for case = 1 and $k = 1$.", fig.height = 4}
 dense_cow
@@ -241,7 +244,7 @@ final_models_paper() %>%
   add_header_above(c("", "", "", "Full Distribution" = 2, "Lower Tail ($p \\\\leq 0.2$)" = 2),  bold = TRUE, escape = FALSE)
 ```
 
-Table \ref{tab:6_final_models} lists the final models for each case and test type. The forms of the models share many common features, mostly using the maximum polynomial degree available. One might say this represents a corner solution. However, since we are optimising the models on the in-sample \ac{RMSE}, we could increase the degree of the polynomials endlessly, to improve the fit. Since it can be shown that we are already tweaking on the fifth decimal place, we will no further pursue this procedure.
+Table \ref{tab:6_final_models} lists the final models for each case and test type. The forms of the models share many common features, mostly using the maximum polynomial degree available. One might say this represents a corner solution. However, since we are optimising the models on the in-sample \ac{RMSE}, we could increase the degree of the polynomials endlessly, to improve the fit. Since it can be shown that we are already tweaking on the fifth decimal place, we will not further pursue this procedure.
 
 As announced, we use the \ac{LASSO} to check if the final models contain any redundancy. As before, we skip cross-validation and use an automatically generated sequence for $\lambda$. The default are 100 values for $\lambda$. The program, however, stops early if the percent (of null) deviance explained does not change sufficiently for the next $\lambda$. [@Friedman_2010]
 
@@ -282,13 +285,13 @@ In order to test this, we generate a sequence from 1 to 100 in single steps, rep
 
 Figure \ref{fig:fig_3} in Appendix A shows the prediction of the models for all underlying tests on said sequence. In the majority of cases the corrected models perform well, with the prediction curve taking the expected shape. In two cases, when $k = 2$ and $k = 3$ in the model with no deterministics (Case = 1), the predicted values rise again, taking values not equal to zero. 
 
-Figure \ref{fig:fig_4} in the Appendix shows the same behaviour for the data with Engle-Granger and Johansen as underlying tests for all combinations of cases and $k$. Above a certain value of the test statistic the predicted values sharply increase, tending towards 1. It should be noted that this upper boundary is enforced by our build in correction for predicted values outside the interval [0, 1]. Without this intervention the predicted values would probably rise even further. If we predict on an extended sequence with no correction, the prediction line most likely oscillates above a certain value. The graphic for all $k$ can be seen in Figure \ref{fig:fig_4} in the Appendix.
+Figure \ref{fig:fig_4} in the Appendix shows the same behaviour for the data with Engle-Granger and Johansen as underlying tests for all combinations of cases and $k$. Above a certain value of the test statistic the predicted values sharply increase, tending towards 1. It should be noted that this upper boundary is enforced by our built-in correction for predicted values outside the interval [0, 1]. Without this intervention the predicted values would probably rise even further. If we predict on an extended sequence with no correction, the prediction line most likely oscillates above a certain value. The graphic for all $k$ can be seen in Figure \ref{fig:fig_4} in the Appendix.
 
 There can be several reasons why the models' prediction behaves this way. Oscillation at the edges of an interval is a common problem in polynomial interpolation, especially when using polynomials of high order. Additionally, the distribution of the test statistic in the training data may have made matters worse. It must also be considered that we chose our models according to their predictive performance on the lower tail of the distribution of the test statistic, possibly neglecting the predictive performance on the upper tail. If this incident is not rectified the models will be unable to provide reliable test decisions, as they tend to falsely not reject the null hypothesis at high values of the test statistic. The approach is therefore prone to type II errors.
 
 From this it appears that there is a need for either more reliable models or further correction of the prediction from the existing models. One possible solution can be the re-estimation of the models using regression splines. In theory, those lead to similar results while being less prone to oscillation at the tails. However, with regression splines there is still no guarantee they will show the desired behaviour at said tails. Another approach is to determine a critical value of the test statistic whereby every exceeding value is automatically assigned a low $p$-value. Due to the former approach being very time-consuming we decide to try the last one. 
 
-```{r , p_stat__k.2, echo = FALSE, warning = FALSE, fig.cap = " \\label{fig:e_j_k.1} Simulated $p$-values plotted against $p$-values approximated by final corrected models, exemplary for $k = 1$. Corrected (blue) and uncorrected (red) $p$-value predictions for all cases and $k = 2$, using EJ and all as underlying tests.", fig.height = 4.5}
+```{r , p_stat__k.2, echo = FALSE, warning = FALSE, fig.cap = " \\label{fig:e_j_k.1} Simulated $p$-values plotted against $p$-values approximated by final corrected models, exemplary for $k = 2$. Corrected (blue) and uncorrected (red) $p$-value predictions for all cases and $k = 2$, using EJ and All as underlying tests.", fig.height = 4.5}
 
 cowplot_p_stat__k.2
 ```
