@@ -2,7 +2,7 @@
 \usepackage{lmodern}
 
 \usepackage{placeins}
-\usepackage{amssymb,amsmath}
+\usepackage{amssymb,amsmath, bm}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
@@ -381,7 +381,7 @@ i.e.~\(T^{-1/2} \sum^{[\cdot T]}_{t=1} v_t \Rightarrow \Omega^{1/2} W(\cdot)\).
 is also assumed that the variables in \(x_t\) are not cointegrated. It
 further follows from \eqref{eq:13} that the vector \(\mathbf{z}_t\) is
 cointegrated if \(|\rho| < 1\). Hence the null hypothesis of no
-cointegration can be formulated as \(H_0: p = 1\).
+cointegration can be formulated as \(H_0: \rho = 1\).
 
 Furthermore, Pesavento introduces two other parameters. First,
 \(\text{R}^2\) measures the squared correlation of \(v_{1t}\) and
@@ -389,7 +389,7 @@ Furthermore, Pesavento introduces two other parameters. First,
 side variables in \eqref{eq:12}. It ranks between zero and one. When
 there is no long-run correlation between those variables and the errors
 from the cointegration regression, \(\text{R}^2\) equals zero. Secondly,
-the number of lags is approximated by a finite number \(k\).
+the number of lags is approximated by a finite number \(p\).
 
 Bayer and Hanck's meta test enables the combination of up to four
 stand-alone tests. Namely, these are the tests of
@@ -425,14 +425,14 @@ regression residuals.
 
 The third and fourth tests considered are error correction-based. Both
 estimate the equation \begin{equation}
-\Delta y_t = d_t + \pi'_{0x} \Delta x_t + \varphi_0 y_{t-1} + \varphi'_1 x_{t-1} + \sum^P_{p=1} (\pi'_{px} \Delta x_{t-p} + \pi_{py} \Delta y_{t-p}) + \varepsilon_t
+\Delta y_t = d_t + \pi'_{0x} \Delta x_t + \varphi_0 y_{t-1} + \bm{\varphi'_1 x_{t-1}} + \sum^P_{p=1} (\pi'_{px} \Delta \bm{x}_{t-p} + \pi_{py} \Delta y_{t-p}) + \varepsilon_t
 \label{eq:4}
 \end{equation} by \ac{OLS}. \(P\) is chosen so that the
 \(\varepsilon_t\) is approximately white noise. \textcite{Banerjee_1998}
 then test the null of non-cointegration by applying a t-test on
 \(\varphi_0\), i.e.~\(\mathcal{H}_0 : \varphi_0 = 0\).
 \textcite{Boswijk_1994} uses the Wald statistic for testing
-\(\mathcal{H}_0 : (\varphi_0, \phi'_1)' = 0\).
+\(\mathcal{H}_0 : (\varphi_0, \bm{\phi}^{'}_1)' = 0\).
 
 To combine the results from the underlying tests Bayer and Hanck draw
 upon Fisher's combined probability test \autocite{Fisher_1932}. It
@@ -500,13 +500,13 @@ trend, both processes need to be demeaned. For the last case, a constant
 trend and drift, both processes are adjusted for the mean and trend.
 
 The number of repetitions is set to 1,000,000. Moreover, we consider
-\(\text{R}^2 \in \{0, 0.05, 0.1, ..., 0.95\}\) and the number of lags
-\(\{k \in \mathbb{Z}: 1 \leq k \leq 11\}\). Pesavento further introduces
-the local-to-unity parameter \(c:= T(\rho-1)\). For negative values of
-\(c\) the variables are cointegrated, while for \(c = 0\) there is no
-cointegration. Since we solely aim at simulating the distribution under
-the null hypothesis of no cointegration we will not consider other
-values different from \(c = 0\).
+\(\text{R}^2 \in \{0, 0.05, 0.1, ..., 0.95\}\) and the number of
+regressors \(\{k \in \mathbb{Z}: 1 \leq k \leq 11\}\). Pesavento further
+introduces the local-to-unity parameter \(c:= T(\rho-1)\). For negative
+values of \(c\) the variables are cointegrated, while for \(c = 0\)
+there is no cointegration. Since we solely aim at simulating the
+distribution under the null hypothesis of no cointegration we will not
+consider other values different from \(c = 0\).
 
 To calculate the \(\tilde{\chi}^2_{\mathcal{I}}\) we require the
 \(p\)-values of the underlying tests. For this, we build the \ac{CDF} of
@@ -564,10 +564,10 @@ y^{(\lambda)} =
 
 \textcite{Boxcox_1964} developed these transformations for the dependent
 variable. \textcite{Kuhn_2013}, however, report that it proves as
-effective for transforming individual regressors. We estimate lambda for
-the values of the test statistics of the meta test and transform them
-according to \eqref{eq:6}. This forces their distribution into a more
-symmetric form, albeit still right-tailed (again, see Figure
+effective for transforming individual regressors. We estimate
+\(\lambda\) for the values of the test statistics of the meta test and
+transform them according to \eqref{eq:6}. This forces their distribution
+into a more symmetric form, albeit still right-tailed (again, see Figure
 \ref{fig:density}).
 
 \begin{figure}
@@ -750,7 +750,7 @@ using the maximum polynomial degree available. One might say this
 represents a corner solution. However, since we are optimising the
 models on the in-sample \ac{RMSE}, we could increase the degree of the
 polynomials endlessly, to improve the fit. Since it can be shown that we
-are already tweaking on the fifth decimal place, we will no further
+are already tweaking on the fifth decimal place, we will not further
 pursue this procedure.
 
 As announced, we use the \ac{LASSO} to check if the final models contain
@@ -860,7 +860,7 @@ Figure \ref{fig:fig_4} in the Appendix shows the same behaviour for the
 data with Engle-Granger and Johansen as underlying tests for all
 combinations of cases and \(k\). Above a certain value of the test
 statistic the predicted values sharply increase, tending towards 1. It
-should be noted that this upper boundary is enforced by our build in
+should be noted that this upper boundary is enforced by our built-in
 correction for predicted values outside the interval {[}0, 1{]}. Without
 this intervention the predicted values would probably rise even further.
 If we predict on an extended sequence with no correction, the prediction
@@ -896,8 +896,8 @@ decide to try the last one.
 \includegraphics{p_approx_paper_files/figure-latex/p_stat__k.2-1.pdf}
 \caption{\label{fig:e_j_k.1} Simulated \(p\)-values plotted against
 \(p\)-values approximated by final corrected models, exemplary for
-\(k = 1\). Corrected (blue) and uncorrected (red) \(p\)-value
-predictions for all cases and \(k = 2\), using EJ and all as underlying
+\(k = 2\). Corrected (blue) and uncorrected (red) \(p\)-value
+predictions for all cases and \(k = 2\), using EJ and All as underlying
 tests.}
 \end{figure}
 

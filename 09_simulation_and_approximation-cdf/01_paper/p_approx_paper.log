@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.3)  14 DEC 2021 17:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.3)  18 DEC 2021 16:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -121,6 +121,13 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \mathdisplay@stack=\toks20
 LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup6
+\symboldletters=\mathgroup7
+\symboldsymbols=\mathgroup8
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
+LaTeX Info: Redefining \bm on input line 209.
 ) (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifxetex.sty
 Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 (/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
@@ -1532,7 +1539,7 @@ Package acronym Info: Label `acro:RMSE' newly defined as it shall be overridden
 
 although it is yet undefined on input line 529.
 [5]
-<p_approx_paper_files/figure-latex/density_plots-1.pdf, id=290, 464.73625pt x 2
+<p_approx_paper_files/figure-latex/density_plots-1.pdf, id=293, 464.73625pt x 2
 81.05pt>
 File: p_approx_paper_files/figure-latex/density_plots-1.pdf Graphic file (type 
 pdf)
@@ -1571,7 +1578,7 @@ Overfull \hbox (2.94322pt too wide) in paragraph at lines 772--772
  []
 
 [10]
-<p_approx_paper_files/figure-latex/p.sim_aprox.k1-1.pdf, id=356, 463.7325pt x 3
+<p_approx_paper_files/figure-latex/p.sim_aprox.k1-1.pdf, id=359, 463.7325pt x 3
 17.185pt>
 File: p_approx_paper_files/figure-latex/p.sim_aprox.k1-1.pdf Graphic file (type
  pdf)
@@ -1579,7 +1586,7 @@ File: p_approx_paper_files/figure-latex/p.sim_aprox.k1-1.pdf Graphic file (type
 Package pdftex.def Info: p_approx_paper_files/figure-latex/p.sim_aprox.k1-1.pdf
   used on input line 811.
 (pdftex.def)             Requested size: 384.1195pt x 262.73108pt.
-<p_approx_paper_files/figure-latex/p.sim_aprox_0.2.k1-1.pdf, id=360, 463.7325pt
+<p_approx_paper_files/figure-latex/p.sim_aprox_0.2.k1-1.pdf, id=363, 463.7325pt
  x 317.185pt>
 File: p_approx_paper_files/figure-latex/p.sim_aprox_0.2.k1-1.pdf Graphic file (
 type pdf)
@@ -1589,7 +1596,7 @@ Package pdftex.def Info: p_approx_paper_files/figure-latex/p.sim_aprox_0.2.k1-1
 (pdftex.def)             Requested size: 384.1195pt x 262.73108pt.
 [11 <./p_approx_paper_files/figure-latex/p.sim_aprox.k1-1.pdf>] [12 <./p_approx
 _paper_files/figure-latex/p.sim_aprox_0.2.k1-1.pdf>]
-<p_approx_paper_files/figure-latex/p_stat__k.2-1.pdf, id=400, 463.7325pt x 313.
+<p_approx_paper_files/figure-latex/p_stat__k.2-1.pdf, id=403, 463.7325pt x 313.
 17pt>
 File: p_approx_paper_files/figure-latex/p_stat__k.2-1.pdf Graphic file (type pd
 f)
@@ -2172,7 +2179,7 @@ Overfull \hbox (3.70128pt too wide) in alignment at lines 2780--2791
  []
 
 [69]
-<p_approx_paper_files/figure-latex/approx_sim-all-1.pdf, id=797, 463.7325pt x 5
+<p_approx_paper_files/figure-latex/approx_sim-all-1.pdf, id=800, 463.7325pt x 5
 67.11874pt>
 File: p_approx_paper_files/figure-latex/approx_sim-all-1.pdf Graphic file (type
  pdf)
@@ -2191,7 +2198,7 @@ ifier (name{figure.1}) has been already used, duplicate ignored
                    \relax 
 l.2801 underlying tests.}
                           [70]
-<p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf, id=802, 463.7325pt
+<p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf, id=805, 463.7325pt
  x 567.11874pt>
 File: p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf Graphic file (
 type pdf)
@@ -2211,7 +2218,7 @@ entifier (name{figure.2}) has been already used, duplicate ignored
 l.2809 all underlying test.}
                              [71 <./p_approx_paper_files/figure-latex/approx_si
 m-all-1.pdf>]
-<p_approx_paper_files/figure-latex/approx_sim-ej-1.pdf, id=818, 463.7325pt x 56
+<p_approx_paper_files/figure-latex/approx_sim-ej-1.pdf, id=821, 463.7325pt x 56
 7.11874pt>
 File: p_approx_paper_files/figure-latex/approx_sim-ej-1.pdf Graphic file (type 
 pdf)
@@ -2231,7 +2238,7 @@ figure.3}) has been already used, duplicate ignored
 l.2817 type.}
               [72 <./p_approx_paper_files/figure-latex/approx_sim-all_0.2-1.pdf
 >]
-<p_approx_paper_files/figure-latex/approx_sim-ej_0.2-1.pdf, id=834, 463.7325pt 
+<p_approx_paper_files/figure-latex/approx_sim-ej_0.2-1.pdf, id=837, 463.7325pt 
 x 567.11874pt>
 File: p_approx_paper_files/figure-latex/approx_sim-ej_0.2-1.pdf Graphic file (t
 ype pdf)
@@ -2251,7 +2258,7 @@ name{figure.4}) has been already used, duplicate ignored
 l.2825 test type.}
                    [73 <./p_approx_paper_files/figure-latex/approx_sim-ej-1.pdf
 >]
-<p_approx_paper_files/figure-latex/p_stat_all-1.pdf, id=851, 457.71pt x 567.118
+<p_approx_paper_files/figure-latex/p_stat_all-1.pdf, id=854, 457.71pt x 567.118
 74pt>
 File: p_approx_paper_files/figure-latex/p_stat_all-1.pdf Graphic file (type pdf
 )
@@ -2260,7 +2267,7 @@ Package pdftex.def Info: p_approx_paper_files/figure-latex/p_stat_all-1.pdf  us
 ed on input line 2830.
 (pdftex.def)             Requested size: 457.72984pt x 567.14331pt.
 [74 <./p_approx_paper_files/figure-latex/approx_sim-ej_0.2-1.pdf>]
-<p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf, id=867, 457.71pt x 567.118
+<p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf, id=870, 457.71pt x 567.118
 74pt>
 File: p_approx_paper_files/figure-latex/p_stat_e_j-1.pdf Graphic file (type pdf
 )
@@ -2283,11 +2290,11 @@ Package logreq Info: Writing requests to 'p_approx_paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24737 strings out of 478994
- 413000 string characters out of 5858185
- 1402495 words of memory out of 5000000
- 41261 multiletter control sequences out of 15000+600000
- 516487 words of font info for 226 fonts, out of 8000000 for 9000
+ 24839 strings out of 478994
+ 414325 string characters out of 5858185
+ 1403856 words of memory out of 5000000
+ 41354 multiletter control sequences out of 15000+600000
+ 521088 words of font info for 240 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  73i,13n,81p,944b,6863s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
@@ -2295,27 +2302,29 @@ texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/t
 exmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/
 fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/
 dvips/lm/lm-mathex.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/l
-m/lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.p
-fb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/lo
-cal/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texliv
-e/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/tex
-mf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2021/texmf-dist/fo
-nts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/p
-ublic/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lm
-r10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></u
-sr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/te
-xlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2021/t
-exmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/texmf-dist/fo
-nts/type1/public/lm/lmri10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/
-public/lm/lmri12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/
-lmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb>
-</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local
-/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2
-021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on p_approx_paper.pdf (95 pages, 15999003 bytes).
+m/lmbsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.
+pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/
+local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/local/texli
+ve/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2021/te
+xmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/texmf-dist/f
+onts/type1/public/lm/lmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1
+/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/
+lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmib10.pfb
+></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/loca
+l/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2
+021/texmf-dist/fonts/type1/public/lm/lmr17.pfb></usr/local/texlive/2021/texmf-d
+ist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/ty
+pe1/public/lm/lmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/l
+m/lmri10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri12.p
+fb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/l
+ocal/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texliv
+e/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/local/texlive/2021/texm
+f-dist/fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2021/texmf-dist/fon
+ts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on p_approx_paper.pdf (95 pages, 16005541 bytes).
 PDF statistics:
- 1015 PDF objects out of 1200 (max. 8388607)
- 856 compressed objects within 9 object streams
+ 1025 PDF objects out of 1200 (max. 8388607)
+ 864 compressed objects within 9 object streams
  209 named destinations out of 1000 (max. 500000)
  61702 words of extra memory for PDF output out of 61914 (max. 10000000)
 
