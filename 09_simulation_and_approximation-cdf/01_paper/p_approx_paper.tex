@@ -379,14 +379,14 @@ covariance matrix of \(\bm{v}_t\). It can be shown that \{\(\bm{v}_t\)\}
 satisfies an \ac{FCLT},
 i.e.~\(T^{-1/2} \sum^{[\cdot T]}_{t=1} \bm{v}_t \Rightarrow \bm{\Omega}^{1/2} \bm{W}(\cdot)\),
 with \(\bm{W}\) denoting a Wiener process. It is also assumed that the
-variables in \(x_t\) are not cointegrated. It further follows from
-\eqref{eq:13} that the vector \(\mathbf{z}_t\) is cointegrated if
+variables in \(\mathbf{x}_t\) are not cointegrated. It further follows
+from \eqref{eq:13} that the vector \(\mathbf{z}_t\) is cointegrated if
 \(|\rho| < 1\). Hence the null hypothesis of no cointegration can be
 formulated as \(H_0: \rho = 1\).
 
-Furthermore, Pesavento introduces two other parameters. First,
-\(\text{R}^2\) measures the squared correlation of \(v_{1t}\) and
-\(v_{2t}\). It can be interpreted as the influence of the right-hand
+Furthermore, Pesavento introduces two other parameters. Firstly,
+\(\text{R}^2\) measures the squared correlation between \(\bm{v}_{1t}\)
+and \(v_{2t}\). It can be interpreted as the influence of the right-hand
 side variables in \eqref{eq:12}. It ranks between zero and one. When
 there is no long-run correlation between those variables and the errors
 from the cointegration regression, \(\text{R}^2\) equals zero. Secondly,
@@ -418,7 +418,7 @@ relationships. Take the \ac{VECM} \begin{equation}
 \Delta \mathbf{z}_t = \mathbf{\Pi z}_{t-1} + \sum^{P-1}_{p = 1} \mathbf{\Gamma}_p \Delta \mathbf{z}_{t-p} + \mathbf{d}_t + \mathbf{\varepsilon}_t.
 \label{eq:3}
 \end{equation} We base this test on the test statistic
-\(\lambda_{\text{max}}(h) = -T \ln(1 - \hat{\pi}_1)\). \(\hat{\pi}_1\)
+\(\varrho_{\text{max}}(h) = -T \ln(1 - \hat{\pi}_1)\). \(\hat{\pi}_1\)
 is the largest solution to
 \([\pi \mathbf{S}_{11} - \mathbf{S}_{10} \mathbf{S}_{00}^{-1}\mathbf{S}_{01}] = 0\),
 with the \(\mathbf{S}_{ij}\) being moment matrices of reduced rank
@@ -426,14 +426,14 @@ regression residuals.
 
 The third and fourth tests considered are error correction-based. Both
 estimate the equation \begin{equation}
-\Delta y_t = d_t + \pi'_{0x} \Delta x_t + \varphi_0 y_{t-1} + \bm{\varphi'_1 x_{t-1}} + \sum^P_{p=1} (\pi'_{px} \Delta \bm{x}_{t-p} + \pi_{py} \Delta y_{t-p}) + \varepsilon_t
+\Delta y_t = d_t + \bm{\pi}'_{0x} \Delta \mathbf{x}_t + \varphi_0 y_{t-1} + \bm{\varphi}'_1 \mathbf{x}_{t-1} + \sum^P_{p=1} (\bm{\pi}'_{px} \Delta \mathbf{x}_{t-p} + \pi_{py} \Delta y_{t-p}) + \varepsilon_t
 \label{eq:4}
 \end{equation} by \ac{OLS}. \(P\) is chosen so that the
 \(\varepsilon_t\) is approximately white noise. \textcite{Banerjee_1998}
 then test the null of non-cointegration by applying a t-test on
 \(\varphi_0\), i.e.~\(\mathcal{H}_0 : \varphi_0 = 0\).
 \textcite{Boswijk_1994} uses the Wald statistic for testing
-\(\mathcal{H}_0 : (\varphi_0, \bm{\phi}^{'}_1)' = 0\).
+\(\mathcal{H}_0 : (\varphi_0, \bm{\phi}^{'}_1)' = \mathbf{0}\).
 
 To combine the results from the underlying tests Bayer and Hanck draw
 upon Fisher's combined probability test \autocite{Fisher_1932}. It
@@ -484,7 +484,8 @@ calculate \eqref{eq:5} twice, with a different selection of \(\xi_i\).
 We account for the above-mentioned restrictions on the deterministic
 part of the model by slightly adjusting the underlying process in each
 case. In total, we generate three different data sets, each containing
-two different variables for the test statistic.
+the test statistic once as a combination of the EJ tests and once for
+all tests.
 
 The following approach relies largely on previous work by
 \textcite{Pesavento_2004}. It can be shown that the asymptotic null
@@ -641,15 +642,15 @@ The \ac{LASSO} coefficients minimize
 
 \begin{equation}
     \hat{\beta}^{\text{lasso}} = \argmin_{\beta} \sum^n_{i=1} \left( y_i - \beta_0 - \sum^p_{j=1} x_{ij} \beta_j \right)^2 + 
-    \lambda \sum^p_{j=1} |\beta_j |,
+    \Upsilon \sum^p_{j=1} |\beta_j |,
 \label{eq:9}
 \end{equation}
 
 where the first term describes the residual sum of squares, subject to a
-term known as L1 penalty. \(\lambda\) is a tuning parameter which
+term known as L1 penalty. \(\Upsilon\) is a tuning parameter which
 defines the degree of regularisation. The L1 penalty shrinks the
-coefficients and, for \(\lambda\) sufficiently large, can set them to
-zero. The value of \(\lambda\) is data dependent and is usually
+coefficients and, for \(\Upsilon\) sufficiently large, can set them to
+zero. The value of \(\Upsilon\) is data dependent and is usually
 estimated with cross-validation. \autocite{James_2013}
 
 We plan on using the \ac{LASSO} on the best models from
@@ -746,20 +747,27 @@ EJ & 3 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 1.45e-04 & 1.45e
 \end{table}
 
 Table \ref{tab:6_final_models} lists the final models for each case and
-test type. The forms of the models share many common features, mostly
-using the maximum polynomial degree available. One might say this
-represents a corner solution. However, since we are optimising the
-models on the in-sample \ac{RMSE}, we could increase the degree of the
-polynomials endlessly, to improve the fit. Since it can be shown that we
-are already tweaking on the fifth decimal place, we will not further
-pursue this procedure.
+test type. For purposes of presentation we abbreviate the description of
+the models. The response variable is referred to as \(p\), with
+bc(\(p\)) and log(\(p\)) standing for its Box-Cox-transformed and
+logarithmised forms, respectively. \(t\) refers to the value of the test
+statistic, while \(k\) describes the eponymous categorical variable. The
+latter's dummy variable form is abbreviated with \(k\)\_\(d\).
+
+The forms of the models share many common features, mostly using the
+maximum polynomial degree available. One might say this represents a
+corner solution. However, since we are optimising the models on the
+in-sample \ac{RMSE}, we could increase the degree of the polynomials
+endlessly, to improve the fit. Since it can be shown that we are already
+tweaking on the fifth decimal place, we will not pursue this procedure
+any further.
 
 As announced, we use the \ac{LASSO} to check if the final models contain
 any redundancy. As before, we skip cross-validation and use an
-automatically generated sequence for \(\lambda\). The default are 100
-values for \(\lambda\). The program, however, stops early if the percent
-(of null) deviance explained does not change sufficiently for the next
-\(\lambda\). \autocite{Friedman_2010}
+automatically generated sequence for \(\Upsilon\). The default are 100
+values for \(\Upsilon\). The program, however, stops early if the
+percent (of null) deviance explained does not change sufficiently for
+the next \(\Upsilon\). \autocite{Friedman_2010}
 
 \begin{table}[!h]
 
@@ -782,8 +790,8 @@ EJ & 3 & $\bc(p) = c + \poly\left( \bc(t), 13 \right) * k\_d$ & 9.84e-03 & 9.81e
 \end{tabular}
 \end{table}
 
-Here, for all models the actual number of \(\lambda\) is less than 100.
-For our purposes it is sufficient to choose the lowest \(\lambda\) out
+Here, for all models the actual number of \(\Upsilon\) is less than 100.
+For our purposes it is sufficient to choose the lowest \(\Upsilon\) out
 of that sequence, ergo the model with the least shrinkage. The number of
 nonzero coefficients ranges between 47 to 60 for the models with the
 test type all and between 27 to 34 for the models with test type EJ. In
@@ -854,7 +862,7 @@ Figure \ref{fig:fig_3} in Appendix A shows the prediction of the models
 for all underlying tests on said sequence. In the majority of cases the
 corrected models perform well, with the prediction curve taking the
 expected shape. In two cases, when \(k = 2\) and \(k = 3\) in the model
-with no deterministics (Case = 1), the predicted values rise again,
+with no deterministics (case = 1), the predicted values rise again,
 taking values not equal to zero.
 
 Figure \ref{fig:fig_4} in the Appendix shows the same behaviour for the
@@ -872,7 +880,8 @@ There can be several reasons why the models' prediction behaves this
 way. Oscillation at the edges of an interval is a common problem in
 polynomial interpolation, especially when using polynomials of high
 order. Additionally, the distribution of the test statistic in the
-training data may have made matters worse. It must also be considered
+training data may have made matters worse, as the models were trained on
+very few high values of the test statistic. It must also be considered
 that we chose our models according to their predictive performance on
 the lower tail of the distribution of the test statistic, possibly
 neglecting the predictive performance on the upper tail. If this
@@ -970,7 +979,7 @@ estimated \(p\)-value within the theoretical boundaries of 0 and 1. If a
 \(p\)-value \(\leq 0\) is predicted, it is corrected to \(1e-12\). For
 values \(> 1\), it is set to \(9.9999e-1\). The function
 \texttt{bayerhanck()} then outputs the value of the test statistic of
-the meta test by Bayer and Hanck, accompanied by it's \(p\)-value.
+the meta test by Bayer and Hanck, accompanied by its \(p\)-value.
 
 Eventually, this approach succeeded in reducing the package size
 significantly. The implementation of the polynomial regression models
