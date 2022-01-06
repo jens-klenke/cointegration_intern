@@ -198,13 +198,13 @@ non-cointegration test, considering up to 13 degrees. Due to the \ac{CDF}'s char
 Since there is no need to prevent overfitting we expect higher order polynomials to perform better, as they are more flexible. These polynomials, however, tend to show oscillation at the boundaries. This makes prediction for more extreme values of the test statistic a risky endeavour. We will address this issue in a later chapter. 
 
 ## \ac{LASSO}  
-As mentioned, we expect the polynomial regression models to perform best with high order polynomials. Every polynomial added increases the complexity of the model. Table \ref{tab:func_form} shows that in some instances for each additional polynomial another set of interaction terms is also included. It is possible that some regressors (including the interaction terms) benefit the prediction, while others are redundant. Yet, it would be too cumbersome to manually add and remove different regressors. Nevertheless, we do not want the models to be larger than necessary. Therefore, it may be necessary to perform variable selection and regularization. An approach for this is the \ac{LASSO}.
+As mentioned, we expect the polynomial regression models to perform best with high order polynomials. Every polynomial added increases the complexity of the model. Table \ref{tab:func_form} shows that in some instances for each additional polynomial another set of interaction terms is also included. It is possible that some regressors (including the interaction terms) benefit the prediction, while others are redundant. Yet, it would be too cumbersome to manually add and remove different regressors. Nevertheless, we do not want the models to be larger than necessary. Therefore, it may be necessary to perform variable selection and regularization. An approach for this is the \ac{LASSO}. As the \ac{LASSO} is sensitive to the scale unit the optimization is performed on the standardised variables. 
 
 The \ac{LASSO} coefficients minimize 
 
 \begin{equation}
-    \hat{\beta}^{\text{lasso}} = \argmin_{\beta} \sum^n_{i=1} \left( y_i - \beta_0 - \sum^p_{j=1} x_{ij} \beta_j \right)^2 + 
-    \Upsilon \sum^p_{j=1} |\beta_j |,
+    \widehat{\tilde{\beta}}^{\text{lasso}} = \argmin_{\tilde{\beta}} \sum^n_{i=1} \left( \tilde{y}_i - \tilde{\beta}_0 - \sum^p_{j=1} \tilde{x}_{ij} \tilde{\beta}_j \right)^2 + 
+    \Upsilon \sum^p_{j=1} |\tilde{\beta_j} |,
 \label{eq:9}
 \end{equation}
 
