@@ -639,7 +639,7 @@ variable selection and regularization. An approach for this is the
 \ac{LASSO}. As the \ac{LASSO} is not scale-invariant we standardise the
 regressors.
 
-The \ac{LASSO} coefficients minimize
+The \ac{LASSO} coefficients minimise
 
 \begin{equation}
     \widehat{\tilde{\beta}}^{\text{lasso}} = \argmin_{\tilde{\beta}} \sum^n_{i=1} \left( \tilde{y}_i - \tilde{\beta}_0 - \sum^p_{j=1} \tilde{x}_{ij} \tilde{\beta}_j \right)^2 + 
@@ -1017,7 +1017,7 @@ memory-intensive approach, we only considered linear models. Still, the
 flexible we included various interaction terms and polynomials with up
 to \(13\) degrees. For evaluating the models we calculated several
 in-sample metrics. Eventually, we decided to choose the models that
-minimize the \ac{cRMSE} over the lower tail of the distribution,
+minimise the \ac{cRMSE} over the lower tail of the distribution,
 corrected for values ranging between 0 and 1. As expected, the most
 complex models performed best. To check for redundancy in those final
 models, we used a \ac{LASSO} on them. Additionally, we (again) corrected
