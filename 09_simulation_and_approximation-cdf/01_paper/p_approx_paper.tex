@@ -334,7 +334,7 @@ with supervised machine learning algorithms. We train our models on
 simulated values of the test statistic and the corresponding
 \(p\)-values for various specifications of the aforementioned test.
 Subsequently, these models will be included in the software package
-\texttt{bayerhanck} for the statistical programming language R. We find
+\texttt{combcoint} for the statistical programming language R. We find
 that this approach indeed reduces the size of the package significantly.
 Section 2 explains the theoretical background of the meta test by Bayer
 and Hanck. We briefly introduce the underlying tests and describe the
@@ -636,13 +636,14 @@ redundant. Yet, it would be too cumbersome to manually add and remove
 different regressors. Nevertheless, we do not want the models to be
 larger than necessary. Therefore, it may be necessary to perform
 variable selection and regularization. An approach for this is the
-\ac{LASSO}.
+\ac{LASSO}. As the \ac{LASSO} is sensitive to the scale unit the
+optimization is performed on the standardised variables.
 
 The \ac{LASSO} coefficients minimize
 
 \begin{equation}
-    \hat{\beta}^{\text{lasso}} = \argmin_{\beta} \sum^n_{i=1} \left( y_i - \beta_0 - \sum^p_{j=1} x_{ij} \beta_j \right)^2 + 
-    \Upsilon \sum^p_{j=1} |\beta_j |,
+    \widehat{\tilde{\beta}}^{\text{lasso}} = \argmin_{\tilde{\beta}} \sum^n_{i=1} \left( \tilde{y}_i - \tilde{\beta}_0 - \sum^p_{j=1} \tilde{x}_{ij} \tilde{\beta}_j \right)^2 + 
+    \Upsilon \sum^p_{j=1} \left|\tilde{\beta_j} \right|,
 \label{eq:9}
 \end{equation}
 
