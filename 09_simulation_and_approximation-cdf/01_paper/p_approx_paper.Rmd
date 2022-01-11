@@ -204,7 +204,7 @@ The \ac{LASSO} coefficients minimize
 
 \begin{equation}
     \widehat{\tilde{\beta}}^{\text{lasso}} = \argmin_{\tilde{\beta}} \sum^n_{i=1} \left( \tilde{y}_i - \tilde{\beta}_0 - \sum^p_{j=1} \tilde{x}_{ij} \tilde{\beta}_j \right)^2 + 
-    \Upsilon \sum^p_{j=1} |\tilde{\beta_j} |,
+    \Upsilon \sum^p_{j=1} \left|\tilde{\beta_j} \right|,
 \label{eq:9}
 \end{equation}
 
